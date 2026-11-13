@@ -668,6 +668,17 @@ final class FinanceTests: XCTestCase {
         XCTAssertTrue(world.finance.loans.isEmpty)
     }
 
+    func testBanksStopLendingToTheOverIndebted() {
+        var world = Scenario1453.makeWorld()
+        let fra = country(world, "FRA")
+        let medici = bank(world, "Medici Bank")
+        world.countries.lastMonthlyIncome[fra.index] = 1
+        world.finance.loans.append(Loan(country: fra, bank: medici, principal: 100, rate: 0.1, monthsLeft: 10))
+        XCTAssertNil(world.loanRate(medici, for: fra))
+        world.finance.loans.removeAll()
+        XCTAssertLessThanOrEqual(world.loanRate(medici, for: fra)!, Finance.maxRate)
+    }
+
     func testFarAwayBankWontLend() {
         let world = Scenario1453.makeWorld()
         XCTAssertNil(world.loanRate(bank(world, "Chetti Merchants"), for: country(world, "FRA")))

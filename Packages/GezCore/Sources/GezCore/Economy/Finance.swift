@@ -98,6 +98,9 @@ public struct Finance: Sendable {
 
     public static let loanSizes: [Double] = [50, 100, 250, 500]
     public static let loanMonths = 60
+    /// Banks won't lend past this many years of income in debt.
+    public static let maxDebtYears = 3.0
+    public static let maxRate = 0.4
     public static let maxTaxLevel = 2.0
     /// Months of no lending and lower income after a default.
     public static let bankruptcyMonths = 60
@@ -150,7 +153,8 @@ extension World {
         }
         let yearlyIncome = max(1, countries.lastMonthlyIncome[c] * 12)
         let ratio = finance.debt(of: country) / yearlyIncome
-        return finance.banks.baseRate[bank.index] * (1 + ratio)
+        guard ratio < Finance.maxDebtYears else { return nil }
+        return min(Finance.maxRate, finance.banks.baseRate[bank.index] * (1 + ratio))
     }
 }
 
@@ -219,6 +223,7 @@ public enum FinanceSystem {
         // Loans falling due: repay if there is money, otherwise roll over at
         // today's rate (or default if no bank will).
         var kept: [Loan] = []
+        var defaulting = Set<CountryID>()
         for var loan in world.finance.loans {
             loan.monthsLeft -= 1
             if loan.monthsLeft > 0 { kept.append(loan); continue }
@@ -226,13 +231,17 @@ public enum FinanceSystem {
             if world.countries.treasury[c] >= loan.principal {
                 world.countries.treasury[c] -= loan.principal
                 world.finance.banks.capital[loan.bank.index] += loan.principal
-            } else {
-                loan.rate = world.loanRate(loan.bank, for: loan.country) ?? loan.rate * 1.5
+            } else if let rate = world.loanRate(loan.bank, for: loan.country) {
+                loan.rate = rate
                 loan.monthsLeft = Finance.loanMonths
                 kept.append(loan)
+            } else {
+                kept.append(loan)
+                defaulting.insert(loan.country)
             }
         }
         world.finance.loans = kept
+        for c in defaulting.sorted(by: { $0.index < $1.index }) { bankrupt(&world, c) }
 
         // Out of money: borrow the shortfall, or go bankrupt.
         for c in world.countries.ids where world.countries.treasury[c.index] < 0 {
