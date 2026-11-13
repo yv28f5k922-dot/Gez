@@ -855,7 +855,7 @@ final class CharacterTests: XCTestCase {
     func testMarriageRules() {
         let w = Scenario1453.makeWorld()
         XCTAssertEqual(CharacterSystem.marriageRefusal(w, person(w, "bayezid2"), person(w, "zoe_p"), date: start), .tooYoung)
-        XCTAssertEqual(CharacterSystem.marriageRefusal(w, person(w, "casimir4"), person(w, "ippolita_s"), date: start), nil)
+        XCTAssertEqual(CharacterSystem.marriageRefusal(w, person(w, "casimir4"), person(w, "catherine_p"), date: start), nil)
         XCTAssertEqual(CharacterSystem.marriageRefusal(w, person(w, "henry4_c"), person(w, "ladislaus5"), date: start), .sameSex)
     }
 
