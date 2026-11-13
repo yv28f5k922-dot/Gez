@@ -73,14 +73,15 @@ icons (SwiftUI overlay for now; move to Metal or 3D models in Phase 17).
 4. **2D map icons**: towns that grow with development, forts by level,
    ports, capitals; drawn by the Metal renderer.
 
-### Phase 2: Economy (in progress, session 4)
+### Phase 2: Economy ✅ (session 4)
 Owner's choices: ~60 goods (EU5-like), supply-and-demand prices, "you build,
 pops work", ducats + loans + debasement, ~40 markets that can grow,
 needs by class, building slots limited by size and terrain.
 Done: steps 1–3 (goods, markets, needs, prices, taxes, satisfaction; Goods
 and Markets map modes; market panel) and step 4 buildings (owner: levels
 1–5, months-to-years build time, ducats + goods, all four kinds).
-Next: step 5 budget, loans and debasement.
+and step 5 (owner: named banking houses, default with penalties, debasement
+once and ongoing, tax sliders by class).
 1. **Goods**: each province produces goods from its terrain and pops
    (grain, wine, wool, cloth, iron, salt, fish, timber, spices, silk,
    horses...). Data file of goods and where they come from.

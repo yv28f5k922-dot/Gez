@@ -48,14 +48,14 @@ Also on the map: sea zone borders and names, tap the sea for a sea panel;
 town icons sized by development, capital stars, fort towers, port anchors
 (`MapIconsLayer` in `MapCanvasView.swift`).
 
-Economy (Phase 2, steps 1–4 done in session 4: goods, markets, needs,
-prices, buildings): see DESIGN.md "Economy &
+Economy (Phase 2, done in session 4: goods, markets, needs, prices,
+buildings, taxes by class, banks and loans, debasement, bankruptcy): see DESIGN.md "Economy &
 pops". Code in `Packages/GezCore/Sources/GezCore/Economy/` and
 `Systems/MarketSystem.swift`; balance with `python3 tools/economy/prototype.py`
 (a Python copy of the monthly model; keep constants in step).
 After changing `data/economy/`, run `python3 tools/economy/econgen.py`.
 
-Not started: budget screen, loans, debasement, armies, diplomacy, war, sieges,
+Not started: trade routes, armies, diplomacy, war, sieges,
 battles, estates, government, AI, save/load, sound, menus, settings.
 
 ## How to work on it
@@ -137,10 +137,15 @@ docs/              DESIGN, HISTORY_NOTES, HANDOFF (this), CREDITS, previews
 ## What to do next
 
 **Follow `docs/ROADMAP.md`.** The owner chose every feature and the build
-order in session 2. **Phase 1 is done (session 3). Phase 2 (economy) steps 1–4 are done
-(session 4). Next: Phase 2 step 5: budget screen, loans from bankers,
-debasement and inflation** (ask the owner first). Then Phase 3, trade
-routes (this replaces the simple neighbour exchange in MarketSystem).
+order in session 2. **Phases 1 (session 3) and 2 (session 4) are done. Next: Phase 3, trade
+routes** (ask the owner first). It replaces the simple neighbour exchange
+in `MarketSystem` (step 3): merchants moving goods between markets along
+land and sea routes, route control earning money. Known gap it should fix:
+spices and silk don't reach Venice/Bruges yet.
+
+CI note: GitHub's arm64 Mac runners are sometimes unavailable for hours.
+Simulation tests also run on Linux (`swift:6.0` container) and the app
+build runs on `macos-15-intel`; only the snapshot job needs arm64 (Metal).
 
 Notes:
 - The interface art pass was **skipped by the owner for now**; don't do it

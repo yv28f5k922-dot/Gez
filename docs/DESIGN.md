@@ -89,7 +89,25 @@ turned into game files by `tools/mapgen/mapgen.py`.
 - **AI**: each month a twelfth of computer countries consider their 8 most
   productive provinces and build the best tax return per ducat if it pays
   back within ~15 years and leaves 6 months of income in reserve.
-- **Money**: ducats, loans from bankers, debasement causing inflation (next).
+- **Taxes by class** (budget window sliders, 0–2× normal): land taxes on
+  peasants (60% of farm/mine value base), nobles (30%) and clergy (10%),
+  burghers on workshop profits. Normal rates give 2.5% of land value and 3%
+  of workshop profit. Above normal: −12% satisfaction per +1 level for that
+  class; below normal: up to +5%.
+- **Banks** (`data/economy/banks.txt`): 15 houses of 1453 (Medici, Casa di
+  San Giorgio, Venetian banks, Hanseatic merchants, Galata, Karimi,
+  Gujarati shroffs, Multani moneylenders...). Each has limited money and
+  lends only in its regions (judged by the borrower's capital). Rate =
+  base × (1 + debt / yearly income). Loans of 50–500 for 5 years; interest
+  goes to the bank; due loans are repaid or rolled over.
+- **Out of money**: the cheapest willing bank lends the shortfall; if none
+  will, **bankruptcy**: debts cancelled (banks lose them), 5 years of no
+  loans, income ×0.75, −15% satisfaction.
+- **Debasement**: once (+3 months' income, +5% inflation) or ongoing
+  (+20% income, +0.4% inflation a month). Inflation raises building costs
+  (later army costs), angers burghers (−0.8 × inflation), nobles (−0.4×)
+  and others (−0.2×); falls 0.15% a month when not debasing.
+- AI repays loans when it has a reserve; never debases.
 
 ### Diplomacy & war
 - Relations, alliances, royal marriages, vassals, guarantees.
