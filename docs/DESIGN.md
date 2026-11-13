@@ -244,4 +244,29 @@ See `docs/ROADMAP.md` for the agreed feature decisions and build order.
   or if a ruler/heir of a realm 2.5× bigger. Muslim men up to four wives.
   The wife joins her husband's court unless she rules. AI marries off its
   families each January (best realm first, else a local noble).
-- Plots and schemes come later.
+- **Whole real families** (owner: "fully like CK3"): parents (dead ones as
+  ancestors), brothers, sisters, children and bastards are recorded where
+  history knows them (`people_2_west.txt` … `people_5_south.txt`, ~560
+  living real people and ~80 ancestors). Only gaps are invented.
+- **Great vassals** (owner chose "real landed nobles"): real lords hold
+  provinces for their liege (Hunyadi: Temesvár, Szörény, Szeben; Rožmberk:
+  Budějovice; Olelko: Kiev; Ottoman march lords; Georgian princes...),
+  about 75 provinces in all.
+  - A vassal keeps 40% of his provinces' tax as private gold; the crown
+    gets the rest (shown in the budget as "Kept by vassals").
+  - Opinion of the liege: personal opinion of the ruler + 10, +15 same
+    house, ± lasting favour (fades 1 a month), and −30 at the highest noble
+    tax (+30 at none).
+  - Below 0: discontent. Below −25: refuses all taxes. Below −50 with
+    intrigue 8+: plots; 1% a month to strike. Success 30% ± 5% per point of
+    intrigue over the spymaster's, +5% per 100 gold in bribes (5–60%); the
+    ruler dies. If caught, the plotter loses all land.
+  - Land passes to lawful sons (and their sons), then brothers and nephews,
+    then daughters (not under Salic law), then bastard sons, else back to
+    the crown. A vassal who becomes ruler merges his land into the crown.
+  - The player grants crown provinces to courtiers (+40 favour) and can
+    revoke them (−80 for the holder, −20 for every other vassal).
+  - Vassal families marry local nobles each January so lines go on.
+  - Open revolt with armies comes with Phase 6 (armies).
+- **Chronicle**: inheritances, grants, refusals and plots are logged and
+  shown in the Court window.

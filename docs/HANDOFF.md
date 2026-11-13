@@ -144,7 +144,8 @@ docs/              DESIGN, HISTORY_NOTES, HANDOFF (this), CREDITS, previews
 ## What to do next
 
 **Follow `docs/ROADMAP.md`.** The owner chose every feature and the build
-order in session 2. **Phases 1–4 are done (sessions 3–4). Next: Phase 5, government, laws
+order in session 2. **Phases 1–4 are done (sessions 3–5; session 5 added whole real families
+and landed great vassals, `VassalSystem`). Next: Phase 5, government, laws
 and estates** (ask the owner first). Then Phase 6 armies.
 
 CI note: GitHub's arm64 Mac runners are sometimes unavailable for hours.

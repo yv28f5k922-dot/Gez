@@ -136,12 +136,17 @@ Moldavia; French vassals Brittany and Foix; Muscovite vassal Kasimov.
 
 ## People of 1453 (Phase 4)
 
-Real people are in `data/characters/people_1453.txt`. These facts are
-uncertain (mostly birth years, some 1453 office-holders). Countries with no
+Real people are in `data/characters/people_*.txt` (rulers in
+`people_1453.txt`; whole families, dead parents and great vassals by region
+in `people_2_west.txt` … `people_5_south.txt`). Only people history records
+are added; invented people fill gaps only. Which provinces each great vassal
+holds is simplified to the map's provinces (e.g. Hunyadi: Temesvár, Szörény,
+Szeben). These facts are uncertain (mostly birth years, some 1453
+office-holders and lordships). Countries with no
 recorded ruler got an invented ruler and an invented sibling heir (owner's
 rule); they are marked "invented" in the game.
 
-| Country | Person | Doubt |
+| Country | Person | What is uncertain |
 |---|---|---|
 | TUR | Gülbahar Hatun | origin disputed? |
 | TUR | Sitti Şah Hatun | birth year? |
@@ -175,6 +180,8 @@ rule); they are marked "invented" in the game.
 | MOL | Peter Aron | rival claimant; birth year? |
 | MOL | Stephen of Moldavia | in exile; later Stephen the Great; birth year? |
 | SAL | Sigismund of Volkersdorf | archbishop; birth year? |
+| BAD | Catherine of Lorraine | birth year? |
+| BAD | Markus of Baden | birth year? |
 | POM | Eric II of Pomerania | birth year? |
 | UTR | Rudolf van Diepholt | bishop; birth year? |
 | GEN | Pietro di Campofregoso | Doge; birth year? |
@@ -240,3 +247,112 @@ rule); they are marked "invented" in the game.
 | MEW | Raimal | birth year? |
 | AHO | Susenphaa | birth year? |
 | TPR | Dharma Manikya I | birth year? |
+| ENG | Owen Tudor | second husband of Catherine of Valois; birth year? |
+| ENG | Edmund Beaufort | birth year? |
+| ENG | John Beaufort | birth year? |
+| ENG | Margaret Beauchamp of Bletso | birth year? |
+| ENG | Thomas Neville | birth year? |
+| ENG | Eleanor Neville | birth year? |
+| ENG | Ralph Percy | birth year? |
+| ENG | Anne Neville, Duchess of Buckingham | birth year? |
+| ENG | Humphrey Stafford, Earl of Stafford | birth year? |
+| ENG | Margaret Beaufort, Countess of Devon | birth year? |
+| SCO | Isabella Stewart | widow of Francis I of Brittany; birth year? |
+| SCO | Joan Stewart | deaf; birth year? |
+| SCO | Annabella Stewart | birth year? |
+| SCO | Archibald Douglas, Earl of Moray | brother of the 9th Earl; birth year? |
+| SCO | Alexander Gordon, Earl of Huntly | birth year? |
+| SCO | William Crichton | Lord Chancellor; birth year? |
+| FRA | Charles II of Albret | birth year? |
+| BUR | John of Burgundy, Count of Nevers | cousin; birth year? |
+| BUR | Cornelius of Burgundy | killed 1452? |
+| POR | Afonso, Count of Ourém | birth year? |
+| POR | John of Coimbra | husband of Charlotte of Cyprus later; birth year? |
+| CAS | Juan Ponce de León | Count of Arcos; birth year? |
+| CAS | Beltrán de la Cueva | Henry's favourite; birth year? |
+| ARA | Alfonso of Aragon | later Duke of Villahermosa; birth year? |
+| ARA | Juan of Aragon | later archbishop of Zaragoza; birth year? |
+| ARA | Joan Ramon Folc of Cardona | Count of Cardona; birth year? |
+| NAP | Maria of Aragon | wife of Lionello d'Este (widowed); birth year? |
+| NAP | Eleanor of Aragon | birth year? |
+| NAP | Marino Marzano | Prince of Rossano; birth year? |
+| NAP | Tristan of Clermont | birth year? |
+| MLO | Tristano Sforza | birth year? |
+| MLO | Sforza Secondo | birth year? |
+| MLO | Elisabetta Sforza | birth year? |
+| FLO | Ginevra degli Alessandri | birth year? |
+| FLO | Carlo de' Medici | birth year? |
+| SAV | Aimon of Savoy | birth year? |
+| HUN | Michael Szilágyi | brother of Elizabeth; birth year? |
+| HUN | János Rozgonyi | voivode of Transylvania?; birth year? |
+| HUN | Dénes Szécsi | archbishop of Esztergom; birth year? |
+| BOH | Johana of Rožmitál | birth year? |
+| BOH | Bolko V the Hussite | Duke of Opole-Głogówek; birth year? |
+| BRA | Margaret of Brandenburg | birth year? |
+| GEL | Margaret of Egmond | birth year? |
+| GEL | Catherine of Egmond | birth year? |
+| DAN | Maurice of Oldenburg | birth year? |
+| SWE | Sten Sture | nephew of Charles VIII?; later regent |
+| SWE | Erik Axelsson Tott | birth year? |
+| POL | Jan Tęczyński | castellan; birth year? |
+| POL | Piotr Odrowąż | voivode of Ruthenia?; birth year? |
+| LIT | Semen Olelkovich | birth year? |
+| LIT | Mikhail Olelkovich | birth year? |
+| LIT | Jonas Goštautas | birth year? |
+| MAZ | Barbara Olelkovna | birth year? |
+| MAZ | Konrad III the Red | birth year? |
+| MAZ | Kazimierz III | birth year? |
+| MAZ | Bolesław V | birth year? |
+| MOS | Ivan Andreyevich of Mozhaysk | flees to Lithuania 1454; birth year? |
+| MOS | Mikhail Andreyevich of Vereya | birth year? |
+| MOS | Vasily Yaroslavich of Serpukhov | jailed by Vasily II in 1456; birth year? |
+| NOV | Sophia of Zaozerye | birth year? |
+| NOV | Ivan Dmitrievich | birth year? |
+| NOV | Isaak Boretsky | posadnik; birth year? |
+| NOV | Marfa Boretskaya | Marfa the Posadnitsa; birth year? |
+| TUR | Hüma Hatun | origin disputed? |
+| TUR | Fatma Hatun | daughter of Murad II, wife of Zağanos?; birth year? |
+| TUR | Şehzade Hatun | birth year? |
+| TUR | Evrenosoğlu Ali Bey | march lord; seat at Yenice-i Vardar?; birth year? |
+| TUR | Mihaloğlu Ali Bey | raider lord; birth year? |
+| TUR | Ömer Bey | birth year? |
+| TUR | İshak Bey | march lord of Skopje; birth year? |
+| TUR | Isa-Beg Ishaković | founder of Sarajevo; birth year? |
+| SER | Jelena Branković | later Queen of Bosnia; birth year? |
+| SER | Milica Branković | birth year? |
+| SER | Irina Branković | birth year? |
+| SER | Vuk Grgurević | "Vuk the Fiery Dragon"; birth year? |
+| SER | Mihailo Anđelović | brother of Mahmud Pasha; birth year? |
+| BOS | Vojača | first wife of Stephen Thomas, set aside 1445; birth year? |
+| BOS | Catherine Tomašević | birth year? |
+| HER | Jelena Balšić | dies late 1453?; birth year? |
+| HER | Katarina Hercegović | birth year? |
+| ALB | Voisava | origin disputed; death date unknown? |
+| ALB | Mamica Kastrioti | sister of Skanderbeg; birth year? |
+| WAL | Radu the Fair | hostage at the Ottoman court; birth year? |
+| WAL | Vlad the Monk | birth year? |
+| MOL | Oltea | mother of Stephen; birth year? |
+| KAR | Sultan Hatun | daughter of Mehmed I; birth year? |
+| KAR | İshak Bey | eldest son, mother not Sultan Hatun?; birth year? |
+| DUL | Şah Budak | birth year? |
+| DUL | Şehsuvar Bey | birth year? |
+| TRE | Helena Kantakouzene | birth year? |
+| TRE | Basil Megas Komnenos | birth year? |
+| TRE | Manuel Megas Komnenos | birth year? |
+| AKK | Seljuk Shah Begum | birth year? |
+| AKK | Ughurlu Muhammad | birth year? |
+| QAR | Bigim Khatun | birth year? |
+| GEO | Nestan-Darejan | birth year? |
+| GEO | Alexander | birth year? |
+| GEO | Liparit I Dadiani | prince of Mingrelia; birth year? |
+| GEO | Mamia Gurieli | prince of Guria; dates uncertain? |
+| MAM | Khawand Zaynab | wife of Inal; birth year? |
+| ETH | Seyon Mogesa | mother of Baeda Maryam; birth year? |
+| DEL | Daria Khan Lodi | governor of Sambhal?; birth year? |
+| DEL | Ahmad Khan Mewati | Khanzada chief of Mewat?; birth year? |
+| DEL | Qutb Khan Lodi | cousin of Bahlul; birth year? |
+| JNP | Bibi Raji | birth year? |
+| GUJ | Bibi Mughli | mother of Fath Khan; birth year? |
+| MEW | Ramabai | birth year? |
+| MAR | Satal | birth year? |
+| MAR | Suja | birth year? |
