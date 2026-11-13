@@ -1,0 +1,33 @@
+name: Fetch elevation
+
+# Downloads public elevation data (needs internet, which the cloud workspace
+# doesn't have) and commits data/terrain/elevation.png. Runs when the fetch
+# script changes, or by hand from the Actions tab.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - tools/terrain/fetch_elevation.py
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy pillow
+      - run: python3 tools/terrain/fetch_elevation.py
+      - name: Commit elevation
+        run: |
+          git config user.name "CI"
+          git config user.email "ci@users.noreply.github.com"
+          git add data/terrain/elevation.png
+          git diff --cached --quiet && exit 0
+          git commit -m "Update elevation data (fetched by CI)"
+          git pull --rebase origin main
+          git push origin HEAD:main
