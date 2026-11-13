@@ -113,6 +113,33 @@ public struct StateTable: Sendable {
     }
 }
 
+/// Named areas of sea (Aegean, Malabar Coast...). Fleets, trade and plague
+/// travel through them.
+public struct SeaZoneTable: Sendable {
+    public private(set) var name: [String] = []
+    /// Sea zones you can sail to directly.
+    public var neighbors: [[SeaZoneID]] = []
+    /// Land provinces touching this sea.
+    public var coast: [[ProvinceID]] = []
+
+    public init() {}
+
+    public var count: Int { name.count }
+
+    @discardableResult
+    public mutating func add(name: String) -> SeaZoneID {
+        let id = SeaZoneID(count)
+        self.name.append(name)
+        neighbors.append([])
+        coast.append([])
+        return id
+    }
+
+    public func id(named name: String) -> SeaZoneID? {
+        self.name.firstIndex(of: name).map(SeaZoneID.init)
+    }
+}
+
 public struct CountryTable: Sendable {
     public private(set) var tag: [String] = []
     public private(set) var name: [String] = []
@@ -180,6 +207,9 @@ public struct World: Sendable {
     public var provinces = ProvinceTable()
     public var countries = CountryTable()
     public var cultures = CultureTable()
+    public var seaZones = SeaZoneTable()
+    /// Sea zones touching each province (empty for inland provinces).
+    public var provinceSeas: [[SeaZoneID]] = []
     /// Every group of people, split by culture, religion, sect and class.
     public var pops = PopTable()
     /// Major rivers, for drawing.

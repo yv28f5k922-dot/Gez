@@ -1,0 +1,98 @@
+# Sea zones: "Name | lat lon" (a point in the middle of the zone).
+# Water is split between these points the same way land is split between
+# towns. Lakes with no point here stay unzoned (not navigable by fleets).
+
+# Arctic and North Atlantic
+Barents Sea | 71.0 35.0
+White Sea | 65.5 37.5
+Norwegian Sea | 67.0 5.0
+Waters of Iceland | 63.0 -18.0
+Faroe Waters | 61.5 -4.0
+North Atlantic | 55.0 -20.0
+Hebrides Sea | 57.0 -7.5
+Northern North Sea | 59.0 2.5
+Southern North Sea | 54.5 3.5
+Skagerrak | 57.8 9.5
+Kattegat | 56.8 11.5
+Irish Sea | 53.8 -5.0
+Celtic Sea | 51.0 -7.5
+English Channel | 50.2 -1.5
+
+# Baltic
+Western Baltic | 54.7 12.5
+Baltic Sea | 56.0 18.0
+Gulf of Riga | 57.7 23.5
+Gulf of Finland | 59.8 26.0
+Bothnian Sea | 61.5 19.5
+Bay of Bothnia | 64.5 22.5
+
+# Atlantic
+Bay of Biscay | 45.5 -4.0
+Open Atlantic | 44.0 -20.0
+Coast of Portugal | 39.5 -10.5
+Gulf of Cadiz | 36.5 -8.0
+Atlantic off Morocco | 33.0 -11.0
+Madeira Waters | 32.5 -18.5
+Canary Waters | 28.5 -15.0
+Saharan Atlantic | 22.0 -19.0
+Atlantic off Senegal | 13.0 -21.0
+Gulf of Guinea | 2.0 -5.0
+
+# Western Mediterranean
+Alboran Sea | 36.0 -3.5
+Balearic Sea | 40.0 2.0
+Gulf of Lion | 42.5 4.5
+Ligurian Sea | 43.5 9.0
+Sardinian Sea | 39.0 7.5
+Tyrrhenian Sea | 40.0 12.0
+Sicilian Channel | 37.0 12.0
+Gulf of Gabes | 34.2 11.0
+
+# Central and Eastern Mediterranean
+Northern Adriatic | 44.5 13.5
+Southern Adriatic | 42.0 16.5
+Ionian Sea | 37.5 18.5
+Gulf of Sidra | 31.5 18.0
+Libyan Sea | 33.5 24.0
+Northern Aegean | 40.0 24.5
+Southern Aegean | 37.0 25.0
+Sea of Marmara | 40.7 28.2
+Cilician Sea | 36.2 33.5
+Levantine Sea | 33.5 32.0
+Sea of Alexandria | 31.8 29.0
+
+# Black Sea and Caspian
+Western Black Sea | 43.0 30.5
+Eastern Black Sea | 42.5 37.5
+Sea of Azov | 46.0 36.5
+North Caspian | 45.5 50.0
+Middle Caspian | 42.0 50.5
+South Caspian | 38.5 51.0
+Aral Sea | 45.0 60.0
+
+# Red Sea and Gulfs
+Northern Red Sea | 26.0 35.0
+Central Red Sea | 20.0 38.5
+Southern Red Sea | 15.0 41.5
+Gulf of Aden | 12.5 47.0
+Persian Gulf | 27.5 51.0
+Lower Gulf | 25.5 54.5
+Gulf of Oman | 24.5 58.5
+
+# Indian Ocean
+Arabian Sea | 16.0 60.0
+Somali Sea | 6.0 51.0
+Coast of Zanj | -1.5 45.0
+Indian Ocean | 2.0 64.0
+Makran Coast | 24.0 62.5
+Sea of Sindh | 22.5 66.5
+Gujarat Coast | 20.5 70.0
+Konkan Coast | 17.0 71.5
+Malabar Coast | 11.0 73.5
+Maldive Sea | 4.0 73.0
+Gulf of Mannar | 8.5 78.8
+Ceylon Waters | 6.0 82.5
+Coromandel Coast | 13.0 81.0
+Bay of Bengal | 16.0 86.0
+Mouths of the Ganges | 21.0 89.5
+Andaman Sea | 12.0 95.0

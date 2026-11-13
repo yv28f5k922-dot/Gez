@@ -82,6 +82,14 @@ final class SnapshotTests: XCTestCase {
         metal.camera = MapCamera(zoom: fit, offset: CGPoint(x: (1400 - w * fit) / 2, y: (812 - h * fit) / 2))
         save(try XCTUnwrap(metal.renderImage(width: 1400, height: 812)), "metal_world.png")
 
+        // Indian Ocean and India with a sea zone selected.
+        let india = model.world.map.point(for: GeoPoint(latitude: 18.0, longitude: 78.0))
+        let iz: CGFloat = 0.9
+        metal.camera = MapCamera(zoom: iz, offset: CGPoint(x: 700 - CGFloat(india.x) * iz, y: 406 - CGFloat(india.y) * iz))
+        model.select(sea: model.world.seaZones.id(named: "Malabar Coast"))
+        save(try XCTUnwrap(metal.renderImage(width: 1400, height: 812)), "metal_india.png")
+        model.select(sea: nil)
+
         // Close-up of western Europe, then religion and culture modes.
         let paris = model.world.map.point(for: GeoPoint(latitude: 47.0, longitude: 6.0))
         let zoom: CGFloat = 1.6

@@ -208,6 +208,17 @@ public enum Scenario1453 {
         for pair in file.riverBorders ?? [] where pair.count == 2 {
             world.riverBorders.insert(ProvincePair(ProvinceID(pair[0]), ProvinceID(pair[1])))
         }
+        world.provinceSeas = Array(repeating: [], count: world.provinces.count)
+        for zone in file.seaZones ?? [] {
+            let id = world.seaZones.add(name: zone.name)
+            world.seaZones.coast[id.index] = zone.coast.map(ProvinceID.init)
+            for p in zone.coast where p < world.provinces.count {
+                world.provinceSeas[p].append(id)
+            }
+        }
+        for (k, zone) in (file.seaZones ?? []).enumerated() {
+            world.seaZones.neighbors[k] = zone.adjacent.map(SeaZoneID.init)
+        }
         world.rivers = (file.rivers ?? []).map { river in
             MapPolyline(name: river.name, points: river.points.compactMap { $0.count == 2 ? SIMD2($0[0], $0[1]) : nil })
         }
@@ -308,6 +319,13 @@ struct ScenarioFile: Decodable {
     let regions: [String]
     let cultures: [Culture]?
     let riverBorders: [[Int]]?
+    let seaZones: [SeaZone]?
+
+    struct SeaZone: Decodable {
+        let name: String
+        let adjacent: [Int]
+        let coast: [Int]
+    }
     let rivers: [River]?
     let states: [State]
     let countries: [Country]

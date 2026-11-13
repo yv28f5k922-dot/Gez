@@ -60,12 +60,27 @@ public struct ProvinceIDMap: Sendable {
         self.init(width: width, height: height, values: values)
     }
 
-    /// The bundled 1453 map.
+    /// The bundled 1453 province map.
     public static func loadBundled() throws -> ProvinceIDMap {
-        guard let url = Bundle.module.url(forResource: "provinces1453", withExtension: "idmap") else {
+        try loadBundled(named: "provinces1453")
+    }
+
+    /// The bundled 1453 sea zone map: 0 = land or unzoned water, k + 1 = zone k.
+    public static func loadBundledSeas() throws -> ProvinceIDMap {
+        try loadBundled(named: "seas1453")
+    }
+
+    static func loadBundled(named name: String) throws -> ProvinceIDMap {
+        guard let url = Bundle.module.url(forResource: name, withExtension: "idmap") else {
             throw LoadError.missingResource
         }
         return try ProvinceIDMap(data: Data(contentsOf: url))
+    }
+
+    /// Sea zone at a pixel of a sea map.
+    public func seaZone(x: Int, y: Int) -> SeaZoneID? {
+        let v = value(x: x, y: y)
+        return v > 0 ? SeaZoneID(Int(v) - 1) : nil
     }
 
     public func value(x: Int, y: Int) -> UInt16 {

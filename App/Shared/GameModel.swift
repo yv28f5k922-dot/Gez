@@ -20,6 +20,7 @@ struct MapLabel: Identifiable {
 final class GameModel {
     let simulation: Simulation
     let idMap: ProvinceIDMap
+    let seaMap: ProvinceIDMap
     let geometry: MapGeometry
     /// GPU map renderer; nil only if Metal is unavailable (then the CPU
     /// picture in `mapImage` is used instead).
@@ -45,6 +46,8 @@ final class GameModel {
     /// because SwiftUI snapshots can't capture Metal views.
     var snapshotMapImage: CGImage?
     private(set) var selectedProvince: ProvinceID?
+    private(set) var selectedSea: SeaZoneID?
+    private(set) var seaLabels: [MapLabel] = []
     private(set) var selectionOverlay: (image: CGImage, box: CGRect)?
     private(set) var countryLabels: [MapLabel] = []
     private(set) var provinceLabels: [MapLabel] = []
@@ -59,15 +62,18 @@ final class GameModel {
     init(useMetal: Bool = true) {
         let sim = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate)
         let map: ProvinceIDMap
+        let seas: ProvinceIDMap
         do {
             map = try ProvinceIDMap.loadBundled()
+            seas = try ProvinceIDMap.loadBundledSeas()
         } catch {
             preconditionFailure("Could not load province map: \(error)")
         }
         simulation = sim
         idMap = map
+        seaMap = seas
         geometry = MapGeometry(map: map, provinceCount: sim.world.provinces.count)
-        metal = useMetal ? MetalMapRenderer.makeDevice().flatMap { MetalMapRenderer(device: $0, idMap: map) } : nil
+        metal = useMetal ? MetalMapRenderer.makeDevice().flatMap { MetalMapRenderer(device: $0, idMap: map, seaMap: seas) } : nil
         date = sim.date
         playerCountry = sim.world.countries.id(forTag: Scenario1453.defaultPlayerTag)
         rebuildLabels()
@@ -117,7 +123,17 @@ final class GameModel {
 
     // MARK: - Map
 
-    func select(province: ProvinceID?) {
+    func select(sea: SeaZoneID?) {
+        selectedSea = sea
+        metal?.selectedSeaValue = sea.map { UInt32($0.index + 1) } ?? 0
+        if sea != nil { select(province: nil, keepSea: true) }
+    }
+
+    func select(province: ProvinceID?, keepSea: Bool = false) {
+        if !keepSea && selectedSea != nil {
+            selectedSea = nil
+            metal?.selectedSeaValue = 0
+        }
         selectedProvince = province
         metal?.selectedValue = province.map { UInt32($0.index + 2) } ?? 0
         if let province {
@@ -129,8 +145,13 @@ final class GameModel {
     }
 
     func select(mapX x: Int, y: Int) {
-        let hit = idMap.province(x: x, y: y)
-        select(province: hit == selectedProvince ? nil : hit)
+        if let hit = idMap.province(x: x, y: y) {
+            select(province: hit == selectedProvince ? nil : hit)
+        } else if let sea = seaMap.seaZone(x: x, y: y) {
+            select(sea: sea == selectedSea ? nil : sea)
+        } else {
+            select(province: nil)
+        }
     }
 
     /// Redraws the whole map image in the background. Call after a map mode
@@ -226,6 +247,38 @@ final class GameModel {
             }
             countryLabels.append(MapLabel(id: k, text: c.name[k], position: best, pixelArea: bestArea[k]))
         }
+        // Sea names sit at the middle of each zone's water.
+        var sx = [Double](repeating: 0, count: world.seaZones.count)
+        var sy = [Double](repeating: 0, count: world.seaZones.count)
+        var sn = [Double](repeating: 0, count: world.seaZones.count)
+        seaMap.values.withUnsafeBufferPointer { values in
+            let w = seaMap.width
+            for y in stride(from: 0, to: seaMap.height, by: 4) {
+                for x in stride(from: 0, to: w, by: 4) {
+                    let v = Int(values[y * w + x])
+                    guard v > 0, v - 1 < sx.count else { continue }
+                    sx[v - 1] += Double(x); sy[v - 1] += Double(y); sn[v - 1] += 1
+                }
+            }
+        }
+        var seaLabels: [MapLabel] = []
+        for k in 0..<world.seaZones.count where sn[k] > 0 {
+            var center = CGPoint(x: sx[k] / sn[k], y: sy[k] / sn[k])
+            // If the middle is on land (a curved sea), use the nearest water of the zone.
+            if seaMap.seaZone(x: Int(center.x), y: Int(center.y))?.index != k {
+                var best = center, bestD = Double.infinity
+                for y in stride(from: 0, to: seaMap.height, by: 8) {
+                    for x in stride(from: 0, to: seaMap.width, by: 8) where seaMap.seaZone(x: x, y: y)?.index == k {
+                        let d = hypot(Double(x) - center.x, Double(y) - center.y)
+                        if d < bestD { bestD = d; best = CGPoint(x: x, y: y) }
+                    }
+                }
+                center = best
+            }
+            seaLabels.append(MapLabel(id: k, text: world.seaZones.name[k], position: center, pixelArea: sn[k] * 16))
+        }
+        self.seaLabels = seaLabels.sorted { $0.pixelArea > $1.pixelArea }
+
         // Biggest first, so they win when labels would overlap.
         countryLabels.sort { $0.pixelArea > $1.pixelArea }
         provinceLabels.sort { $0.pixelArea > $1.pixelArea }

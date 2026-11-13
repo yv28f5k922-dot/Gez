@@ -12,6 +12,9 @@ struct ContentView: View {
                 if let province = model.selectedProvince {
                     ProvincePanel(province: province)
                         .padding(12)
+                } else if let sea = model.selectedSea {
+                    SeaPanel(sea: sea)
+                        .padding(12)
                 }
             }
             .overlay(alignment: .topTrailing) {
@@ -340,5 +343,40 @@ struct PeopleSection: View {
         if v >= 1_000_000 { return String(format: "%.2f M", v / 1_000_000) }
         if v >= 10_000 { return "\(Int((v / 1000).rounded())) k" }
         return "\(Int(v.rounded()))"
+    }
+}
+
+// MARK: - Sea panel
+
+struct SeaPanel: View {
+    @Environment(GameModel.self) private var model
+    let sea: SeaZoneID
+
+    var body: some View {
+        let world = model.world
+        let z = world.seaZones
+        let coast = z.coast[sea.index]
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(alignment: .firstTextBaseline) {
+                Text(z.name[sea.index]).font(.title3.bold())
+                Spacer()
+                Button { model.select(sea: nil) } label: { Image(systemName: "xmark.circle.fill") }
+                    .buttonStyle(.plain)
+            }
+            Text("Sea zone").font(.subheadline).foregroundStyle(Palette.ink.opacity(0.7))
+            Divider()
+            Text("Connects to").font(.callout.bold())
+            Text(z.neighbors[sea.index].map { z.name[$0.index] }.joined(separator: ", "))
+                .font(.callout)
+            Text("Coast (\(coast.count) provinces)").font(.callout.bold()).padding(.top, 4)
+            Text(coast.prefix(12).map { world.provinces.name[$0.index] }.joined(separator: ", ")
+                 + (coast.count > 12 ? "…" : ""))
+                .font(.callout)
+        }
+        .padding(14)
+        .frame(width: 300, alignment: .leading)
+        .foregroundStyle(Palette.ink)
+        .background(Palette.parchment.opacity(0.96), in: RoundedRectangle(cornerRadius: 12))
+        .shadow(radius: 6)
     }
 }

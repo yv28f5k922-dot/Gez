@@ -66,6 +66,13 @@ SECTS = {
 }
 ORDERS = {"safaviyya", "naqshbandi", "bektashi", "hurufi", "mevlevi", "qadiri", "chishti", "kubrawi", "shadhili"}
 
+# Sea links too narrow for the map grid (Bosporus, Dardanelles, Kerch).
+SEA_STRAITS = [
+    ("Sea of Marmara", "Northern Aegean"),
+    ("Sea of Marmara", "Western Black Sea"),
+    ("Sea of Azov", "Eastern Black Sea"),
+]
+
 # Sea crossings that armies can use even though the land does not touch.
 STRAITS = [
     ("Konstantiniyye", "Izmit"),
@@ -460,6 +467,66 @@ def move_off_rivers(seed_px, provinces, land, river_mask):
     return seed_px
 
 
+def parse_seas(path):
+    seas = []
+    for raw in open(path, encoding="utf-8"):
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        name, coords = [x.strip() for x in line.split("|")]
+        lat, lon = [float(v) for v in coords.split()]
+        seas.append({"name": name, "lat": lat, "lon": lon})
+    return seas
+
+
+def grow_seas(labels, seas):
+    """Split water into sea zones the same way land is split into provinces.
+
+    Returns an array: -1 for land or unzoned water (small lakes), else the
+    zone index.
+    """
+    from scipy.sparse import coo_matrix
+    from scipy.sparse.csgraph import dijkstra
+
+    water = labels == WATER
+    zone = np.full(labels.shape, -1, dtype=np.int32)
+    node = np.full(labels.shape, -1, dtype=np.int64)
+    ys, xs = np.nonzero(water)
+    node[ys, xs] = np.arange(len(ys))
+    rng = np.random.default_rng(1454)
+    cost = np.clip(1.0 + smooth_noise(rng, 40, 0.3), 0.4, 2.0)
+    row_scale = np.cos(np.radians(LAT_MAX - (np.arange(HEIGHT) + 0.5) / PPD))
+    rows, cols, weights = [], [], []
+    for a, b, w in ((node[:, :-1], node[:, 1:], 0.5 * (cost[:, :-1] + cost[:, 1:]) * row_scale[:, None]),
+                    (node[:-1, :], node[1:, :], 0.5 * (cost[:-1, :] + cost[1:, :]))):
+        ok = (a >= 0) & (b >= 0)
+        rows.append(a[ok]); cols.append(b[ok]); weights.append(w[ok])
+    n = len(ys)
+    graph = coo_matrix((np.concatenate(weights), (np.concatenate(rows), np.concatenate(cols))), shape=(n, n)).tocsr()
+
+    # Snap each sea point onto water.
+    _, (iy, ix) = ndimage.distance_transform_edt(~water, return_indices=True)
+    seed_nodes = []
+    for k, sea in enumerate(seas):
+        x, y = to_px(sea["lat"], sea["lon"])
+        xi, yi = min(max(int(x), 0), WIDTH - 1), min(max(int(y), 0), HEIGHT - 1)
+        if not water[yi, xi]:
+            xi, yi = ix[yi, xi], iy[yi, xi]
+        seed_nodes.append(node[yi, xi])
+    seed_nodes = np.array(seed_nodes)
+    if len(set(seed_nodes.tolist())) != len(seed_nodes):
+        sys.exit("seas.txt: two sea points landed on the same spot")
+    _, _, sources = dijkstra(graph, directed=False, indices=seed_nodes, min_only=True, return_predecessors=True)
+    lookup = {int(v): k for k, v in enumerate(seed_nodes)}
+    reached = sources >= 0
+    vals = np.full(n, -1, dtype=np.int32)
+    uniq, inv = np.unique(sources[reached], return_inverse=True)
+    vals[reached] = np.array([lookup[int(u)] for u in uniq], dtype=np.int32)[inv]
+    zone[ys, xs] = vals
+    # Very small cut-off water bodies reached by nobody stay unzoned.
+    return zone
+
+
 def grow_provinces(land, seed_px, seed_owner, river_mask, ridge_mask, frontier_mask):
     """Each land pixel joins the seed it can reach most cheaply over land.
 
@@ -720,6 +787,34 @@ def build(args):
             adjacent[u].add(v)
             adjacent[v].add(u)
 
+    # Sea zones.
+    seas = parse_seas(os.path.join(ROOT, "data/map/seas.txt"))
+    zone = grow_seas(labels, seas)
+    sea_adjacent = defaultdict(set)
+    coast_of = defaultdict(set)      # zone -> provinces
+    for a, b, za, zb in ((labels[:, :-1], labels[:, 1:], zone[:, :-1], zone[:, 1:]),
+                         (labels[:-1, :], labels[1:, :], zone[:-1, :], zone[1:, :])):
+        m = (za >= 0) & (zb >= 0) & (za != zb)
+        for u, v in set(zip(za[m].tolist(), zb[m].tolist())):
+            sea_adjacent[u].add(v)
+            sea_adjacent[v].add(u)
+        m = (za >= 0) & (b >= 0)
+        for z, p in set(zip(za[m].tolist(), b[m].tolist())):
+            coast_of[z].add(p)
+        m = (zb >= 0) & (a >= 0)
+        for z, p in set(zip(zb[m].tolist(), a[m].tolist())):
+            coast_of[z].add(p)
+    # Narrow straits the map grid can't see.
+    sea_index = {sea["name"]: k for k, sea in enumerate(seas)}
+    for a, b in SEA_STRAITS:
+        u, v = sea_index[a], sea_index[b]
+        sea_adjacent[u].add(v)
+        sea_adjacent[v].add(u)
+    empty = [seas[k]["name"] for k in range(len(seas)) if not (zone == k).any()]
+    if empty:
+        print(f"  note: sea zones with no water: {', '.join(empty)}")
+    print(f"{len(seas)} sea zones, {sum(len(v) for v in coast_of.values())} coast links")
+
     # Borders that mostly follow a river (matters for battles and movement).
     near_river = ndimage.binary_dilation(river_mask, iterations=2)
     pair_total = defaultdict(int)
@@ -778,6 +873,8 @@ def build(args):
     value = np.where(labels >= 0, labels + 2, np.where(labels == WASTE, 1, 0)).astype(np.uint16)
     idmap_path = os.path.join(ROOT, "Packages/GezCore/Sources/GezCore/Resources/provinces1453.idmap")
     write_idmap(value, idmap_path)
+    # Sea zones: 0 = land or unzoned water, k + 1 = zone k.
+    write_idmap((zone + 1).astype(np.uint16), os.path.join(ROOT, "Packages/GezCore/Sources/GezCore/Resources/seas1453.idmap"))
 
     out = {
         "map": {
@@ -811,6 +908,10 @@ def build(args):
         ],
         "straits": straits,
         "riverBorders": river_borders,
+        "seaZones": [
+            {"name": sea["name"], "adjacent": sorted(sea_adjacent[k]), "coast": sorted(coast_of[k])}
+            for k, sea in enumerate(seas)
+        ],
         "rivers": [
             {"name": b["name"], "points": [[round(x, 1), round(y, 1)] for x, y in (to_px(lat, lon) for lat, lon in b["points"])]}
             for b in barriers if b["kind"] == "river"
@@ -821,7 +922,7 @@ def build(args):
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(out, f, separators=(",", ":"), ensure_ascii=False)
 
-    preview(labels, provinces, states, countries, tags, os.path.join(ROOT, "docs/map_preview.png"), river_mask=river_mask)
+    preview(labels, provinces, states, countries, tags, os.path.join(ROOT, "docs/map_preview.png"), river_mask=river_mask, zone=zone)
     if args.full_preview:
         preview(labels, provinces, states, countries, tags, args.full_preview, scale=1, river_mask=river_mask,
                 ridge_mask=ridge_mask if args.show_ridges else None)
@@ -869,7 +970,7 @@ def write_idmap(value, path):
         f.write(runs.tobytes())
 
 
-def preview(labels, provinces, states, countries, tags, path, scale=2, river_mask=None, ridge_mask=None):
+def preview(labels, provinces, states, countries, tags, path, scale=2, river_mask=None, ridge_mask=None, zone=None):
     n = len(provinces)
     owner_color = np.zeros((n + 3, 3), dtype=np.uint8)
     for i, p in enumerate(provinces):
@@ -895,6 +996,9 @@ def preview(labels, provinces, states, countries, tags, path, scale=2, river_mas
     img[pe] *= 0.82
     img[se] *= 0.55
     img[oe] = (20, 20, 20)
+    if zone is not None:
+        ze = edges(zone) & (zone >= 0)
+        img[ze] = (90, 125, 150)
     if river_mask is not None:
         img[river_mask & land] = (64, 110, 150)
     if ridge_mask is not None:

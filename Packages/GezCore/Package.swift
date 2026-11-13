@@ -16,7 +16,8 @@ let package = Package(
             name: "GezCore",
             resources: [
                 .copy("Resources/scenario1453.json"),
-                .copy("Resources/provinces1453.idmap")
+                .copy("Resources/provinces1453.idmap"),
+                .copy("Resources/seas1453.idmap")
             ]
         ),
         .testTarget(name: "GezCoreTests", dependencies: ["GezCore"])

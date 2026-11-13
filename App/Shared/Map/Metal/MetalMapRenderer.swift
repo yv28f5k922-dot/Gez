@@ -33,7 +33,7 @@ struct MapUniformsGPU {
     var selected: UInt32
     var tint: Float
     var mode: UInt32
-    var pad: Float = 0
+    var selectedSea: UInt32
 }
 
 /// Draws the map with Metal: terrain texture, province colours, borders,
@@ -44,19 +44,21 @@ final class MetalMapRenderer {
     private let pipeline: MTLRenderPipelineState
     private let idTexture: MTLTexture
     private let terrainTexture: MTLTexture
+    private let seaTexture: MTLTexture
     private var styleBuffer: MTLBuffer
     private let mapSize: SIMD2<Float>
     private let startTime = Date()
 
     var camera = MapCamera(zoom: 1, offset: .zero)
     var selectedValue: UInt32 = 0
+    var selectedSeaValue: UInt32 = 0
     var mode: MapMode = .political
     /// Points to pixels on screen (2 on Retina).
     var contentScale: CGFloat = 2
 
     static func makeDevice() -> MTLDevice? { MTLCreateSystemDefaultDevice() }
 
-    init?(device: MTLDevice, idMap: ProvinceIDMap, pixelFormat: MTLPixelFormat = .bgra8Unorm) {
+    init?(device: MTLDevice, idMap: ProvinceIDMap, seaMap: ProvinceIDMap, pixelFormat: MTLPixelFormat = .bgra8Unorm) {
         guard let queue = device.makeCommandQueue() else { return nil }
         self.device = device
         self.queue = queue
@@ -84,6 +86,8 @@ final class MetalMapRenderer {
                         withBytes: raw.baseAddress!, bytesPerRow: idMap.width * 2)
         }
         idTexture = ids
+        guard let seas = MetalMapRenderer.makeIDTexture(device: device, map: seaMap) else { return nil }
+        seaTexture = seas
 
         guard let terrain = MetalMapRenderer.loadTerrain(device: device) else { return nil }
         terrainTexture = terrain
@@ -91,6 +95,19 @@ final class MetalMapRenderer {
         guard let buffer = device.makeBuffer(length: MemoryLayout<ProvinceStyleGPU>.stride * 2, options: .storageModeShared)
         else { return nil }
         styleBuffer = buffer
+    }
+
+    private static func makeIDTexture(device: MTLDevice, map: ProvinceIDMap) -> MTLTexture? {
+        let desc = MTLTextureDescriptor.texture2DDescriptor(
+            pixelFormat: .r16Uint, width: map.width, height: map.height, mipmapped: false)
+        desc.usage = .shaderRead
+        desc.storageMode = .shared
+        guard let texture = device.makeTexture(descriptor: desc) else { return nil }
+        map.values.withUnsafeBytes { raw in
+            texture.replace(region: MTLRegionMake2D(0, 0, map.width, map.height), mipmapLevel: 0,
+                            withBytes: raw.baseAddress!, bytesPerRow: map.width * 2)
+        }
+        return texture
     }
 
     /// The baked terrain picture (tools/terrain/bake_terrain.py).
@@ -157,7 +174,8 @@ final class MetalMapRenderer {
             mapSize: mapSize,
             selected: selectedValue,
             tint: tint,
-            mode: modeIndex
+            mode: modeIndex,
+            selectedSea: selectedSeaValue
         )
     }
 
@@ -169,6 +187,7 @@ final class MetalMapRenderer {
         encoder.setFragmentBuffer(styleBuffer, offset: 0, index: 1)
         encoder.setFragmentTexture(idTexture, index: 0)
         encoder.setFragmentTexture(terrainTexture, index: 1)
+        encoder.setFragmentTexture(seaTexture, index: 2)
         encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3)
         encoder.endEncoding()
     }

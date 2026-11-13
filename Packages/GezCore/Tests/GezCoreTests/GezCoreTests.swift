@@ -317,6 +317,45 @@ final class OwnerDecisionTests: XCTestCase {
     }
 }
 
+final class SeaZoneTests: XCTestCase {
+    func testSeaZonesLoad() {
+        let world = Scenario1453.makeWorld()
+        XCTAssertGreaterThan(world.seaZones.count, 70)
+        let marmara = world.seaZones.id(named: "Sea of Marmara")!
+        let aegean = world.seaZones.id(named: "Northern Aegean")!
+        let blackSea = world.seaZones.id(named: "Western Black Sea")!
+        XCTAssertTrue(world.seaZones.neighbors[marmara.index].contains(aegean))
+        XCTAssertTrue(world.seaZones.neighbors[marmara.index].contains(blackSea))
+        let constantinople = world.provinces.id(named: "Konstantiniyye")!
+        XCTAssertTrue(world.provinceSeas[constantinople.index].contains(marmara))
+    }
+
+    func testCoastAgreesWithCoastalFlag() {
+        let world = Scenario1453.makeWorld()
+        let inland = world.provinces.id(named: "Vienna")!
+        XCTAssertTrue(world.provinceSeas[inland.index].isEmpty)
+        let calicut = world.provinces.id(named: "Calicut")!
+        XCTAssertTrue(world.provinceSeas[calicut.index].contains(world.seaZones.id(named: "Malabar Coast")!))
+    }
+
+    func testSeaNeighboursAreTwoWay() {
+        let world = Scenario1453.makeWorld()
+        for z in 0..<world.seaZones.count {
+            for n in world.seaZones.neighbors[z] {
+                XCTAssertTrue(world.seaZones.neighbors[n.index].contains(SeaZoneID(z)), world.seaZones.name[z])
+            }
+        }
+    }
+
+    func testSeaMapMatches() throws {
+        let world = Scenario1453.makeWorld()
+        let seas = try ProvinceIDMap.loadBundledSeas()
+        XCTAssertEqual(seas.width, world.map.width)
+        let p = world.map.point(for: GeoPoint(latitude: 40.7, longitude: 28.2))
+        XCTAssertEqual(seas.seaZone(x: p.x, y: p.y), world.seaZones.id(named: "Sea of Marmara"))
+    }
+}
+
 final class ProvinceIDMapTests: XCTestCase {
     func testMapMatchesScenario() throws {
         let world = Scenario1453.makeWorld()

@@ -20,7 +20,7 @@ struct MapUniforms {
     uint   selected;      // id-map value of the selected province (0 = none)
     float  tint;          // 0..1 strength of the map-mode colour
     uint   mode;          // 0 political, 1 states, 2 terrain, 3 religion, 4 culture, 5 development
-    float  pad;
+    uint   selectedSea;   // sea map value of the selected sea zone (0 = none)
 };
 
 struct ProvinceStyle {
@@ -65,7 +65,8 @@ fragment float4 map_fragment(VertexOut in [[stage_in]],
                              constant MapUniforms &u [[buffer(0)]],
                              constant ProvinceStyle *styles [[buffer(1)]],
                              texture2d<uint, access::read> ids [[texture(0)]],
-                             texture2d<float> terrain [[texture(1)]]) {
+                             texture2d<float> terrain [[texture(1)]],
+                             texture2d<uint, access::read> seas [[texture(2)]]) {
     constexpr sampler linearSampler(filter::linear, address::clamp_to_edge);
     float2 screen = in.position.xy;
     float2 m = (screen - u.offset) / u.zoom;               // map pixel coordinate
@@ -94,6 +95,16 @@ fragment float4 map_fragment(VertexOut in [[stage_in]],
             if (idAt(ids, m + dir * max(2.5 * pxPerScreen, 1.2), u.mapSize) != 0) coast = 1;
         }
         color = mix(color, float3(0.82, 0.86, 0.80), coast * 0.35);
+        // Faint dotted lines between sea zones.
+        uint zone = idAt(seas, m, u.mapSize);
+        if (zone != 0) {
+            float r = 1.2 * pxPerScreen;
+            uint e = idAt(seas, m + float2(r, 0), u.mapSize), s2 = idAt(seas, m + float2(0, r), u.mapSize);
+            bool edge = (e != 0 && e != zone) || (s2 != 0 && s2 != zone);
+            float dots = step(0.5, fract((screen.x + screen.y) * 0.18));
+            if (edge) color = mix(color, float3(0.80, 0.88, 0.92), 0.35 * dots);
+            if (zone == u.selectedSea) color = mix(color, float3(0.85, 0.95, 1.0), 0.15);
+        }
     } else {
         // Land: terrain with the map-mode colour laid over it.
         color = base;

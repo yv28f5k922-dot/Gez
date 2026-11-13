@@ -296,10 +296,29 @@ private struct MapLabelsLayer: View {
         let showProvinces = zoom >= 1.1
         let labels = showProvinces ? model.provinceLabels : model.countryLabels
         let mode = model.mapMode
+        let seaLabels = model.seaLabels
         Canvas { context, size in
-            context.addFilter(.shadow(color: .white.opacity(0.85), radius: 1.2))
             let bounds = CGRect(origin: .zero, size: size).insetBy(dx: -60, dy: -20)
             var placed: [CGRect] = []
+            // Sea names first, in pale italic, so land names can sit over them if needed.
+            for label in seaLabels {
+                let screenArea = label.pixelArea * Double(zoom * zoom)
+                guard screenArea > 9_000 else { continue }
+                let p = CGPoint(x: offset.x + label.position.x * zoom, y: offset.y + label.position.y * zoom)
+                guard bounds.contains(p) else { continue }
+                let fontSize = min(max(sqrt(screenArea) / 14, 9), 16)
+                let width = CGFloat(label.text.count) * fontSize * 0.55
+                let rect = CGRect(x: p.x - width / 2, y: p.y - fontSize * 0.7, width: width, height: fontSize * 1.4)
+                if placed.contains(where: { $0.intersects(rect) }) { continue }
+                placed.append(rect)
+                context.draw(
+                    Text(label.text).font(.system(size: fontSize, weight: .regular, design: .serif).italic())
+                        .foregroundColor(Color(red: 0.86, green: 0.93, blue: 0.97).opacity(0.85)),
+                    at: p
+                )
+            }
+            placed.removeAll()
+            context.addFilter(.shadow(color: .white.opacity(0.85), radius: 1.2))
             for label in labels {
                 let screenArea = label.pixelArea * Double(zoom * zoom)
                 let p = CGPoint(x: offset.x + label.position.x * zoom, y: offset.y + label.position.y * zoom)

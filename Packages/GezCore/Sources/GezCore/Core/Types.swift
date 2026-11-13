@@ -8,6 +8,11 @@ public struct ProvinceID: Hashable, Sendable {
     public init(_ index: Int) { self.index = index }
 }
 
+public struct SeaZoneID: Hashable, Sendable {
+    public let index: Int
+    public init(_ index: Int) { self.index = index }
+}
+
 public struct StateID: Hashable, Sendable {
     public let index: Int
     public init(_ index: Int) { self.index = index }
