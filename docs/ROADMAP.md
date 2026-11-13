@@ -54,9 +54,11 @@ rivers and mountains, 247 countries with tribes and subjects, cultures,
 religions and pops with classes, Metal map with real terrain. See
 `docs/HANDOFF.md`.
 
-### Phase 1: Finish the map
+### Phase 1: Finish the map ✅ (session 3)
 Everything later attaches to provinces and sea zones, so their shape must
-be final first.
+be final first. Done: India split (1,373 provinces total), 79 sea zones
+with straits and coasts, generated coats of arms, town/capital/fort/port
+icons (SwiftUI overlay for now; move to Metal or 3D models in Phase 17).
 1. **Split India** into about 250 provinces (new towns in
    `data/map/provinces/08_india.txt`, states regrouped, pops re-split,
    population check). Then review Persia, Anatolia, the Maghreb and

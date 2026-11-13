@@ -36,12 +36,17 @@ Done and tested on CI (Mac and iPad builds green, 38 simulation tests):
 | Area | State |
 |---|---|
 | Simulation core | Pure-Swift package `Packages/GezCore`: 365-day calendar, EU4-style speed clock, deterministic RNG, daily tick with monthly economy and population growth |
-| Map data | 1,189 provinces, 228 states, 36 regions, 207 countries at 30 May 1453; hand-written in `data/map/` |
+| Map data | 1,373 provinces (India split into ~280), 238 states, 36 regions, 266 countries, 79 sea zones (`data/map/seas.txt`) with straits and coasts; hand-written in `data/map/` |
 | Map shapes | Grown from town points over Natural Earth coasts; stop at 72 rivers, 20 mountain ridges and 3 frontier lines (`data/map/barriers.txt`); 1453 coast edits; neighbours, straits, river borders |
-| Countries | 247 countries incl. 27 tribal confederations (government `tribal`); subjects (vassal, tributary, personal union) in `data/map/subjects.txt`; no unclaimed land left |
+| Heraldry | Generated coats of arms per country (`Heraldry/CoatOfArms.swift`, drawn by `CoatOfArmsView`) |
+| Countries | 266 countries incl. tribal confederations (government `tribal`); subjects (vassal, tributary, personal union) in `data/map/subjects.txt`; no unclaimed land left |
 | People | 187 cultures in families, 25 religions in 6 families, Sunni schools and Hindu traditions as sects, Sufi orders per province, pops split into nobles, clergy, burghers, peasants and slaves; 202 million people from regional 1453 estimates |
 | App | SwiftUI shell for Mac and iPad: top bar (date, treasury, speeds), map modes (political, states, terrain, religion, culture, development; keys Q–Y), zoom and pan, tap to select, province panel with people breakdown (province or whole state) |
 | Map look | **Metal renderer** (`App/Shared/Map/Metal/`): baked terrain texture from real elevation, map-mode tint over terrain, soft country border bands, state and province lines, animated water with coast foam, selection glow, paper grain, vignette. The CPU renderer (`MapRenderer.swift`) is kept as a fallback and for tests |
+
+Also on the map: sea zone borders and names, tap the sea for a sea panel;
+town icons sized by development, capital stars, fort towers, port anchors
+(`MapIconsLayer` in `MapCanvasView.swift`).
 
 Not started: economy beyond flat taxes, armies, diplomacy, war, sieges,
 battles, estates, government, AI, save/load, sound, menus, settings.
@@ -110,6 +115,7 @@ App/Shared/
   ContentView.swift top bar, speed controls, map-mode bar, province + people panels
   Map/MapCanvasView.swift  camera, gestures (pinch, drag, Mac scroll), labels
   Map/Metal/       MapShaders.metal, MetalMapRenderer, MetalMapView
+  CoatOfArmsView.swift  draws generated arms
   Map/MapRenderer.swift, MapMode.swift  CPU fallback + palettes
 App/Resources/Terrain/terrain.jpg   baked terrain picture
 App/Tests/SnapshotTests.swift       renders PNGs on CI
@@ -124,8 +130,9 @@ docs/              DESIGN, HISTORY_NOTES, HANDOFF (this), CREDITS, previews
 ## What to do next
 
 **Follow `docs/ROADMAP.md`.** The owner chose every feature and the build
-order in session 2. Next up is **Phase 1: finish the map** (split India,
-sea zones, coats of arms, 2D map icons), then Phase 2 (economy).
+order in session 2. **Phase 1 is done (session 3). Next up is Phase 2:
+the economy** (goods, markets, pop needs and taxes, buildings, budget).
+Ask the owner the key economy design questions first (multiple choice).
 
 Notes:
 - The interface art pass was **skipped by the owner for now**; don't do it
