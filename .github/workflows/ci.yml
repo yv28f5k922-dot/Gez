@@ -16,6 +16,17 @@ jobs:
       - name: Test GezCore
         run: swift test --package-path Packages/GezCore
 
+  core-tests-linux:
+    # Same tests on Linux: runs even when Mac runners are scarce, and proves
+    # the simulation has no Apple-only code (a Windows port depends on it).
+    name: Simulation tests (Linux)
+    runs-on: ubuntu-latest
+    container: swift:6.0
+    steps:
+      - uses: actions/checkout@v5
+      - name: Test GezCore
+        run: swift test --package-path Packages/GezCore
+
   app-build:
     name: Build Mac and iPad apps
     runs-on: macos-15
