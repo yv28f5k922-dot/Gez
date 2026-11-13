@@ -159,29 +159,33 @@ final class GameModel {
             ))
         }
 
-        // Country names sit in the middle of the country's largest connected
-        // block of land, pulled onto one of its provinces if the middle falls
+        // Country names sit in the middle of the country's most developed
+        // connected block of land (its heartland, not a big empty outpost), pulled onto one of its provinces if the middle falls
         // outside it (a bay, or another country's enclave).
         let c = world.countries
         var countryLabels: [MapLabel] = []
         var visited = [Bool](repeating: false, count: p.count)
         var bestBlock = [[Int]](repeating: [], count: c.count)
         var bestArea = [Double](repeating: 0, count: c.count)
+        var bestScore = [Double](repeating: -1, count: c.count)
         for start in 0..<p.count {
             guard !visited[start], let owner = p.owner[start]?.index else { continue }
             var block: [Int] = []
             var area = 0.0
+            var score = 0.0
             var stack = [start]
             visited[start] = true
             while let i = stack.popLast() {
                 block.append(i)
                 area += Double(geometry.pixelCount[i])
+                score += Double(p.development[i])
                 for n in p.neighbors[i] where !visited[n.index] && p.owner[n.index]?.index == owner {
                     visited[n.index] = true
                     stack.append(n.index)
                 }
             }
-            if area > bestArea[owner] {
+            if score > bestScore[owner] {
+                bestScore[owner] = score
                 bestArea[owner] = area
                 bestBlock[owner] = block
             }
