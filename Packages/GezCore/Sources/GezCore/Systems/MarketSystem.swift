@@ -313,6 +313,10 @@ public enum MarketSystem {
                 craftValue[p] += value
             }
         }
+        let rulerBonus = world.countries.ids.map { CharacterSystem.taxBonus(world, $0) }
+        for c in world.countries.ids {
+            world.countries.learning[c.index] += CharacterSystem.learningPerYear(world, c) / 12
+        }
         var classTax = Array(repeating: Array(repeating: 0.0, count: TaxClass.allCases.count), count: world.countries.count)
         for p in 0..<P {
             guard let owner = world.provinces.owner[p] else {
@@ -320,7 +324,7 @@ public enum MarketSystem {
                 continue
             }
             let o = owner.index
-            let factor = (1 + bonus.tax[p]) * (world.countries.bankruptMonthsLeft[o] > 0 ? Finance.bankruptcyIncome : 1)
+            let factor = (1 + bonus.tax[p] + rulerBonus[o]) * (world.countries.bankruptMonthsLeft[o] > 0 ? Finance.bankruptcyIncome : 1)
             for tc in TaxClass.allCases {
                 let baseValue = tc == .burghers ? craftValue[p] : landValue[p] * tc.shareOfLand
                 let tax = baseValue * tc.normalRate * world.countries.taxLevel[o][tc.rawValue] * factor

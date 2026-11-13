@@ -32,6 +32,7 @@ public enum Scenario1453 {
         }
         var world = try load(from: Data(contentsOf: url))
         try EconomyLoader.loadBundled(into: &world)
+        try CharacterLoader.loadBundled(into: &world)
         MarketSystem.warmUp(&world, months: warmUpMonths)
         return world
     }

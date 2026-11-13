@@ -175,6 +175,11 @@ public struct CountryTable: Sendable {
     /// Countries whose merchants may not trade in or pass through this one's markets.
     public var embargoes: [Set<CountryID>] = []
     public var tollPolicy: [TollPolicy] = []
+    public var ruler: [CharacterID?] = []
+    public var heir: [CharacterID?] = []
+    /// Council seats (`CouncilSeat` order).
+    public var council: [[CharacterID?]] = []
+    public var succession: [SuccessionLaw] = []
     /// Merchants' profit and tolls collected last month.
     public var lastTrade: [Double] = []
     public var lastTolls: [Double] = []
@@ -227,6 +232,10 @@ public struct CountryTable: Sendable {
         self.debasing.append(false)
         self.bankruptMonthsLeft.append(0)
         self.embargoes.append([])
+        self.ruler.append(nil)
+        self.heir.append(nil)
+        self.council.append(Array(repeating: nil, count: CouncilSeat.allCases.count))
+        self.succession.append(.primogeniture)
         self.tollPolicy.append(.open)
         self.lastTrade.append(0)
         self.lastTolls.append(0)
@@ -256,6 +265,8 @@ public struct World: Sendable {
     public var economy = Economy()
     /// Banks and loans.
     public var finance = Finance()
+    /// Rulers, families and courts.
+    public var people = People()
     /// Countries played by people; the AI leaves them alone.
     public var humanCountries: Set<CountryID> = []
 

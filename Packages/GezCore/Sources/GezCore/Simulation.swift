@@ -38,10 +38,11 @@ public final class Simulation {
             TradeSystem.runAI(&world, month: date.month)
             BuildingSystem.runAI(&world, month: date.month)
             PopulationSystem.runMonthly(&world)
+            CharacterSystem.runMonthly(&world, date: date, random: &random)
         }
 
         if date.isFirstOfYear {
-            // Yearly systems go here.
+            CharacterSystem.runYearly(&world, date: date, random: &random)
         }
     }
 }

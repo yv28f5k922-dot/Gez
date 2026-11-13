@@ -1,0 +1,42 @@
+# Given names for invented people, by culture family.
+# family | male names, ... | female names, ...
+iberian       | Alfonso, Juan, Pedro, Fernando, Enrique, Diego, Rodrigo, Álvaro, Gonzalo, Sancho, Lope, Íñigo | Isabel, Juana, Leonor, María, Catalina, Beatriz, Blanca, Teresa
+french        | Jean, Charles, Louis, Pierre, Guillaume, Jacques, Philippe, François, Antoine, Gaston, Bertrand, Renaud | Jeanne, Marie, Catherine, Isabeau, Marguerite, Anne, Blanche, Agnès
+dutch         | Jan, Willem, Arnold, Dirk, Gerrit, Floris, Hendrik, Jacob, Reinoud, Pieter | Margriet, Aleid, Machteld, Geertruid, Johanna, Katrijn
+british       | John, William, Henry, Richard, Thomas, Edward, Robert, Edmund, Walter, Humphrey | Margaret, Elizabeth, Anne, Joan, Alice, Eleanor, Cecily, Isabel
+gaelic        | Domhnall, Eoghan, Conn, Toirdhealbhach, Niall, Aodh, Brian, Donnchadh, Tadhg, Ruaidhrí | Gormlaith, Siobhán, Fionnuala, Mór, Nuala, Sadhbh
+german        | Friedrich, Heinrich, Johann, Albrecht, Ludwig, Otto, Wilhelm, Konrad, Ulrich, Sigmund, Eberhard, Georg | Anna, Margarethe, Elisabeth, Katharina, Barbara, Agnes, Sophie, Dorothea
+nordic        | Erik, Olav, Karl, Knut, Magnus, Håkon, Sten, Nils, Christoffer, Bengt | Margrete, Ingeborg, Kristina, Birgitta, Katarina, Cecilia
+finnic        | Lauri, Matti, Olli, Antti, Pekka, Heikki, Juho, Tuomas | Kaisa, Anni, Elina, Maria, Liisa
+volga_ural    | Mokshan, Tushtyai, Purgaz, Ksenofont, Atyai, Ozkan, Inyazor | Vezhava, Kastorka, Nuyana, Ineva
+baltic        | Kęstutis, Vytautas, Mantas, Jonas, Algirdas, Gediminas, Vaišvilkas | Birutė, Ona, Danutė, Aldona
+west_slavic   | Kazimierz, Władysław, Bolesław, Jan, Mikołaj, Zbigniew, Jiří, Václav, Jan, Bořivoj | Anna, Katarzyna, Elżbieta, Barbara, Jadwiga, Ludmila
+east_slavic   | Ivan, Vasily, Dmitry, Andrei, Mikhail, Yuri, Boris, Fyodor, Semyon, Konstantin | Maria, Anna, Sofia, Yevdokia, Yelena, Fedosia
+south_slavic  | Stefan, Lazar, Đurađ, Vuk, Radoslav, Vlatko, Ivaniš, Nikola, Grgur, Petar | Jelena, Mara, Katarina, Milica, Jelisaveta, Teodora
+magyar        | László, János, Mátyás, Miklós, István, Péter, György, Pál, Imre | Erzsébet, Katalin, Borbála, Ilona, Margit
+eastern_romance | Vlad, Mircea, Radu, Ștefan, Petru, Bogdan, Alexandru, Dan, Basarab | Maria, Ana, Voica, Chiajna, Oltea, Marina
+italian       | Giovanni, Francesco, Ludovico, Galeazzo, Lorenzo, Piero, Niccolò, Bartolomeo, Federico, Guidantonio, Matteo, Antonio | Bianca, Caterina, Lucrezia, Ippolita, Beatrice, Isabella, Costanza, Clarice
+hellenic      | Konstantinos, Thomas, Demetrios, Manuel, Andreas, Ioannes, Theodoros, Nikephoros, Alexios | Helena, Sophia, Theodora, Anna, Eirene, Zoe
+albanian      | Gjergj, Gjon, Lekë, Pal, Moisi, Tanush, Hamza, Nikollë, Andrea | Donika, Mamica, Jella, Angjelina, Vojsava
+turkic        | Mehmed, Murad, Bayezid, Hasan, Yusuf, Ahmed, Ali, Ibrahim, Süleyman, Kasım, Orhan, Mahmud, Isa | Hatice, Ayşe, Fatma, Hüma, Gülbahar, Selçuk, Saray, Şehzade
+caucasian     | Inal, Tambiy, Kaitouk, Aslanbek, Beslan, Temriuk, Kanuko | Guashe, Satanei, Khanifa, Zalikha
+kartvelian    | Giorgi, Aleksandre, Bagrat, Davit, Konstantine, Qvarqvare, Vakhtang, Demetre | Tamar, Nestan-Darejan, Elene, Rusudan, Tinatin
+armenian      | Grigor, Hovhannes, Smbat, Tigran, Ashot, Kirakos, Vardan | Mariam, Anna, Khatun, Shushan
+iranian       | Hasan, Ali, Husayn, Muhammad, Ismail, Shah Rukh, Farrukh, Kamran, Rustam, Bahram, Jamshid | Fatima, Gawhar, Khanzada, Maryam, Parisa, Shirin
+arab          | Muhammad, Ahmad, Ali, Hasan, Barakat, Zamil, Ajwad, Abdallah, Sa'id, Yahya, Rashid, Hamid | Fatima, Aisha, Khadija, Zaynab, Maryam, Ruqayya
+berber        | Yusuf, Ali, Abd al-Haqq, Yahya, Masud, Idir, Mennad, Amazigh | Tinhinan, Tazirt, Zaynab, Fatima
+nilo_saharan  | Kudanbes, Adlan, Nasr, Shaddad | Kandake, Amina, Nasra
+ethiopian     | Zara Yaqob, Baeda Maryam, Eskender, Na'od, Dawit, Tewodros, Yeshaq, Lebna Dengel | Eleni, Seyon Mogesa, Romna, Na'od Mogesa, Mariam
+cushitic      | Ahmad, Muhammad, Badlay, Garad, Abdi, Nur, Hassan, Mahfuz | Bati, Amina, Halima, Fatuma
+bantu         | Muhammad, Ali, Hasan, Sulaiman, Abubakar, Mwinyi | Mwana, Fatuma, Mwanaisha, Zuhura
+indo_aryan    | Rana, Raimal, Udai, Jodha, Sangram, Kapilendra, Hamvira, Purushottam, Prithviraj, Bahlul, Mahmud, Hussain | Rambai, Padmavati, Lakshmi, Jaswanti, Kamala, Bibi Raji
+dravidian     | Mallikarjuna, Virupaksha, Deva, Narasimha, Krishna, Manavikraman, Rama, Venkata | Lakshmi, Ganga, Tirumalamba, Chinnadevi, Meenakshi
+himalayan     | Jayasthiti, Yaksha, Ratna, Prithvi, Kirti, Mukunda, Shiva | Rajalla, Kirtilakshmi, Devi, Sunaina
+tibeto_burman | Susenphaa, Ningthou, Kyamba, Dharma, Khen, Nara, Tamra | Rani, Lakshmi, Leima, Chanu
+sinhalese     | Parakramabahu, Bhuvanaikabahu, Vijayabahu, Sapumal, Jayabahu | Ulakudaya, Sunetra, Lila
+austroasiatic | Tirot, Sajar, U Sohlyngngem, Bah | Ka Lyndoh, Ka Dei, Ka Sngi
+mongolic      | Esen, Amasanji, Ishmet, Togh, Bayan, Ochir, Batu | Altan, Mandukhai, Saman, Oyun
+jewish        | Isaac, Abraham, Moses, Joseph, David, Samuel, Judah, Elijah | Sarah, Rebecca, Leah, Esther, Miriam, Hannah
+# Name lists for Muslims of these culture families (family@muslim).
+indo_aryan@muslim | Mahmud, Ahmad, Husain, Bahlul, Barbak, Fath Khan, Ismail, Daud, Mubarak, Sikandar, Nasir, Jalal | Bibi Raji, Zainab, Fatima, Bibi Mato, Rukhsana, Amina
+dravidian@muslim  | Ahmad, Ali, Humayun, Mahmud, Yusuf, Qasim, Burhan, Malik | Fatima, Bibi Zainab, Amina, Mariam

@@ -1,0 +1,30 @@
+# Personality and skill traits. key | Name | opposite | skill changes (dip mar ste int lea)
+# Characters with opposite traits dislike each other; shared traits help.
+brave        | Brave        | craven    | 0 2 0 0 0
+craven       | Craven       | brave     | 0 -2 0 1 0
+ambitious    | Ambitious    | content   | 1 1 1 1 0
+content      | Content      | ambitious | 0 0 0 -1 0
+just         | Just         | arbitrary | 0 0 2 0 1
+arbitrary    | Arbitrary    | just      | 0 0 -1 2 -1
+cruel        | Cruel        | kind      | -2 1 0 2 0
+kind         | Kind         | cruel     | 2 0 0 -2 0
+pious        | Pious        | cynical   | 0 0 0 0 2
+cynical      | Cynical      | pious     | 0 0 0 2 -1
+diligent     | Diligent     | lazy      | 1 1 1 1 1
+lazy         | Lazy         | diligent  | -1 -1 -1 -1 -1
+scholar      | Scholar      |           | 0 0 0 0 4
+strategist   | Strategist   |           | 0 4 0 0 0
+administrator| Administrator|           | 0 0 4 0 0
+diplomat     | Diplomat     |           | 4 0 0 0 0
+schemer      | Schemer      |           | 0 0 0 4 0
+greedy       | Greedy       | generous  | -1 0 2 0 0
+generous     | Generous     | greedy    | 3 0 -1 0 0
+honest       | Honest       | deceitful | 1 0 0 -2 0
+deceitful    | Deceitful    | honest    | -1 0 0 3 0
+wrathful     | Wrathful     | calm      | -1 2 0 0 -1
+calm         | Calm         | wrathful  | 1 0 0 1 0
+zealous      | Zealous      | tolerant  | -1 1 0 0 1
+tolerant     | Tolerant     | zealous   | 2 0 0 0 0
+patient      | Patient      |           | 1 0 0 1 1
+sickly       | Sickly       |           | 0 -1 0 0 0
+blind        | Blind        |           | -1 -3 -1 0 0

@@ -1,0 +1,510 @@
+# Real people alive on 30 May 1453.
+# Under "@ TAG" (the country they belong to):
+#   role | id | Name | Dynasty | m/f | born | relations | traits | note [| culture religion]
+# Culture and religion default to the country's main culture and faith.
+# Roles: ruler, heir, spouse, child, sibling, parent, kin, figure (key noble,
+#   general, minister). "ruler | =id" makes an existing person ruler of this
+#   country too (personal unions).
+# Relations: f:<father id> m:<mother id> s:<spouse id>[,<spouse id>]
+# Born: year, or YYYY-MM-DD. "?" in the note marks uncertain facts (see
+# docs/HISTORY_NOTES.md). Countries with no one listed get an invented
+# ruler and an invented sibling heir (by the owner's rule).
+
+## Ottomans and the old Byzantine world
+@ TUR
+ruler  | mehmed2   | Mehmed II            | Osmanoğlu | m | 1432-03-30 | s:gulbahar,gulsah,sittisah | ambitious, brave, scholar, cruel, strategist |
+spouse | gulbahar  | Gülbahar Hatun       |           | f | 1432       | | pious, kind | origin disputed?
+spouse | gulsah    | Gülşah Hatun         |           | f | 1430       | | |
+spouse | sittisah  | Sitti Şah Hatun      | Dulkadir  | f | 1435       | f:suleyman_dul | content | birth year?
+heir   | bayezid2  | Bayezid              | Osmanoğlu | m | 1447-12-03 | f:mehmed2 m:gulbahar | pious, calm, scholar |
+child  | mustafa_o | Mustafa              | Osmanoğlu | m | 1450       | f:mehmed2 m:gulsah | brave |
+parent | mara_br   | Mara Branković       | Branković | f | 1416       | f:durad m:irene_k | pious, diplomat | widow of Murad II | serbian orthodox
+figure | halil_c   | Çandarlı Halil Pasha | Çandarlı  | m | 1390       | | diplomat, cynical, greedy | grand vizier; executed June 1453
+figure | zaganos   | Zağanos Pasha        |           | m | 1400       | | ambitious, strategist, zealous | birth year?
+figure | mahmud_a  | Mahmud Pasha Angelović | Angelović | m | 1420     | | administrator, diplomat, scholar |
+figure | turahan   | Turahan Bey          | Turahanoğlu | m | 1400     | | strategist, brave | birth year?
+figure | ishak_p   | İshak Pasha          |           | m | 1410       | | strategist | birth year?
+
+@ MOE
+ruler  | thomas_p  | Thomas Palaiologos   | Palaiologos | m | 1409     | s:catherine_z | content, pious |
+spouse | catherine_z | Catherine Zaccaria | Zaccaria  | f | 1415       | | pious | birth year?
+heir   | andreas_p | Andreas Palaiologos  | Palaiologos | m | 1453-01-17 | f:thomas_p m:catherine_z | |
+child  | zoe_p     | Zoe Palaiologina     | Palaiologos | f | 1449     | f:thomas_p m:catherine_z | scholar, ambitious | later Sophia of Moscow
+sibling| demetrios_p | Demetrios Palaiologos | Palaiologos | m | 1407   | s:theodora_a | ambitious, deceitful | co-despot, rival of Thomas
+kin    | theodora_a | Theodora Asanina    | Asen      | f | 1410       | | | birth year?
+kin    | helena_dp | Helena Palaiologina  | Palaiologos | f | 1442     | f:demetrios_p m:theodora_a | |
+
+@ TRE
+ruler  | john4_t   | John IV Megas Komnenos | Komnenos | m | 1403      | | diplomat, cynical | birth year?
+heir   | david_t   | David Megas Komnenos | Komnenos  | m | 1408       | | content |
+child  | theodora_t | Theodora Komnene    | Komnenos  | f | 1440       | f:john4_t | pious | later wife of Uzun Hasan; birth year?
+
+@ CYP
+ruler  | john2_c   | John II of Cyprus    | Lusignan  | m | 1418       | s:helena_pal | lazy, content |
+spouse | helena_pal | Helena Palaiologina | Palaiologos | f | 1428     | | ambitious, zealous | | greek orthodox
+heir   | charlotte_c | Charlotte of Cyprus | Lusignan | f | 1444      | f:john2_c m:helena_pal | brave |
+child  | james_c   | James the Bastard    | Lusignan  | m | 1440       | f:john2_c | ambitious, deceitful | illegitimate; birth year?
+
+@ KNI
+ruler  | milly     | Jacques de Milly     | de Milly  | m | 1390       | | pious, brave | birth year?
+
+@ NAX
+ruler  | giacomo2_c | Giacomo II Crispo   | Crispo    | m | 1426       | | sickly | died 1453; birth year?
+
+@ LES
+ruler  | dorino_g  | Dorino I Gattilusio  | Gattilusio | m | 1390      | | greedy | birth year?
+heir   | domenico_g | Domenico Gattilusio | Gattilusio | m | 1420      | f:dorino_g | | birth year?
+
+@ TOC
+ruler  | leonardo3_t | Leonardo III Tocco | Tocco     | m | 1428       | | | birth year?
+
+@ ATH
+ruler  | francesco1_a | Francesco I Acciaioli | Acciaioli | m | 1446  | | | child duke, mother Chiara Zorzi regent?
+parent | chiara_z  | Chiara Zorzi         | Zorzi     | f | 1420       | | ambitious, schemer | regent?
+
+## Balkans and the Danube
+@ SER
+ruler  | durad     | Đurađ Branković      | Branković | m | 1377       | s:irene_k | diplomat, greedy, patient |
+spouse | irene_k   | Irene Kantakouzene   | Kantakouzenos | f | 1400   | | schemer, greedy |
+heir   | lazar_b   | Lazar Branković      | Branković | m | 1421       | f:durad m:irene_k s:helena_mp | cruel, ambitious |
+kin    | helena_mp | Helena Palaiologina  | Palaiologos | f | 1431     | f:thomas_p m:catherine_z | |
+child  | grgur_b   | Grgur Branković      | Branković | m | 1415       | f:durad m:irene_k | blind | blinded 1441
+child  | stefan_b  | Stefan Branković     | Branković | m | 1417       | f:durad m:irene_k | blind, pious | blinded 1441
+
+@ BOS
+ruler  | stephen_thomas | Stephen Thomas  | Kotromanić | m | 1411      | s:catherine_bos | pious, patient |
+spouse | catherine_bos | Catherine Kosača | Kosača   | f | 1424       | f:stjepan_v | pious, kind |
+heir   | stephen_tom | Stephen Tomašević | Kotromanić | m | 1438      | f:stephen_thomas | ambitious |
+child  | sigismund_bos | Sigismund Tomašević | Kotromanić | m | 1449 | f:stephen_thomas m:catherine_bos | |
+
+@ HER
+ruler  | stjepan_v | Stjepan Vukčić Kosača | Kosača   | m | 1404       | | ambitious, greedy, deceitful |
+heir   | vladislav_h | Vladislav Hercegović | Kosača  | m | 1426       | f:stjepan_v | wrathful |
+child  | vlatko_h  | Vlatko Hercegović    | Kosača    | m | 1426       | f:stjepan_v | |
+
+@ ZET
+ruler  | stefan_cr | Stefan Crnojević     | Crnojević | m | 1426       | | brave | birth year?
+heir   | ivan_cr   | Ivan Crnojević       | Crnojević | m | 1440       | f:stefan_cr | brave, ambitious | birth year?
+
+@ ALB
+ruler  | skanderbeg | Skanderbeg          | Kastrioti | m | 1405       | s:donika | brave, strategist, zealous, honest |
+spouse | donika    | Donika Arianiti      | Arianiti  | f | 1428       | | pious | birth year?
+heir   | hamza_k   | Hamza Kastrioti      | Kastrioti | m | 1425       | | ambitious | nephew; defected 1456; birth year?
+figure | moisi_g   | Moisi Golemi         | Golemi    | m | 1410       | | brave, strategist | birth year?
+figure | leke_d    | Lekë Dukagjini       | Dukagjini | m | 1410       | | just, brave | birth year?
+
+@ HUN
+ruler  | ladislaus5 | Ladislaus V        | Habsburg  | m | 1440-02-22 | | sickly, content | also Austria and Bohemia
+figure | hunyadi   | John Hunyadi         | Hunyadi   | m | 1406       | s:szilagyi_e | brave, strategist, ambitious, zealous | regent until 1452, captain-general
+figure | szilagyi_e | Elizabeth Szilágyi  | Szilágyi  | f | 1410       | | schemer | birth year?
+figure | ladislaus_h | Ladislaus Hunyadi  | Hunyadi   | m | 1433       | f:hunyadi m:szilagyi_e | ambitious, brave |
+figure | matthias  | Matthias Corvinus    | Hunyadi   | m | 1443-02-23 | f:hunyadi m:szilagyi_e | scholar, ambitious, diplomat |
+figure | ujlaki    | Nicholas of Ilok     | Újlaki    | m | 1410       | | greedy, ambitious |
+figure | garai     | Ladislaus Garai      | Garai     | m | 1410       | | schemer | palatine; birth year?
+figure | vitez     | John Vitéz           | Vitéz     | m | 1408       | | scholar, diplomat | bishop of Várad
+
+@ AUS
+ruler  | =ladislaus5
+@ BOH
+ruler  | =ladislaus5
+figure | podebrady | George of Poděbrady  | Kunštát   | m | 1420-04-23 | | diplomat, ambitious, tolerant | regent of Bohemia
+
+@ CIL
+ruler  | ulrich2_c | Ulrich II of Celje   | Celje     | m | 1406       | s:catherine_br | ambitious, schemer, cruel |
+spouse | catherine_br | Catherine Branković | Branković | f | 1418     | f:durad m:irene_k | |
+
+@ JIS
+ruler  | jiskra    | Jan Jiskra           | Brandýs   | m | 1400       | | strategist, brave | birth year?
+
+@ WAL
+ruler  | vladislav2_w | Vladislav II      | Dănești   | m | 1410       | | | birth year?
+figure | vlad3     | Vlad Dracula         | Drăculești | m | 1431      | | brave, cruel, ambitious, wrathful | in exile; birth year?
+@ MOL
+ruler  | alexandrel | Alexăndrel         | Mușat     | m | 1438       | | sickly | birth year?
+figure | petru_aron | Peter Aron         | Mușat     | m | 1410       | | ambitious, cruel | rival claimant; birth year?
+figure | stephen3_m | Stephen of Moldavia | Mușat    | m | 1433       | | brave, strategist, pious, ambitious | in exile; later Stephen the Great; birth year?
+
+## The Empire, Italy and the West
+@ HAB
+ruler  | frederick3 | Frederick III      | Habsburg  | m | 1415-09-21 | s:eleanor_p | patient, lazy, greedy | Holy Roman Emperor
+spouse | eleanor_p | Eleanor of Portugal  | Aviz      | f | 1434-09-18 | | pious | daughter of King Duarte
+heir   | albert6   | Albert VI of Austria | Habsburg  | m | 1418-12-18 | | ambitious, wrathful, generous |
+@ TIR
+ruler  | sigismund_t | Sigismund of Tyrol | Habsburg  | m | 1427-10-26 | s:eleanor_s | generous, lazy |
+spouse | eleanor_s | Eleanor of Scotland  | Stewart   | f | 1433       | | scholar |
+@ GOR
+ruler  | henry4_g  | Henry IV of Gorizia  | Meinhardiner | m | 1376     | | | died 1454
+heir   | john2_g   | John II of Gorizia   | Meinhardiner | m | 1438     | f:henry4_g | |
+child  | leonhard_g | Leonhard of Gorizia | Meinhardiner | m | 1440     | f:henry4_g | |
+@ SAL
+ruler  | sigismund_v | Sigismund of Volkersdorf | Volkersdorf | m | 1395 | | pious | archbishop; birth year?
+@ BAV
+ruler  | albert3_b | Albert III of Bavaria | Wittelsbach | m | 1401-03-27 | s:anna_bru | pious, kind |
+spouse | anna_bru  | Anna of Brunswick    | Welf      | f | 1414       | | |
+heir   | john4_b   | John IV of Bavaria   | Wittelsbach | m | 1437     | f:albert3_b m:anna_bru | sickly |
+child  | sigismund_b | Sigismund of Bavaria | Wittelsbach | m | 1439   | f:albert3_b m:anna_bru | lazy |
+child  | albert4_b | Albert IV of Bavaria | Wittelsbach | m | 1447-12-15 | f:albert3_b m:anna_bru | ambitious, administrator |
+@ LAN
+ruler  | louis9_b  | Louis IX the Rich    | Wittelsbach | m | 1417-02-21 | s:amalia_s | greedy, administrator |
+spouse | amalia_s  | Amalia of Saxony     | Wettin    | f | 1436       | f:frederick2_s | |
+@ PAL
+ruler  | frederick1_p | Frederick the Victorious | Wittelsbach | m | 1425-08-01 | | strategist, brave | regent-elector
+heir   | philip_p  | Philip of the Palatinate | Wittelsbach | m | 1448-07-14 | | | nephew
+@ SAX
+ruler  | frederick2_s | Frederick II of Saxony | Wettin | m | 1412-08-22 | s:margaret_a | content, generous |
+spouse | margaret_a | Margaret of Austria | Habsburg  | f | 1416       | | |
+heir   | ernest_s  | Ernest of Saxony     | Wettin    | m | 1441-03-24 | f:frederick2_s m:margaret_a | |
+child  | albert_s  | Albert of Saxony     | Wettin    | m | 1443-07-31 | f:frederick2_s m:margaret_a | brave, strategist |
+kin    | william3_s | William III of Thuringia | Wettin | m | 1425-04-30 | | ambitious | brother
+@ BRA
+ruler  | frederick2_b | Frederick II Irontooth | Hohenzollern | m | 1413-11-19 | s:catherine_s | pious, diligent |
+spouse | catherine_s | Catherine of Saxony | Wettin  | f | 1421       | | |
+heir   | albert_ach | Albert Achilles     | Hohenzollern | m | 1414-11-09 | s:margaret_bd | brave, ambitious, strategist | brother
+kin    | frederick_fat | Frederick the Fat | Hohenzollern | m | 1424    | | lazy |
+@ ANS
+ruler  | =albert_ach
+kin    | margaret_bd | Margaret of Baden  | Zähringen | f | 1431       | | |
+@ HES
+ruler  | louis1_h  | Louis I of Hesse     | Brabant   | m | 1402-02-06 | | pious, just |
+heir   | louis2_h  | Louis II of Hesse    | Brabant   | m | 1438       | f:louis1_h | |
+child  | henry3_h  | Henry III of Hesse   | Brabant   | m | 1440       | f:louis1_h | |
+@ WUR
+ruler  | ulrich5_w | Ulrich V of Württemberg | Württemberg | m | 1413   | | generous, lazy |
+heir   | eberhard6_w | Eberhard VI       | Württemberg | m | 1447-07-01 | f:ulrich5_w | |
+kin    | eberhard5_w | Eberhard the Bearded | Württemberg | m | 1445-12-11 | | diligent, pious | cousin, Urach line
+@ BAD
+ruler  | charles1_bd | Charles I of Baden | Zähringen | m | 1427       | s:catherine_a | |
+spouse | catherine_a | Catherine of Austria | Habsburg | f | 1420     | | |
+heir   | bernard2_bd | Bernard of Baden  | Zähringen | m | 1428       | | pious, kind | Blessed Bernard
+@ MKL
+ruler  | henry4_m  | Henry IV of Mecklenburg | Mecklenburg | m | 1417   | |  |
+heir   | albert6_m | Albert VI of Mecklenburg | Mecklenburg | m | 1438 | f:henry4_m | |
+child  | magnus2_m | Magnus II of Mecklenburg | Mecklenburg | m | 1441 | f:henry4_m | |
+@ POM
+ruler  | eric2_pom | Eric II of Pomerania | Griffins  | m | 1425       | | wrathful | birth year?
+@ HOL
+ruler  | adolf8_h  | Adolf VIII of Holstein | Schauenburg | m | 1401    | | content | heir is nephew Christian I
+heir   | =christian1
+@ OLD
+ruler  | gerhard6_o | Gerhard VI of Oldenburg | Oldenburg | m | 1430    | | wrathful, ambitious |
+@ BRU
+ruler  | frederick2_bl | Frederick II of Lüneburg | Welf | m | 1408     | | pious |
+@ JUL
+ruler  | gerhard7_j | Gerhard VII of Jülich-Berg | Jülich | m | 1417     | | |
+@ KLE
+ruler  | john1_k   | John I of Cleves     | La Marck  | m | 1419-01-16 | | brave |
+@ GEL
+ruler  | arnold_e  | Arnold of Egmond     | Egmond    | m | 1410-07-14 | s:catherine_k | lazy, generous |
+spouse | catherine_k | Catherine of Cleves | La Marck | f | 1417-05-25 | | ambitious, schemer |
+heir   | adolf_e   | Adolf of Egmond      | Egmond    | m | 1438-02-12 | f:arnold_e m:catherine_k | ambitious, cruel |
+@ TEU
+ruler  | erlichshausen | Ludwig von Erlichshausen | Erlichshausen | m | 1410 | | zealous | grand master
+@ CLN
+ruler  | dietrich_m | Dietrich of Moers   | Moers     | m | 1385       | | ambitious, greedy | archbishop
+@ MAI
+ruler  | dietrich_e | Dietrich Schenk von Erbach | Erbach | m | 1390   | | | archbishop
+@ TRI
+ruler  | jakob_s   | Jakob von Sierck     | Sierck    | m | 1398       | | diplomat | archbishop
+@ UTR
+ruler  | rudolf_d  | Rudolf van Diepholt  | Diepholz  | m | 1390       | | | bishop; birth year?
+@ LIE
+ruler  | john_h    | John of Heinsberg    | Heinsberg | m | 1396       | | lazy | bishop
+@ PAP
+ruler  | nicholas5 | Nicholas V           | Parentucelli | m | 1397-11-15 | | scholar, pious, generous | Pope
+figure | borja     | Alfonso de Borja     | Borja     | m | 1378-12-31 | | pious, ambitious | cardinal, later Callixtus III
+figure | bessarion | Basilios Bessarion   |           | m | 1403-01-02 | | scholar, diplomat | cardinal
+figure | rodrigo_b | Rodrigo de Borja     | Borja     | m | 1431-01-01 | | ambitious, schemer, greedy | later Alexander VI
+figure | piccolomini | Enea Silvio Piccolomini | Piccolomini | m | 1405-10-18 | | scholar, diplomat | bishop, later Pius II
+@ MLO
+ruler  | f_sforza  | Francesco Sforza     | Sforza    | m | 1401-07-23 | s:bianca_mv | strategist, ambitious, brave |
+spouse | bianca_mv | Bianca Maria Visconti | Visconti | f | 1425-03-31 | | administrator, diplomat |
+heir   | galeazzo  | Galeazzo Maria Sforza | Sforza   | m | 1444-01-24 | f:f_sforza m:bianca_mv | cruel, ambitious |
+child  | ippolita_s | Ippolita Maria Sforza | Sforza  | f | 1445-04-18 | f:f_sforza m:bianca_mv | scholar |
+child  | filippo_s | Filippo Maria Sforza | Sforza    | m | 1449       | f:f_sforza m:bianca_mv | |
+child  | sforza_ms | Sforza Maria Sforza  | Sforza    | m | 1451       | f:f_sforza m:bianca_mv | |
+child  | ludovico_s | Ludovico Sforza     | Sforza    | m | 1452-07-27 | f:f_sforza m:bianca_mv | ambitious, schemer |
+@ VEN
+ruler  | foscari   | Francesco Foscari    | Foscari   | m | 1373-06-19 | | ambitious, diplomat | Doge
+@ GEN
+ruler  | campofregoso | Pietro di Campofregoso | Campofregoso | m | 1412 | | ambitious | Doge; birth year?
+@ FLO
+ruler  | cosimo    | Cosimo de' Medici    | Medici    | m | 1389-09-27 | s:contessina | administrator, diplomat, patient, greedy | leads the republic
+spouse | contessina | Contessina de' Bardi | Bardi    | f | 1390       | | |
+heir   | piero_m   | Piero de' Medici     | Medici    | m | 1416       | f:cosimo m:contessina s:lucrezia_t | sickly, diligent |
+kin    | lucrezia_t | Lucrezia Tornabuoni | Tornabuoni | f | 1427-06-22 | | scholar, pious |
+kin    | lorenzo_m | Lorenzo de' Medici   | Medici    | m | 1449-01-01 | f:piero_m m:lucrezia_t | |
+child  | giovanni_m | Giovanni de' Medici | Medici    | m | 1421       | f:cosimo m:contessina |  |
+@ FER
+ruler  | borso     | Borso d'Este         | Este      | m | 1413       | | generous, ambitious |
+heir   | ercole_e  | Ercole d'Este        | Este      | m | 1431-10-26 | | brave, ambitious | half-brother
+@ MAN
+ruler  | ludovico3_g | Ludovico III Gonzaga | Gonzaga | m | 1412-06-05 | s:barbara_b | strategist, scholar |
+spouse | barbara_b | Barbara of Brandenburg | Hohenzollern | f | 1422-09-30 | | administrator |
+heir   | federico_g | Federico Gonzaga   | Gonzaga   | m | 1441-06-25 | f:ludovico3_g m:barbara_b | |
+child  | francesco_g | Francesco Gonzaga  | Gonzaga   | m | 1444       | f:ludovico3_g m:barbara_b | | later cardinal
+@ URB
+ruler  | montefeltro | Federico da Montefeltro | Montefeltro | m | 1422-06-07 | s:gentile_b | strategist, scholar, just |
+spouse | gentile_b | Gentile Brancaleoni  | Brancaleoni | f | 1416     | | |
+@ MFA
+ruler  | john4_m   | John IV of Montferrat | Palaiologos | m | 1413     | | |
+heir   | william8_m | William VIII of Montferrat | Palaiologos | m | 1420 | | strategist |
+@ SAV
+ruler  | louis_sav | Louis of Savoy       | Savoy     | m | 1413-02-24 | s:anne_l | lazy, generous |
+spouse | anne_l    | Anne de Lusignan     | Lusignan  | f | 1418       | | ambitious |
+heir   | amadeus9  | Amadeus IX           | Savoy     | m | 1435-02-01 | f:louis_sav m:anne_l s:yolande_f | pious, sickly, kind |
+child  | louis_cyp | Louis of Savoy-Cyprus | Savoy    | m | 1436       | f:louis_sav m:anne_l | |
+child  | philip_sav | Philip of Bresse    | Savoy     | m | 1438       | f:louis_sav m:anne_l | ambitious, wrathful |
+@ SLZ
+ruler  | ludovico1_s | Ludovico I of Saluzzo | Del Vasto | m | 1406     | | |
+heir   | ludovico2_s | Ludovico II of Saluzzo | Del Vasto | m | 1438   | f:ludovico1_s | scholar |
+@ NAP
+ruler  | alfonso5  | Alfonso V the Magnanimous | Trastámara | m | 1396 | s:maria_c | generous, scholar, ambitious |
+spouse | maria_c   | Maria of Castile     | Trastámara | f | 1401      | | pious | lives in Aragon
+heir   | ferrante  | Ferrante of Naples   | Trastámara | m | 1424-06-02 | f:alfonso5 s:isabella_cl | cruel, schemer, strategist | illegitimate son
+kin    | isabella_cl | Isabella of Clermont | Taranto | f | 1424      | | |
+kin    | alfonso2_n | Alfonso of Calabria | Trastámara | m | 1448-11-04 | f:ferrante m:isabella_cl | cruel, brave |
+kin    | eleonora_n | Eleanor of Naples  | Trastámara | f | 1450-06-22 | f:ferrante m:isabella_cl | |
+kin    | federico_n | Federico of Naples | Trastámara | m | 1451-04-19 | f:ferrante m:isabella_cl | |
+@ ARA
+ruler  | =alfonso5
+heir   | john2_a   | John of Aragon       | Trastámara | m | 1398-06-29 | s:juana_e | ambitious, schemer | also King of Navarre
+@ NAV
+ruler  | =john2_a
+spouse | juana_e   | Juana Enríquez       | Enríquez  | f | 1425       | | ambitious, schemer |
+heir   | charles_v | Charles of Viana     | Trastámara | m | 1421-05-29 | f:john2_a | scholar, kind | rebel heir
+child  | blanche_n | Blanche of Navarre   | Trastámara | f | 1424-06-09 | f:john2_a | pious | marriage to Henry of Castile annulled 1453
+child  | ferdinand_a | Ferdinand of Aragon | Trastámara | m | 1452-03-10 | f:john2_a m:juana_e | ambitious |
+@ FOI
+ruler  | gaston4   | Gaston IV of Foix    | Foix      | m | 1422       | s:eleanor_n | ambitious, brave |
+spouse | eleanor_n | Eleanor of Navarre   | Trastámara | f | 1426-02-02 | f:john2_a | ambitious |
+heir   | gaston_v  | Gaston of Foix, Prince of Viana | Foix | m | 1444 | f:gaston4 m:eleanor_n | |
+@ CAS
+ruler  | john2_c2  | John II of Castile   | Trastámara | m | 1405-03-06 | s:isabella_p | lazy, scholar | dies 1454
+spouse | isabella_p | Isabella of Portugal | Aviz     | f | 1428       | | |
+heir   | henry4_c  | Henry of Castile     | Trastámara | m | 1425-01-05 | f:john2_c2 | lazy, tolerant, kind |
+child  | isabella_c | Isabella of Castile | Trastámara | f | 1451-04-22 | f:john2_c2 m:isabella_p | ambitious, pious, diligent |
+figure | luna      | Álvaro de Luna       | Luna      | m | 1390       | | ambitious, administrator, greedy | executed 2 June 1453
+figure | pacheco   | Juan Pacheco         | Pacheco   | m | 1419       | | schemer, ambitious, greedy |
+@ POR
+ruler  | afonso5_p | Afonso V             | Aviz      | m | 1432-01-15 | s:isabella_co | brave, ambitious |
+spouse | isabella_co | Isabella of Coimbra | Aviz     | f | 1432-03-01 | | kind |
+child  | joana_p   | Joana of Portugal    | Aviz      | f | 1452-02-06 | f:afonso5_p m:isabella_co | pious |
+heir   | fernando_v | Fernando of Viseu   | Aviz      | m | 1433-11-17 | | | brother
+sibling| catherine_p | Catherine of Portugal | Aviz   | f | 1436       | | pious, scholar |
+sibling| joana_c   | Joana of Portugal     | Aviz      | f | 1439-03-20 | | | later Queen of Castile
+figure | henry_nav | Henry the Navigator  | Aviz      | m | 1394-03-04 | | scholar, pious, ambitious | uncle
+figure | afonso_br | Afonso of Braganza   | Braganza  | m | 1377       | | ambitious |
+@ GRA
+ruler  | muhammad11_g | Muhammad XI     | Nasrid    | m | 1430       | | | 1453 rulers of Granada uncertain?
+figure | sad_g     | Sa'd of Granada      | Nasrid    | m | 1410       | | ambitious | rival, king 1454; birth year?
+@ FRA
+ruler  | charles7  | Charles VII          | Valois    | m | 1403-02-22 | s:marie_a | patient, administrator, cynical |
+spouse | marie_a   | Marie of Anjou       | Valois-Anjou | f | 1404-10-14 | | pious, kind |
+heir   | louis11   | Louis the Dauphin    | Valois    | m | 1423-07-03 | f:charles7 m:marie_a s:charlotte_s | schemer, deceitful, diligent, ambitious |
+kin    | charlotte_s | Charlotte of Savoy | Savoy     | f | 1441       | f:louis_sav m:anne_l | |
+child  | charles_b | Charles of Berry     | Valois    | m | 1446-12-26 | f:charles7 m:marie_a | ambitious |
+child  | madeleine_f | Madeleine of France | Valois   | f | 1443-12-01 | f:charles7 m:marie_a | |
+kin    | yolande_f | Yolande of France    | Valois    | f | 1434-09-23 | f:charles7 m:marie_a | ambitious, administrator | wife of Amadeus of Savoy
+figure | dunois    | Jean de Dunois       | Valois-Orléans | m | 1402-11-23 | | brave, strategist |
+figure | bureau    | Jean Bureau          | Bureau    | m | 1390       | | strategist, administrator | master of artillery
+figure | charles_orl | Charles of Orléans | Valois-Orléans | m | 1394-11-24 | | scholar | poet duke
+@ BRI
+ruler  | peter2_b  | Peter II of Brittany | Montfort  | m | 1418       | s:francoise_a | pious, sickly |
+spouse | francoise_a | Françoise d'Amboise | Amboise | f | 1427-05-28 | | pious, kind |
+heir   | richemont | Arthur de Richemont  | Montfort  | m | 1393-08-24 | | strategist, brave, just | Constable of France, uncle
+@ BUR
+ruler  | philip_good | Philip the Good    | Valois-Burgundy | m | 1396-07-31 | s:isabella_bp | ambitious, generous, diplomat |
+spouse | isabella_bp | Isabella of Portugal | Aviz  | f | 1397-02-21 | | administrator, diplomat |
+heir   | charles_bold | Charles the Bold  | Valois-Burgundy | m | 1433-11-10 | f:philip_good m:isabella_bp s:isabelle_bb | brave, wrathful, ambitious, diligent |
+kin    | isabelle_bb | Isabella of Bourbon | Bourbon  | f | 1436       | | pious |
+figure | antoine_b | Anthony of Burgundy  | Valois-Burgundy | m | 1421 | f:philip_good | brave | the Grand Bastard
+@ PRO
+ruler  | rene      | René of Anjou        | Valois-Anjou | m | 1409-01-16 | | scholar, generous, content |
+child  | margaret_an | Margaret of Anjou  | Valois-Anjou | f | 1430-03-23 | f:rene | ambitious, wrathful, brave | Queen of England
+@ LOR
+ruler  | john2_l   | John of Calabria     | Valois-Anjou | m | 1425-08-02 | f:rene s:marie_bo | brave, strategist | Duke of Lorraine
+spouse | marie_bo  | Marie of Bourbon     | Bourbon   | f | 1428       | | |
+heir   | nicholas_l | Nicholas of Lorraine | Valois-Anjou | m | 1448-07-07 | f:john2_l m:marie_bo | |
+@ ENG
+ruler  | henry6    | Henry VI             | Lancaster | m | 1421-12-06 | s:margaret_an | pious, kind, content, sickly |
+heir   | york      | Richard of York      | York      | m | 1411-09-21 | s:cecily | ambitious, brave, strategist | heir presumptive?
+kin    | cecily    | Cecily Neville       | Neville   | f | 1415-05-03 | | pious, ambitious |
+kin    | edward_y  | Edward of March      | York      | m | 1442-04-28 | f:york m:cecily | brave, strategist, ambitious |
+kin    | edmund_y  | Edmund of Rutland    | York      | m | 1443-05-17 | f:york m:cecily | |
+kin    | george_y  | George of York       | York      | m | 1449-10-21 | f:york m:cecily | ambitious, deceitful |
+kin    | richard_y | Richard of York      | York      | m | 1452-10-02 | f:york m:cecily | |
+figure | somerset  | Edmund Beaufort      | Beaufort  | m | 1406       | | ambitious, schemer |
+figure | warwick   | Richard Neville      | Neville   | m | 1428-11-22 | | ambitious, brave, schemer | the Kingmaker
+figure | talbot    | John Talbot          | Talbot    | m | 1387       | | brave, strategist, wrathful | killed at Castillon July 1453
+figure | jasper_t  | Jasper Tudor         | Tudor     | m | 1431       | | brave | half-brother of Henry VI
+figure | edmund_t  | Edmund Tudor         | Tudor     | m | 1430       | | | half-brother of Henry VI
+@ SCO
+ruler  | james2_s  | James II of Scotland | Stewart   | m | 1430-10-16 | s:mary_g | brave, wrathful |
+spouse | mary_g    | Mary of Guelders     | Egmond    | f | 1434       | f:arnold_e m:catherine_k | administrator |
+heir   | james3_s  | James of Rothesay    | Stewart   | m | 1452-07-10 | f:james2_s m:mary_g | |
+figure | douglas9  | James Douglas        | Douglas   | m | 1426       | | ambitious, deceitful | 9th Earl of Douglas
+@ LOI
+ruler  | john2_isles | John of Islay      | MacDonald | m | 1434       | | ambitious |
+@ ORM
+ruler  | james_but | James Butler, Earl of Ormond | Butler | m | 1420-11-24 | | brave | also Earl of Wiltshire
+@ TYR
+ruler  | eoghan_on | Eoghan Ó Néill       | Ó Néill   | m | 1390       | | | birth year?
+heir   | enri_on   | Énrí Ó Néill         | Ó Néill   | m | 1410       | f:eoghan_on | brave | birth year?
+@ TMN
+ruler  | turlough_ob | Toirdhealbhach Bóg Ó Briain | Ó Briain | m | 1410 | | | birth year?
+
+## Scandinavia, the Baltic and the Russias
+@ DAN
+ruler  | christian1 | Christian I         | Oldenburg | m | 1426-02    | s:dorothea_b | ambitious, generous | also King of Norway
+spouse | dorothea_b | Dorothea of Brandenburg | Hohenzollern | f | 1430 | | administrator, greedy |
+heir   | knud_o    | Knud of Denmark      | Oldenburg | m | 1451       | f:christian1 m:dorothea_b | sickly | birth year?
+@ NOR
+ruler  | =christian1
+@ SWE
+ruler  | karl8     | Charles VIII Knutsson | Bonde    | m | 1409       | | ambitious, greedy |
+child  | magdalena_k | Magdalena Karlsdotter | Bonde  | f | 1445       | f:karl8 | |
+@ POL
+ruler  | casimir4  | Casimir IV Jagiellon | Jagiellon | m | 1427-11-30 | | patient, diplomat | also Grand Duke of Lithuania; marries 1454
+figure | olesnicki | Zbigniew Oleśnicki   | Oleśnicki | m | 1389-12-05 | | ambitious, pious, diplomat | bishop of Kraków
+@ LIT
+ruler  | =casimir4
+@ MAZ
+ruler  | boleslaw4 | Bolesław IV of Warsaw | Piast    | m | 1421       | | | birth year?
+@ MOS
+ruler  | vasily2   | Vasily II the Blind  | Rurikid   | m | 1415-03-10 | s:maria_y | blind, pious, patient |
+spouse | maria_y   | Maria of Borovsk     | Rurikid   | f | 1418       | | pious |
+heir   | ivan3     | Ivan Vasilyevich     | Rurikid   | m | 1440-01-22 | f:vasily2 m:maria_y s:maria_t | ambitious, diligent, cruel, administrator | later Ivan the Great
+kin    | maria_t   | Maria of Tver        | Rurikid   | f | 1442       | f:boris_t | |
+child  | yuri_v    | Yuri Vasilyevich     | Rurikid   | m | 1441       | f:vasily2 m:maria_y | |
+child  | andrei_v  | Andrei the Elder     | Rurikid   | m | 1446       | f:vasily2 m:maria_y | ambitious |
+child  | boris_v   | Boris of Volok       | Rurikid   | m | 1449       | f:vasily2 m:maria_y | |
+child  | andrei_l  | Andrei the Younger   | Rurikid   | m | 1452       | f:vasily2 m:maria_y | |
+@ TVE
+ruler  | boris_t   | Boris of Tver        | Rurikid   | m | 1399       | | ambitious, diplomat |
+heir   | mikhail_t | Mikhail of Tver      | Rurikid   | m | 1453       | f:boris_t | | birth date?
+@ RYA
+ruler  | ivan_ry   | Ivan Fyodorovich     | Rurikid   | m | 1410       | | | dies 1456; birth year?
+heir   | vasily_ry | Vasily Ivanovich     | Rurikid   | m | 1447       | f:ivan_ry | |
+@ KAS
+ruler  | qasim     | Qasim Khan           | Chinggisid | m | 1420      | | | birth year?
+@ KAZ
+ruler  | mahmud_kz | Mahmud of Kazan      | Chinggisid | m | 1420      | | ambitious, cruel | birth year?
+
+## Steppe, Anatolia and the Middle East
+@ CRI
+ruler  | haci_giray | Hacı I Giray        | Giray     | m | 1397       | | ambitious, diplomat |
+heir   | nur_devlet | Nur Devlet          | Giray     | m | 1440       | f:haci_giray | | birth year?
+child  | mengli    | Meñli Giray          | Giray     | m | 1445       | f:haci_giray | ambitious, strategist | birth year?
+@ GRH
+ruler  | kuchuk_m  | Küchük Muhammad      | Chinggisid | m | 1405      | | | birth year?
+heir   | mahmud_gh | Mahmud of the Great Horde | Chinggisid | m | 1430 | f:kuchuk_m | | birth year?
+child  | ahmed_gh  | Akhmat Khan          | Chinggisid | m | 1435       | f:kuchuk_m | ambitious, brave | birth year?
+@ UZB
+ruler  | abulkhayr | Abu'l-Khayr Khan     | Shaybanid | m | 1412       | | ambitious, strategist |
+heir   | shah_budaq | Shah Budaq          | Shaybanid | m | 1432       | f:abulkhayr | brave | birth year?
+@ MGH
+ruler  | esen_buqa | Esen Buqa II         | Chagatayid | m | 1420      | | | birth year?
+@ TIM
+ruler  | abu_said  | Abu Sa'id Mirza      | Timurid   | m | 1424       | | ambitious, strategist, pious |
+heir   | ahmad_ts  | Sultan Ahmad Mirza   | Timurid   | m | 1451       | f:abu_said | |
+figure | khoja_ahrar | Khwaja Ahrar      |           | m | 1404       | | pious, scholar, ambitious | Naqshbandi sheikh
+@ HRT
+ruler  | babur_m   | Abul-Qasim Babur     | Timurid   | m | 1422       | | lazy, generous,  |
+@ AKK
+ruler  | uzun_hasan | Uzun Hasan          | Bayandur  | m | 1423       | | ambitious, strategist, brave, just |
+heir   | khalil_a  | Khalil Mirza         | Bayandur  | m | 1441       | f:uzun_hasan | | birth year?
+sibling| jahangir_a | Jahangir Mirza     | Bayandur  | m | 1420       | | content | elder brother, deposed?
+@ QAR
+ruler  | jahan_shah | Jahan Shah          | Qara Yusuf | m | 1397      | | ambitious, cruel, scholar | poet
+heir   | hasan_ali | Hasan Ali            | Qara Yusuf | m | 1440      | f:jahan_shah | wrathful | birth year?
+child  | pir_budaq | Pir Budaq            | Qara Yusuf | m | 1440      | f:jahan_shah | ambitious | birth year?
+@ KAR
+ruler  | ibrahim2_k | İbrahim II of Karaman | Karamanid | m | 1400   | | ambitious | birth year?
+heir   | pir_ahmed | Pir Ahmed            | Karamanid | m | 1430       | f:ibrahim2_k | | birth year?
+child  | kasim_k   | Kasım Bey            | Karamanid | m | 1432       | f:ibrahim2_k | ambitious | birth year?
+@ CND
+ruler  | ismail_c  | İsmail Bey           | Candaroğlu | m | 1410      | | | birth year?
+@ DUL
+ruler  | suleyman_dul | Süleyman Bey      | Dulkadir  | m | 1400       | | | birth year?
+heir   | malik_arslan | Malik Arslan      | Dulkadir  | m | 1430       | f:suleyman_dul | | birth year?
+@ SHI
+ruler  | khalilullah | Khalilullah I      | Derbendi  | m | 1390       | | scholar, patient | birth year?
+heir   | farrukh_y | Farrukh Yasar        | Derbendi  | m | 1430       | f:khalilullah | | birth year?
+@ GEO
+ruler  | george8   | George VIII of Georgia | Bagrationi | m | 1417    | | |
+@ SAM
+ruler  | qvarqvare2 | Qvarqvare II Jaqeli | Jaqeli   | m | 1418       | | ambitious |
+heir   | kaikhosro_j | Kaikhosro Jaqeli  | Jaqeli    | m | 1445       | f:qvarqvare2 | | birth year?
+@ MAM
+ruler  | inal      | Inal                 | Burji Mamluk | m | 1381    | | content, generous | Sultan; old
+heir   | ahmad_i   | Ahmad ibn Inal       | Burji Mamluk | m | 1430    | f:inal | | Mamluk succession is not hereditary in practice?
+figure | khushqadam | Khushqadam         |           | m | 1400       | | ambitious, schemer | later sultan
+@ HEJ
+ruler  | barakat1  | Barakat ibn Hasan    | Hasanid   | m | 1394       | | pious |
+heir   | muhammad_b | Muhammad ibn Barakat | Hasanid | m | 1437       | f:barakat1 | |
+@ ZAY
+ruler  | mutahhar  | Al-Mutawakkil al-Mutahhar | Rassid | m | 1400   | | pious, zealous | imam; birth year?
+@ MSH
+ruler  | ibn_falah | Muhammad ibn Falah   | Musha'sha | m | 1400       | | zealous, ambitious | founder; birth year?
+@ MOR
+ruler  | abdalhaqq2 | Abd al-Haqq II     | Marinid   | m | 1419       | | lazy, wrathful |
+figure | yahya_w   | Yahya al-Wattasi     | Wattasid  | m | 1410       | | ambitious, administrator | vizier; birth year?
+@ TUN
+ruler  | uthman_h  | Abu Amr Uthman       | Hafsid    | m | 1419       | | just, administrator |
+
+## Africa and India
+@ ETH
+ruler  | zara_yaqob | Zara Yaqob          | Solomonic | m | 1399       | s:eleni_e | zealous, scholar, cruel, administrator |
+spouse | eleni_e   | Eleni                | Hadiya    | f | 1431       | | diplomat, pious | birth year?
+heir   | baeda_maryam | Baeda Maryam      | Solomonic | m | 1448       | f:zara_yaqob | kind |
+@ ADA
+ruler  | muhammad_bd | Muhammad ibn Badlay | Walashma | m | 1420      | | | birth year?
+@ DEL
+ruler  | bahlul    | Bahlul Lodi          | Lodi      | m | 1401       | | brave, strategist, generous, patient |
+heir   | barbak    | Barbak Shah          | Lodi      | m | 1430       | f:bahlul | | birth year?
+@ JNP
+ruler  | mahmud_sh | Mahmud Shah Sharqi   | Sharqi    | m | 1410       | | ambitious | birth year?
+heir   | muhammad_sh | Muhammad Shah Sharqi | Sharqi  | m | 1430       | f:mahmud_sh | cruel | birth year?
+child  | husain_sh | Husain Shah Sharqi   | Sharqi    | m | 1435       | f:mahmud_sh | ambitious | birth year?
+@ KSH
+ruler  | zain      | Zain-ul-Abidin       | Shah Mir  | m | 1395       | | tolerant, scholar, just, administrator | Budshah
+heir   | adam_k    | Adam Khan            | Shah Mir  | m | 1420       | f:zain | ambitious | birth year?
+child  | haji_k    | Haji Khan            | Shah Mir  | m | 1425       | f:zain | | birth year?
+@ MUL
+ruler  | sahra_l   | Rai Sahra Langah     | Langah    | m | 1400       | | | birth year?
+@ GUJ
+ruler  | qutb_ahmad | Qutb-ud-din Ahmad Shah II | Muzaffarid | m | 1430 | | wrathful | birth year?
+figure | mahmud_beg | Fath Khan          | Muzaffarid | m | 1445       | | brave, ambitious | later Mahmud Begada; half-uncle
+@ MLW
+ruler  | mahmud_kh | Mahmud Khalji        | Khalji    | m | 1404       | | ambitious, strategist, brave |
+heir   | ghiyath   | Ghiyath Shah         | Khalji    | m | 1430       | f:mahmud_kh | content | birth year?
+@ KHA
+ruler  | mubarak_f | Miran Mubarak Khan   | Faruqi    | m | 1410       | | | birth year?
+@ BNG
+ruler  | nasiruddin | Nasiruddin Mahmud Shah | Ilyas Shahi | m | 1405 | | just | birth year?
+heir   | barbak_b  | Rukunuddin Barbak Shah | Ilyas Shahi | m | 1430 | f:nasiruddin | | birth year?
+@ BAH
+ruler  | alauddin2 | Ala-ud-din Ahmad Shah II | Bahmani | m | 1416   | | lazy | birth year?
+heir   | humayun_b | Humayun Shah         | Bahmani   | m | 1435       | f:alauddin2 | cruel, wrathful | birth year?
+figure | mahmud_gawan | Mahmud Gawan      | Gawan     | m | 1411       | | administrator, scholar, honest | merchant, later vizier
+@ ORI
+ruler  | kapilendra | Kapilendra Deva     | Suryavamsi | m | 1400      | | ambitious, strategist, brave | birth year?
+heir   | hamvira   | Hamvira              | Suryavamsi | m | 1430      | f:kapilendra | ambitious | birth year?
+child  | purushottama | Purushottama Deva | Suryavamsi | m | 1440      | f:kapilendra | pious | birth year?
+@ VIJ
+ruler  | mallikarjuna | Mallikarjuna Raya | Sangama   | m | 1425       | | content | birth year?
+figure | virupaksha | Virupaksha Raya     | Sangama   | m | 1430       | | ambitious, cruel | cousin; birth year?
+figure | saluva_n  | Saluva Narasimha     | Saluva    | m | 1431       | | strategist, ambitious | governor of Chandragiri
+@ MEW
+ruler  | kumbha    | Rana Kumbha          | Sisodia   | m | 1417       | | scholar, strategist, brave, administrator | birth year?
+heir   | udai1     | Udai Singh           | Sisodia   | m | 1430       | f:kumbha | ambitious, cruel | birth year?
+child  | raimal    | Raimal               | Sisodia   | m | 1435       | f:kumbha | brave | birth year?
+@ MAR
+ruler  | jodha     | Rao Jodha            | Rathore   | m | 1416-03-28 | | brave, ambitious, strategist |
+@ AHO
+ruler  | susenphaa | Susenphaa            | Tai Ahom  | m | 1420       | | | birth year?
+@ TPR
+ruler  | dharma1_t | Dharma Manikya I     | Manikya   | m | 1410       | | pious, scholar | birth year?
+@ KOT
+ruler  | parakramabahu6 | Parakramabahu VI | Siri Sanga Bo | m | 1410   | | pious, strategist, scholar |
+heir   | sapumal   | Sapumal Kumaraya     | Siri Sanga Bo | m | 1420   | | brave, strategist | adopted son

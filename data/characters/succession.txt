@@ -1,0 +1,14 @@
+# Succession laws where they differ from the default.
+# Defaults: monarchies = primogeniture (eldest son, then brothers, nephews,
+# daughters, then the nearest of the dynasty); steppe hordes and tribes =
+# seniority (eldest man of the dynasty); republics and theocracies = elective.
+# Laws: primogeniture, salic (never women), seniority, elective.
+FRA | salic
+BUR | salic
+PRO | salic
+LOR | salic
+HUN | elective
+BOH | elective
+MAM | elective
+TUR | primogeniture
+HRE | elective

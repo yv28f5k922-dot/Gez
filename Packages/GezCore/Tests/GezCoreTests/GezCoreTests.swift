@@ -790,3 +790,95 @@ final class TradeTests: XCTestCase {
         XCTAssertNotEqual(started, 0)
     }
 }
+
+final class CharacterTests: XCTestCase {
+    let start = Scenario1453.startDate
+    func person(_ w: World, _ key: String) -> CharacterID { w.people.characters.id(forKey: key)! }
+    func country(_ w: World, _ t: String) -> CountryID { w.countries.id(forTag: t)! }
+
+    func testRealPeopleOf1453() {
+        let w = Scenario1453.makeWorld()
+        let ch = w.people.characters
+        let mehmed = person(w, "mehmed2")
+        XCTAssertEqual(w.countries.ruler[country(w, "TUR").index], mehmed)
+        XCTAssertEqual(ch.age(mehmed, on: start), 21)
+        XCTAssertEqual(w.countries.heir[country(w, "TUR").index], person(w, "bayezid2"))
+        let ladislaus = person(w, "ladislaus5")
+        for t in ["HUN", "AUS", "BOH"] { XCTAssertEqual(w.countries.ruler[country(w, t).index], ladislaus) }
+        XCTAssertGreaterThan(ch.ids.filter { !ch.invented[$0.index] }.count, 300)
+        for c in w.countries.ids {
+            let r = w.countries.ruler[c.index]
+            XCTAssertNotNil(r, w.countries.tag[c.index])
+            XCTAssertTrue(ch.isAlive(r!))
+            XCTAssertEqual(w.countries.council[c.index].compactMap { $0 }.count, CouncilSeat.allCases.count, w.countries.tag[c.index])
+        }
+    }
+
+    func testInventedRulerHasInventedSiblingHeir() {
+        let w = Scenario1453.makeWorld()
+        let ch = w.people.characters
+        let gil = country(w, "GIL")
+        let r = w.countries.ruler[gil.index]!, h = w.countries.heir[gil.index]!
+        XCTAssertTrue(ch.invented[r.index])
+        XCTAssertTrue(ch.invented[h.index])
+        XCTAssertEqual(ch.dynasty[r.index], ch.dynasty[h.index])
+    }
+
+    func testOttomanSuccession() {
+        var w = Scenario1453.makeWorld()
+        var rng = GameRandom(seed: 1)
+        CharacterSystem.kill(&w, person(w, "mehmed2"), date: start, random: &rng)
+        XCTAssertEqual(w.countries.ruler[country(w, "TUR").index], person(w, "bayezid2"))
+    }
+
+    func testFranceIsSalic() {
+        var w = Scenario1453.makeWorld()
+        var rng = GameRandom(seed: 1)
+        for k in ["louis11", "charles_b"] {
+            CharacterSystem.kill(&w, person(w, k), date: start, random: &rng)
+        }
+        let heir = w.countries.heir[country(w, "FRA").index]
+        if let h = heir { XCTAssertFalse(w.people.characters.female[h.index]) }
+    }
+
+    func testElectiveHungaryPicksAnAdultMan() {
+        var w = Scenario1453.makeWorld()
+        var rng = GameRandom(seed: 1)
+        CharacterSystem.kill(&w, person(w, "ladislaus5"), date: start, random: &rng)
+        let hun = country(w, "HUN")
+        let king = w.countries.ruler[hun.index]!
+        XCTAssertNotEqual(king, person(w, "ladislaus5"))
+        XCTAssertFalse(w.people.characters.female[king.index])
+        XCTAssertGreaterThanOrEqual(w.people.characters.age(king, on: start), 16)
+    }
+
+    func testMarriageRules() {
+        let w = Scenario1453.makeWorld()
+        XCTAssertEqual(CharacterSystem.marriageRefusal(w, person(w, "bayezid2"), person(w, "zoe_p"), date: start), .tooYoung)
+        XCTAssertEqual(CharacterSystem.marriageRefusal(w, person(w, "casimir4"), person(w, "ippolita_s"), date: start), nil)
+        XCTAssertEqual(CharacterSystem.marriageRefusal(w, person(w, "henry4_c"), person(w, "ladislaus5"), date: start), .sameSex)
+    }
+
+    func testAGoodStewardRaisesTaxes() {
+        var w = Scenario1453.makeWorld()
+        let tur = country(w, "TUR")
+        let before = CharacterSystem.taxBonus(w, tur)
+        let steward = w.countries.council[tur.index][CouncilSeat.steward.rawValue]!
+        w.people.characters.skills[steward.index][Skill.stewardship.rawValue] = 20
+        XCTAssertGreaterThan(CharacterSystem.taxBonus(w, tur), before)
+    }
+
+    func testLifeGoesOn() {
+        let sim = Simulation(world: Scenario1453.makeWorld(), startDate: start)
+        let people = sim.world.people.characters.count
+        sim.advance(days: 3650)
+        let ch = sim.world.people.characters
+        XCTAssertGreaterThan(ch.count, people, "births")
+        XCTAssertGreaterThan(ch.death.compactMap { $0 }.count, 50, "deaths")
+        for c in sim.world.countries.ids {
+            XCTAssertTrue(ch.isAlive(sim.world.countries.ruler[c.index]!))
+        }
+        let married = ch.ids.filter { ch.isAlive($0) && !ch.spouses[$0.index].isEmpty }.count
+        XCTAssertGreaterThan(married, 100)
+    }
+}
