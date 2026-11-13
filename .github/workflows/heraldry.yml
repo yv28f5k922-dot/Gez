@@ -1,0 +1,65 @@
+name: Heraldry
+
+# Needs internet (the cloud workspace has none).
+# "search": finds Wikimedia Commons candidates per country and force-pushes
+#   contact sheets to the heraldry-candidates branch for Claude to review.
+# "download": fetches the files chosen in data/heraldry/choices.txt, turns
+#   them into PNGs in App/Resources/Heraldry/, and writes the credits list.
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "search or download"
+        default: search
+  push:
+    branches: [main]
+    paths:
+      - data/heraldry/queries.txt
+      - data/heraldry/choices.txt
+      - tools/heraldry/**
+
+jobs:
+  search:
+    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'search' || github.event_name == 'push' && contains(join(github.event.commits.*.modified, ' '), 'queries.txt') || github.event_name == 'push' && contains(join(github.event.commits.*.added, ' '), 'queries.txt') || github.event_name == 'push' && contains(join(github.event.commits.*.modified, ' '), 'search_commons.py') || github.event_name == 'push' && contains(join(github.event.commits.*.added, ' '), 'search_commons.py')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - run: python3 tools/heraldry/search_commons.py /tmp/heraldry_out
+      - name: Push candidates branch
+        run: |
+          cd /tmp/heraldry_out
+          git init -q -b heraldry-candidates
+          git config user.name "CI"
+          git config user.email "ci@users.noreply.github.com"
+          git add -A
+          git commit -qm "Heraldry candidates"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" heraldry-candidates
+
+  download:
+    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'download' || github.event_name == 'push' && contains(join(github.event.commits.*.modified, ' '), 'choices.txt') || github.event_name == 'push' && contains(join(github.event.commits.*.added, ' '), 'choices.txt') || github.event_name == 'push' && contains(join(github.event.commits.*.modified, ' '), 'download_arms.py') || github.event_name == 'push' && contains(join(github.event.commits.*.added, ' '), 'download_arms.py')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get install -y librsvg2-bin
+      - run: pip install pillow
+      - run: python3 tools/heraldry/download_arms.py
+      - name: Commit arms
+        run: |
+          git config user.name "CI"
+          git config user.email "ci@users.noreply.github.com"
+          git add App/Resources/Heraldry data/heraldry/credits.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Update heraldry images (fetched by CI)"
+          git pull --rebase origin main
+          git push origin HEAD:main
