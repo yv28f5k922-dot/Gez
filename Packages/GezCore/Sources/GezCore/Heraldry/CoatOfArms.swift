@@ -100,7 +100,6 @@ public enum HeraldryGenerator {
             if chance(0.35) { division = pick([.perPale, .perFess, .perBend, .quarterly, .perChevron]) }
             if division == .plain || chance(0.3) {
                 ordinary = pick([.cross, .saltire, .fess, .pale, .bend, .chevron, .chief, .bordure, .none])
-                if ["DAN", "NOR", "SWE"].contains(tag) { ordinary = .nordicCross }
             }
             charge = pick([.fleur, .tower, .crown, .star, .roundel, .lozenge, .crossPattee, .none])
             if government == .theocracy { charge = pick([.crossPattee, .crown]) }
@@ -117,6 +116,14 @@ public enum HeraldryGenerator {
             if chance(0.4) { division = pick([.perFess, .perPale, .perBend]) }
             charge = pick([.sun, .star, .lozenge, .roundel])
             count = pick([1, 1, 2])
+        }
+
+        // Scandinavian realms always carry a Nordic cross.
+        if ["DAN", "NOR", "SWE"].contains(tag) {
+            division = .plain
+            ordinary = .nordicCross
+            charge = .none
+            count = 0
         }
 
         // Rule of tincture: things on the field contrast with it.

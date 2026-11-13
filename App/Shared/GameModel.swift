@@ -3,6 +3,17 @@ import Foundation
 import GezCore
 import Observation
 
+/// A town icon at a province's main town, in map-pixel coordinates.
+struct TownIcon {
+    let province: Int
+    let position: CGPoint
+    let development: Int
+    let fortLevel: Int
+    let isCapital: Bool
+    /// Coastal town big enough to keep a harbour (development 3 or more).
+    let isPort: Bool
+}
+
 /// A name to draw on the map, in map-pixel coordinates.
 struct MapLabel: Identifiable {
     let id: Int
@@ -51,6 +62,7 @@ final class GameModel {
     private(set) var selectionOverlay: (image: CGImage, box: CGRect)?
     private(set) var countryLabels: [MapLabel] = []
     private(set) var provinceLabels: [MapLabel] = []
+    private(set) var townIcons: [TownIcon] = []
 
     @ObservationIgnored private var clock = GameClock()
     @ObservationIgnored private var lastRunningSpeed: GameSpeed = .two
@@ -180,7 +192,31 @@ final class GameModel {
         }
     }
 
+    /// Rebuild town icons (call when development, forts or owners change).
+    func rebuildTownIcons() {
+        let p = world.provinces
+        let capitals = Set(world.countries.capital.compactMap { $0?.index })
+        var icons: [TownIcon] = []
+        icons.reserveCapacity(p.count)
+        for i in 0..<p.count {
+            var point = world.map.point(for: p.location[i])
+            // Towns placed in water (snapped seeds) fall back to the label point.
+            if idMap.province(x: point.x, y: point.y)?.index != i { point = p.labelPoint[i] }
+            icons.append(TownIcon(
+                province: i,
+                position: CGPoint(x: point.x, y: point.y),
+                development: p.development[i],
+                fortLevel: p.fortLevel[i],
+                isCapital: capitals.contains(i),
+                isPort: p.isCoastal[i] && p.development[i] >= 3 && !world.provinceSeas[i].isEmpty
+            ))
+        }
+        // Big towns last so they draw on top.
+        townIcons = icons.sorted { $0.development < $1.development }
+    }
+
     private func rebuildLabels() {
+        rebuildTownIcons()
         let p = world.provinces
         var provinceLabels: [MapLabel] = []
         provinceLabels.reserveCapacity(p.count)

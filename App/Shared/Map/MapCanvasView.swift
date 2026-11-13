@@ -62,6 +62,7 @@ struct MapCanvasView: View {
                 }
 
                 if z > 0 {
+                    MapIconsLayer(zoom: z, offset: o)
                     MapLabelsLayer(zoom: z, offset: o, viewSize: geo.size)
                 }
 
@@ -353,4 +354,78 @@ private struct MapLabelsLayer: View {
 
 extension MapPalette {
     static let waterColor = Color(red: 104 / 255, green: 140 / 255, blue: 158 / 255)
+}
+
+/// Towns, capitals, forts and ports drawn at each province's main town.
+/// Sizes stay readable at any zoom; small towns appear as you zoom in.
+private struct MapIconsLayer: View {
+    @Environment(GameModel.self) private var model
+    let zoom: CGFloat
+    let offset: CGPoint
+
+    var body: some View {
+        let _ = model.revision
+        let icons = model.townIcons
+        Canvas { context, size in
+            guard zoom >= 0.7 else { return }
+            let bounds = CGRect(origin: .zero, size: size).insetBy(dx: -20, dy: -20)
+            let ink = Color(red: 0.16, green: 0.12, blue: 0.08)
+            let anchor = context.resolve(Image(systemName: "anchor"))
+            // Show smaller towns only as the map gets closer.
+            let minDevelopment = zoom >= 1.6 ? 1 : (zoom >= 1.1 ? 3 : 5)
+            for icon in icons where icon.development >= minDevelopment || icon.isCapital {
+                let p = CGPoint(x: offset.x + icon.position.x * zoom, y: offset.y + icon.position.y * zoom)
+                guard bounds.contains(p) else { continue }
+                let r = CGFloat(2.0 + Double(icon.development) * 0.45)
+                // Town: little cluster of roofs in light stone with a dark edge.
+                let town = Path(roundedRect: CGRect(x: p.x - r, y: p.y - r * 0.8, width: r * 2, height: r * 1.6), cornerRadius: r * 0.3)
+                context.fill(town, with: .color(Color(red: 0.93, green: 0.88, blue: 0.78)))
+                context.stroke(town, with: .color(ink), lineWidth: 1)
+                var roofs = Path()
+                roofs.move(to: CGPoint(x: p.x - r, y: p.y - r * 0.1))
+                roofs.addLine(to: CGPoint(x: p.x - r * 0.5, y: p.y - r * 0.8))
+                roofs.addLine(to: CGPoint(x: p.x, y: p.y - r * 0.1))
+                roofs.addLine(to: CGPoint(x: p.x + r * 0.5, y: p.y - r * 0.8))
+                roofs.addLine(to: CGPoint(x: p.x + r, y: p.y - r * 0.1))
+                context.stroke(roofs, with: .color(Color(red: 0.62, green: 0.25, blue: 0.18)), lineWidth: max(1, r * 0.35))
+                if icon.isCapital {
+                    var star = Path()
+                    let sr = r * 0.9
+                    let c = CGPoint(x: p.x, y: p.y - r * 1.8)
+                    for i in 0..<10 {
+                        let a = -Double.pi / 2 + Double(i) * .pi / 5
+                        let rad = i % 2 == 0 ? sr : sr * 0.42
+                        let pt = CGPoint(x: c.x + CGFloat(cos(a)) * rad, y: c.y + CGFloat(sin(a)) * rad)
+                        i == 0 ? star.move(to: pt) : star.addLine(to: pt)
+                    }
+                    star.closeSubpath()
+                    context.fill(star, with: .color(Color(red: 0.95, green: 0.78, blue: 0.2)))
+                    context.stroke(star, with: .color(ink), lineWidth: 0.8)
+                }
+                if icon.fortLevel >= 2 {
+                    // Small crenellated tower to the right of the town.
+                    let w = CGFloat(3 + icon.fortLevel), h = w * 1.3
+                    let x0 = p.x + r + 2, y0 = p.y - h * 0.7
+                    var tower = Path()
+                    tower.move(to: CGPoint(x: x0, y: y0 + h))
+                    tower.addLine(to: CGPoint(x: x0, y: y0))
+                    tower.addLine(to: CGPoint(x: x0 + w * 0.3, y: y0))
+                    tower.addLine(to: CGPoint(x: x0 + w * 0.3, y: y0 + h * 0.15))
+                    tower.addLine(to: CGPoint(x: x0 + w * 0.7, y: y0 + h * 0.15))
+                    tower.addLine(to: CGPoint(x: x0 + w * 0.7, y: y0))
+                    tower.addLine(to: CGPoint(x: x0 + w, y: y0))
+                    tower.addLine(to: CGPoint(x: x0 + w, y: y0 + h))
+                    tower.closeSubpath()
+                    context.fill(tower, with: .color(Color(red: 0.55, green: 0.52, blue: 0.48)))
+                    context.stroke(tower, with: .color(ink), lineWidth: 0.8)
+                }
+                if icon.isPort && zoom >= 1.1 {
+                    var a = anchor
+                    a.shading = .color(Color(red: 0.12, green: 0.25, blue: 0.4))
+                    context.draw(a, in: CGRect(x: p.x - r - 11, y: p.y - 5, width: 9, height: 10))
+                }
+            }
+        }
+        .allowsHitTesting(false)
+    }
 }
