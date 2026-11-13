@@ -43,8 +43,9 @@ final class SnapshotTests: XCTestCase {
         return image.cropping(to: CGRect(x: a.x, y: a.y, width: b.x - a.x, height: b.y - a.y))
     }
 
+    /// The CPU fallback map (used when Metal is missing).
     func testMapModes() async throws {
-        let model = GameModel()
+        let model = GameModel(useMetal: false)
         var image = try await waitForMap(model)
         XCTAssertEqual(image.width, model.idMap.width)
         save(image, "map_political_full.png")
@@ -64,9 +65,44 @@ final class SnapshotTests: XCTestCase {
         }
     }
 
+    /// The real Metal map at several places and modes.
+    func testMetalMap() throws {
+        let model = GameModel()
+        guard let metal = model.metal else { throw XCTSkip("Metal not available on this machine") }
+        metal.contentScale = 1
+        let size = CGSize(width: 1400, height: 812)
+        metal.camera = MapCanvasView.startCamera(size: size, map: model.world.map)
+        model.select(province: model.world.provinces.id(named: "Konstantiniyye"))
+        let start = try XCTUnwrap(metal.renderImage(width: 1400, height: 812))
+        save(start, "metal_start.png")
+
+        // Whole map.
+        let w = CGFloat(model.idMap.width), h = CGFloat(model.idMap.height)
+        let fit = min(1400 / w, 812 / h)
+        metal.camera = MapCamera(zoom: fit, offset: CGPoint(x: (1400 - w * fit) / 2, y: (812 - h * fit) / 2))
+        save(try XCTUnwrap(metal.renderImage(width: 1400, height: 812)), "metal_world.png")
+
+        // Close-up of western Europe, then religion and culture modes.
+        let paris = model.world.map.point(for: GeoPoint(latitude: 47.0, longitude: 6.0))
+        let zoom: CGFloat = 1.6
+        metal.camera = MapCamera(zoom: zoom, offset: CGPoint(x: 700 - CGFloat(paris.x) * zoom, y: 406 - CGFloat(paris.y) * zoom))
+        save(try XCTUnwrap(metal.renderImage(width: 1400, height: 812)), "metal_europe.png")
+        for mode in [MapMode.religion, .culture, .terrain] {
+            metal.updateStyles(world: model.world, mode: mode)
+            save(try XCTUnwrap(metal.renderImage(width: 1400, height: 812)), "metal_\(mode.rawValue).png")
+        }
+    }
+
     func testMainScreen() async throws {
         let model = GameModel()
-        _ = try await waitForMap(model)
+        if let metal = model.metal {
+            metal.contentScale = 1
+            metal.camera = MapCanvasView.startCamera(size: CGSize(width: 1400, height: 812), map: model.world.map)
+            model.select(province: model.world.provinces.id(named: "Konstantiniyye"))
+            model.snapshotMapImage = metal.renderImage(width: 1400, height: 812)
+        } else {
+            _ = try await waitForMap(model)
+        }
         model.select(province: model.world.provinces.id(named: "Konstantiniyye"))
         let view = ContentView()
             .environment(model)

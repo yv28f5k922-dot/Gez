@@ -37,7 +37,15 @@ struct MapCanvasView: View {
                 MapPalette.waterColor
                     .frame(width: geo.size.width, height: geo.size.height)
 
-                if let image = model.mapImage, z > 0 {
+                if let snapshot = model.snapshotMapImage {
+                    Image(decorative: snapshot, scale: 1)
+                        .resizable()
+                        .frame(width: geo.size.width, height: geo.size.height)
+                } else if let metal = model.metal, z > 0 {
+                    MetalMapView(renderer: metal, camera: MapCamera(zoom: z, offset: o))
+                        .frame(width: geo.size.width, height: geo.size.height)
+                        .allowsHitTesting(false)
+                } else if let image = model.mapImage, z > 0 {
                     Image(decorative: image, scale: 1)
                         .resizable()
                         .interpolation(z >= 2 ? .none : .medium)
@@ -45,7 +53,7 @@ struct MapCanvasView: View {
                         .offset(x: o.x, y: o.y)
                 }
 
-                if let overlay = model.selectionOverlay, z > 0 {
+                if model.metal == nil, let overlay = model.selectionOverlay, z > 0 {
                     Image(decorative: overlay.image, scale: 1)
                         .resizable()
                         .interpolation(.none)
@@ -57,7 +65,7 @@ struct MapCanvasView: View {
                     MapLabelsLayer(zoom: z, offset: o, viewSize: geo.size)
                 }
 
-                if model.mapImage == nil {
+                if model.metal == nil && model.mapImage == nil {
                     ProgressView("Drawing map…")
                         .frame(width: geo.size.width, height: geo.size.height)
                 }
@@ -113,18 +121,28 @@ struct MapCanvasView: View {
         offset = startOffset(for: viewSize)
     }
 
-    /// Start zoomed in on the Ottoman heartland, three times the whole-map fit.
     private func startZoom(for size: CGSize) -> CGFloat {
-        guard size.width > 0, size.height > 0 else { return 0 }
-        let fit = min(size.width / mapWidth, size.height / mapHeight)
-        return min(max(fit * 3, fit * 0.9), maxZoom)
+        Self.startCamera(size: size, map: model.world.map).zoom
     }
 
     private func startOffset(for size: CGSize) -> CGPoint {
-        let start = startZoom(for: size)
-        let focus = model.world.map.point(for: GeoPoint(latitude: 41.0, longitude: 29.0))
-        let raw = CGPoint(x: size.width / 2 - CGFloat(focus.x) * start, y: size.height / 2 - CGFloat(focus.y) * start)
-        return clamped(raw, zoom: start, in: size)
+        Self.startCamera(size: size, map: model.world.map).offset
+    }
+
+    /// The opening view: zoomed in on the Ottoman heartland, three times the
+    /// whole-map fit. Also used by snapshot tests.
+    static func startCamera(size: CGSize, map: MapInfo) -> MapCamera {
+        guard size.width > 0, size.height > 0 else { return MapCamera(zoom: 0, offset: .zero) }
+        let w = CGFloat(map.width), h = CGFloat(map.height)
+        let fit = min(size.width / w, size.height / h)
+        let zoom = min(fit * 3, 8)
+        let focus = map.point(for: GeoPoint(latitude: 41.0, longitude: 29.0))
+        var x = size.width / 2 - CGFloat(focus.x) * zoom
+        var y = size.height / 2 - CGFloat(focus.y) * zoom
+        let margin: CGFloat = 80
+        x = min(max(x, size.width - w * zoom - margin), margin)
+        y = min(max(y, size.height - h * zoom - margin), margin)
+        return MapCamera(zoom: zoom, offset: CGPoint(x: x, y: y))
     }
 
     private func showWholeMap() {

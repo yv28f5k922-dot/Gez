@@ -24,6 +24,8 @@ targets:
     platform: macOS
     sources:
       - App/Shared
+      - path: App/Resources
+        buildPhase: resources
     dependencies:
       - package: GezCore
     settings:
@@ -55,6 +57,8 @@ targets:
     platform: iOS
     sources:
       - App/Shared
+      - path: App/Resources
+        buildPhase: resources
     dependencies:
       - package: GezCore
     settings:

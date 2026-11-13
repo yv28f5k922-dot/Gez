@@ -21,6 +21,9 @@ final class GameModel {
     let simulation: Simulation
     let idMap: ProvinceIDMap
     let geometry: MapGeometry
+    /// GPU map renderer; nil only if Metal is unavailable (then the CPU
+    /// picture in `mapImage` is used instead).
+    let metal: MetalMapRenderer?
 
     private(set) var date: GameDate
     private(set) var revision: Int = 0
@@ -38,6 +41,9 @@ final class GameModel {
         didSet { if mapMode != oldValue { renderMap() } }
     }
     private(set) var mapImage: CGImage?
+    /// Tests only: a pre-rendered Metal map shown instead of the live view,
+    /// because SwiftUI snapshots can't capture Metal views.
+    var snapshotMapImage: CGImage?
     private(set) var selectedProvince: ProvinceID?
     private(set) var selectionOverlay: (image: CGImage, box: CGRect)?
     private(set) var countryLabels: [MapLabel] = []
@@ -49,7 +55,8 @@ final class GameModel {
     @ObservationIgnored private var loop: Task<Void, Never>?
     @ObservationIgnored private var renderGeneration = 0
 
-    init() {
+    /// `useMetal: false` forces the CPU-drawn map (tests use it).
+    init(useMetal: Bool = true) {
         let sim = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate)
         let map: ProvinceIDMap
         do {
@@ -60,6 +67,7 @@ final class GameModel {
         simulation = sim
         idMap = map
         geometry = MapGeometry(map: map, provinceCount: sim.world.provinces.count)
+        metal = useMetal ? MetalMapRenderer.makeDevice().flatMap { MetalMapRenderer(device: $0, idMap: map) } : nil
         date = sim.date
         playerCountry = sim.world.countries.id(forTag: Scenario1453.defaultPlayerTag)
         rebuildLabels()
@@ -111,6 +119,7 @@ final class GameModel {
 
     func select(province: ProvinceID?) {
         selectedProvince = province
+        metal?.selectedValue = province.map { UInt32($0.index + 2) } ?? 0
         if let province {
             selectionOverlay = MapRenderer.selectionOverlay(province: province, map: idMap, geometry: geometry)
                 .map { (image: $0.0, box: $0.1) }
@@ -127,6 +136,10 @@ final class GameModel {
     /// Redraws the whole map image in the background. Call after a map mode
     /// change or when provinces change owner.
     func renderMap() {
+        if let metal {
+            metal.updateStyles(world: world, mode: mapMode)
+            return
+        }
         renderGeneration += 1
         let generation = renderGeneration
         let keys = MapRenderer.keys(world: world)
