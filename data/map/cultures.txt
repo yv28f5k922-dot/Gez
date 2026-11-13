@@ -1,5 +1,5 @@
 # id | Display name | family
-# Families: iberian, french, dutch, british, gaelic, german, nordic, finnic,
+# Families: austroasiatic, iberian, french, dutch, british, gaelic, german, nordic, finnic,
 #   volga_ural, baltic, west_slavic, east_slavic, south_slavic, magyar,
 #   eastern_romance, italian, hellenic, albanian, turkic, caucasian, kartvelian,
 #   armenian, iranian, arab, berber, nilo_saharan, ethiopian, cushitic, bantu,
@@ -215,3 +215,5 @@ ahom | Ahom | tibeto_burman
 bodo | Bodo | tibeto_burman
 tripuri | Tripuri | tibeto_burman
 meitei | Meitei | tibeto_burman
+kirati | Kirati | himalayan
+khasi | Khasi | austroasiatic

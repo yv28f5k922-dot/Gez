@@ -1,26 +1,53 @@
 # Northwest India
 @ Punjab
 Lahore | 31.55 74.34 | DEL f 6
+Kasur | 31.12 74.45 | DEL f 2
+Dipalpur | 30.67 73.65 | DEL f 3
 Jalandhar | 31.33 75.58 | DEL f 3
 Sialkot | 32.49 74.53 | DEL f 2
 Sirhind | 30.64 76.39 | DEL f 3
+Samana | 30.15 76.19 | DEL f 2
+Thanesar | 29.97 76.82 | DEL f 2
 Hisar-Firoza | 29.15 75.72 | DEL s 2
+Sirsa | 29.53 75.03 | DEL s 1
+@ Pothohar
 Bhera | 32.48 72.90 | KHK h 1
+Rawalpindi | 33.60 73.05 | KHK h 2
+Khushab | 32.30 72.35 | KHK h 1
+Chiniot | 31.72 72.98 | KHK f 1
 @ Frontier
 Peshawar | 34.01 71.58 | PSH h 2
 Bannu | 32.99 70.60 | PSH h 1
+Kohat | 33.58 71.44 | PSH h 1
+Swat | 34.77 72.36 | PSH m 1
+Bajaur | 34.68 71.50 | PSH m 1
+Attock | 33.77 72.36 | PSH h 1
 Dera Ismail Khan | 31.83 70.90 | BLC d 1
 @ Multan
 Multan | 30.20 71.47 | MUL f 4
 Uch | 29.23 71.07 | MUL f 2
+Jhang | 31.27 72.32 | MUL f 1
+Shorkot | 30.50 72.40 | MUL f 1
+Pakpattan | 30.34 73.39 | MUL f 2
+Derawar | 28.77 71.33 | MUL d 1
 @ Sindh
 Thatta | 24.75 67.92 | SND f 4
+Debal | 24.75 67.45 | SND d 2
 Sehwan | 26.42 67.86 | SND f 2
 Bhakkar | 27.70 68.86 | SND f 2
+Larkana | 27.56 68.21 | SND f 2
+Nasarpur | 25.52 68.62 | SND f 2
+Badin | 24.65 68.84 | SND x 1
 Umarkot | 25.36 69.74 | SND d 1
+Sibi | 29.54 67.88 | BLC d 1
 @ Kashmir
 Srinagar | 34.08 74.80 | KSH m 4
+Baramulla | 34.20 74.34 | KSH m 2
+Anantnag | 33.73 75.15 | KSH m 2
+Poonch | 33.77 74.09 | KSH m 1
+Kishtwar | 33.31 75.77 | KSH m 1
 Jammu | 32.73 74.86 | JMU h 2
+Rajouri | 33.38 74.31 | JMU h 1
 Ladakh | 34.16 77.58 | LDK m 1
 Skardu | 35.30 75.63 | SKD m 1
 Gilgit | 35.92 74.31 | DRD m 1
@@ -28,143 +55,310 @@ Gilgit | 35.92 74.31 | DRD m 1
 # Hindustan
 @ Delhi
 Delhi | 28.61 77.21 | DEL f 8
+Panipat | 29.39 76.97 | DEL f 2
+Rohtak | 28.90 76.60 | DEL f 2
+Rewari | 28.19 76.62 | DEL f 2
+Narnaul | 28.04 76.11 | DEL h 1
 Mewat | 27.55 76.60 | DEL h 2
+Meerut | 28.98 77.70 | DEL f 3
+Saharanpur | 29.96 77.55 | DEL f 2
+Baran | 28.40 77.85 | DEL f 2
 Kol | 27.88 78.08 | DEL f 3
+Mathura | 27.49 77.67 | DEL f 3
+Agra | 27.18 78.02 | DEL f 2
 Bayana | 26.90 77.29 | DEL h 2
+@ Katehar
 Sambhal | 28.58 78.57 | DEL f 2
+Amroha | 28.90 78.47 | DEL f 2
 Badaun | 28.04 79.12 | DEL f 2
+Bareilly | 28.37 79.43 | DEL f 2
+Kampil | 27.62 79.28 | DEL f 1
 @ Doab and Awadh
 Etawah | 26.78 79.02 | JNP f 2
 Kannauj | 27.05 79.92 | JNP f 3
+Bithoor | 26.60 80.27 | JNP f 2
 Kalpi | 26.12 79.74 | JNP f 2
+Fatehpur | 25.93 80.81 | JNP f 2
 Kara | 25.69 81.37 | JNP f 3
-Jaunpur | 25.75 82.69 | JNP f 6
+Allahabad | 25.43 81.85 | JNP f 3
+Lucknow | 26.85 80.95 | JNP f 2
+Khairabad | 27.53 80.75 | JNP f 2
+Rae Bareli | 26.23 81.23 | JNP f 2
 Ayodhya | 26.79 82.20 | JNP f 3
+Sultanpur | 26.26 82.07 | JNP f 2
 Bahraich | 27.57 81.60 | JNP f 2
+Gonda | 27.13 81.96 | JNP f 2
 Gorakhpur | 26.76 83.37 | JNP f 2
+Jaunpur | 25.75 82.69 | JNP f 6
+Azamgarh | 26.07 83.18 | JNP f 2
+Ghazipur | 25.58 83.57 | JNP f 2
 Benares | 25.32 83.00 | JNP f 4
+Chunar | 25.13 82.88 | JNP h 2
 @ Bihar
 Bihar | 25.20 85.52 | JNP f 3
+Patna | 25.60 85.14 | JNP f 3
+Gaya | 24.79 85.00 | JNP f 2
+Rohtas | 24.62 83.93 | JNP h 2
+Saran | 25.78 84.73 | JNP f 2
+Hajipur | 25.69 85.21 | JNP f 2
 Tirhut | 26.15 85.90 | MIT f 3
+Champaran | 26.80 84.50 | MIT f 2
+Munger | 25.37 86.47 | BNG f 2
+Bhagalpur | 25.25 87.00 | BNG f 2
 @ Himalayan Foothills
-Kumaon | 29.60 79.66 | KUM m 1
+Kangra | 32.10 76.27 | KAN h 2
+Chamba | 32.55 76.13 | CHB m 1
+Kullu | 31.96 77.11 | KUL m 1
 Garhwal | 30.15 78.78 | GAR m 1
-Kathmandu | 27.70 85.32 | NEP m 3
+Kumaon | 29.60 79.66 | KUM m 1
+Doti | 29.27 80.95 | DTI m 1
 Jumla | 29.27 82.18 | JUM m 1
+Palpa | 27.87 83.55 | PLP m 1
+Lamjung | 28.23 84.37 | LMJ m 1
+Kathmandu | 27.70 85.32 | NEP m 3
+Makwanpur | 27.40 85.04 | NEP h 1
+Morang | 26.65 87.27 | KIR h 1
 @ Bundelkhand
 Gwalior | 26.22 78.18 | GWA h 3
+Narwar | 25.65 77.90 | GWA h 1
+Dholpur | 26.70 77.89 | GWA h 1
 Kalinjar | 25.00 80.48 | BGL h 2
+Mahoba | 25.29 79.87 | BGL h 1
+Panna | 24.72 80.19 | BGL h 1
 Rewa | 24.53 81.30 | BGL h 1
 
 # Rajputana
 @ Mewar
 Chittor | 24.88 74.62 | MEW h 4
 Kumbhalgarh | 25.15 73.58 | MEW m 2
+Mandalgarh | 25.20 75.07 | MEW h 1
 Ajmer | 26.45 74.64 | MEW h 3
+Sambhar | 26.91 75.19 | MEW d 1
+Toda | 26.11 75.79 | MEW h 1
 Ranthambore | 26.02 76.46 | MEW h 2
+@ Vagad and Sirohi
+Dungarpur | 23.84 73.71 | DGP h 1
+Banswara | 23.55 74.44 | DGP h 1
+Sirohi | 24.88 72.86 | SRH m 1
+Jalore | 25.35 72.62 | JLR h 1
 @ Marwar
 Mandore | 26.35 73.03 | MAR d 2
+Merta | 26.65 74.03 | MAR d 1
+Barmer | 25.75 71.39 | MAR d 1
 Nagaur | 27.20 73.73 | NGR d 2
 Jaisalmer | 26.92 70.91 | JSL d 1
+Pokaran | 26.92 71.92 | JSL d 1
 Jangladesh | 28.02 73.31 | JAT d 1
+Bhatner | 29.58 74.32 | JAT d 1
 @ Dhundhar and Hadoti
 Amber | 26.98 75.85 | AMB h 2
+Dausa | 26.89 76.34 | AMB h 1
 Bundi | 25.44 75.64 | BUN h 2
+Kota | 25.18 75.83 | BUN h 1
+Karauli | 26.50 77.02 | KRL h 1
 
 # Gujarat
 @ Gujarat
 Ahmedabad | 23.02 72.57 | GUJ f 8
 Patan | 23.85 72.12 | GUJ f 3
+Palanpur | 24.17 72.43 | GUJ d 1
 Idar | 23.84 73.00 | GUJ h 2
+Modasa | 23.46 73.30 | GUJ h 1
+Godhra | 22.78 73.61 | GUJ h 1
+Champaner | 22.49 73.53 | CHP h 2
+Baroda | 22.31 73.18 | GUJ f 2
 Cambay | 22.31 72.62 | GUJ f 5
 Broach | 21.70 72.98 | GUJ f 4
+Rajpipla | 21.87 73.50 | RJP h 1
 Surat | 21.17 72.83 | GUJ f 4
-Champaner | 22.49 73.53 | CHP h 2
+Navsari | 20.95 72.93 | GUJ f 1
+Daman | 20.42 72.83 | GUJ f 1
+Thana | 19.20 72.97 | GUJ h 2
 @ Saurashtra
 Junagadh | 21.52 70.46 | JUN h 3
 Dwarka | 22.24 68.97 | JUN d 1
+Porbandar | 21.64 69.60 | JUN d 1
+Morvi | 22.82 70.83 | JUN d 1
+Somnath | 20.89 70.40 | GUJ f 2
+Ghogha | 21.68 72.28 | GUJ f 2
 Diu | 20.71 70.98 | GUJ d 2
 Bhuj | 23.25 69.67 | KUT d 2
+Anjar | 23.11 70.03 | KUT d 1
 
 # Central India
 @ Malwa
 Mandu | 22.36 75.39 | MLW h 5
+Dhar | 22.60 75.30 | MLW h 2
 Ujjain | 23.18 75.78 | MLW f 4
+Mandsaur | 24.07 75.07 | MLW f 2
+Gagron | 24.63 76.21 | MLW h 1
+Sarangpur | 23.57 76.47 | MLW f 2
+Sironj | 24.10 77.70 | MLW f 1
 Chanderi | 24.72 78.13 | MLW h 2
 Raisen | 23.33 77.78 | MLW h 2
+Hoshangabad | 22.75 77.72 | MLW f 1
+Kherla | 21.93 77.88 | MLW h 1
 @ Khandesh
 Burhanpur | 21.31 76.23 | KHA f 3
+Thalner | 21.25 74.97 | KHA f 1
+Nandurbar | 21.37 74.24 | KHA f 1
 @ Gondwana
 Garha | 22.60 80.37 | GON w 2
+Sagar | 23.84 78.74 | GON w 1
+Damoh | 23.83 79.44 | GON w 1
+Deogarh | 22.06 78.94 | DGR w 1
 Chanda | 19.95 79.30 | CHD w 1
 Bastar | 19.08 82.02 | BST w 1
+Kanker | 20.27 81.49 | BST w 1
 Ratanpur | 22.29 82.17 | RAT w 2
+Raipur | 21.25 81.63 | RAT f 1
 
 # Bengal
 @ Bengal
 Gaur | 24.87 88.13 | BNG f 8
-Satgaon | 22.95 88.40 | BNG x 4
-Sonargaon | 23.65 90.62 | BNG x 5
-Jessore | 23.17 89.21 | BNG x 2
+Dinajpur | 25.63 88.63 | BNG f 2
 Purnia | 25.78 87.47 | BNG f 2
 Rangpur | 25.74 89.25 | BNG f 2
+Mahasthan | 24.85 89.37 | BNG f 2
+Satgaon | 22.95 88.40 | BNG x 4
+Burdwan | 23.23 87.86 | BNG f 2
+Bishnupur | 23.07 87.32 | MLB w 1
+Midnapore | 22.42 87.32 | BNG f 2
+Jessore | 23.17 89.21 | BNG x 2
+Bagerhat | 22.66 89.79 | BNG x 2
+Chandradwip | 22.70 90.37 | CDW x 1
+Sonargaon | 23.65 90.62 | BNG x 5
+Dacca | 23.81 90.41 | BNG x 2
+Mymensingh | 24.75 90.40 | BNG f 2
 Sylhet | 24.90 91.87 | BNG x 2
+Bhulua | 22.87 91.10 | BNG x 1
 Chittagong | 22.36 91.78 | BNG h 3
 @ Northeast
 Kamata | 26.32 89.45 | KAM f 2
+Goalpara | 26.17 90.62 | KAM f 1
+Guwahati | 26.18 91.75 | BHY f 2
+Darrang | 26.45 92.03 | BHY f 1
+Nagaon | 26.35 92.68 | BHY f 1
 Charaideo | 26.98 94.63 | AHO w 2
+Dibrugarh | 27.48 94.90 | AHO w 1
+Sadiya | 27.83 95.67 | CHU w 1
 Dimapur | 25.90 93.73 | KAC w 1
+Khasi Hills | 25.57 91.88 | KHS h 1
+Jaintia | 25.13 92.20 | JNT h 1
 Udaipur | 23.53 91.48 | TPR w 1
+Comilla | 23.46 91.18 | TPR f 1
 Imphal | 24.80 93.94 | MNP h 1
 @ Orissa
 Cuttack | 20.46 85.88 | ORI f 5
 Puri | 19.81 85.83 | ORI f 3
+Jajpur | 20.85 86.33 | ORI f 2
+Balasore | 21.49 86.93 | ORI f 2
 Mayurbhanj | 21.94 86.73 | ORI w 1
+Sambalpur | 21.47 83.97 | ORI w 1
+Koraput | 18.81 82.71 | ORI h 1
 Ganjam | 19.31 84.79 | ORI h 2
+Kalinga | 18.30 83.90 | ORI h 1
+Simhachalam | 17.69 83.22 | ORI h 2
 Rajahmundry | 17.00 81.80 | ORI f 3
 
 # Deccan
 @ Bahmani
 Bidar | 17.91 77.52 | BAH h 6
+Udgir | 18.39 77.12 | BAH h 1
 Gulbarga | 17.33 76.83 | BAH h 4
+Sholapur | 17.68 75.91 | BAH h 2
+Bijapur | 16.83 75.71 | BAH h 3
 Raichur | 16.20 77.36 | BAH h 3
+Mudgal | 16.01 76.43 | BAH h 2
+@ Telangana
 Golconda | 17.38 78.40 | BAH h 3
 Warangal | 17.97 79.60 | BAH h 3
+Bhongir | 17.51 78.89 | BAH h 1
+Nalgonda | 17.05 79.27 | BAH h 1
+Khammam | 17.25 80.15 | BAH h 1
+Kondapalli | 16.62 80.54 | BAH h 2
+Ramgir | 18.44 79.13 | BAH h 1
+Medak | 18.04 78.26 | BAH h 1
+Indur | 18.67 78.09 | BAH h 1
 @ Maharashtra
 Daulatabad | 19.94 75.21 | BAH h 4
 Junnar | 19.20 73.88 | BAH m 2
+Pune | 18.52 73.86 | BAH h 1
+Satara | 17.68 74.00 | BAH h 1
+Parenda | 18.26 75.45 | BAH h 1
+Bir | 18.99 75.76 | BAH h 1
+Pathri | 19.25 76.44 | BAH h 1
+Nanded | 19.15 77.32 | BAH h 2
 Chaul | 18.55 72.93 | BAH h 2
 Dabhol | 17.58 73.18 | BAH h 3
+Sangameshwar | 17.18 73.55 | BAH h 1
 Kolhapur | 16.70 74.24 | BAH h 2
+Belgaum | 15.85 74.50 | BAH h 2
 Mahur | 19.83 77.92 | BAH h 1
 @ Berar
 Ellichpur | 21.25 77.51 | BAH f 2
+Narnala | 21.17 77.00 | BAH h 1
+Washim | 20.10 77.13 | BAH f 1
 
 # South India
 @ Vijayanagara
 Vijayanagara | 15.34 76.46 | VIJ h 10
+Chitradurga | 14.23 76.40 | VIJ h 1
+@ Rayalaseema
+Adoni | 15.63 77.27 | VIJ h 2
+Gooty | 15.12 77.63 | VIJ h 1
+Kurnool | 15.83 78.05 | VIJ h 1
 Penukonda | 14.08 77.60 | VIJ h 3
-Udayagiri | 14.87 79.31 | VIJ h 2
+Gandikota | 14.82 78.29 | VIJ h 1
+@ Andhra Coast
 Kondavidu | 16.25 80.30 | VIJ f 3
-Chandragiri | 13.58 79.32 | VIJ h 3
+Udayagiri | 14.87 79.31 | VIJ h 2
+Nellore | 14.44 79.99 | VIJ f 2
+@ Mysore
 Mysore | 12.30 76.64 | VIJ h 3
+Bangalore | 12.97 77.59 | VIJ h 1
+Kolar | 13.14 78.13 | VIJ h 1
+Belur | 13.16 75.87 | VIJ h 1
+Shimoga | 14.00 75.57 | VIJ h 1
 @ Konkan and Kanara
 Goa | 15.49 73.83 | VIJ h 4
 Honnavar | 14.28 74.45 | VIJ h 2
+Bhatkal | 13.98 74.56 | VIJ h 2
+Barkur | 13.48 74.75 | VIJ h 1
 Mangalore | 12.87 74.88 | VIJ h 3
-@ Tamilakam
+@ Tondaimandalam
 Kanchipuram | 12.83 79.70 | VIJ f 4
+Chandragiri | 13.58 79.32 | VIJ h 3
+Vellore | 12.92 79.13 | VIJ h 2
 Gingee | 12.25 79.42 | VIJ h 2
+Tiruvannamalai | 12.23 79.07 | VIJ h 1
+@ Chola Country
 Thanjavur | 10.79 79.14 | VIJ f 4
+Tiruchirappalli | 10.80 78.69 | VIJ f 2
+Chidambaram | 11.40 79.69 | VIJ f 2
+@ Kongu
+Coimbatore | 11.00 76.96 | VIJ h 1
+Salem | 11.65 78.16 | VIJ h 1
+@ Pandya Country
 Madurai | 9.93 78.12 | VIJ f 4
+Ramanathapuram | 9.37 78.83 | VIJ d 1
+Tirunelveli | 8.71 77.76 | VIJ f 2
 @ Malabar
 Cannanore | 11.87 75.37 | KLT h 2
 Calicut | 11.26 75.78 | CLT h 5
+Palakkad | 10.78 76.65 | CLT h 1
+Thrissur | 10.53 76.21 | CLT h 1
+Kodungallur | 10.22 76.20 | COC h 1
 Cochin | 9.93 76.26 | COC h 3
+Vadakkumkur | 9.59 76.52 | COC h 1
 Quilon | 8.89 76.61 | TRV h 3
+Thiruvananthapuram | 8.52 76.94 | TRV h 2
+Nanjinad | 8.18 77.41 | TRV h 1
 @ Lanka
 Kotte | 6.89 79.92 | KOT f 3
+Puttalam | 8.03 79.83 | KOT f 1
 Jaffna | 9.66 80.02 | KOT f 2
+Vanni | 8.75 80.50 | KOT w 1
 Senkadagala | 7.29 80.63 | KOT m 2
 Ruhuna | 5.95 80.54 | KOT w 1
 Batticaloa | 7.71 81.69 | KOT w 1

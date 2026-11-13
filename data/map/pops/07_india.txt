@@ -12,6 +12,10 @@ persian sunni.hanafi 5
 > Bhera
 punjabi sunni.hanafi 70
 punjabi hindu 30
+@ Pothohar
+punjabi sunni.hanafi 70
+punjabi hindu 30
+
 @ Frontier
 pashtun sunni.hanafi 90
 punjabi hindu 10
@@ -54,6 +58,10 @@ hindustani sunni.hanafi 22
 pashtun sunni.hanafi 5
 hindustani jain 3
 & Delhi | chishti 0.6
+@ Katehar
+hindustani hindu.vaishnava 80
+hindustani sunni.hanafi 20
+
 @ Doab and Awadh
 awadhi hindu.vaishnava 85
 awadhi sunni.hanafi 15
@@ -80,6 +88,21 @@ maithili hindu.shakta 95
 maithili sunni.hanafi 5
 @ Himalayan Foothills
 pahari hindu.shaiva 100
+> Kangra
+pahari hindu.shaiva 100
+> Doti
+khas hindu.shaiva 100
+> Palpa
+khas hindu.shaiva 80
+newar hindu 20
+> Lamjung
+khas hindu.shaiva 100
+> Morang
+kirati folk 80
+khas hindu 20
+> Makwanpur
+khas hindu 60
+newar hindu 40
 > Kathmandu
 newar hindu.shaiva 70
 newar tibetan 30
@@ -110,6 +133,15 @@ rajasthani sunni.hanafi 5
 rajasthani sunni.hanafi 50
 rajasthani hindu 45
 rajasthani jain 5
+@ Vagad and Sirohi
+rajasthani hindu 70
+bhil folk 25
+rajasthani jain 5
+> Jalore
+rajasthani hindu 65
+rajasthani sunni.hanafi 30
+rajasthani jain 5
+
 @ Dhundhar and Hadoti
 rajasthani hindu.vaishnava 85
 rajasthani jain 5
@@ -182,6 +214,12 @@ gond hindu 40
 @ Bengal
 bengali hindu.shakta 65
 bengali sunni.hanafi 35
+> Bishnupur
+bengali hindu.vaishnava 95
+bengali sunni.hanafi 5
+> Chandradwip
+bengali hindu.shakta 85
+bengali sunni.hanafi 15
 > Gaur
 bengali sunni.hanafi 55
 bengali hindu.shakta 40
@@ -207,6 +245,20 @@ bodo folk 100
 > Udaipur
 tripuri hindu.shakta 60
 tripuri folk 40
+> Sadiya
+bodo folk 60
+assamese hindu.shakta 40
+> Dibrugarh
+ahom folk 60
+assamese hindu 40
+> Khasi Hills
+khasi folk 100
+> Jaintia
+khasi folk 60
+khasi hindu 40
+> Comilla
+bengali hindu 60
+bengali sunni.hanafi 40
 > Imphal
 meitei folk 100
 @ Orissa
@@ -234,6 +286,13 @@ kannada jain 10
 > Raichur
 kannada hindu 65
 deccani sunni.hanafi 35
+@ Telangana
+telugu hindu.shaiva 85
+deccani sunni.hanafi 15
+> Golconda
+telugu hindu 70
+deccani sunni.hanafi 30
+
 @ Maharashtra
 marathi hindu 85
 deccani sunni.hanafi 15
@@ -276,6 +335,34 @@ tamil hindu 20
 kannada hindu.lingayat 40
 kannada hindu 50
 kannada jain 10
+@ Rayalaseema
+telugu hindu 80
+kannada hindu 20
+
+@ Andhra Coast
+telugu hindu.vaishnava 95
+telugu sunni.shafii 5
+
+@ Mysore
+kannada hindu 55
+kannada hindu.lingayat 35
+kannada jain 10
+
+@ Tondaimandalam
+tamil hindu.vaishnava 55
+tamil hindu.shaiva 40
+tamil jain 5
+@ Chola Country
+tamil hindu.shaiva 95
+tamil sunni.shafii 5
+
+@ Kongu
+tamil hindu.shaiva 100
+
+@ Pandya Country
+tamil hindu.shaiva 90
+tamil sunni.shafii 10
+
 @ Konkan and Kanara
 konkani hindu 60
 tulu hindu 25
@@ -289,13 +376,6 @@ persian sunni.shafii 10
 kannada hindu 70
 konkani sunni.shafii 20
 kannada jain 10
-@ Tamilakam
-tamil hindu.shaiva 92
-tamil sunni.shafii 5
-tamil jain 3
-> Kanchipuram
-tamil hindu.vaishnava 60
-tamil hindu.shaiva 40
 @ Malabar
 malayali hindu 75
 malayali sunni.shafii 15

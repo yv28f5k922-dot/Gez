@@ -48,9 +48,12 @@ decide differently.
 - **Region totals** (`data/map/population_1453.txt`) are middle estimates;
   sources disagree by 20–40%. India is about 100 million, Europe (with
   Russia) about 65 million.
-- **India has far fewer provinces than Europe,** so Indian provinces hold
-  millions of people each (Delhi about 4 million). More Indian provinces
-  would fix this; tell me if you want them.
+- **India was split into about 280 provinces** (session 3, owner's choice),
+  adding small states the first map left out: Kangra, Chamba, Kullu, Doti,
+  Palpa, Lamjung, the Kirat tribes, Dungarpur, Sirohi, Jalore, Karauli,
+  Rajpipla, Deogarh, Mallabhum, Chandradwip, the Bhuyan chiefs of Assam,
+  the Chutia kingdom, the Khasi chiefs and Jaintia. Their 1453 status is
+  approximate; most were local dynasties paying tribute to bigger neighbours.
 - **City provinces include their countryside.** Konstantiniyye shows about
   300,000 people, though the city itself had perhaps 50,000 after the siege.
 - **Persia is shown as mostly Sunni (Shafi'i)** with Twelver pockets, as it

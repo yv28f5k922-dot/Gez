@@ -278,3 +278,24 @@ DAW | Dawaro | 200 160 120 | monarchy | sunni
 IFT | Ifat | 190 140 160 | monarchy | sunni
 ENN | Ennarea | 110 150 90 | monarchy | folk
 DAM | Damot | 150 110 90 | monarchy | folk
+
+# Smaller Indian states added with the India split (session 3)
+KAN | Kangra | 200 150 110 | monarchy | hindu
+CHB | Chamba | 170 190 150 | monarchy | hindu
+KUL | Kullu | 150 170 200 | monarchy | hindu
+DTI | Doti | 200 180 140 | monarchy | hindu
+PLP | Palpa | 180 120 150 | monarchy | hindu
+LMJ | Lamjung | 140 180 120 | monarchy | hindu
+KIR | Kirat Tribes | 150 140 110 | tribal | folk
+DGP | Dungarpur | 210 150 150 | monarchy | hindu
+SRH | Sirohi | 170 140 180 | monarchy | hindu
+JLR | Jalore | 120 160 110 | monarchy | sunni
+KRL | Karauli | 200 120 120 | monarchy | hindu
+RJP | Rajpipla | 160 200 160 | monarchy | hindu
+DGR | Deogarh | 120 130 80 | monarchy | hindu
+MLB | Mallabhum | 210 140 90 | monarchy | hindu
+CDW | Chandradwip | 150 200 190 | monarchy | hindu
+BHY | Bhuyan Chiefs | 170 170 120 | tribal | hindu
+CHU | Chutia | 200 110 140 | monarchy | hindu
+KHS | Khasi Chiefs | 130 160 140 | tribal | folk
+JNT | Jaintia | 190 170 210 | monarchy | hindu
