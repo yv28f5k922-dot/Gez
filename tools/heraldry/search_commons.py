@@ -93,22 +93,24 @@ def info(titles):
     return out
 
 
-def main(out_dir):
+def main(out_dir, list_path):
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     rows = []
-    for line in Path("data/heraldry/queries.txt").read_text().splitlines():
+    for line in Path(list_path).read_text().splitlines():
         if not line.strip() or line.startswith("#"):
             continue
         parts = [x.strip() for x in line.split("|")]
         tag, name, arts = parts[0], parts[1], parts[2]
         extra = parts[3] if len(parts) > 3 else ""
+        files = parts[4] if len(parts) > 4 else ""
         rows.append((tag, name, [a.strip() for a in arts.split(";") if a.strip()],
-                     [q.strip() for q in extra.split(";") if q.strip()]))
+                     [q.strip() for q in extra.split(";") if q.strip()],
+                     [f.strip() for f in files.split(";") if f.strip()]))
 
     result = {}
-    for tag, name, arts, qs in rows:
-        titles, found = [], []
+    for tag, name, arts, qs, files in rows:
+        titles, found = list(files), []
         for a in arts:
             art, files = article_files(a)
             found.append(art)
@@ -165,4 +167,5 @@ def main(out_dir):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1] if len(sys.argv) > 1 else "heraldry_out")
+    main(sys.argv[1] if len(sys.argv) > 1 else "heraldry_out",
+         sys.argv[2] if len(sys.argv) > 2 else "data/heraldry/queries.txt")
