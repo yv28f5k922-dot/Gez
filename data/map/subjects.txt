@@ -1,0 +1,40 @@
+# Subject countries on 30 May 1453.
+# OVERLORD SUBJECT type
+# type: vassal (ruled from above, own ruler), tributary (pays tribute, runs
+#       its own affairs), personal_union (same monarch, separate realms)
+
+# Ladislaus the Posthumous: King of Hungary and Bohemia, Duke of Austria
+HUN AUS personal_union
+HUN BOH personal_union
+# Alfonso V of Aragon also King of Naples
+ARA NAP personal_union
+# Christian I: King of Denmark and Norway
+DAN NOR personal_union
+
+# Ottoman subjects
+TUR SER vassal
+TUR WAL tributary
+TUR MOE tributary
+TUR ATH tributary
+TUR LES tributary
+
+# Mamluk subjects
+MAM HEJ vassal
+MAM DUL vassal
+MAM RAM vassal
+
+# Others
+MOR HIN vassal
+POL MAZ vassal
+POL MOL vassal
+FRA BRI vassal
+FRA FOI vassal
+MOS KAS vassal
+
+# Ethiopian tributaries under Zara Yaqob
+ETH HAD tributary
+ETH BLI tributary
+ETH DAW tributary
+ETH IFT tributary
+ETH ENN tributary
+ETH DAM tributary

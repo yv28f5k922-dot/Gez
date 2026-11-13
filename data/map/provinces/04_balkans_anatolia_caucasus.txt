@@ -2,9 +2,9 @@
 @ Upper Hungary
 Pozsony | 48.14 17.11 | HUN f 4
 Nyitra | 48.31 18.09 | HUN f 3
-Besztercebanya | 48.74 19.15 | HUN m 3
-Kassa | 48.72 21.26 | HUN h 4
-Bartfa | 49.29 21.27 | HUN m 2
+Besztercebanya | 48.74 19.15 | JIS m 3
+Kassa | 48.72 21.26 | JIS h 4
+Bartfa | 49.29 21.27 | JIS m 2
 Ungvar | 48.62 22.29 | HUN h 2
 @ Hungary
 Buda | 47.50 19.04 | HUN f 7
@@ -43,7 +43,7 @@ Suceava | 47.65 26.26 | MOL h 3
 Iasi | 47.16 27.59 | MOL h 2
 Roman | 46.92 26.92 | MOL h 2
 Barlad | 46.23 27.67 | MOL p 2
-Kilia | 45.43 29.27 | MOL x 2
+Kilia | 45.43 29.27 | HUN x 2
 Akkerman | 46.20 30.35 | MOL s 3
 
 # Balkans
@@ -67,7 +67,7 @@ Smederevo | 44.66 20.93 | SER p 3
 Krusevac | 43.58 21.33 | SER h 2
 Novo Brdo | 42.62 21.43 | SER m 3
 Uzice | 43.86 19.84 | SER m 2
-Nis | 43.32 21.90 | TUR h 2
+Nis | 43.32 21.90 | SER h 2
 @ Albania
 Scutari | 42.07 19.51 | VEN h 2
 Zabljak | 42.15 19.15 | ZET m 1
@@ -168,7 +168,7 @@ Larende | 37.18 33.22 | KAR s 3
 Beysehir | 37.68 31.72 | KAR h 2
 Aksaray | 38.37 34.03 | KAR s 2
 Nigde | 37.97 34.68 | KAR m 2
-Kayseri | 38.73 35.48 | KAR s 3
+Kayseri | 38.73 35.48 | DUL s 3
 Kirsehir | 39.15 34.16 | KAR s 2
 Alanya | 36.54 32.00 | KAR m 2
 Silifke | 36.38 33.93 | KAR m 2
@@ -196,7 +196,7 @@ Erzurum | 39.90 41.27 | AKK m 2
 Kars | 40.60 43.10 | QAR m 2
 Bitlis | 38.40 42.11 | BIT m 2
 Van | 38.50 43.38 | QAR m 2
-Hakkari | 37.57 43.74 | - m 1
+Hakkari | 37.57 43.74 | HAK m 1
 
 # Caucasus
 @ Georgia
@@ -221,10 +221,10 @@ Nakhchivan | 39.21 45.41 | QAR m 2
 @ North Caucasus
 Tarki | 42.98 47.50 | DAG m 2
 Khunzakh | 42.54 46.70 | DAG m 1
-Kabarda | 43.49 43.60 | CIR h 1
-Alania | 43.02 44.68 | CIR m 1
-Chechnya | 43.32 45.69 | - m 1
+Kabarda | 43.49 43.60 | KBD h 1
+Alania | 43.02 44.68 | ALN m 1
+Chechnya | 43.32 45.69 | VNK m 1
 Maykop | 44.61 40.10 | CIR h 1
 Kuban | 45.04 38.98 | CIR p 1
 Matrega | 45.21 36.72 | GEN p 1
-Stavropol | 45.04 41.97 | - s 1
+Stavropol | 45.04 41.97 | KBD s 1

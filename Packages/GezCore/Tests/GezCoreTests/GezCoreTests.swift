@@ -268,6 +268,55 @@ final class PopTests: XCTestCase {
     }
 }
 
+final class OwnerDecisionTests: XCTestCase {
+    private func owner(_ world: World, _ province: String) -> String? {
+        world.provinces.owner[world.provinces.id(named: province)!.index].map { world.countries.tag[$0.index] }
+    }
+
+    func testOwnerChoicesFor1453() {
+        let world = Scenario1453.makeWorld()
+        XCTAssertEqual(owner(world, "Bordeaux"), "ENG")
+        XCTAssertEqual(owner(world, "Balkh"), "TIM")
+        XCTAssertEqual(owner(world, "Kayseri"), "DUL")
+        XCTAssertEqual(owner(world, "Kirsehir"), "KAR")
+        XCTAssertEqual(owner(world, "Nis"), "SER")
+        XCTAssertEqual(owner(world, "Kassa"), "JIS")
+        XCTAssertEqual(owner(world, "Kilia"), "HUN")
+        XCTAssertEqual(owner(world, "Ochakiv"), "CRI")
+        XCTAssertEqual(owner(world, "Marrakesh"), "HIN")
+        XCTAssertEqual(owner(world, "Aden"), "TAH")
+        XCTAssertEqual(owner(world, "Sanaa"), "ZAY")
+        XCTAssertEqual(owner(world, "Bahrain"), "JAB")
+        XCTAssertEqual(owner(world, "Dongola"), "DOT")
+        XCTAssertEqual(owner(world, "Kalat"), "BLC")
+    }
+
+    func testTribalLandFillsTheBlanks() {
+        let world = Scenario1453.makeWorld()
+        let unowned = world.provinces.ids.filter { world.provinces.owner[$0.index] == nil }
+        XCTAssertTrue(unowned.isEmpty, unowned.map { world.provinces.name[$0.index] }.joined(separator: ", "))
+        let baloch = world.countries.id(forTag: "BLC")!
+        XCTAssertEqual(world.countries.government[baloch.index], .tribal)
+    }
+
+    func testSubjects() {
+        let world = Scenario1453.makeWorld()
+        let c = world.countries
+        let hun = c.id(forTag: "HUN")!
+        XCTAssertEqual(c.overlord[c.id(forTag: "AUS")!.index], hun)
+        XCTAssertEqual(c.subjectType[c.id(forTag: "BOH")!.index], .personalUnion)
+        XCTAssertEqual(c.subjectType[c.id(forTag: "HIN")!.index], .vassal)
+        XCTAssertEqual(c.overlord[c.id(forTag: "HIN")!.index], c.id(forTag: "MOR"))
+        XCTAssertEqual(c.subjects(of: c.id(forTag: "ETH")!).count, 6)
+        XCTAssertNil(c.overlord[c.id(forTag: "FRA")!.index])
+    }
+
+    func testArmenianMajority() {
+        let world = Scenario1453.makeWorld()
+        XCTAssertEqual(world.provinces.religion[world.provinces.id(named: "Yerevan")!.index], .armenian)
+    }
+}
+
 final class ProvinceIDMapTests: XCTestCase {
     func testMapMatchesScenario() throws {
         let world = Scenario1453.makeWorld()

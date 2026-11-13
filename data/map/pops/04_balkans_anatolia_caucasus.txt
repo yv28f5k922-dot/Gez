@@ -392,8 +392,8 @@ dagestani sunni.shafii 10
 mizrahi jewish 5
 persian twelver 5
 @ Arran and Armenia
-armenian armenian 50
-azeri sunni.shafii 40
+armenian armenian 70
+azeri sunni.shafii 20
 kurdish sunni.shafii 10
 > Ganja
 azeri sunni.shafii 60

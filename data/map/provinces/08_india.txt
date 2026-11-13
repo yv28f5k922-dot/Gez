@@ -5,11 +5,11 @@ Jalandhar | 31.33 75.58 | DEL f 3
 Sialkot | 32.49 74.53 | DEL f 2
 Sirhind | 30.64 76.39 | DEL f 3
 Hisar-Firoza | 29.15 75.72 | DEL s 2
-Bhera | 32.48 72.90 | - h 1
+Bhera | 32.48 72.90 | KHK h 1
 @ Frontier
-Peshawar | 34.01 71.58 | - h 2
-Bannu | 32.99 70.60 | - h 1
-Dera Ismail Khan | 31.83 70.90 | - d 1
+Peshawar | 34.01 71.58 | PSH h 2
+Bannu | 32.99 70.60 | PSH h 1
+Dera Ismail Khan | 31.83 70.90 | BLC d 1
 @ Multan
 Multan | 30.20 71.47 | MUL f 4
 Uch | 29.23 71.07 | MUL f 2
@@ -20,10 +20,10 @@ Bhakkar | 27.70 68.86 | SND f 2
 Umarkot | 25.36 69.74 | SND d 1
 @ Kashmir
 Srinagar | 34.08 74.80 | KSH m 4
-Jammu | 32.73 74.86 | - h 2
+Jammu | 32.73 74.86 | JMU h 2
 Ladakh | 34.16 77.58 | LDK m 1
 Skardu | 35.30 75.63 | SKD m 1
-Gilgit | 35.92 74.31 | - m 1
+Gilgit | 35.92 74.31 | DRD m 1
 
 # Hindustan
 @ Delhi
@@ -50,11 +50,11 @@ Tirhut | 26.15 85.90 | MIT f 3
 Kumaon | 29.60 79.66 | KUM m 1
 Garhwal | 30.15 78.78 | GAR m 1
 Kathmandu | 27.70 85.32 | NEP m 3
-Jumla | 29.27 82.18 | - m 1
+Jumla | 29.27 82.18 | JUM m 1
 @ Bundelkhand
 Gwalior | 26.22 78.18 | GWA h 3
-Kalinjar | 25.00 80.48 | - h 2
-Rewa | 24.53 81.30 | - h 1
+Kalinjar | 25.00 80.48 | BGL h 2
+Rewa | 24.53 81.30 | BGL h 1
 
 # Rajputana
 @ Mewar
@@ -66,7 +66,7 @@ Ranthambore | 26.02 76.46 | MEW h 2
 Mandore | 26.35 73.03 | MAR d 2
 Nagaur | 27.20 73.73 | NGR d 2
 Jaisalmer | 26.92 70.91 | JSL d 1
-Jangladesh | 28.02 73.31 | - d 1
+Jangladesh | 28.02 73.31 | JAT d 1
 @ Dhundhar and Hadoti
 Amber | 26.98 75.85 | AMB h 2
 Bundi | 25.44 75.64 | BUN h 2

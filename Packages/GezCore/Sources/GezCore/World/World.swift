@@ -122,6 +122,9 @@ public struct CountryTable: Sendable {
     public var capital: [ProvinceID?] = []
     /// Share of the population that is enslaved (0 to 1).
     public var slavery: [Double] = []
+    /// The country this one is subject to, if any.
+    public var overlord: [CountryID?] = []
+    public var subjectType: [SubjectType?] = []
     /// Ducats.
     public var treasury: [Double] = []
     /// Income from the most recent monthly update.
@@ -136,6 +139,11 @@ public struct CountryTable: Sendable {
 
     public func id(forTag tag: String) -> CountryID? {
         indexByTag[tag]
+    }
+
+    /// Countries directly subject to this one.
+    public func subjects(of country: CountryID) -> [CountryID] {
+        ids.filter { overlord[$0.index] == country }
     }
 
     @discardableResult
@@ -156,6 +164,8 @@ public struct CountryTable: Sendable {
         self.religion.append(religion)
         self.capital.append(nil)
         self.slavery.append(0)
+        self.overlord.append(nil)
+        self.subjectType.append(nil)
         self.treasury.append(treasury)
         self.lastMonthlyIncome.append(0)
         indexByTag[tag] = id

@@ -60,40 +60,59 @@ decide differently.
 - **Bosnia** is split between the Bosnian Church, Catholics and Orthodox
   Vlachs; King Stephen Thomas had converted to Catholicism.
 
-## Ownership calls I'm unsure about
+## Decisions made by the owner (settled; don't change without asking)
 
-| # | Place | Map now | Why unsure |
-|---|---|---|---|
-| 1 | **Bordeaux and Guyenne** | English | Talbot retook Bordeaux in Oct 1452; France won it back after Castillon (17 July 1453). Bayonne is French. |
-| 2 | **Marwar (Mandore)** | Rao Jodha holds Mandore | Jodha retook Mandore from Mewar in 1453. The month is unclear; it may still be Mewar's on 30 May. |
-| 3 | **Timurid split** | Samarkand (Abu Sa'id) and Herat (Babur Mirza) as two states | Who held Balkh, Kunduz, Kabul, Khwarazm and Astarabad in 1453 changed often. All are given to Herat except Khwarazm (Samarkand). |
-| 4 | **Uzbek Khanate** | Holds Sighnaq, Yasi and the north | Abu'l-Khayr took Syr Darya towns in the 1440s; Otrar is still Timurid on the map. |
-| 5 | **Qara Qoyunlu** | Holds Iraq, Azerbaijan, Fars, Kerman, Yazd, Isfahan | Jahan Shah's conquest of Fars and Kerman was 1452–53; the exact date for Yazd and Kerman is unclear. |
-| 6 | **Aq Qoyunlu borders** | Holds Diyarbakır, Mardin, Urfa, Harput, Erzincan, Bayburt, Erzurum | Erzurum, Erzincan and Mardin went back and forth with the Qara Qoyunlu. |
-| 7 | **Kayseri and Kırşehir** | Karaman | Contested between Karaman and Dulkadir. |
-| 8 | **Niš and Vrhbosna (Sarajevo)** | Ottoman | Niš may still have been Serbian; the Ottomans held a fort near Sarajevo from about 1448–51. |
-| 9 | **Upper Hungary** | Hungary | Jan Jiskra's Hussite captains really controlled many towns there. |
-| 10 | **Kilia** | Moldavia | Had a Hungarian garrison from 1448 to 1465. |
-| 11 | **Ochakiv and the Black Sea coast** | Lithuania | Lithuania's hold was thin; Crimea also claimed it. |
-| 12 | **Lower Lusatia (Cottbus)** | Brandenburg | Pledged to Brandenburg, legally part of Bohemia. |
-| 13 | **Velikiye Luki** | Lithuania | Shared between Novgorod and Lithuania. |
-| 14 | **Marrakesh** | Morocco | Really run by the Hintata emirs, only nominally Marinid/Wattasid. |
-| 15 | **Algiers** | Tlemcen | Largely self-governing; Hafsid influence too. |
-| 16 | **Cyrenaica and Fezzan** | Unclaimed | Nominal Mamluk/Hafsid claims, local tribal rule. |
-| 17 | **Yemen** | Rasulid remnant ("Yemen") on the coast, Zaydi imams in the north | The Rasulids fell and the Tahirids took over in 1454; 1453 is a collapse year. |
-| 18 | **Al-Hasa, Qatif, Bahrain** | Jabrids (Al-Hasa, Qatif), Hormuz (Bahrain) | The Jabrid rise is dated anywhere from about 1417 to the 1460s. |
-| 19 | **Dhofar** | Kathiri | Could be Rasulid or local. |
-| 20 | **Nubia (Dongola)** | Unclaimed | The last Christian kingdom of Dotawo may still have existed. Alodia (Soba) is kept as a weak Christian state. |
-| 21 | **Ethiopian tributaries** | Hadiya, Bali, Dawaro, Ifat, Ennarea, Damot inside Ethiopia | These were tributaries under Zara Yaqob, not fully ruled. |
-| 22 | **Somali coast** | Mogadishu separate; Ajuran holds Merca, Barawa, Qelafo, Hobyo | Ajuran's extent in 1453 is poorly documented. |
-| 23 | **Gajapati Orissa** | Holds Rajahmundry; Kondavidu is Vijayanagara | Kapilendra Deva took the Godavari region around 1448–54. |
-| 24 | **Goa** | Vijayanagara | Bahmani took it in 1469–72, so it's correct for 1453 but contested soon. |
-| 25 | **Chittagong** | Bengal | Arakan took it at some point between about 1459 and the 1480s. |
-| 26 | **Etawah, Kannauj, Kalpi** | Jaunpur | Fought over by Delhi, Jaunpur and Malwa. |
-| 27 | **Ranthambore** | Mewar | Contested by Mewar and Malwa. |
-| 28 | **Kingdom of Kaffa** | Separate, folk religion with a Christian minority | Its religion mixed traditional beliefs with Christian elements. |
-| 29 | **Circassia and the North Caucasus** | Circassia as one tribal state; Chechnya unclaimed and folk religion | Very fragmented in reality. |
-| 30 | **Armenia (Yerevan, Nakhchivan)** | Armenian Apostolic about 50% | The balance between Armenians, Turkmens and Kurds is uncertain. |
+Blank land: **tribal countries** (government type `tribal`) now hold land
+that had no single ruler in 1453: Baloch Tribes, Pashtun Tribes, Hazara
+Tribes, Najdi Tribes, Shammar, Asir Tribes, Yam Tribes (Najran),
+Cyrenaican Bedouin, Fezzan, Sous Confederation, Zenata Tribes, Ja'alin
+Arabs, Beja Tribes, Somali Clans, Hakkari Emirate, Mordvins, Komi, Sami,
+Oirats, Turkmen Tribes, Khokhars, Dard Tribes, Jat Tribes, Guanche Tribes,
+Kabarda, Alania, Vainakh Tribes (Circassia itself is now tribal). The Wild
+Fields went to Crimea (Zaporizhia, Azov Steppe) and the Great Horde
+(Kharkiv, Voronezh); Samara to the Nogai; the central steppe to the Uzbeks,
+Oirats and Moghulistan. No province is unclaimed any more.
+
+| # | Question | Decision |
+|---|---|---|
+| 1 | Bordeaux and Guyenne | **England** (lost after Castillon, July 1453) |
+| 2 | Mandore | **Rao Jodha (Marwar)** |
+| 3 | Timurids | **Two states; Balkh and Kunduz to Samarkand** (Abu Sa'id); Kabul to Herat; Khwarazm to Samarkand |
+| 4 | Otrar | **Timurids (Samarkand)** |
+| 5 | Qara Qoyunlu | **Hold all of it** (Iraq, Azerbaijan, Isfahan, Fars, Kerman, Yazd) |
+| 6 | Aq Qoyunlu | **As drawn** (Diyarbakır, Mardin, Urfa, Harput, Erzincan, Bayburt, Erzurum) |
+| 7 | Kayseri and Kırşehir | **Kayseri to Dulkadir**, Kırşehir stays Karaman |
+| 8 | Niš and Vrhbosna | **Niš Serbian**, Vrhbosna Ottoman |
+| 9 | Upper Hungary | **Jiskra's Brotherhood** as a Hussite state (Kassa, Bártfa, Besztercebánya) |
+| 10 | Kilia | **Hungary** (its garrison) |
+| 11 | Ochakiv coast | **Crimea** |
+| 12 | Lower Lusatia | **Brandenburg** |
+| 13 | Velikiye Luki | **Lithuania** |
+| 14 | Marrakesh | **Hintata Emirate, a vassal of Morocco** (Marrakesh, Mogador) |
+| 15 | Algiers | **Tlemcen** |
+| 16 | Cyrenaica and Fezzan | **Tribal countries** |
+| 17 | Yemen | **Zaydi imams hold the highlands** (Sanaa, Sadah, Marib); **the Tahirid Sultanate holds the rest it held then** (Aden, Taizz, Zabid, Jizan); Najran (Yam) and Asir tribal |
+| 18 | Al-Hasa, Qatif, Bahrain | **Jabrids hold Bahrain too** (and Qatar) |
+| 19 | Dhofar | **Kathiri** |
+| 20 | Dongola | **Dotawo**, a Christian Nubian kingdom |
+| 21 | Ethiopian south | **Tributaries of Ethiopia**: Hadiya, Bali, Dawaro, Ifat, Ennarea, Damot |
+| 22 | Somali coast | **As drawn** (Ajuran, separate Mogadishu) |
+| 23 | Rajahmundry | **Orissa** |
+| 24 | Goa | **Vijayanagara** |
+| 25 | Chittagong | **Bengal** |
+| 26 | Etawah, Kannauj, Kalpi | **Jaunpur** |
+| 27 | Ranthambore | **Mewar** |
+| 28 | Kaffa | **As drawn** (independent, folk religion) |
+| 29 | North Caucasus | **Split into tribal states**: Circassia, Kabarda, Alania, Vainakh |
+| 30 | Armenia | **Armenian Christian majority (about 70%)** |
+| + | Ladislaus the Posthumous | **Personal union**: Austria and Bohemia under the King of Hungary |
+
+Subject countries at the start are listed in `data/map/subjects.txt`
+(personal unions, vassals, tributaries), including well-known ones the
+owner didn't have to decide: Aragon–Naples and Denmark–Norway unions;
+Ottoman vassal Serbia and tributaries Wallachia, Morea, Athens, Lesbos;
+Mamluk vassals Mecca, Dulkadir, Ramadanids; Polish vassals Mazovia and
+Moldavia; French vassals Brittany and Foix; Muscovite vassal Kasimov.
 
 ## Other notes
 

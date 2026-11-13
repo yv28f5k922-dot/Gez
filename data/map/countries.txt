@@ -1,5 +1,5 @@
 # TAG | Name | R G B | government | religion | capital (optional; default = most developed province)
-# government: monarchy, republic, theocracy, steppeHorde
+# government: monarchy, republic, theocracy, steppeHorde, tribal
 # religion: see Packages/GezCore/Sources/GezCore/Faith/Religion.swift (catholic, hussite, orthodox, bosnian,
 #   coptic, ethiopian, armenian, syriac, nestorian, sunni, twelver, zaydi, ismaili, ibadi, druze,
 #   alawite, yazidi, hindu, jain, theravada, tibetan, zoroastrian, jewish, tengri, folk)
@@ -149,7 +149,7 @@ GEO | Georgia | 225 225 225 | monarchy | orthodox
 SAM | Samtskhe | 190 170 210 | monarchy | orthodox
 SHI | Shirvan | 110 190 180 | monarchy | sunni
 DAG | Dagestan | 130 110 90 | monarchy | sunni
-CIR | Circassia | 140 190 100 | steppeHorde | folk
+CIR | Circassia | 140 190 100 | tribal | folk
 
 # Steppe and Central Asia
 CRI | Crimea | 110 175 70 | steppeHorde | sunni
@@ -168,7 +168,7 @@ HEJ | Sharifate of Mecca | 110 190 150 | theocracy | sunni
 JAB | Jabrids | 200 180 140 | monarchy | sunni
 HOR | Hormuz | 100 130 200 | monarchy | sunni
 OMN | Oman | 200 70 70 | theocracy | ibadi
-YEM | Yemen | 120 90 60 | monarchy | sunni
+TAH | Tahirid Sultanate | 120 90 60 | monarchy | sunni
 ZAY | Zaydi Imamate | 60 120 70 | theocracy | zaydi
 KTH | Kathiri | 180 140 100 | monarchy | sunni
 GIL | Gilan | 90 170 90 | monarchy | zaydi
@@ -234,3 +234,47 @@ CLT | Calicut | 200 80 60 | monarchy | hindu
 COC | Cochin | 100 160 200 | monarchy | hindu
 TRV | Venad | 180 200 80 | monarchy | hindu
 KOT | Kotte | 180 120 40 | monarchy | theravada
+
+# Tribal lands (no single state in 1453; loose tribal confederations)
+BLC | Baloch Tribes | 170 120 90 | tribal | sunni
+PSH | Pashtun Tribes | 120 140 90 | tribal | sunni
+HZR | Hazara Tribes | 150 130 110 | tribal | sunni
+NJD | Najdi Tribes | 190 160 110 | tribal | sunni
+SHM | Shammar | 160 140 90 | tribal | sunni
+ASR | Asir Tribes | 140 110 80 | tribal | sunni
+YAM | Yam Tribes | 110 150 140 | tribal | ismaili
+CYR | Cyrenaican Bedouin | 200 170 120 | tribal | sunni
+FEZ | Fezzan | 170 110 80 | tribal | sunni
+SUS | Sous Confederation | 190 130 100 | tribal | sunni
+ZNT | Zenata Tribes | 160 150 110 | tribal | sunni
+JAA | Ja'alin Arabs | 180 150 100 | tribal | sunni
+BEJ | Beja Tribes | 150 120 80 | tribal | sunni
+SOM | Somali Clans | 130 160 120 | tribal | sunni
+HAK | Hakkari Emirate | 140 100 120 | tribal | sunni
+MRD | Mordvins | 120 150 120 | tribal | folk
+KOM | Komi | 110 140 130 | tribal | folk
+SMI | Sami | 150 170 190 | tribal | folk
+OIR | Oirats | 170 110 110 | tribal | tengri
+TKM | Turkmen Tribes | 180 140 120 | tribal | sunni
+KHK | Khokhars | 160 130 90 | tribal | sunni
+DRD | Dard Tribes | 130 130 160 | tribal | twelver
+JAT | Jat Tribes | 190 150 90 | tribal | hindu
+GUA | Guanche Tribes | 160 120 90 | tribal | folk
+KBD | Kabarda | 120 170 110 | tribal | folk
+ALN | Alania | 160 160 200 | tribal | orthodox
+VNK | Vainakh Tribes | 110 120 90 | tribal | folk
+
+# States added by the owner's 1453 decisions
+JIS | Jiskra's Brotherhood | 120 90 140 | monarchy | hussite
+HIN | Hintata Emirate | 200 120 80 | monarchy | sunni
+DOT | Dotawo | 190 140 200 | monarchy | coptic
+TGT | Touggourt | 200 170 90 | monarchy | sunni
+JMU | Jammu | 210 130 100 | monarchy | hindu
+JUM | Jumla | 180 160 200 | monarchy | hindu
+BGL | Baghela | 210 170 90 | monarchy | hindu
+HAD | Hadiya | 160 190 110 | monarchy | sunni
+BLI | Bali | 140 170 130 | monarchy | sunni
+DAW | Dawaro | 200 160 120 | monarchy | sunni
+IFT | Ifat | 190 140 160 | monarchy | sunni
+ENN | Ennarea | 110 150 90 | monarchy | folk
+DAM | Damot | 150 110 90 | monarchy | folk

@@ -37,6 +37,7 @@ Done and tested on CI (Mac and iPad builds green, 38 simulation tests):
 | Simulation core | Pure-Swift package `Packages/GezCore`: 365-day calendar, EU4-style speed clock, deterministic RNG, daily tick with monthly economy and population growth |
 | Map data | 1,189 provinces, 228 states, 36 regions, 207 countries at 30 May 1453; hand-written in `data/map/` |
 | Map shapes | Grown from town points over Natural Earth coasts; stop at 72 rivers, 20 mountain ridges and 3 frontier lines (`data/map/barriers.txt`); 1453 coast edits; neighbours, straits, river borders |
+| Countries | 247 countries incl. 27 tribal confederations (government `tribal`); subjects (vassal, tributary, personal union) in `data/map/subjects.txt`; no unclaimed land left |
 | People | 187 cultures in families, 25 religions in 6 families, Sunni schools and Hindu traditions as sects, Sufi orders per province, pops split into nobles, clergy, burghers, peasants and slaves; 202 million people from regional 1453 estimates |
 | App | SwiftUI shell for Mac and iPad: top bar (date, treasury, speeds), map modes (political, states, terrain, religion, culture, development; keys Q–Y), zoom and pan, tap to select, province panel with people breakdown (province or whole state) |
 | Map look | **Metal renderer** (`App/Shared/Map/Metal/`): baked terrain texture from real elevation, map-mode tint over terrain, soft country border bands, state and province lines, animated water with coast foam, selection glow, paper grain, vignette. The CPU renderer (`MapRenderer.swift`) is kept as a fallback and for tests |
@@ -134,8 +135,11 @@ docs/              DESIGN, HISTORY_NOTES, HANDOFF (this), CREDITS, previews
 3. **Owner decisions still open:**
    - Split India into more provinces (recommended; Indian provinces now hold
      millions of people each)?
-   - Link Hungary, Bohemia and Austria in a personal union under Ladislaus?
-   - The 30 uncertain borders in `HISTORY_NOTES.md`.
+   - (Settled in session 2: all 30 uncertain borders, tribal countries for
+     blank land, Ladislaus as a personal union. See `HISTORY_NOTES.md`.)
+   - **How the owner likes to decide:** one question at a time with context
+     and 2–4 options in the multiple-choice question tool, recommended
+     option first. Do it that way for future decisions.
 4. **Economy milestone:** goods per province, trade, buildings, army
    upkeep, estates' share of income. Uses pops (burghers, peasants).
 5. **Armies, diplomacy and war:** units, movement along province

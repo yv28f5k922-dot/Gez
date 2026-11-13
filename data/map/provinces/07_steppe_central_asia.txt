@@ -23,7 +23,7 @@ Aktobe | 50.28 57.17 | NOG s 1
 Emba | 48.83 58.15 | NOG s 1
 Ufa | 54.73 55.95 | NOG w 1
 Orenburg | 51.77 55.10 | NOG s 1
-Mangyshlak | 44.00 52.50 | - d 1
+Mangyshlak | 44.00 52.50 | TKM d 1
 
 # Kazakh Steppe
 @ Uzbek Steppe
@@ -35,14 +35,14 @@ Ulytau | 48.00 67.00 | UZB s 1
 Turgai | 49.60 63.50 | UZB s 1
 Kostanay | 53.21 63.62 | UZB s 1
 Chimgi-Tura | 57.15 65.53 | UZB w 1
-Ishim | 56.10 69.50 | - w 1
+Ishim | 56.10 69.50 | UZB w 1
 @ Central Steppe
-Akmola | 51.17 71.45 | - s 1
-Karaganda | 49.80 73.10 | - s 1
-Pavlodar | 52.29 76.95 | - s 1
-Semey | 50.41 80.23 | - s 1
-Ust-Kamenogorsk | 49.95 82.61 | - m 1
-Balkhash | 46.80 74.98 | - d 1
+Akmola | 51.17 71.45 | UZB s 1
+Karaganda | 49.80 73.10 | UZB s 1
+Pavlodar | 52.29 76.95 | UZB s 1
+Semey | 50.41 80.23 | OIR s 1
+Ust-Kamenogorsk | 49.95 82.61 | OIR m 1
+Balkhash | 46.80 74.98 | MGH d 1
 @ Moghulistan
 Almaty | 43.24 76.95 | MGH s 2
 Taraz | 42.90 71.37 | MGH s 2
@@ -66,4 +66,4 @@ Otrar | 42.85 68.30 | TIM s 2
 @ Khwarazm
 Urgench | 42.33 59.15 | TIM f 4
 Kath | 41.38 60.85 | TIM f 2
-Dehistan | 39.50 54.40 | - d 1
+Dehistan | 39.50 54.40 | TKM d 1

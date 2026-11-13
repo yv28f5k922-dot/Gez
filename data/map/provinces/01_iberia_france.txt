@@ -57,8 +57,8 @@ Jaen | 37.77 -3.79 | CAS h 4
 Murcia | 37.99 -1.13 | CAS f 4
 @ Canary Islands
 Lanzarote | 29.05 -13.60 | CAS d 1
-Gran Canaria | 27.96 -15.59 | - h 1
-Tenerife | 28.29 -16.63 | - m 1
+Gran Canaria | 27.96 -15.59 | GUA h 1
+Tenerife | 28.29 -16.63 | GUA m 1
 @ Granada
 Granada | 37.18 -3.60 | GRA m 7
 Malaga | 36.72 -4.42 | GRA h 5

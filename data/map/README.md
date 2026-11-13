@@ -12,6 +12,7 @@ plus public-domain Natural Earth coastlines into the game's map files.
   lines (`=`). Provinces avoid growing across them, so borders follow real
   geography. Rivers are also drawn on the map, and borders that follow a
   river are recorded for battles and movement.
+- `subjects.txt`: vassals, tributaries and personal unions at the start.
 - `coast_1453.txt`: places where the 1453 coast differs from today's
   (the Zuiderzee and the Dollart were open water).
 

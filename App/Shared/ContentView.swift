@@ -179,6 +179,11 @@ struct ProvincePanel: View {
                     Text("Unclaimed land")
                 }
             }
+            if let owner = p.owner[i] {
+                Text(countryStatus(owner, world: world))
+                    .font(.caption)
+                    .foregroundStyle(Palette.ink.opacity(0.65))
+            }
             Divider()
             row("Development", "\(p.development[i])")
             row("Base tax", String(format: "%.1f / year", p.baseTax[i]))
@@ -208,6 +213,24 @@ struct ProvincePanel: View {
             Text(value).monospacedDigit()
         }
         .font(.callout)
+    }
+
+    /// "Monarchy · Vassal of Morocco", "Tribal confederation", ...
+    private func countryStatus(_ country: CountryID, world: World) -> String {
+        let c = world.countries
+        var parts = [c.government[country.index].displayName]
+        if let lord = c.overlord[country.index], let kind = c.subjectType[country.index] {
+            switch kind {
+            case .personalUnion: parts.append("Personal union with \(c.name[lord.index])")
+            case .vassal: parts.append("Vassal of \(c.name[lord.index])")
+            case .tributary: parts.append("Tributary of \(c.name[lord.index])")
+            }
+        }
+        let subjects = c.subjects(of: country)
+        if !subjects.isEmpty {
+            parts.append("\(subjects.count) subject\(subjects.count == 1 ? "" : "s")")
+        }
+        return parts.joined(separator: " · ")
     }
 }
 

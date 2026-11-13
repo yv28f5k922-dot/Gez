@@ -8,15 +8,15 @@ Tangier | 35.76 -5.83 | MOR h 3
 Melilla | 35.29 -2.94 | MOR h 1
 Oujda | 34.68 -1.91 | MOR s 1
 @ Southern Morocco
-Marrakesh | 31.63 -8.00 | MOR f 5
+Marrakesh | 31.63 -8.00 | HIN f 5
 Safi | 32.30 -9.24 | MOR f 2
 Azemmour | 33.29 -8.34 | MOR f 2
 Anfa | 33.57 -7.59 | MOR f 2
-Mogador | 31.51 -9.77 | MOR d 1
-Sous | 30.47 -8.88 | - h 2
+Mogador | 31.51 -9.77 | HIN d 1
+Sous | 30.47 -8.88 | SUS h 2
 Sijilmasa | 31.28 -4.28 | MOR d 2
-Draa | 30.13 -5.88 | - d 1
-Figuig | 32.11 -1.23 | - d 1
+Draa | 30.13 -5.88 | SUS d 1
+Figuig | 32.11 -1.23 | ZNT d 1
 @ Tlemcen
 Tlemcen | 34.88 -1.32 | TLE h 5
 Oran | 35.70 -0.63 | TLE h 3
@@ -24,15 +24,15 @@ Mostaganem | 35.93 0.09 | TLE h 2
 Tenes | 36.51 1.31 | TLE h 1
 Algiers | 36.75 3.06 | TLE h 3
 Medea | 36.26 2.75 | TLE m 1
-Tiaret | 35.37 1.32 | - s 1
-Laghouat | 33.80 2.87 | - d 1
+Tiaret | 35.37 1.32 | ZNT s 1
+Laghouat | 33.80 2.87 | ZNT d 1
 @ Eastern Algeria
 Bejaia | 36.75 5.08 | TUN h 3
 Constantine | 36.37 6.61 | TUN h 3
 Annaba | 36.90 7.76 | TUN h 2
 Biskra | 34.85 5.73 | TUN d 1
-Touggourt | 33.10 6.07 | - d 1
-Ouargla | 31.95 5.32 | - d 1
+Touggourt | 33.10 6.07 | TGT d 1
+Ouargla | 31.95 5.32 | TGT d 1
 @ Ifriqiya
 Tunis | 36.81 10.18 | TUN f 7
 Kairouan | 35.68 10.10 | TUN p 4
@@ -45,24 +45,24 @@ Djerba | 33.81 10.85 | TUN d 2
 @ Tripolitania
 Tripoli | 32.89 13.19 | TUN d 3
 Misrata | 32.38 15.09 | TUN d 1
-Ghadames | 30.13 9.50 | - d 1
-Sirte | 31.21 16.59 | - d 1
-Murzuk | 25.92 13.92 | - d 1
+Ghadames | 30.13 9.50 | FEZ d 1
+Sirte | 31.21 16.59 | CYR d 1
+Murzuk | 25.92 13.92 | FEZ d 1
 @ Cyrenaica
-Benghazi | 32.12 20.07 | - d 1
-Barqa | 32.76 22.64 | - d 1
-Jalu | 29.03 21.55 | - d 1
+Benghazi | 32.12 20.07 | CYR d 1
+Barqa | 32.76 22.64 | CYR d 1
+Jalu | 29.03 21.55 | CYR d 1
 
 # Nubia
 @ Nubia
-Dongola | 19.17 30.48 | - d 1
-Abu Hamad | 19.53 33.33 | - d 1
+Dongola | 19.17 30.48 | DOT d 1
+Abu Hamad | 19.53 33.33 | JAA d 1
 Soba | 15.52 32.68 | ALO p 2
-Sennar | 13.55 33.62 | - p 1
+Sennar | 13.55 33.62 | JAA p 1
 @ Beja Lands
-Suakin | 19.10 37.33 | - d 2
-Kassala | 15.45 36.40 | - s 1
-Aidhab | 22.33 36.48 | - d 1
+Suakin | 19.10 37.33 | BEJ d 2
+Kassala | 15.45 36.40 | BEJ s 1
+Aidhab | 22.33 36.48 | BEJ d 1
 
 # Horn of Africa
 @ Tigray and Medri Bahri
@@ -78,14 +78,14 @@ Debre Markos | 10.33 37.72 | ETH m 2
 Amba Geshen | 11.50 39.50 | ETH m 2
 @ Shewa
 Debre Berhan | 9.68 39.53 | ETH m 4
-Ifat | 10.10 40.00 | ETH h 2
+Ifat | 10.10 40.00 | IFT h 2
 Fatagar | 8.90 39.80 | ETH h 2
-Damot | 6.80 37.75 | ETH h 1
-Hadiya | 7.50 37.90 | ETH h 1
-Bali | 7.00 40.00 | ETH h 1
-Dawaro | 8.00 40.70 | ETH h 1
+Damot | 6.80 37.75 | DAM h 1
+Hadiya | 7.50 37.90 | HAD h 1
+Bali | 7.00 40.00 | BLI h 1
+Dawaro | 8.00 40.70 | DAW h 1
 Bonga | 7.27 36.24 | KAF w 2
-Ennarea | 7.80 36.90 | ETH w 1
+Ennarea | 7.80 36.90 | ENN w 1
 @ Adal
 Harar | 9.31 42.12 | ADA h 3
 Zeila | 11.35 43.47 | ADA d 2
@@ -99,8 +99,8 @@ Barawa | 1.11 44.03 | AJU d 1
 Qelafo | 5.60 44.20 | AJU s 1
 Hobyo | 5.35 48.53 | AJU d 1
 Las Khorey | 11.16 48.20 | WAR d 1
-Bosaso | 11.28 49.18 | - d 1
-Ogaden | 7.00 44.00 | - s 1
-Baidoa | 3.12 43.65 | - s 1
-Kismayo | -0.36 42.54 | - s 1
+Bosaso | 11.28 49.18 | WAR d 1
+Ogaden | 7.00 44.00 | SOM s 1
+Baidoa | 3.12 43.65 | SOM s 1
+Kismayo | -0.36 42.54 | SOM s 1
 Pate | -2.13 41.05 | PTE d 2

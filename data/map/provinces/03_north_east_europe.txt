@@ -52,7 +52,7 @@ Hudiksvall | 61.73 17.10 | SWE w 1
 Harnosand | 62.63 17.94 | SWE w 1
 Umea | 63.83 20.26 | SWE w 1
 Tornio | 65.84 24.15 | SWE w 1
-Lapland | 67.85 20.22 | - w 1
+Lapland | 67.85 20.22 | SMI w 1
 @ Finland
 Turku | 60.45 22.27 | SWE w 3
 Hameenlinna | 61.00 24.46 | SWE w 2
@@ -60,7 +60,7 @@ Viipuri | 60.71 28.75 | SWE w 2
 Savonlinna | 61.87 28.88 | SWE w 1
 Vaasa | 63.10 21.62 | SWE w 1
 Oulu | 65.01 25.47 | SWE w 1
-Kainuu | 64.22 27.73 | - w 1
+Kainuu | 64.22 27.73 | SMI w 1
 
 # Baltic
 @ Prussia
@@ -143,12 +143,12 @@ Zhytomyr | 50.25 28.66 | LIT w 2
 Kiev | 50.45 30.52 | LIT f 4
 Cherkasy | 49.44 32.06 | LIT p 2
 Bratslav | 48.82 28.94 | LIT p 2
-Ochakiv | 46.62 31.54 | LIT s 1
+Ochakiv | 46.62 31.54 | CRI s 1
 @ Wild Fields
-Zaporizhia | 47.80 35.20 | - s 1
-Kharkiv | 49.99 36.23 | - s 1
-Azov Steppe | 47.10 37.55 | - s 1
-Voronezh | 51.66 39.20 | - s 1
+Zaporizhia | 47.80 35.20 | CRI s 1
+Kharkiv | 49.99 36.23 | GRH s 1
+Azov Steppe | 47.10 37.55 | CRI s 1
+Voronezh | 51.66 39.20 | GRH s 1
 
 # Russia
 @ Moscow
@@ -195,13 +195,13 @@ Pechora | 65.15 57.20 | NOV w 1
 Mezen | 65.84 44.25 | NOV w 1
 Vyatka | 58.60 49.66 | VYA w 2
 Perm | 59.00 56.25 | PRM w 1
-Komi | 61.67 50.83 | - w 1
+Komi | 61.67 50.83 | KOM w 1
 @ Volga
 Kazan | 55.79 49.12 | KAZ w 4
 Bolghar | 54.97 49.04 | KAZ p 2
 Cheboksary | 56.13 47.25 | KAZ w 2
 Simbirsk | 54.32 48.40 | KAZ p 1
 Udmurtia | 56.85 53.20 | KAZ w 1
-Mordva | 53.20 45.00 | - w 1
-Tambov | 52.72 41.45 | - s 1
-Samara | 53.20 50.15 | - s 1
+Mordva | 53.20 45.00 | MRD w 1
+Tambov | 52.72 41.45 | MRD s 1
+Samara | 53.20 50.15 | NOG s 1

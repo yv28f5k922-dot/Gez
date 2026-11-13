@@ -196,6 +196,14 @@ public enum Scenario1453 {
 
         for (index, c) in file.countries.enumerated() {
             world.countries.capital[index] = ProvinceID(c.capital)
+            if let lord = c.overlord {
+                guard let lordID = world.countries.id(forTag: lord) else { throw LoadError.unknownValue("overlord \(lord)") }
+                guard let kind = c.subjectType.flatMap(SubjectType.init(rawValue:)) else {
+                    throw LoadError.unknownValue("subject type \(c.subjectType ?? "nil")")
+                }
+                world.countries.overlord[index] = lordID
+                world.countries.subjectType[index] = kind
+            }
         }
         for pair in file.riverBorders ?? [] where pair.count == 2 {
             world.riverBorders.insert(ProvincePair(ProvinceID(pair[0]), ProvinceID(pair[1])))
@@ -231,6 +239,8 @@ struct ScenarioFile: Decodable {
         let religion: String
         let capital: Int
         let slavery: Double?
+        let overlord: String?
+        let subjectType: String?
     }
 
     struct Culture: Decodable {

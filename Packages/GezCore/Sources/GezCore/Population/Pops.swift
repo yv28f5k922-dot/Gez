@@ -193,7 +193,7 @@ public enum ClassSplit {
     /// Fractions of the whole population for each class except peasants
     /// (peasants are everyone left).
     public static func targets(development: Int, government: GovernmentType?, slavery: Double) -> Targets {
-        let nobles: Double = government == .steppeHorde ? 0.04 : 0.015
+        let nobles: Double = (government == .steppeHorde || government == .tribal) ? 0.04 : 0.015
         let clergy: Double = government == .theocracy ? 0.04 : 0.015
         let burghers = 0.02 + 0.016 * Double(min(max(development, 1), 10))
         return Targets(nobles: nobles, clergy: clergy, burghers: burghers, slaves: max(0, slavery))

@@ -54,7 +54,7 @@ TERRAIN = {
     "f": "farmland", "p": "plains", "h": "hills", "m": "mountains",
     "w": "forest", "x": "marsh", "d": "desert", "s": "steppe",
 }
-GOVERNMENTS = {"monarchy", "republic", "theocracy", "steppeHorde"}
+GOVERNMENTS = {"monarchy", "republic", "theocracy", "steppeHorde", "tribal"}
 RELIGIONS = {
     "catholic", "hussite", "orthodox", "bosnian", "coptic", "ethiopian", "armenian", "syriac", "nestorian",
     "sunni", "twelver", "zaydi", "ismaili", "ibadi", "druze", "alawite", "yazidi",
@@ -563,6 +563,20 @@ def build(args):
     culture_index = {c["id"]: i for i, c in enumerate(cultures)}
     state_mix, province_mix, orders = parse_pops(os.path.join(ROOT, "data/map/pops"), culture_index)
     slavery = parse_slavery(os.path.join(ROOT, "data/map/slavery.txt"))
+    subjects = {}
+    for n_line, raw in enumerate(open(os.path.join(ROOT, "data/map/subjects.txt"), encoding="utf-8"), 1):
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        overlord, subject, kind = line.split()
+        if kind not in ("vassal", "tributary", "personal_union"):
+            problems.append(f"subjects.txt:{n_line}: unknown type {kind}")
+        for tag in (overlord, subject):
+            if tag not in tags:
+                problems.append(f"subjects.txt:{n_line}: unknown country {tag}")
+        if subject in subjects:
+            problems.append(f"subjects.txt:{n_line}: {subject} already has an overlord")
+        subjects[subject] = (overlord, kind)
     state_names = [st["name"] for st in states]
     for name in state_names:
         if state_names.count(name) > 1:
@@ -776,7 +790,9 @@ def build(args):
         "cultures": [{"id": c["id"], "name": c["name"], "family": c["family"]} for c in cultures],
         "countries": [
             {"tag": c["tag"], "name": c["name"], "color": c["color"], "government": c["government"],
-             "religion": c["religion"], "capital": int(c["capital"]), "slavery": slavery.get(c["tag"], 0.0)}
+             "religion": c["religion"], "capital": int(c["capital"]), "slavery": slavery.get(c["tag"], 0.0),
+             "overlord": subjects.get(c["tag"], (None, None))[0],
+             "subjectType": subjects.get(c["tag"], (None, None))[1]}
             for c in countries
         ],
         "provinces": [

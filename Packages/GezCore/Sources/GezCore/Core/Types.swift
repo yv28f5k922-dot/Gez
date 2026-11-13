@@ -95,6 +95,37 @@ public struct GeoPoint: Hashable, Sendable {
 
 public enum GovernmentType: String, CaseIterable, Sendable {
     case monarchy, republic, theocracy, steppeHorde
+    /// Loose tribal confederations with no single state (Baloch, Najdi,
+    /// Pashtun tribes...). Weak central control.
+    case tribal
+
+    public var displayName: String {
+        switch self {
+        case .monarchy: return "Monarchy"
+        case .republic: return "Republic"
+        case .theocracy: return "Theocracy"
+        case .steppeHorde: return "Steppe horde"
+        case .tribal: return "Tribal confederation"
+        }
+    }
+}
+
+/// How a subject country is bound to its overlord.
+public enum SubjectType: String, CaseIterable, Sendable {
+    /// Ruled from above but keeps its own ruler.
+    case vassal
+    /// Pays tribute, otherwise runs its own affairs.
+    case tributary
+    /// Shares a monarch with the overlord; separate realms.
+    case personalUnion = "personal_union"
+
+    public var displayName: String {
+        switch self {
+        case .vassal: return "Vassal"
+        case .tributary: return "Tributary"
+        case .personalUnion: return "Personal union"
+        }
+    }
 }
 
 public enum Terrain: String, CaseIterable, Sendable {
