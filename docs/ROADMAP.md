@@ -123,7 +123,10 @@ wait for Phase 6.
    unions forming and breaking (the Ladislaus union should end at his
    death in 1457 unless the player changes history).
 
-### Phase 5: Government, laws and estates
+### Phase 5: Government, laws and estates ✅ (session 5)
+Owner's choices: EU5-style law areas; core + regional estates; power,
+loyalty and privileges; a reform tree per government type. Done: all
+three steps plus stability. Cossacks left out (they appear after 1453).
 1. **Laws** with trade-offs (tax, conscription, tolerance, succession).
 2. **Government reforms** over time.
 3. **Estates tied to pops**: nobles, clergy, burghers plus regional

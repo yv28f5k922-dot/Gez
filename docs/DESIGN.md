@@ -170,12 +170,54 @@ turned into game files by `tools/mapgen/mapgen.py`.
 - Later: conversion, assimilation, migration, plague, unrest by unhappy
   groups, class-based estates.
 
-### Estates, religion, government
-- Estates (nobles, clergy, burghers, plus regional ones) with loyalty and
-  influence.
+### Government, laws and estates (Phase 5, owner's choices)
+Data in `data/government/` → `tools/government/govgen.py` →
+`government1453.json`; code in `Government/Government.swift` and
+`Systems/GovernmentSystem.swift`; Government window in the top bar.
+- **Laws (EU5-style law areas)**: 11 areas: succession, crown authority,
+  taxation, army, religious policy, trade, justice, peasants and land,
+  towns, learning, coinage. Each has 2–4 options with trade-offs
+  (`laws.txt`). Changing one costs a month's income and takes 6 months;
+  only one change per area at a time. Changing succession costs 1
+  stability. Some options need a government type (no primogeniture in a
+  republic). Sound money forbids debasing.
+- **Estates (core + regional)**: nobles, clergy, burghers and peasants
+  everywhere; Janissaries (Ottomans), Mamluk emirs (Mamluks), Rajputs
+  (Hindu nobles of Rajput cultures), Tribes (tribal cultures in tribal,
+  steppe and listed Muslim realms) and Dhimmi (non-Muslims in Muslim
+  realms, which they take from the other estates).
+- **Power (from pops)**: raw power = thousands of people × weight (nobles
+  30, clergy 25, Rajputs 30, burghers 5, tribes 3, dhimmi 0.6, peasants
+  0.25) × (0.5 + contentment); Janissaries 12% and Mamluks 35% of the pop
+  total; × (1 + power changes). The crown has its own share (monarchy 45%
+  of the estates' total, theocracy 40, horde 35, republic 30, tribal 20,
+  × crown-power changes). Shares add to 100%.
+- **Loyalty** 0–100 heads 10% a month toward: 50 + laws and privileges +
+  (contentment − 50%) × 40 + 3 per stability − 25 × power share − 20 per
+  tax level above normal on their class − grudges. Loyal (60+) estates
+  give bonuses, disloyal (<30) ones penalties scaled by their power.
+  A disloyal (<20) estate with 35%+ power has a 5% monthly chance to
+  seize its strongest missing privilege (−1 stability).
+- **Privileges** (`privileges.txt`, 23): loyalty and power for the estate,
+  plus effects; some pay or cost money once. Revoking: −1 stability and a
+  grudge of 2× their loyalty, fading 3% a month.
+- **Stability** −3…+3: each point ±3% tax, ±2 contentment, ±0.15 reform
+  progress. Raising costs 2 months' income (min 25), +50% per point above
+  0. Falls: ruler dies without an adult heir (−1), succession law change
+  (−1), revoked privilege (−1), estate seizure (−1), bankruptcy (−2).
+- **Reforms (a tree per government)**: 4 tiers costing 0/60/120/200
+  progress; progress 0.4 a month + stability + laws. Some reforms change
+  the government (tribal → kingdom/emirate, horde → settled khanate,
+  theocracy → secular principality, republic → hereditary signore); the
+  new type starts again at tier 1 and laws it does not allow fall back.
+- **Effects reach**: tax (overall and per class), contentment by class and
+  other faiths, merchant profit, vassal tax share and opinion, loan
+  interest, building costs, learning, inflation. Manpower, levy size, army
+  quality and fort defence are stored for Phase 6.
+- **AI**: takes reforms (keeping its government unless tribal), raises
+  stability below +1 when cheap, grants a privilege each January to a
+  strong estate below 35 loyalty. AI does not change laws yet.
 - Religions: see `Packages/GezCore/Sources/GezCore/Faith/Religion.swift`.
-- Government types: monarchy, republic, theocracy, steppe horde; reforms and
-  laws later.
 
 ## Architecture
 

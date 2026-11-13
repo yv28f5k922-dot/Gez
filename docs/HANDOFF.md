@@ -144,9 +144,12 @@ docs/              DESIGN, HISTORY_NOTES, HANDOFF (this), CREDITS, previews
 ## What to do next
 
 **Follow `docs/ROADMAP.md`.** The owner chose every feature and the build
-order in session 2. **Phases 1–4 are done (sessions 3–5; session 5 added whole real families
-and landed great vassals, `VassalSystem`). Next: Phase 5, government, laws
-and estates** (ask the owner first). Then Phase 6 armies.
+order in session 2. **Phases 1–5 are done (sessions 3–5; session 5 added whole real families,
+landed great vassals (`VassalSystem`) and Phase 5 government, laws,
+estates and reforms (`GovernmentSystem`, `data/government/`)). Next:
+Phase 6, armies and logistics** (ask the owner first). Military law and
+estate effects (manpower, levy size, army quality, fort defence) are
+already stored in `world.government.effects` waiting for armies. Then Phase 6 armies.
 
 CI note: GitHub's arm64 Mac runners are sometimes unavailable for hours.
 Simulation tests also run on Linux (`swift:6.0` container) and the app

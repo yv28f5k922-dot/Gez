@@ -273,6 +273,8 @@ struct GovernmentPanel: View {
                 parts.append(m.displayName)
             } else if m.isMood {
                 parts.append(String(format: "%@ %+.0f", m.displayName, v * 100))
+            } else if m == .vassalOpinion {
+                parts.append(String(format: "%@ %+.0f", m.displayName, v))
             } else if m.isPoints {
                 parts.append(String(format: "%@ %+.1f", m.displayName, v))
             } else if m == .inflationDecay {

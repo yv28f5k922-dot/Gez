@@ -20,7 +20,7 @@ estate | janissaries | Janissaries | fixed:0.12 |
 estate | mamluks | Mamluk emirs | fixed:0.35 |
 estate | rajputs | Rajputs | rajput | 30
 estate | tribes | Tribes | tribes | 3
-estate | dhimmi | Dhimmi | dhimmi | 1
+estate | dhimmi | Dhimmi | dhimmi | 0.6
 
 # where | estate | rule
 #   tags:A,B,C           these countries

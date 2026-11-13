@@ -356,3 +356,25 @@ rule); they are marked "invented" in the game.
 | MEW | Ramabai | birth year? |
 | MAR | Satal | birth year? |
 | MAR | Suja | birth year? |
+
+## Government in 1453 (Phase 5)
+
+Laws, reforms and stability on 30 May 1453 are set in
+`data/government/laws_1453.txt`. Most countries get defaults by government
+and religion (feudal crown, customary taxes, levies; Christian realms
+"state faith only", Muslim and Hindu realms "protected minorities"). These
+are judgment calls, change them freely:
+
+| Country | Choice | Why / doubt |
+|---|---|---|
+| TUR | Centralised crown, royal tax collectors, standing army (Janissaries), serfdom | Timar land is close to serfdom only loosely? |
+| MAM | Standing army, tax collectors; Mamluk emirs 35% power | |
+| FRA | Standing army, tax collectors, royal domain | Compagnies d'ordonnance 1445, taille permanente |
+| ENG, CAS, ARA, POL, FRA | "Diet of the estates" reform | Parliament, Cortes, Sejm, Estates-General |
+| HUN, BOH | "Elective crown" reform | Both elected kings in practice |
+| VEN | Sound money, free markets, chartered towns, Great Council, State arsenal | |
+| LIT, MOS | Serfdom | Serfdom tightens later (15th–16th c.)? |
+| ETH | Serfdom | gult land tenure is not quite serfdom? |
+| KSH, VIJ | Open tolerance | Zain-ul-Abidin's and Vijayanagara's tolerance |
+| Stability | TUR +2, FRA +2, VEN +2, KSH +2; MOE, MOL, NAV −2; WAL, MOR −1; ENG, CAS, TRE, HUN, BOH, MOS 0; others +1 | Morea: Albanian revolt of 1453; Moldavia and Navarre: civil wars |
+| Cossacks | Not an estate | They appear decades after 1453 |
