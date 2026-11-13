@@ -176,3 +176,12 @@ workflow by hand with mode `check` (REST: `gh api -X POST
 repos/yv28f5k922-dot/Gez/actions/workflows/heraldry.yml/dispatches -f ref=main
 -f 'inputs[mode]=check'`). Contact sheets go to the `heraldry-candidates`
 branch. CC BY-SA credits must be shown in-game (credits screen still to do).
+
+Owner decisions on tribes: Shammar = Ha'il flag; Asir = Idrisid flag;
+Cyrenaica = Senussi flag; Yam = the owner-supplied Yam banner; Ja'alin and
+Baloch, Hazara, Beja, Hakkari, Khokhars, Dards, Khasi, Bhuyan = invented
+simple banners (`data/heraldry/designed/*.svg`); Pashtun = 1839 banner;
+Kabarda = Kabardian noble banner; Oirats = Dzungar banner; Jats = Bharatpur;
+Sami = 1986 Sami flag; Alania/Vainakh = later-era flags; Kirat = modern
+Kirat flag; Komi, Mordvins, Berbers, Guanches, Somali, Najd = plain banner.
+57 countries still use the plain banner; if a real source turns up, add it.
