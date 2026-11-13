@@ -130,6 +130,10 @@ struct BudgetPanel: View {
             line("Inflation", String(format: "%.1f%%", inflation * 100))
             Text("Inflation makes buildings (and later armies) dearer and angers burghers most. It falls slowly when you stop debasing.")
                 .font(.caption).foregroundStyle(Palette.ink.opacity(0.6))
+            if !GovernmentSystem.canDebase(w, c) {
+                Text("Your Sound money law forbids debasing the coin.")
+                    .font(.caption).foregroundStyle(.red.opacity(0.8))
+            }
             HStack {
                 Button {
                     model.debaseOnce()
@@ -140,6 +144,7 @@ struct BudgetPanel: View {
                         .background(Palette.ink.opacity(0.1), in: Capsule())
                 }
                 .buttonStyle(.plain)
+                .disabled(!GovernmentSystem.canDebase(w, c))
             }
             Toggle(isOn: Binding(get: { w.countries.debasing[c.index] }, set: { model.setDebasing($0) })) {
                 Text(String(format: "Keep debasing (+%.0f%% income, +%.1f%% inflation a month)",

@@ -58,12 +58,18 @@ public enum VassalSystem {
         return nil
     }
 
+    /// Share of tax a vassal of this realm keeps (laws can change it).
+    public static func keepShare(_ world: World, _ c: CountryID) -> Double {
+        max(0.05, min(0.8, VassalModel.keepShare + world.government.modifier(c, .vassalKeep)))
+    }
+
     /// What a vassal thinks of their liege's ruler (−100…100).
     public static func opinionOfLiege(_ world: World, _ x: CharacterID, _ c: CountryID) -> Int {
         guard let r = world.countries.ruler[c.index] else { return 0 }
         let ch = world.people.characters
         var o = CharacterSystem.opinion(world, x, of: r) + ch.favour[x.index] + 10
         if let d = ch.dynasty[x.index], !d.hasPrefix("of "), d == ch.dynasty[r.index] { o += 15 }
+        o += Int(world.government.modifier(c, .vassalOpinion).rounded())
         // The nobility's tax: heavy angers, light pleases.
         o -= Int(((world.countries.taxLevel[c.index][TaxClass.nobles.rawValue] - 1) * 30).rounded())
         return max(-100, min(100, o))

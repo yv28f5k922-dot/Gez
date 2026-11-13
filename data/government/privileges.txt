@@ -1,0 +1,28 @@
+# Privileges you can grant an estate (or revoke). Granting raises loyalty
+# and power; revoking costs twice the loyalty (fading over years) and 1
+# stability. gold = one-off ducats as months of income, paid on granting.
+#
+# privilege | estate | key | Name | loyalty | power | effects | gold
+privilege | nobles | tax_exemption | Noble tax exemption | 15 | 0.10 | tax_nobles=-0.6 |
+privilege | nobles | officer_corps | Nobles lead the army | 10 | 0.10 | army_quality=0.05 |
+privilege | nobles | hereditary_offices | Hereditary offices | 15 | 0.15 | vassal_opinion=10 crown_power=-0.05 |
+privilege | nobles | land_grants | Crown land sold to nobles | 10 | 0.10 | tax=-0.03 | 3
+privilege | clergy | church_courts | Church courts | 10 | 0.10 | stability_cost=-0.1 |
+privilege | clergy | tithe_exemption | Clergy tax exemption | 15 | 0.10 | tax_clergy=-0.8 |
+privilege | clergy | schools | Church controls learning | 10 | 0.05 | learning=0.1 mood_other_faith=-0.03 |
+privilege | clergy | endowments | Pious endowments | 10 | 0.10 | build_cost=-0.05 | -2
+privilege | burghers | town_charters | Town self-government | 15 | 0.10 | tax_burghers=-0.2 trade=0.05 |
+privilege | burghers | monopolies | Trade monopolies | 10 | 0.10 | trade=0.08 mood_peasants=-0.02 |
+privilege | burghers | crown_loans | Lenders to the crown | 10 | 0.15 | interest=-0.2 | 4
+privilege | peasants | village_assemblies | Village assemblies | 15 | 0.10 | mood_peasants=0.04 loyalty:nobles=-5 |
+privilege | peasants | fixed_rents | Fixed rents | 15 | 0.05 | tax_peasants=-0.15 mood_peasants=0.05 |
+privilege | janissaries | pay_rises | Accession bonuses | 15 | 0.05 | | -2
+privilege | janissaries | marriage | Janissaries may marry | 10 | 0.15 | army_quality=-0.05 manpower=0.1 |
+privilege | mamluks | iqta | Iqta land grants | 15 | 0.10 | tax=-0.05 |
+privilege | mamluks | succession_say | Emirs choose the sultan | 15 | 0.15 | crown_power=-0.1 |
+privilege | rajputs | watan | Hereditary watan lands | 15 | 0.10 | tax=-0.04 |
+privilege | rajputs | rajput_commands | Rajput commands | 10 | 0.10 | army_quality=0.05 |
+privilege | tribes | tribal_autonomy | Tribal autonomy | 15 | 0.10 | tax=-0.05 |
+privilege | tribes | subsidies | Subsidies to the sheikhs | 15 | 0.05 | | -2
+privilege | dhimmi | own_courts | Communal courts | 15 | 0.05 | mood_other_faith=0.04 |
+privilege | dhimmi | lower_jizya | Lower jizya | 15 | 0.05 | tax=-0.04 mood_other_faith=0.05 |

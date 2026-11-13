@@ -275,6 +275,8 @@ public struct World: Sendable {
     public var people = People()
     /// Countries played by people; the AI leaves them alone.
     public var humanCountries: Set<CountryID> = []
+    /// Laws, estates, stability and reforms (Phase 5).
+    public var government = Government()
 
     public init(map: MapInfo = MapInfo(width: 1, height: 1, pixelsPerDegree: 1, longitudeMin: 0, latitudeMax: 0)) {
         self.map = map

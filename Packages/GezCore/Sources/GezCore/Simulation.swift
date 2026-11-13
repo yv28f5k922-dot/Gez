@@ -40,6 +40,7 @@ public final class Simulation {
             PopulationSystem.runMonthly(&world)
             CharacterSystem.runMonthly(&world, date: date, random: &random)
             VassalSystem.runMonthly(&world, date: date, random: &random)
+            GovernmentSystem.runMonthly(&world, date: date, random: &random)
         }
 
         if date.isFirstOfYear {

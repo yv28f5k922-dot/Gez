@@ -182,6 +182,14 @@ final class SnapshotTests: XCTestCase {
         save(try XCTUnwrap(renderer.cgImage), "court.png")
     }
 
+    func testGovernmentPanel() throws {
+        let model = GameModel(useMetal: false)
+        let janissaries = model.world.government.rules.estate(forKey: "janissaries")
+        let renderer = ImageRenderer(content: GovernmentPanel(scrolls: false, openEstate: janissaries).environment(model))
+        renderer.scale = 1
+        save(try XCTUnwrap(renderer.cgImage), "government.png")
+    }
+
     func testMainScreen() async throws {
         let model = GameModel()
         if let metal = model.metal {

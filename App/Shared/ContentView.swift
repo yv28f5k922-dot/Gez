@@ -27,6 +27,8 @@ struct ContentView: View {
                     TradePanel().padding(12)
                 } else if model.showCourt {
                     CourtPanel().padding(12)
+                } else if model.showGovernment {
+                    GovernmentPanel().padding(12)
                 }
             }
             .overlay(alignment: .bottomTrailing) {
@@ -80,13 +82,22 @@ struct TopBar: View {
                     Label("Trade", systemImage: "shippingbox")
                 }
                 .buttonStyle(.plain)
+                .help("Trade routes, tolls and embargoes")
                 Button {
                     model.showCourt.toggle()
                 } label: {
                     Label("Court", systemImage: "crown")
                 }
                 .buttonStyle(.plain)
-                .help("Trade routes, tolls and embargoes")
+                .help("Ruler, family, council, vassals and marriages")
+                Button {
+                    model.showGovernment.toggle()
+                } label: {
+                    Label(String(format: "Stability %+d", model.world.government.stability[player.index]),
+                          systemImage: "building.columns")
+                }
+                .buttonStyle(.plain)
+                .help("Government: stability, estates, laws and reforms")
                 if countries.inflation[player.index] >= 0.01 {
                     Text(String(format: "Inflation %.0f%%", countries.inflation[player.index] * 100))
                         .font(.caption)

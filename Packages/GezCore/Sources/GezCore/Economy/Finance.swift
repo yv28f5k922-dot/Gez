@@ -154,7 +154,8 @@ extension World {
         let yearlyIncome = max(1, countries.lastMonthlyIncome[c] * 12)
         let ratio = finance.debt(of: country) / yearlyIncome
         guard ratio < Finance.maxDebtYears else { return nil }
-        return min(Finance.maxRate, finance.banks.baseRate[bank.index] * (1 + ratio))
+        let lawFactor = max(0.5, 1 + government.modifier(country, .interest))
+        return min(Finance.maxRate, finance.banks.baseRate[bank.index] * (1 + ratio) * lawFactor)
     }
 }
 
@@ -184,6 +185,7 @@ public enum FinanceSystem {
 
     /// Debase once: quick cash, more inflation.
     public static func debaseOnce(_ world: inout World, _ country: CountryID) -> Double {
+        guard GovernmentSystem.canDebase(world, country) else { return 0 }
         let gain = max(10, world.countries.lastMonthlyIncome[country.index] * Finance.debaseOnceMonths)
         world.countries.treasury[country.index] += gain
         world.countries.inflation[country.index] += Finance.debaseOnceInflation
@@ -211,11 +213,15 @@ public enum FinanceSystem {
             world.countries.treasury[c] -= interest[c]
             world.countries.lastInterest[c] = interest[c]
             world.countries.lastMonthlyExpenses[c] += interest[c]
+            if world.countries.debasing[c] && !GovernmentSystem.canDebase(world, CountryID(c)) {
+                world.countries.debasing[c] = false
+            }
             if world.countries.debasing[c] {
                 world.countries.treasury[c] += world.countries.lastMonthlyIncome[c] * Finance.debaseOngoingIncome
                 world.countries.inflation[c] += Finance.debaseOngoingInflation
             } else {
-                world.countries.inflation[c] = max(0, world.countries.inflation[c] - Finance.inflationDecay)
+                let decay = Finance.inflationDecay + world.government.modifier(CountryID(c), .inflationDecay)
+                world.countries.inflation[c] = max(0, world.countries.inflation[c] - decay)
             }
             if world.countries.bankruptMonthsLeft[c] > 0 { world.countries.bankruptMonthsLeft[c] -= 1 }
         }
@@ -261,6 +267,9 @@ public enum FinanceSystem {
         world.countries.treasury[country.index] = 0
         world.countries.bankruptMonthsLeft[country.index] = Finance.bankruptcyMonths
         world.countries.debasing[country.index] = false
+        if country.index < world.government.count {
+            GovernmentSystem.changeStability(&world, country, by: -2)
+        }
     }
 
     /// Computer countries pay off loans when they have plenty, and stop

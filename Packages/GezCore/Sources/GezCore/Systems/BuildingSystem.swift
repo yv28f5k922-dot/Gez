@@ -58,7 +58,7 @@ public enum BuildingSystem {
             }
         }
         if let owner = world.provinces.owner[p.index] {
-            total *= 1 + world.countries.inflation[owner.index]
+            total *= (1 + world.countries.inflation[owner.index]) * max(0.5, 1 + world.government.modifier(owner, .buildCost))
         }
         return total
     }

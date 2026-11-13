@@ -1,0 +1,109 @@
+# Laws in force on 30 May 1453.
+# default | area | option | condition
+#   condition: all | government:x | religion:muslim/christian/dharmic | tags:A,B
+# Later lines win. Succession comes from data/characters/succession.txt
+# (or the government's default), so it is not listed here.
+default | crown | feudal | all
+default | crown | domain | government:republic,theocracy
+default | crown | domain | religion:muslim
+default | taxation | customary | all
+default | taxation | farming | religion:muslim
+default | army | levies | all
+default | faith | orthodoxy | religion:christian
+default | faith | tolerance | religion:muslim
+default | faith | tolerance | religion:dharmic
+default | trade | customs | all
+default | trade | guilds | government:republic
+default | justice | customary | all
+default | justice | religious | religion:muslim
+default | land | customary | all
+default | towns | royal | all
+default | learning | church | all
+default | coinage | crown | all
+
+# Specific realms (uncertain ones are listed in HISTORY_NOTES).
+set | TUR | crown | centralised
+set | TUR | army | standing
+set | TUR | taxation | collectors
+set | TUR | land | serfdom
+set | MAM | army | standing
+set | MAM | taxation | collectors
+set | FRA | army | standing
+set | FRA | taxation | collectors
+set | FRA | crown | domain
+set | ENG | crown | domain
+set | ENG | towns | chartered
+set | CAS | crown | domain
+set | ARA | towns | chartered
+set | VEN | trade | free
+set | VEN | towns | chartered
+set | VEN | coinage | sound
+set | GEN | towns | chartered
+set | FLO | learning | patronage
+set | FLO | trade | free
+set | MLO | learning | patronage
+set | MLO | crown | centralised
+set | NAP | learning | patronage
+set | PAP | learning | universities
+set | BUR | towns | chartered
+set | BUR | crown | domain
+set | HUN | army | mercenaries
+set | POL | towns | chartered
+set | LIT | land | serfdom
+set | MOS | crown | centralised
+set | MOS | land | serfdom
+set | BOH | faith | tolerance
+set | BOH | learning | universities
+set | KSH | faith | open
+set | KSH | learning | patronage
+set | VIJ | faith | open
+set | VIJ | crown | domain
+set | DEL | crown | feudal
+set | TIM | learning | patronage
+set | QAR | learning | patronage
+set | ETH | faith | orthodoxy
+set | ETH | land | serfdom
+
+# Starting reforms (tier 1 unless listed): reform | TAG | key
+reform | TUR | sultanate
+reform | TUR | divan
+reform | MAM | sultanate
+reform | MAM | military_households
+reform | VEN | merchant_republic
+reform | VEN | great_council
+reform | VEN | admiralty
+reform | GEN | merchant_republic
+reform | GEN | banking_houses
+reform | FLO | merchant_republic
+reform | FLO | banking_houses
+reform | NOV | noble_republic
+reform | HUN | elective_crown
+reform | BOH | elective_crown
+reform | ENG | court_of_estates
+reform | FRA | court_of_estates
+reform | FRA | chancery
+reform | CAS | court_of_estates
+reform | ARA | court_of_estates
+reform | POL | court_of_estates
+reform | MOE | despotate
+reform | SER | despotate
+reform | TEU | military_order
+reform | KNI | military_order
+reform | ZAY | imamate
+
+# Stability on 30 May 1453 (default +1). stability | TAG | −3…3
+stability | TUR | 2
+stability | MOE | -2
+stability | MOL | -2
+stability | WAL | -1
+stability | NAV | -2
+stability | ENG | 0
+stability | CAS | 0
+stability | MOR | -1
+stability | TRE | 0
+stability | HUN | 0
+stability | BOH | 0
+stability | MOS | 0
+stability | FRA | 2
+stability | VEN | 2
+stability | KSH | 2

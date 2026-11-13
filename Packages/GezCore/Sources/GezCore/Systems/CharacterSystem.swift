@@ -169,6 +169,13 @@ public enum CharacterSystem {
     /// The ruler died (or left): the heir takes over, or someone is found.
     static func succeed(_ world: inout World, _ c: CountryID, date: GameDate, random: inout GameRandom) {
         let old = world.countries.ruler[c.index]
+        // A smooth succession needs a known, adult heir; otherwise the realm is shaken.
+        let smooth = world.countries.heir[c.index].map {
+            world.people.characters.isAlive($0) && world.people.characters.age($0, on: date) >= adultAge
+        } ?? false
+        if !smooth && c.index < world.government.count {
+            GovernmentSystem.changeStability(&world, c, by: -1)
+        }
         var next = world.countries.heir[c.index].flatMap { world.people.characters.isAlive($0) ? $0 : nil }
             ?? heir(world, c, date: date)
         if next == nil {

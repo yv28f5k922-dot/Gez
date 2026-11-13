@@ -1,0 +1,63 @@
+# Estates (owner's choice: the four core estates everywhere plus regional
+# ones; power from their pops' size and wealth; loyalty and privileges).
+#
+# estate | key | Name | source | weight
+#   source: class:<social class>   pops of that class (after the regional
+#                                  estates below have taken theirs)
+#           dhimmi                 non-Muslim pops of a Muslim realm
+#           rajput                 Hindu nobles of Rajput cultures
+#           tribes                 nobles and peasants of tribal cultures
+#           fixed:<share>          no pops: raw power = share of the
+#                                  realm's total estate power
+#   weight: raw power per thousand people (times their wealth).
+# Regional estates exist only where listed under "where".
+
+estate | nobles | Nobility | class:nobles | 30
+estate | clergy | Clergy | class:clergy | 25
+estate | burghers | Burghers | class:burghers | 5
+estate | peasants | Peasantry | class:peasants | 0.25
+estate | janissaries | Janissaries | fixed:0.12 |
+estate | mamluks | Mamluk emirs | fixed:0.35 |
+estate | rajputs | Rajputs | rajput | 30
+estate | tribes | Tribes | tribes | 3
+estate | dhimmi | Dhimmi | dhimmi | 1
+
+# where | estate | rule
+#   tags:A,B,C           these countries
+#   muslim               every Muslim-ruled country with such pops
+#   india                countries with Rajput pops
+#   government:x,y       countries of these governments
+where | janissaries | tags:TUR
+where | mamluks | tags:MAM
+where | dhimmi | muslim
+where | rajputs | india
+where | tribes | government:tribal,steppeHorde
+where | tribes | tags:MOR,TUN,TLE,ZAY,HEJ,MSH,QAR,AKK,TIM,HRT,UZB,MGH,GRH,CRI,KAZ,MUL,DEL,SHI,DUL,RAM
+
+# Cultures whose rural people are organised as tribes (for the Tribes estate).
+tribal_cultures | bedouin, najdi, berber, tuareg, turkmen, nogai, uzbek, kyrgyz, baloch, pashtun, hazara, kurdish, luri, beja, somali, afar, oromo, bashkir, moghul
+# Cultures whose Hindu nobles count as Rajputs.
+rajput_cultures | rajasthani, malvi, gujarati, pahari, hindustani, punjabi, awadhi, bihari
+
+# Loyalty and bonuses (owner: power, loyalty, privileges). Effects use the
+# law effect keys. Loyal = 60+, disloyal = below 30.
+# loyal | estate | effects while loyal
+# disloyal | estate | effects while disloyal (scaled by the estate's power share x2)
+loyal | nobles | vassal_opinion=10 manpower=0.1
+loyal | clergy | learning=0.1 stability_cost=-0.1
+loyal | burghers | trade=0.1 interest=-0.1
+loyal | peasants | tax=0.05 manpower=0.05
+loyal | janissaries | army_quality=0.15
+loyal | mamluks | army_quality=0.15 fort_defence=0.1
+loyal | rajputs | manpower=0.15 army_quality=0.05
+loyal | tribes | manpower=0.2
+loyal | dhimmi | tax=0.05 trade=0.03
+disloyal | nobles | tax=-0.15 vassal_opinion=-15
+disloyal | clergy | stability_cost=0.25 learning=-0.15
+disloyal | burghers | trade=-0.2 tax=-0.05
+disloyal | peasants | tax=-0.15
+disloyal | janissaries | stability_cost=0.3 army_quality=-0.2
+disloyal | mamluks | stability_cost=0.3 tax=-0.1
+disloyal | rajputs | manpower=-0.2 tax=-0.05
+disloyal | tribes | tax=-0.1 manpower=-0.2
+disloyal | dhimmi | tax=-0.1

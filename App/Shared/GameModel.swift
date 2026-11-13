@@ -63,6 +63,7 @@ final class GameModel {
     var showBudget = false
     var showTrade = false
     var showCourt = false
+    var showGovernment = false
     /// Person shown in the court window (nil = your ruler).
     var viewedCharacter: CharacterID?
     /// Map positions of market towns, for drawing trade routes.
@@ -193,7 +194,8 @@ final class GameModel {
     }
 
     func setDebasing(_ on: Bool) {
-        guard let p = playerCountry, simulation.world.countries.bankruptMonthsLeft[p.index] == 0 || !on else { return }
+        guard let p = playerCountry, simulation.world.countries.bankruptMonthsLeft[p.index] == 0 || !on,
+              GovernmentSystem.canDebase(simulation.world, p) || !on else { return }
         simulation.world.countries.debasing[p.index] = on
         revision &+= 1
     }
@@ -236,6 +238,40 @@ final class GameModel {
     func propose(_ a: CharacterID, _ b: CharacterID) {
         guard CharacterSystem.marriageRefusal(world, a, b, date: date) == nil else { return }
         CharacterSystem.marry(&simulation.world, a, b)
+        revision &+= 1
+    }
+
+    // MARK: Government actions (player only)
+
+    func raiseStability() {
+        guard let p = playerCountry else { return }
+        GovernmentSystem.raiseStability(&simulation.world, p)
+        revision &+= 1
+    }
+
+    @discardableResult
+    func changeLaw(area: Int, option: Int) -> GovernmentSystem.LawRefusal? {
+        guard let p = playerCountry else { return .notAllowed }
+        let r = GovernmentSystem.changeLaw(&simulation.world, p, area: area, option: option, date: date)
+        revision &+= 1
+        return r
+    }
+
+    func grantPrivilege(_ privilege: Int) {
+        guard let p = playerCountry else { return }
+        GovernmentSystem.grantPrivilege(&simulation.world, p, privilege, date: date)
+        revision &+= 1
+    }
+
+    func revokePrivilege(_ privilege: Int) {
+        guard let p = playerCountry else { return }
+        GovernmentSystem.revokePrivilege(&simulation.world, p, privilege, date: date)
+        revision &+= 1
+    }
+
+    func adoptReform(_ option: Int) {
+        guard let p = playerCountry else { return }
+        GovernmentSystem.adoptReform(&simulation.world, p, option: option, date: date)
         revision &+= 1
     }
 

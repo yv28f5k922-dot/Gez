@@ -974,3 +974,174 @@ final class VassalTests: XCTestCase {
         }
     }
 }
+
+final class GovernmentTests: XCTestCase {
+    let start = Scenario1453.startDate
+    func country(_ w: World, _ t: String) -> CountryID { w.countries.id(forTag: t)! }
+    func area(_ w: World, _ key: String) -> Int { w.government.rules.lawArea(forKey: key)! }
+    func option(_ w: World, _ a: Int, _ key: String) -> Int { w.government.rules.lawAreas[a].options.firstIndex { $0.key == key }! }
+    func lawKey(_ w: World, _ c: CountryID, _ areaKey: String) -> String {
+        let a = area(w, areaKey)
+        return w.government.rules.lawAreas[a].options[w.government.laws[c.index][a]].key
+    }
+
+    func testRulesAnd1453Laws() {
+        let w = Scenario1453.makeWorld()
+        let g = w.government
+        XCTAssertEqual(g.count, w.countries.count)
+        XCTAssertEqual(g.rules.lawAreas.count, 11)
+        let tur = country(w, "TUR"), mam = country(w, "MAM"), fra = country(w, "FRA"), ven = country(w, "VEN")
+        XCTAssertTrue(g.has(tur, estate: g.rules.estate(forKey: "janissaries")!))
+        XCTAssertTrue(g.has(tur, estate: g.rules.estate(forKey: "dhimmi")!))
+        XCTAssertTrue(g.has(mam, estate: g.rules.estate(forKey: "mamluks")!))
+        XCTAssertFalse(g.has(fra, estate: g.rules.estate(forKey: "janissaries")!))
+        XCTAssertEqual(lawKey(w, tur, "crown"), "centralised")
+        XCTAssertEqual(lawKey(w, fra, "succession"), "salic")
+        XCTAssertEqual(lawKey(w, ven, "coinage"), "sound")
+        XCTAssertEqual(g.reforms[ven.index].count, 3)
+        XCTAssertEqual(g.stability[tur.index], 2)
+        XCTAssertEqual(g.stability[country(w, "MOE").index], -2)
+    }
+
+    func testPowerSharesAddUp() {
+        let w = Scenario1453.makeWorld()
+        for t in ["TUR", "FRA", "VEN", "MAM", "DEL", "MEW", "POL"] {
+            let c = country(w, t)
+            let g = w.government
+            let total = g.crownPower[c.index] + g.estates[c.index].reduce(0) { $0 + g.power[c.index][$1.index] }
+            XCTAssertEqual(total, 1, accuracy: 0.001, t)
+            for e in g.estates[c.index] {
+                XCTAssertGreaterThanOrEqual(g.power[c.index][e.index], 0)
+                XCTAssertTrue((0...100).contains(g.loyalty[c.index][e.index]), t)
+            }
+        }
+        // Rajput nobles count as Rajputs in Mewar.
+        let mew = country(w, "MEW")
+        let rajputs = w.government.rules.estate(forKey: "rajputs")!
+        XCTAssertTrue(w.government.has(mew, estate: rajputs))
+        XCTAssertGreaterThan(w.government.power[mew.index][rajputs.index], 0.05)
+    }
+
+    func testChristiansOfConstantinopleAreDhimmi() {
+        let w = Scenario1453.makeWorld()
+        let tur = country(w, "TUR")
+        let city = w.provinces.id(named: "Konstantiniyye")!
+        let dhimmi = w.government.rules.estate(forKey: "dhimmi")!
+        let christians = w.pops.range(for: city).filter { w.pops.religion[$0].family == .christian && w.pops.socialClass[$0] != .slaves }
+        XCTAssertFalse(christians.isEmpty)
+        for i in christians { XCTAssertEqual(GovernmentSystem.estate(of: i, in: tur, w), dhimmi) }
+    }
+
+    func testLawChangeTakesSixMonths() {
+        var w = Scenario1453.makeWorld()
+        var rng = GameRandom(seed: 1)
+        let tur = country(w, "TUR")
+        w.humanCountries = [tur]
+        let a = area(w, "trade"), free = option(w, a, "free")
+        w.countries.treasury[tur.index] = 10_000
+        XCTAssertNil(GovernmentSystem.changeLaw(&w, tur, area: a, option: free, date: start))
+        XCTAssertLessThan(w.countries.treasury[tur.index], 10_000)
+        XCTAssertEqual(GovernmentSystem.lawRefusal(w, tur, area: a, option: option(w, a, "guilds")), .alreadyChanging)
+        for _ in 0..<5 { GovernmentSystem.runMonthly(&w, date: start, random: &rng) }
+        XCTAssertNotEqual(lawKey(w, tur, "trade"), "free")
+        GovernmentSystem.runMonthly(&w, date: start, random: &rng)
+        XCTAssertEqual(lawKey(w, tur, "trade"), "free")
+        XCTAssertGreaterThan(w.government.modifier(tur, .trade), 0.05)
+    }
+
+    func testSuccessionLawChange() {
+        var w = Scenario1453.makeWorld()
+        var rng = GameRandom(seed: 1)
+        let fra = country(w, "FRA")
+        w.humanCountries = [fra]
+        w.countries.treasury[fra.index] = 10_000
+        let a = area(w, "succession")
+        let before = w.government.stability[fra.index]
+        XCTAssertNil(GovernmentSystem.changeLaw(&w, fra, area: a, option: option(w, a, "primogeniture"), date: start))
+        XCTAssertEqual(GovernmentSystem.lawRefusal(w, fra, area: a, option: option(w, a, "seniority")), .alreadyChanging)
+        for _ in 0..<6 { GovernmentSystem.runMonthly(&w, date: start, random: &rng) }
+        XCTAssertEqual(w.countries.succession[fra.index], .primogeniture)
+        XCTAssertEqual(w.government.stability[fra.index], max(-3, before - 1))
+        // Republics cannot have primogeniture.
+        let ven = country(w, "VEN")
+        XCTAssertEqual(GovernmentSystem.lawRefusal(w, ven, area: a, option: option(w, a, "primogeniture")), .notAllowed)
+    }
+
+    func testPrivilegesGrantAndRevoke() {
+        var w = Scenario1453.makeWorld()
+        let fra = country(w, "FRA")
+        let nobles = w.government.rules.estate(forKey: "nobles")!
+        let p = w.government.rules.privileges.firstIndex { $0.key == "tax_exemption" }!
+        let before = GovernmentSystem.loyaltyTarget(w, fra, nobles)
+        XCTAssertTrue(GovernmentSystem.grantPrivilege(&w, fra, p, date: start))
+        XCTAssertFalse(GovernmentSystem.grantPrivilege(&w, fra, p, date: start))
+        XCTAssertGreaterThan(GovernmentSystem.loyaltyTarget(w, fra, nobles), before)
+        XCTAssertLessThan(GovernmentSystem.classTaxModifier(w, fra, .nobles), -0.5)
+        let stability = w.government.stability[fra.index]
+        XCTAssertTrue(GovernmentSystem.revokePrivilege(&w, fra, p, date: start))
+        XCTAssertEqual(w.government.stability[fra.index], stability - 1)
+        XCTAssertLessThan(GovernmentSystem.loyaltyTarget(w, fra, nobles), before)
+        // Privileges only for estates the country has.
+        let jan = w.government.rules.privileges.firstIndex { $0.estate == w.government.rules.estate(forKey: "janissaries")! }!
+        XCTAssertFalse(GovernmentSystem.grantPrivilege(&w, fra, jan, date: start))
+    }
+
+    func testSoundMoneyForbidsDebasing() {
+        var w = Scenario1453.makeWorld()
+        let ven = country(w, "VEN")
+        XCTAssertFalse(GovernmentSystem.canDebase(w, ven))
+        let before = w.countries.treasury[ven.index]
+        XCTAssertEqual(FinanceSystem.debaseOnce(&w, ven), 0)
+        XCTAssertEqual(w.countries.treasury[ven.index], before)
+    }
+
+    func testStabilityRaiseCostsMoney() {
+        var w = Scenario1453.makeWorld()
+        let moe = country(w, "MOE")
+        w.countries.treasury[moe.index] = 0
+        XCTAssertFalse(GovernmentSystem.raiseStability(&w, moe))
+        w.countries.treasury[moe.index] = 100_000
+        XCTAssertTrue(GovernmentSystem.raiseStability(&w, moe))
+        XCTAssertEqual(w.government.stability[moe.index], -1)
+        XCTAssertGreaterThan(GovernmentSystem.taxModifier(w, moe) - w.government.modifier(moe, .tax), -0.04)
+    }
+
+    func testReformsAndChangingGovernment() {
+        var w = Scenario1453.makeWorld()
+        let tur = country(w, "TUR")
+        let taken = w.government.reforms[tur.index].count
+        w.government.reformProgress[tur.index] = 0
+        XCTAssertFalse(GovernmentSystem.adoptReform(&w, tur, option: 0, date: start))
+        w.government.reformProgress[tur.index] = 1000
+        XCTAssertTrue(GovernmentSystem.adoptReform(&w, tur, option: 0, date: start))
+        XCTAssertEqual(w.government.reforms[tur.index].count, taken + 1)
+
+        // A prince-bishop can secularise into a monarchy.
+        let theocracy = w.countries.ids.first { w.countries.government[$0.index] == .theocracy && w.countries.religion[$0.index].family == .christian }!
+        let tree = w.government.rules.reforms[.theocracy]!
+        w.government.reforms[theocracy.index] = [0, 0, 0]
+        w.government.reformProgress[theocracy.index] = 1000
+        let secularise = tree[3].options.firstIndex { $0.key == "secularise" }!
+        XCTAssertTrue(GovernmentSystem.adoptReform(&w, theocracy, option: secularise, date: start))
+        XCTAssertEqual(w.countries.government[theocracy.index], .monarchy)
+        XCTAssertEqual(w.government.reforms[theocracy.index], [0])
+        let a = area(w, "succession")
+        XCTAssertTrue(w.government.rules.lawAreas[a].options[w.government.laws[theocracy.index][a]].allowed(for: .monarchy))
+    }
+
+    func testTwentyYearsStayInBounds() {
+        let sim = Simulation(world: Scenario1453.makeWorld(), startDate: start)
+        sim.advance(days: 365 * 20)
+        let g = sim.world.government
+        for c in sim.world.countries.ids where !sim.world.provinces(ownedBy: c).isEmpty {
+            XCTAssertTrue((-3...3).contains(g.stability[c.index]))
+            var total = g.crownPower[c.index]
+            for e in g.estates[c.index] {
+                XCTAssertTrue((0...100).contains(g.loyalty[c.index][e.index]))
+                total += g.power[c.index][e.index]
+            }
+            XCTAssertEqual(total, 1, accuracy: 0.001)
+        }
+        XCTAssertTrue(sim.world.countries.ids.contains { g.reforms[$0.index].count > 1 }, "some AI countries should reform")
+    }
+}

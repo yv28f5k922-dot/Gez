@@ -1,0 +1,69 @@
+# Laws (owner's choice: EU5-style law areas, each with options and trade-offs).
+# Changing a law costs one month of income and takes 6 months to enact.
+#
+# area | Area name
+# option | area | key | Name | effects | governments (blank = all)
+#
+# Effect keys (fractions unless noted):
+#   tax trade build_cost interest learning reform_progress (points/month)
+#   stability_cost vassal_keep vassal_opinion (points) crown_power
+#   mood_<class> mood_other_faith (satisfaction, 0-1 scale)
+#   tax_<class> (that class's tax only) inflation_decay (per month)
+#   no_debase (1 = may not debase) manpower levy_size army_quality fort_defence
+#   loyalty:<estate> (points) power:<estate> (share of their raw power)
+# Military effects (manpower, levy_size, army_quality, fort_defence) start
+# to matter with armies in Phase 6.
+
+area | succession | Succession
+option | succession | primogeniture | Primogeniture | stability_cost=-0.1 loyalty:nobles=-5 | monarchy theocracy
+option | succession | salic | Salic primogeniture | stability_cost=-0.1 loyalty:nobles=-5 loyalty:clergy=5 | monarchy theocracy
+option | succession | seniority | Seniority | loyalty:nobles=5 crown_power=-0.1 loyalty:tribes=10 | monarchy steppeHorde tribal
+option | succession | elective | Elective | loyalty:nobles=15 power:nobles=0.15 crown_power=-0.15 |
+
+area | crown | Crown authority
+option | crown | feudal | Feudal contract | vassal_keep=0.1 vassal_opinion=10 loyalty:nobles=10 power:nobles=0.15 crown_power=-0.15 levy_size=0.2 |
+option | crown | domain | Royal domain | |
+option | crown | centralised | Centralised crown | vassal_keep=-0.15 vassal_opinion=-15 tax=0.08 loyalty:nobles=-15 crown_power=0.25 reform_progress=0.2 |
+
+area | taxation | Taxation
+option | taxation | customary | Customary dues | tax=-0.05 mood_peasants=0.03 |
+option | taxation | farming | Tax farming | tax=0.08 mood_peasants=-0.04 loyalty:burghers=10 power:burghers=0.1 |
+option | taxation | collectors | Royal tax collectors | tax=0.12 build_cost=0.05 loyalty:nobles=-10 crown_power=0.1 |
+
+area | army | Army
+option | army | levies | Feudal levies | levy_size=0.3 army_quality=-0.1 loyalty:nobles=10 power:nobles=0.1 |
+option | army | mercenaries | Mercenary companies | army_quality=0.05 loyalty:burghers=5 tax=-0.03 |
+option | army | standing | Standing army | army_quality=0.15 manpower=-0.1 tax=-0.05 loyalty:nobles=-10 crown_power=0.1 |
+
+area | faith | Religious policy
+option | faith | orthodoxy | State faith only | mood_other_faith=-0.08 loyalty:clergy=15 power:clergy=0.1 loyalty:dhimmi=-25 |
+option | faith | tolerance | Protected minorities | loyalty:dhimmi=10 |
+option | faith | open | Open tolerance | mood_other_faith=0.06 loyalty:clergy=-15 loyalty:dhimmi=20 trade=0.03 |
+
+area | trade | Trade policy
+option | trade | guilds | Guild charters | loyalty:burghers=15 power:burghers=0.1 build_cost=0.1 |
+option | trade | customs | Royal customs | tax=0.03 trade=0.03 |
+option | trade | free | Free markets | trade=0.1 loyalty:burghers=-5 mood_burghers=0.04 tax=-0.02 |
+
+area | justice | Justice
+option | justice | customary | Customary law | loyalty:nobles=5 |
+option | justice | royal | Royal courts | reform_progress=0.3 stability_cost=-0.15 loyalty:nobles=-10 crown_power=0.05 |
+option | justice | religious | Religious law | loyalty:clergy=15 power:clergy=0.1 learning=-0.1 mood_other_faith=-0.04 |
+
+area | land | Peasants and land
+option | land | free | Free tenants | mood_peasants=0.05 loyalty:peasants=15 loyalty:nobles=-10 tax_peasants=0.05 |
+option | land | customary | Customary tenancy | |
+option | land | serfdom | Serfdom | mood_peasants=-0.08 loyalty:peasants=-20 loyalty:nobles=15 power:nobles=0.1 manpower=0.1 |
+
+area | towns | Towns
+option | towns | royal | Royal towns | tax_burghers=0.05 loyalty:burghers=-5 |
+option | towns | chartered | Chartered free cities | trade=0.05 tax_burghers=-0.1 loyalty:burghers=15 power:burghers=0.15 mood_burghers=0.04 |
+
+area | learning | Learning
+option | learning | church | Church schools | loyalty:clergy=5 |
+option | learning | patronage | Court patronage | learning=0.2 tax=-0.02 |
+option | learning | universities | Chartered universities | learning=0.35 build_cost=0.03 loyalty:clergy=-5 loyalty:burghers=5 |
+
+area | coinage | Coinage
+option | coinage | crown | Crown mint | |
+option | coinage | sound | Sound money | no_debase=1 inflation_decay=0.001 interest=-0.1 loyalty:burghers=10 |

@@ -270,6 +270,7 @@ public enum MarketSystem {
                 var target = needsMet + bonus.mood[p]
                 if let owner = world.provinces.owner[p] {
                     target += world.taxMood(owner, pops.socialClass[i]) + world.financeMood(owner, pops.socialClass[i])
+                        + world.governmentMood(owner, pops.socialClass[i], pops.religion[i])
                 }
                 target = min(1, max(0, target))
                 pops.satisfaction[i] += MarketModel.satisfactionSpeed * (target - pops.satisfaction[i])
@@ -313,9 +314,11 @@ public enum MarketSystem {
                 craftValue[p] += value
             }
         }
-        let rulerBonus = world.countries.ids.map { CharacterSystem.taxBonus(world, $0) }
+        let rulerBonus = world.countries.ids.map { CharacterSystem.taxBonus(world, $0) + GovernmentSystem.taxModifier(world, $0) }
+        let classBonus = world.countries.ids.map { c in TaxClass.allCases.map { max(-1, GovernmentSystem.classTaxModifier(world, c, $0)) } }
+        let learningBonus = world.countries.ids.map { max(-0.9, world.government.modifier($0, .learning)) }
         for c in world.countries.ids {
-            world.countries.learning[c.index] += CharacterSystem.learningPerYear(world, c) / 12
+            world.countries.learning[c.index] += CharacterSystem.learningPerYear(world, c) / 12 * (1 + learningBonus[c.index])
         }
         var classTax = Array(repeating: Array(repeating: 0.0, count: TaxClass.allCases.count), count: world.countries.count)
         var vassalTax = Array(repeating: 0.0, count: world.countries.count)
@@ -325,23 +328,23 @@ public enum MarketSystem {
                 continue
             }
             let o = owner.index
-            let factor = (1 + bonus.tax[p] + rulerBonus[o]) * (world.countries.bankruptMonthsLeft[o] > 0 ? Finance.bankruptcyIncome : 1)
+            let factor = max(0, 1 + bonus.tax[p] + rulerBonus[o]) * (world.countries.bankruptMonthsLeft[o] > 0 ? Finance.bankruptcyIncome : 1)
             for tc in TaxClass.allCases {
                 let baseValue = tc == .burghers ? craftValue[p] : landValue[p] * tc.shareOfLand
-                let tax = baseValue * tc.normalRate * world.countries.taxLevel[o][tc.rawValue] * factor
+                let tax = baseValue * tc.normalRate * world.countries.taxLevel[o][tc.rawValue] * factor * (1 + classBonus[o][tc.rawValue])
                 classTax[o][tc.rawValue] += tax
                 provinceTax[p] += tax
             }
             if let h = world.provinces.holder[p] {
                 // A great vassal keeps his share, or everything if he refuses.
-                let kept = world.people.refusing.contains(h) ? provinceTax[p] : provinceTax[p] * VassalModel.keepShare
+                let kept = world.people.refusing.contains(h) ? provinceTax[p] : provinceTax[p] * VassalSystem.keepShare(world, owner)
                 world.people.characters.gold[h.index] += kept
                 vassalTax[o] += kept
                 income[o] += provinceTax[p] - kept
             } else {
                 income[o] += provinceTax[p]
             }
-            world.countries.learning[o] += bonus.learning[p] / 12
+            world.countries.learning[o] += bonus.learning[p] / 12 * (1 + learningBonus[o])
         }
         world.countries.lastTax = classTax
         world.countries.lastVassalTax = vassalTax
@@ -351,8 +354,10 @@ public enum MarketSystem {
         world.economy.workshopValue = workshopValue
         world.economy.markets = markets
         world.economy.producers = producers
-        let (tradeProfit, tolls) = TradeSystem.settle(&world, delivered: delivered, sold: sold)
+        let (rawTradeProfit, tolls) = TradeSystem.settle(&world, delivered: delivered, sold: sold)
+        var tradeProfit = rawTradeProfit
         for c in 0..<world.countries.count {
+            if tradeProfit[c] > 0 { tradeProfit[c] *= max(0, 1 + world.government.modifier(CountryID(c), .trade)) }
             income[c] += tradeProfit[c] + tolls[c]
         }
         world.countries.lastTrade = tradeProfit

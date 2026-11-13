@@ -1,0 +1,76 @@
+# Government reforms (owner's choice: a reform tree per government type,
+# paid with reform progress from stability and good rule).
+# Each tier costs more progress; pick one option per tier, in order.
+# "becomes" switches the government type (the new type starts at its tier 1).
+#
+# tier | government | tier number | cost (progress)
+# reform | government | tier | key | Name | effects | becomes
+tier | monarchy | 1 | 0
+tier | monarchy | 2 | 60
+tier | monarchy | 3 | 120
+tier | monarchy | 4 | 200
+reform | monarchy | 1 | feudal_monarchy | Feudal monarchy | loyalty:nobles=10 levy_size=0.1 |
+reform | monarchy | 1 | sultanate | Sultanate | crown_power=0.1 loyalty:clergy=5 |
+reform | monarchy | 1 | despotate | Despotate | tax=0.03 loyalty:nobles=-5 |
+reform | monarchy | 2 | royal_council | Royal council | reform_progress=0.2 stability_cost=-0.05 |
+reform | monarchy | 2 | court_of_estates | Diet of the estates | loyalty:nobles=5 loyalty:clergy=5 loyalty:burghers=5 crown_power=-0.05 |
+reform | monarchy | 2 | divan | Imperial divan | tax=0.04 crown_power=0.05 |
+reform | monarchy | 3 | chancery | Royal chancery | tax=0.05 build_cost=-0.05 |
+reform | monarchy | 3 | military_households | Military households | army_quality=0.1 loyalty:nobles=-5 |
+reform | monarchy | 3 | elective_crown | Elective crown | loyalty:nobles=15 power:nobles=0.1 crown_power=-0.1 |
+reform | monarchy | 4 | absolute | Absolute monarchy | crown_power=0.25 tax=0.05 loyalty:nobles=-10 vassal_keep=-0.1 |
+reform | monarchy | 4 | parliamentary | Crown in parliament | interest=-0.15 loyalty:burghers=10 crown_power=-0.1 stability_cost=-0.1 |
+
+tier | republic | 1 | 0
+tier | republic | 2 | 60
+tier | republic | 3 | 120
+tier | republic | 4 | 200
+reform | republic | 1 | merchant_republic | Merchant republic | trade=0.08 loyalty:burghers=10 power:burghers=0.15 |
+reform | republic | 1 | noble_republic | Noble republic | loyalty:nobles=10 power:nobles=0.15 |
+reform | republic | 1 | city_league | Free city | tax_burghers=0.05 trade=0.04 |
+reform | republic | 2 | great_council | Great council | stability_cost=-0.1 loyalty:nobles=5 |
+reform | republic | 2 | banking_houses | Public banks | interest=-0.2 loyalty:burghers=5 |
+reform | republic | 3 | admiralty | State arsenal | build_cost=-0.05 army_quality=0.05 |
+reform | republic | 3 | signoria | Signoria | crown_power=0.15 tax=0.04 loyalty:burghers=-5 |
+reform | republic | 4 | serene_republic | Most serene republic | trade=0.05 tax=0.05 stability_cost=-0.1 |
+reform | republic | 4 | princely_rule | Hereditary signore | crown_power=0.2 loyalty:burghers=-10 | monarchy
+
+tier | theocracy | 1 | 0
+tier | theocracy | 2 | 60
+tier | theocracy | 3 | 120
+tier | theocracy | 4 | 200
+reform | theocracy | 1 | prince_bishopric | Prince-bishopric | loyalty:clergy=10 power:clergy=0.1 |
+reform | theocracy | 1 | imamate | Imamate | loyalty:clergy=10 mood_other_faith=-0.03 |
+reform | theocracy | 1 | military_order | Holy order | army_quality=0.1 loyalty:nobles=5 |
+reform | theocracy | 2 | cathedral_chapter | Chapter of electors | stability_cost=-0.1 |
+reform | theocracy | 2 | religious_schools | Seminaries | learning=0.15 |
+reform | theocracy | 3 | papal_curia | Curia | tax=0.05 crown_power=0.1 |
+reform | theocracy | 3 | holy_war | Holy war | manpower=0.1 army_quality=0.05 |
+reform | theocracy | 4 | secularise | Secular principality | tax=0.05 loyalty:clergy=-15 | monarchy
+reform | theocracy | 4 | divine_mandate | Divine mandate | crown_power=0.2 stability_cost=-0.15 |
+
+tier | steppeHorde | 1 | 0
+tier | steppeHorde | 2 | 60
+tier | steppeHorde | 3 | 120
+tier | steppeHorde | 4 | 200
+reform | steppeHorde | 1 | khanate | Chinggisid khanate | loyalty:tribes=10 manpower=0.1 |
+reform | steppeHorde | 1 | ulus | Ulus of the clans | loyalty:tribes=15 crown_power=-0.05 |
+reform | steppeHorde | 2 | kurultai | Kurultai | stability_cost=-0.1 loyalty:nobles=5 |
+reform | steppeHorde | 2 | yasa | Law of the Yasa | crown_power=0.1 tax=0.03 |
+reform | steppeHorde | 3 | caravan_tolls | Caravan protection | trade=0.08 |
+reform | steppeHorde | 3 | horse_archers | Great horse herds | army_quality=0.1 manpower=0.1 |
+reform | steppeHorde | 4 | settled_khanate | Settled khanate | tax=0.1 loyalty:tribes=-10 | monarchy
+reform | steppeHorde | 4 | great_horde | Great horde | manpower=0.2 crown_power=0.1 |
+
+tier | tribal | 1 | 0
+tier | tribal | 2 | 60
+tier | tribal | 3 | 120
+tier | tribal | 4 | 200
+reform | tribal | 1 | confederation | Tribal confederation | loyalty:tribes=15 crown_power=-0.1 |
+reform | tribal | 1 | chiefdom | Paramount chief | crown_power=0.05 |
+reform | tribal | 2 | council_of_elders | Council of elders | stability_cost=-0.1 |
+reform | tribal | 2 | raiding | Raiding parties | manpower=0.15 tax=-0.03 |
+reform | tribal | 3 | market_towns | Market towns | trade=0.06 tax=0.04 |
+reform | tribal | 3 | warrior_bands | Warrior bands | army_quality=0.1 |
+reform | tribal | 4 | kingdom | Found a kingdom | tax=0.1 loyalty:tribes=-10 | monarchy
+reform | tribal | 4 | emirate | Emirate | crown_power=0.15 loyalty:clergy=5 | monarchy
