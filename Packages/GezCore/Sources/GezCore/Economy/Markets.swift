@@ -70,6 +70,10 @@ public struct Economy: Sendable {
     public var provinceMarket: [MarketID] = []
     /// Pairs of markets that touch by land or sea; surplus flows between them.
     public var marketLinks: [(MarketID, MarketID)] = []
+    /// Whether each link (same order as `marketLinks`) goes by sea.
+    public var marketLinkIsSea: [Bool] = []
+    /// Trade routes run by countries' merchants.
+    public var routes: [TradeRoute] = []
     public var buildingTypes: [BuildingType] = []
     public var buildings = BuildingTable()
     /// Units made last month by each workshop building, `[province * typeCount + type]`.
@@ -157,10 +161,13 @@ extension World {
         economy.provinceMarket = (0..<n).map { MarketID(max(owner[$0], 0)) }
 
         var links = Set<Int>()
+        var seaLinks = Set<Int>()
         let mc = economy.markets.count
-        func link(_ a: MarketID, _ b: MarketID) {
+        func link(_ a: MarketID, _ b: MarketID, sea: Bool = false) {
             guard a != b else { return }
-            links.insert(min(a.index, b.index) * mc + max(a.index, b.index))
+            let key = min(a.index, b.index) * mc + max(a.index, b.index)
+            links.insert(key)
+            if sea { seaLinks.insert(key) }
         }
         for p in 0..<n {
             for q in provinces.neighbors[p] {
@@ -175,11 +182,13 @@ extension World {
             let list = touching.sorted()
             for i in 0..<list.count {
                 for j in (i + 1)..<max(i + 1, list.count) {
-                    link(MarketID(list[i]), MarketID(list[j]))
+                    link(MarketID(list[i]), MarketID(list[j]), sea: true)
                 }
             }
         }
-        economy.marketLinks = links.sorted().map { (MarketID($0 / mc), MarketID($0 % mc)) }
+        let sorted = links.sorted()
+        economy.marketLinks = sorted.map { (MarketID($0 / mc), MarketID($0 % mc)) }
+        economy.marketLinkIsSea = sorted.map { seaLinks.contains($0) }
     }
 }
 

@@ -14,6 +14,8 @@
 #   fort +1            fort level +1 per level
 #   manpower +x        thousand soldiers per level (used by armies later)
 #   ships +x           ships buildable at once (used by navies later)
+#   routes +x          trade capacity through this market +x per level (land)
+# Market halls, ports and roads also add trade capacity (see TradeSystem).
 # requires: coastal | good:<g1>/<g2>... | terrain:<t1>/<t2> | religion:<family>
 ## Production
 farm_estate  | Farm Estates   | production | 30 | 6  | wood 2, tools 0.5 | staple +0.1 |
@@ -45,6 +47,7 @@ market_hall  | Market Hall    | trade      | 50 | 6  | stone 3, wood 2   | tax +
 guild_hall   | Guild Hall     | trade      | 60 | 9  | stone 3, wood 2   | crafts +0.1 |
 port         | Port           | trade      | 80 | 12 | stone 4, wood 4, naval_supplies 1 | tax +0.05 | coastal
 road         | Paved Roads    | trade      | 40 | 9  | stone 4           | tax +0.05 |
+caravanserai | Caravanserai   | trade      | 50 | 9  | stone 4, wood 2   | routes +0.25 |
 ## Religion and culture
 temple       | Temple         | religion   | 60 | 12 | stone 4, wood 2   | mood +0.03 |
 college      | College        | religion   | 100| 18 | stone 4, wood 2, books 1 | learning +1 |

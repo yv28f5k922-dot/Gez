@@ -327,6 +327,7 @@ struct BuildingsSection: View {
         case .fort: return "Fort level +1"
         case .manpower(let x): return "+\(Int(x * 1000)) soldiers per level"
         case .ships(let x): return "+\(Int(x)) ships at a time per level"
+        case .routes(let x): return "\(pct(x)) overland trade capacity per level"
         }
     }
 }

@@ -172,6 +172,12 @@ public struct CountryTable: Sendable {
     public var debasing: [Bool] = []
     /// Months of bankruptcy penalties left.
     public var bankruptMonthsLeft: [Int] = []
+    /// Countries whose merchants may not trade in or pass through this one's markets.
+    public var embargoes: [Set<CountryID>] = []
+    public var tollPolicy: [TollPolicy] = []
+    /// Merchants' profit and tolls collected last month.
+    public var lastTrade: [Double] = []
+    public var lastTolls: [Double] = []
 
     private var indexByTag: [String: CountryID] = [:]
 
@@ -220,6 +226,10 @@ public struct CountryTable: Sendable {
         self.inflation.append(0)
         self.debasing.append(false)
         self.bankruptMonthsLeft.append(0)
+        self.embargoes.append([])
+        self.tollPolicy.append(.open)
+        self.lastTrade.append(0)
+        self.lastTolls.append(0)
         indexByTag[tag] = id
         return id
     }

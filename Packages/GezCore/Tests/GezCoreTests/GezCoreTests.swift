@@ -705,3 +705,71 @@ final class FinanceTests: XCTestCase {
         XCTAssertLessThan(world.countries.inflation[tur.index], Finance.debaseOnceInflation)
     }
 }
+
+final class TradeTests: XCTestCase {
+    func market(_ w: World, _ n: String) -> MarketID { w.economy.markets.id(named: n)! }
+    func country(_ w: World, _ t: String) -> CountryID { w.countries.id(forTag: t)! }
+
+    func testStartingRoutesHavePaths() {
+        let world = Scenario1453.makeWorld()
+        XCTAssertGreaterThan(world.economy.routes.count, 40)
+        let withPath = world.economy.routes.filter { $0.path.count >= 2 }.count
+        XCTAssertEqual(withPath, world.economy.routes.count)
+        XCTAssertFalse(world.economy.marketLinkIsSea.allSatisfy { !$0 })
+    }
+
+    func testSpicesReachVenice() {
+        let world = Scenario1453.makeWorld()
+        let pepper = world.economy.goods.id(forKey: "pepper")!
+        let i = world.economy.markets.slot(market(world, "Venice"), pepper)
+        XCTAssertGreaterThan(world.economy.markets.supply[i], 0)
+        let venetian = world.economy.routes.filter { $0.owner == self.country(world, "VEN") }
+        XCTAssertTrue(venetian.contains { $0.moved > 0 })
+    }
+
+    func testEmbargoBlocksRoute() {
+        var world = Scenario1453.makeWorld()
+        let mam = country(world, "MAM"), ven = country(world, "VEN")
+        XCTAssertNotNil(world.tradePath(for: ven, from: market(world, "Cairo"), to: market(world, "Venice")))
+        world.countries.embargoes[mam.index].insert(ven)
+        XCTAssertNil(world.tradePath(for: ven, from: market(world, "Cairo"), to: market(world, "Venice")))
+        TradeSystem.refreshPaths(&world)
+        XCTAssertTrue(world.economy.routes.filter { $0.owner == ven && $0.from == self.market(world, "Cairo") }
+            .allSatisfy { $0.path.isEmpty })
+    }
+
+    func testClosedMarketBlocksForeignersOnly() {
+        var world = Scenario1453.makeWorld()
+        let mam = country(world, "MAM")
+        world.countries.tollPolicy[mam.index] = .closed
+        XCTAssertFalse(world.canTrade(country(world, "VEN"), in: market(world, "Cairo")))
+        XCTAssertTrue(world.canTrade(mam, in: market(world, "Cairo")))
+    }
+
+    func testCapacityLimitsNewRoutes() {
+        var world = Scenario1453.makeWorld()
+        let tur = country(world, "TUR")
+        let gold = world.economy.goods.id(forKey: "gold")!
+        let r = TradeSystem.create(&world, owner: tur, good: gold, from: market(world, "Fez"),
+                                   to: market(world, "Constantinople"), volume: 10_000)
+        XCTAssertEqual(r, .noCapacity)
+        XCTAssertGreaterThan(world.tradeCapacity(tur), TradeModel.baseCapacity)
+    }
+
+    func testRoutesEarnAndTollsPay() {
+        var world = Scenario1453.makeWorld()
+        for _ in 0..<3 { MarketSystem.runMonthly(&world) }
+        let total = world.countries.lastTrade.reduce(0, +)
+        XCTAssertNotEqual(total, 0)
+        XCTAssertGreaterThan(world.countries.lastTolls.reduce(0, +), 0)
+    }
+
+    func testComputerCountriesOpenRoutes() {
+        let sim = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate)
+        let start = sim.world.economy.routes.count
+        sim.advance(days: 400)
+        let started = sim.world.economy.routes.count - start
+        // Routes are opened and dropped; at least some new ones appear.
+        XCTAssertNotEqual(started, 0)
+    }
+}

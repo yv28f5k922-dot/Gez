@@ -79,6 +79,7 @@ enum EconomyLoader {
             case "fort": effect = .fort
             case "manpower": effect = .manpower(amount)
             case "ships": effect = .ships(amount)
+            case "routes": effect = .routes(amount)
             default: throw Scenario1453.LoadError.unknownValue("building effect \(b.effect)")
             }
             eco.buildingTypes.append(BuildingType(
@@ -115,6 +116,13 @@ enum EconomyLoader {
         }
         world.economy = eco
         world.assignMarkets()
+        for r in file.routes {
+            guard let owner = world.countries.id(forTag: r.owner) else {
+                throw Scenario1453.LoadError.unknownValue("route owner \(r.owner)")
+            }
+            TradeSystem.create(&world, owner: owner, good: GoodID(r.good), from: MarketID(r.from), to: MarketID(r.to),
+                               volume: r.volume, ignoreCapacity: true)
+        }
     }
 }
 
@@ -192,6 +200,15 @@ struct EconomyFile: Decodable {
         let regions: [Int]
     }
 
+    struct Route: Decodable {
+        let owner: String
+        let good: Int
+        let from: Int
+        let to: Int
+        let volume: Double
+    }
+
+    let routes: [Route]
     let banks: [Bank]
     let imports: [Import]
     let producers: [[Producer]]

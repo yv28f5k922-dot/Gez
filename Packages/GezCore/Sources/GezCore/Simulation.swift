@@ -30,10 +30,12 @@ public final class Simulation {
         // Daily systems go here.
 
         if date.isFirstOfMonth {
+            TradeSystem.refreshPaths(&world)
             EconomySystem.runMonthly(&world)
             BuildingSystem.runMonthly(&world)
             FinanceSystem.runMonthly(&world)
             FinanceSystem.runAI(&world)
+            TradeSystem.runAI(&world, month: date.month)
             BuildingSystem.runAI(&world, month: date.month)
             PopulationSystem.runMonthly(&world)
         }

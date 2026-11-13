@@ -42,6 +42,8 @@ public enum BuildingEffect: Sendable, Equatable {
     case manpower(Double)
     /// Ships buildable at once per level (navies, Phase 10).
     case ships(Double)
+    /// Trade capacity of land links through this market town +x per level.
+    case routes(Double)
 }
 
 public struct BuildingType: Sendable {
@@ -165,7 +167,7 @@ public struct BuildingBonuses: Sendable {
                 case .tax(let x): tax[p] += x * l
                 case .mood(let x): mood[p] += x * l
                 case .learning(let x): learning[p] += x * l
-                case .workshop, .fort, .manpower, .ships: break
+                case .workshop, .fort, .manpower, .ships, .routes: break
                 }
             }
         }

@@ -1,0 +1,58 @@
+# Trade routes running in 1453. Owner | good | from market | to market | units a year
+# The path between the markets is found automatically (cheapest by land/sea).
+# Indian Ocean spice trade
+CLT | pepper       | Calicut       | Aden          | 60
+CLT | fine_spices  | Calicut       | Aden          | 8
+GUJ | pepper       | Calicut       | Cambay        | 30
+KOT | cinnamon     | Kotte         | Calicut       | 30
+HOR | pepper       | Calicut       | Hormuz        | 30
+HOR | fine_spices  | Calicut       | Hormuz        | 4
+GUJ | cotton_cloth | Cambay        | Aden          | 120
+GUJ | cotton_cloth | Cambay        | Hormuz        | 100
+BNG | cotton_cloth | Sonargaon     | Calicut       | 60
+BNG | silk_cloth   | Sonargaon     | Cambay        | 10
+MGD | ivory        | Mogadishu     | Aden          | 4
+# Red Sea to the Mediterranean
+MAM | pepper       | Aden          | Cairo         | 50
+MAM | fine_spices  | Aden          | Cairo         | 8
+MAM | cinnamon     | Aden          | Cairo         | 12
+TAH | coffee       | Aden          | Cairo         | 20
+VEN | pepper       | Cairo         | Venice        | 40
+VEN | fine_spices  | Cairo         | Venice        | 6
+VEN | cinnamon     | Cairo         | Venice        | 8
+VEN | sugar        | Cairo         | Venice        | 15
+GEN | pepper       | Cairo         | Genoa         | 15
+ARA | pepper       | Cairo         | Barcelona     | 8
+# Gulf, Persia and the Silk Road
+HOR | pepper       | Hormuz        | Tabriz        | 20
+QAR | raw_silk     | Tabriz        | Aleppo        | 40
+VEN | raw_silk     | Aleppo        | Venice        | 30
+VEN | cotton       | Aleppo        | Venice        | 60
+MAM | pepper       | Hormuz        | Damascus      | 12
+TIM | silk_cloth   | Samarkand     | Herat         | 8
+HRT | raw_silk     | Herat         | Tabriz        | 20
+HRT | carpets      | Herat         | Tabriz        | 6
+TIM | horses       | Samarkand     | Multan        | 15
+DEL | horses       | Multan        | Delhi         | 15
+# Black Sea and Constantinople
+GEN | alum         | Constantinople| Genoa         | 40
+GEN | grain        | Kaffa         | Genoa         | 150
+TUR | raw_silk     | Tabriz        | Constantinople| 25
+VEN | wine         | Constantinople| Venice        | 20
+# Northern trade (Hansa, Flanders)
+LUB | furs         | Novgorod      | Lübeck        | 30
+LUB | wax          | Novgorod      | Lübeck        | 25
+LUB | furs         | Lübeck        | Bruges        | 20
+LUB | grain        | Kraków        | Lübeck        | 150
+LUB | fish         | Lübeck        | Bruges        | 150
+LUB | salt         | Bruges        | Lübeck        | 200
+ENG | wool         | London        | Bruges        | 400
+CAS | wool         | Seville       | Bruges        | 300
+BUR | wool_cloth   | Bruges        | Cologne       | 60
+FLO | wool         | London        | Florence      | 80
+VEN | pepper       | Venice        | Nuremberg     | 15
+VEN | pepper       | Venice        | Bruges        | 10
+ENG | wine         | Paris         | London        | 150
+POR | wine         | Lisbon        | London        | 60
+POR | sugar        | Lisbon        | Bruges        | 20
+MOS | furs         | Kazan         | Moscow        | 25

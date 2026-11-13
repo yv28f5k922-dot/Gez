@@ -192,7 +192,9 @@ public enum MarketSystem {
             }
         }
 
-        // 3. Surplus flows to neighbouring markets that are short.
+        // 3. Trade routes buy and deliver; then petty trade: surplus flows to
+        // neighbouring markets that are short.
+        let delivered = TradeSystem.move(world, avail: avail, S: &S, D: &D)
         for _ in 0..<MarketModel.exchangePasses {
             for (a, b) in eco.marketLinks {
                 for g in 0..<G {
@@ -335,6 +337,12 @@ public enum MarketSystem {
         world.economy.workshopValue = workshopValue
         world.economy.markets = markets
         world.economy.producers = producers
+        let (tradeProfit, tolls) = TradeSystem.settle(&world, delivered: delivered, sold: sold)
+        for c in 0..<world.countries.count {
+            income[c] += tradeProfit[c] + tolls[c]
+        }
+        world.countries.lastTrade = tradeProfit
+        world.countries.lastTolls = tolls
         world.pops = pops
         for p in 0..<P {
             world.provinces.production[p] = provinceValue[p] * 12

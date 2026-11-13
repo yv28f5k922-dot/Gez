@@ -370,7 +370,16 @@ def main():
                       "rate": float(rate),
                       "regions": [] if "*" in reach_list else [regions.index(r) for r in reach_list]})
 
-    result = {"banks": banks, "goods": goods, "recipes": recipes, "needs": needs, "markets": markets,
+    routes = []
+    tags = {c["tag"] for c in scen["countries"]}
+    for line in rows("routes_1453.txt"):
+        owner, good, a, b, volume = [x.strip() for x in line.split("|")]
+        if owner not in tags:
+            sys.exit(f"routes: unknown country '{owner}'")
+        routes.append({"owner": owner, "good": gid(good, "routes"), "from": mindex[a], "to": mindex[b],
+                       "volume": float(volume)})
+
+    result = {"routes": routes, "banks": banks, "goods": goods, "recipes": recipes, "needs": needs, "markets": markets,
               "imports": imports, "producers": out_provinces, "buildings": buildings,
               "startBuildings": out_buildings}
     (RES / "economy1453.json").write_text(json.dumps(result, separators=(",", ":"), ensure_ascii=False))

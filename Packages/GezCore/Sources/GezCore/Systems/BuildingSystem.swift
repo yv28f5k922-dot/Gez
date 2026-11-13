@@ -206,7 +206,7 @@ public enum BuildingSystem {
                 * x * MarketModel.taxCraft
         case .tax(let x):
             gain = prov.baseTax[p.index] * x
-        case .mood, .learning, .fort, .manpower, .ships:
+        case .mood, .learning, .fort, .manpower, .ships, .routes:
             gain = type.cost / 25
         }
         return gain - upkeep
