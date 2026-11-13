@@ -228,13 +228,11 @@ struct PeopleSection: View {
                 Text(showState ? "People of \(world.states.name[stateID.index])" : "People")
                     .font(.callout.bold())
                 Spacer()
-                Picker("", selection: $showState) {
-                    Text("Province").tag(false)
-                    Text("State").tag(true)
+                HStack(spacing: 0) {
+                    toggleButton("Province", selected: !showState) { showState = false }
+                    toggleButton("State", selected: showState) { showState = true }
                 }
-                .pickerStyle(.segmented)
-                .frame(width: 140)
-                .labelsHidden()
+                .background(Palette.ink.opacity(0.08), in: RoundedRectangle(cornerRadius: 6))
             }
             line("Population", Self.people(b.total))
             ForEach(Array(b.cultureShares().prefix(4).enumerated()), id: \.offset) { _, entry in
@@ -263,7 +261,19 @@ struct PeopleSection: View {
         .padding(.vertical, 2)
     }
 
-    /// "Sunni (mostly Hanafi)" when one school dominates.
+    private func toggleButton(_ title: String, selected: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Text(title)
+                .font(.caption)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 3)
+                .background(selected ? Palette.ink.opacity(0.8) : .clear, in: RoundedRectangle(cornerRadius: 6))
+                .foregroundStyle(selected ? Palette.parchment : Palette.ink)
+        }
+        .buttonStyle(.plain)
+    }
+
+    /// "Sunni (Hanafi)" when one school dominates.
     private func religionLabel(_ religion: Religion, _ b: PopBreakdown) -> String {
         let sects = b.bySect.filter { $0.key.religion == religion }
         guard let top = sects.max(by: { $0.value < $1.value }), let total = b.byReligion[religion], total > 0,

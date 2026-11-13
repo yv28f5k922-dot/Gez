@@ -40,6 +40,26 @@ decide differently.
    water; the Aral Sea is at its full size. Smaller changes (deltas, lagoons)
    are not modelled.
 
+## Population and religion estimates
+
+- **All population mixes are estimates.** No censuses exist for 1453. Shares
+  for cities and frontier zones are educated guesses from later Ottoman
+  registers, travellers and modern scholarship.
+- **Region totals** (`data/map/population_1453.txt`) are middle estimates;
+  sources disagree by 20–40%. India is about 100 million, Europe (with
+  Russia) about 65 million.
+- **India has far fewer provinces than Europe,** so Indian provinces hold
+  millions of people each (Delhi about 4 million). More Indian provinces
+  would fix this; tell me if you want them.
+- **City provinces include their countryside.** Konstantiniyye shows about
+  300,000 people, though the city itself had perhaps 50,000 after the siege.
+- **Persia is shown as mostly Sunni (Shafi'i)** with Twelver pockets, as it
+  was before the Safavids.
+- **Bohemia's ruler is counted as Hussite** because the kingdom was run by
+  Utraquists under George of Poděbrady, though King Ladislaus was Catholic.
+- **Bosnia** is split between the Bosnian Church, Catholics and Orthodox
+  Vlachs; King Stephen Thomas had converted to Catholicism.
+
 ## Ownership calls I'm unsure about
 
 | # | Place | Map now | Why unsure |
@@ -71,9 +91,9 @@ decide differently.
 | 25 | **Chittagong** | Bengal | Arakan took it at some point between about 1459 and the 1480s. |
 | 26 | **Etawah, Kannauj, Kalpi** | Jaunpur | Fought over by Delhi, Jaunpur and Malwa. |
 | 27 | **Ranthambore** | Mewar | Contested by Mewar and Malwa. |
-| 28 | **Kingdom of Kaffa** | Separate, Christian | Its religion was mostly traditional with Christian elements. |
+| 28 | **Kingdom of Kaffa** | Separate, folk religion with a Christian minority | Its religion mixed traditional beliefs with Christian elements. |
 | 29 | **Circassia and the North Caucasus** | Circassia as one tribal state; Chechnya unclaimed and folk religion | Very fragmented in reality. |
-| 30 | **Armenia (Yerevan, Nakhchivan)** | Sunni majority | Possibly still Armenian Christian (miaphysite) majority. |
+| 30 | **Armenia (Yerevan, Nakhchivan)** | Armenian Apostolic about 50% | The balance between Armenians, Turkmens and Kurds is uncertain. |
 
 ## Other notes
 

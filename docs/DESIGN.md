@@ -71,10 +71,23 @@ turned into game files by `tools/mapgen/mapgen.py`.
 - Auto-resolve uses the same unit stats, so results are consistent.
 - Designed so a 3D battle view could be added later without changing rules.
 
+### People (pops)
+- Every province's people are split into groups by **culture** (187, in
+  families), **religion** (25, in six families), optional **sect** (Sunni
+  schools of law, Hindu traditions) and **social class** (nobles, clergy,
+  burghers, peasants, slaves).
+- Provinces, states and countries show their mix as percentages.
+- Sufi orders are present per province with a strength (the Safaviyya in
+  Ardabil will matter politically).
+- Population comes from 1453 estimates per region (202 million in total),
+  spread over provinces by development and size.
+- Later: conversion, assimilation, migration, plague, unrest by unhappy
+  groups, class-based estates.
+
 ### Estates, religion, government
 - Estates (nobles, clergy, burghers, plus regional ones) with loyalty and
   influence.
-- Religions: Catholic, Orthodox, Miaphysite, Sunni, Shia, Hindu (more later).
+- Religions: see `Packages/GezCore/Sources/GezCore/Faith/Religion.swift`.
 - Government types: monarchy, republic, theocracy, steppe horde; reforms and
   laws later.
 
@@ -114,5 +127,6 @@ later from asset packs, an artist, or an AI image pipeline.
 4. **Armies, diplomacy & war**: movement, alliances, war score, peace.
 5. **Sieges & forts**.
 6. **2D battles** with fight / auto-resolve.
-7. **Estates, religion & government**.
+7. **Estates, religion & government**. (Religions, cultures and pops with
+   classes are in place since milestone 2.)
 8. **AI**, save/load, polish.
