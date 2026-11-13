@@ -1,5 +1,5 @@
-import SwiftUI
 import GezCore
+import SwiftUI
 
 struct ContentView: View {
     @Environment(GameModel.self) private var model
@@ -8,19 +8,21 @@ struct ContentView: View {
         VStack(spacing: 0) {
             TopBar()
             ZStack(alignment: .bottomLeading) {
-                MapView()
+                MapCanvasView()
                 if let province = model.selectedProvince {
                     ProvincePanel(province: province)
-                        .padding()
+                        .padding(12)
                 }
             }
+            .overlay(alignment: .topTrailing) {
+                MapModeBar().padding(12)
+            }
         }
-        .background(Palette.sea)
+        .background(MapPalette.waterColor)
     }
 }
 
 enum Palette {
-    static let sea = Color(red: 0.55, green: 0.66, blue: 0.70)
     static let parchment = Color(red: 0.93, green: 0.88, blue: 0.76)
     static let ink = Color(red: 0.20, green: 0.15, blue: 0.10)
 
@@ -41,6 +43,7 @@ struct TopBar: View {
                 let countries = model.world.countries
                 Circle()
                     .fill(Palette.color(countries.color[player.index]))
+                    .overlay(Circle().stroke(Palette.ink.opacity(0.6), lineWidth: 1))
                     .frame(width: 18, height: 18)
                 Text(countries.name[player.index])
                     .font(.headline)
@@ -106,6 +109,38 @@ struct SpeedControls: View {
     }
 }
 
+// MARK: - Map modes
+
+struct MapModeBar: View {
+    @Environment(GameModel.self) private var model
+
+    var body: some View {
+        HStack(spacing: 4) {
+            ForEach(MapMode.allCases) { mode in
+                Button {
+                    model.mapMode = mode
+                } label: {
+                    Image(systemName: mode.systemImage)
+                        .font(.system(size: 15, weight: .semibold))
+                        .frame(width: 36, height: 32)
+                        .background(
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(model.mapMode == mode ? Palette.ink.opacity(0.85) : .clear)
+                        )
+                        .foregroundStyle(model.mapMode == mode ? Palette.parchment : Palette.ink)
+                }
+                .buttonStyle(.plain)
+                .keyboardShortcut(mode.shortcut, modifiers: [])
+                .help(mode.title)
+                .accessibilityLabel(mode.title)
+            }
+        }
+        .padding(4)
+        .background(Palette.parchment.opacity(0.94), in: RoundedRectangle(cornerRadius: 10))
+        .shadow(radius: 3)
+    }
+}
+
 // MARK: - Province panel
 
 struct ProvincePanel: View {
@@ -114,36 +149,50 @@ struct ProvincePanel: View {
 
     var body: some View {
         let _ = model.revision
-        let p = model.world.provinces
-        let c = model.world.countries
+        let world = model.world
+        let p = world.provinces
+        let c = world.countries
         let i = province.index
         VStack(alignment: .leading, spacing: 6) {
-            HStack {
+            HStack(alignment: .firstTextBaseline) {
                 Text(p.name[i]).font(.title3.bold())
                 Spacer()
                 Button {
-                    model.selectedProvince = nil
+                    model.select(province: nil)
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                 }
                 .buttonStyle(.plain)
             }
-            if let owner = p.owner[i] {
-                HStack(spacing: 6) {
+            Text("\(world.stateName(of: province)) · \(world.regionName(of: province))")
+                .font(.subheadline)
+                .foregroundStyle(Palette.ink.opacity(0.7))
+            HStack(spacing: 6) {
+                if let owner = p.owner[i] {
                     Circle().fill(Palette.color(c.color[owner.index])).frame(width: 12, height: 12)
                     Text(c.name[owner.index])
+                    if c.capital[owner.index] == province {
+                        Image(systemName: "star.fill").font(.caption).help("Capital")
+                    }
+                } else {
+                    Circle().fill(Color(red: 0.77, green: 0.71, blue: 0.59)).frame(width: 12, height: 12)
+                    Text("Unclaimed land")
                 }
             }
             Divider()
-            row("Population", String(format: "%.0f", p.population[i]))
+            row("Development", "\(p.development[i])")
+            row("Population", p.population[i].formatted(.number.precision(.fractionLength(0))))
             row("Base tax", String(format: "%.1f / year", p.baseTax[i]))
             row("Production", String(format: "%.1f / year", p.production[i]))
             row("Fort level", "\(p.fortLevel[i])")
             row("Terrain", p.terrain[i].rawValue.capitalized)
             row("Religion", p.religion[i].rawValue.capitalized)
+            row("Area", "\(p.areaKm2[i].formatted(.number.precision(.fractionLength(0)))) km²")
+            row("Coast", p.isCoastal[i] ? "Yes" : "No")
+            row("Neighbours", "\(p.neighbors[i].count)")
         }
         .padding(14)
-        .frame(width: 280)
+        .frame(width: 290)
         .foregroundStyle(Palette.ink)
         .background(Palette.parchment.opacity(0.96), in: RoundedRectangle(cornerRadius: 12))
         .shadow(radius: 6)

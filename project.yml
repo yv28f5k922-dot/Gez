@@ -11,6 +11,8 @@ options:
 settings:
   base:
     SWIFT_VERSION: "5.0"
+    # The map is drawn pixel by pixel on the CPU; keep it fast in Debug runs too.
+    SWIFT_OPTIMIZATION_LEVEL: "-O"
     MARKETING_VERSION: "0.1.0"
     CURRENT_PROJECT_VERSION: "1"
 packages:
@@ -31,7 +33,23 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: Gez
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.strategy-games
-    scheme: {}
+    scheme:
+      testTargets:
+        - GezMacTests
+  GezMacTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - App/Tests
+    dependencies:
+      - target: GezMac
+      - package: GezCore
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.gez.game.tests
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Gez.app/Contents/MacOS/Gez"
+        BUNDLE_LOADER: "$(TEST_HOST)"
   GeziPad:
     type: application
     platform: iOS

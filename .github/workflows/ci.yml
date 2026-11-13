@@ -10,7 +10,7 @@ jobs:
     name: Simulation tests
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Swift version
         run: swift --version
       - name: Test GezCore
@@ -20,7 +20,7 @@ jobs:
     name: Build Mac and iPad apps
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install XcodeGen
         run: brew install xcodegen
       - name: Generate Xcode project
@@ -35,3 +35,29 @@ jobs:
           xcodebuild -project Gez.xcodeproj -scheme GeziPad
           -destination 'generic/platform=iOS Simulator'
           CODE_SIGNING_ALLOWED=NO build
+
+  snapshots:
+    name: Render map snapshots
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate Xcode project
+        run: xcodegen generate
+      - name: Run snapshot tests
+        env:
+          GEZ_SNAPSHOT_DIR: ${{ github.workspace }}/snapshots
+          TEST_RUNNER_GEZ_SNAPSHOT_DIR: ${{ github.workspace }}/snapshots
+        run: >
+          xcodebuild -project Gez.xcodeproj -scheme GezMac
+          -destination 'platform=macOS'
+          CODE_SIGN_IDENTITY=- CODE_SIGNING_REQUIRED=NO
+          test
+      - name: Upload snapshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshots
+          path: snapshots
+          if-no-files-found: warn

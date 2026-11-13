@@ -50,7 +50,9 @@ public struct ProvinceIDMap: Sendable {
                 let length = Int(bytes[o + 2]) | Int(bytes[o + 3]) << 8
                 o += 4
                 guard position + length <= out.count else { throw LoadError.badLength }
-                for i in position..<(position + length) { out[i] = value }
+                if length > 0 {
+                    (out.baseAddress! + position).update(repeating: value, count: length)
+                }
                 position += length
             }
         }
