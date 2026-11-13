@@ -14,7 +14,10 @@ plus public-domain Natural Earth coastlines into the game's map files.
 ```
 # Region Name                     <- starts a region (a group of states)
 @ State Name                      <- starts a state (a group of provinces)
+@ State Name | religion           <- same, with the people's religion if it
+                                     differs from the ruler's
 Province Name | lat lon | OWNER t d
+Province Name | lat lon | OWNER t d | religion   <- religion for one province
 ! Wasteland label | lat lon       <- impassable land (deserts, high mountains, off-map)
 ```
 
@@ -22,6 +25,9 @@ Province Name | lat lon | OWNER t d
 - `t` is terrain: `f` farmland, `p` plains, `h` hills, `m` mountains,
   `w` forest, `x` marsh, `d` desert, `s` steppe.
 - `d` is development, 1 (empty) to 10 (great city).
+- Religion, when not given, is the owner's religion (for unowned land, the
+  most common religion among its neighbours). Religions: catholic, orthodox,
+  miaphysite, sunni, shia, hindu, buddhist, folk.
 - The province shape grows outward from its lat/lon point, so put the point
   on the province's main town.
 

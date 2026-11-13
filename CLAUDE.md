@@ -15,3 +15,9 @@ plain language, not jargon.
   (`.github/workflows/ci.yml`, macOS runner) or on the owner's Mac when linked.
 - Minimum spec: M1 Mac with 8 GB RAM. Target: M5 iPad.
 - Never use map data or art from Paradox or Creative Assembly games.
+- Map data: edit `data/map/`, then run `tools/mapgen/mapgen.py` (see README)
+  and commit the regenerated files. Record uncertain history in
+  `docs/HISTORY_NOTES.md`.
+- To see the app without a Mac: CI's snapshot job renders the map and main
+  screen and force-pushes the PNGs to the `ci-snapshots` branch
+  (`git clone -b ci-snapshots ...`). Artifact downloads are blocked here.

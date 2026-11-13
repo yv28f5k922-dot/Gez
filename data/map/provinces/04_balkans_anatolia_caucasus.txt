@@ -77,14 +77,14 @@ Durazzo | 41.32 19.45 | VEN h 2
 Berat | 40.71 19.95 | TUR m 2
 Vlore | 40.47 19.49 | TUR h 2
 Gjirokaster | 40.08 20.14 | TUR m 1
-@ Macedonia
+@ Macedonia | orthodox
 Skopje | 41.99 21.43 | TUR h 3
 Ohrid | 41.12 20.80 | TUR m 2
 Bitola | 41.03 21.33 | TUR h 2
 Thessaloniki | 40.64 22.94 | TUR f 6
 Serres | 41.09 23.55 | TUR f 3
 Drama | 41.15 24.14 | TUR h 2
-@ Bulgaria
+@ Bulgaria | orthodox
 Sofia | 42.70 23.32 | TUR h 3
 Kyustendil | 42.28 22.69 | TUR m 2
 Plovdiv | 42.15 24.75 | TUR f 4
@@ -93,13 +93,13 @@ Vidin | 43.99 22.88 | TUR p 2
 Nikopol | 43.70 24.90 | TUR p 2
 Varna | 43.21 27.92 | TUR h 3
 Silistra | 44.12 27.26 | TUR s 2
-@ Thrace
+@ Thrace | orthodox
 Konstantiniyye | 41.01 28.98 | TUR f 9
 Edirne | 41.68 26.56 | TUR f 7
 Gallipoli | 40.41 26.67 | TUR h 3
 Komotini | 41.12 25.40 | TUR f 2
 Ainos | 40.73 26.08 | LES x 2
-@ Greece
+@ Greece | orthodox
 Larissa | 39.64 22.42 | TUR f 3
 Ioannina | 39.66 20.85 | TUR m 2
 Arta | 39.16 20.98 | TUR h 2
@@ -114,21 +114,21 @@ Corinth | 37.94 22.93 | MOE h 2
 Patras | 38.25 21.73 | MOE h 3
 Modon | 36.82 21.70 | VEN h 2
 Nauplia | 37.57 22.80 | VEN h 2
-@ Ionian Islands
+@ Ionian Islands | orthodox
 Corfu | 39.62 19.92 | VEN h 3
 Kefalonia | 38.18 20.49 | TOC m 1
 Zakynthos | 37.78 20.90 | TOC h 1
-@ Aegean Islands
+@ Aegean Islands | orthodox
 Naxos | 37.10 25.38 | NAX h 2
 Mytilene | 39.11 26.55 | LES h 3
 Lemnos | 39.92 25.24 | LES h 1
 Chios | 38.37 26.14 | GEN h 3
 Rhodes | 36.43 28.22 | KNI h 3
-@ Crete
+@ Crete | orthodox
 Candia | 35.34 25.13 | VEN h 4
 Chania | 35.51 24.02 | VEN m 2
 Rethymno | 35.37 24.47 | VEN m 2
-@ Cyprus
+@ Cyprus | orthodox
 Nicosia | 35.17 33.36 | CYP h 4
 Famagusta | 35.12 33.94 | GEN h 3
 Paphos | 34.77 32.42 | CYP h 2
@@ -213,7 +213,7 @@ Shamakhi | 40.63 48.64 | SHI h 3
 Baku | 40.41 49.87 | SHI d 2
 Derbent | 42.06 48.29 | SHI h 2
 Shaki | 41.19 47.17 | SHI m 2
-@ Arran and Armenia
+@ Arran and Armenia | sunni
 Ganja | 40.68 46.36 | QAR h 2
 Barda | 40.37 47.13 | QAR p 2
 Yerevan | 40.18 44.51 | QAR h 2
@@ -223,7 +223,7 @@ Tarki | 42.98 47.50 | DAG m 2
 Khunzakh | 42.54 46.70 | DAG m 1
 Kabarda | 43.49 43.60 | CIR h 1
 Alania | 43.02 44.68 | CIR m 1
-Chechnya | 43.32 45.69 | - m 1
+Chechnya | 43.32 45.69 | - m 1 | folk
 Maykop | 44.61 40.10 | CIR h 1
 Kuban | 45.04 38.98 | CIR p 1
 Matrega | 45.21 36.72 | GEN p 1

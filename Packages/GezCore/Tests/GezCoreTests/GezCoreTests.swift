@@ -134,6 +134,19 @@ final class ScenarioTests: XCTestCase {
         XCTAssertLessThan(isolated.count, 15)
     }
 
+    func testPeopleCanFollowADifferentReligionThanTheirRuler() {
+        let world = Scenario1453.makeWorld()
+        let sofia = world.provinces.id(named: "Sofia")!.index
+        XCTAssertEqual(world.countries.tag[world.provinces.owner[sofia]!.index], "TUR")
+        XCTAssertEqual(world.provinces.religion[sofia], .orthodox)
+        let delhi = world.provinces.id(named: "Delhi")!.index
+        XCTAssertEqual(world.provinces.religion[delhi], .hindu)
+        let lapland = world.provinces.id(named: "Lapland")!.index
+        XCTAssertEqual(world.provinces.religion[lapland], .folk)
+        let paris = world.provinces.id(named: "Paris")!.index
+        XCTAssertEqual(world.provinces.religion[paris], .catholic)
+    }
+
     func testStartingValuesScaleWithDevelopment() {
         let world = Scenario1453.makeWorld()
         let paris = world.provinces.id(named: "Paris")!.index

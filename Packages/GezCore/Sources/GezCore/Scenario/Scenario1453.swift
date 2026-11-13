@@ -67,6 +67,16 @@ public enum Scenario1453 {
 
     // MARK: - Building the world
 
+    /// The people's religion: the province's own if the data gives one,
+    /// otherwise the ruler's.
+    private static func provinceReligion(_ p: ScenarioFile.Province, owner: CountryID?, world: World) throws -> Religion {
+        if let name = p.religion {
+            guard let religion = Religion(rawValue: name) else { throw LoadError.unknownValue("religion \(name)") }
+            return religion
+        }
+        return owner.map { world.countries.religion[$0.index] } ?? .sunni
+    }
+
     private static func build(_ file: ScenarioFile) throws -> World {
         var world = World(map: MapInfo(
             width: file.map.width,
@@ -128,7 +138,7 @@ public enum Scenario1453 {
                 population: startingPopulation(development: p.development),
                 baseTax: startingTax(development: p.development),
                 production: startingProduction(development: p.development),
-                religion: owner.map { world.countries.religion[$0.index] } ?? .sunni,
+                religion: try provinceReligion(p, owner: owner, world: world),
                 fortLevel: startingFort(development: p.development, isCapital: capitals.contains(index))
             )
         }
@@ -139,12 +149,13 @@ public enum Scenario1453 {
             }
         }
 
-        // Unowned land takes the most common religion among its neighbours.
-        for i in 0..<world.provinces.count where world.provinces.owner[i] == nil {
+        // Unowned land without its own religion takes the most common
+        // religion among its neighbours.
+        for (i, p) in file.provinces.enumerated() where p.owner == nil && p.religion == nil {
             var tally: [Religion: Int] = [:]
             for n in world.provinces.neighbors[i] {
-                if let o = world.provinces.owner[n.index] {
-                    tally[world.countries.religion[o.index], default: 0] += 1
+                if world.provinces.owner[n.index] != nil {
+                    tally[world.provinces.religion[n.index], default: 0] += 1
                 }
             }
             if let best = tally.max(by: { a, b in a.value == b.value ? a.key.rawValue > b.key.rawValue : a.value < b.value }) {
@@ -192,6 +203,7 @@ struct ScenarioFile: Decodable {
         let longitude: Double
         let terrain: String
         let development: Int
+        let religion: String?
         let coastal: Bool
         let areaKm2: Double
         let labelX: Int

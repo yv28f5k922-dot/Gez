@@ -158,40 +158,60 @@ final class GameModel {
                 pixelArea: Double(geometry.pixelCount[i])
             ))
         }
-        self.provinceLabels = provinceLabels
 
-        // Country names sit at the area-weighted middle of their land, pulled
-        // to the nearest of their own provinces so they never float at sea.
+        // Country names sit in the middle of the country's largest connected
+        // block of land, pulled onto one of its provinces if the middle falls
+        // outside it (a bay, or another country's enclave).
         let c = world.countries
-        var sumX = [Double](repeating: 0, count: c.count)
-        var sumY = [Double](repeating: 0, count: c.count)
-        var area = [Double](repeating: 0, count: c.count)
-        for i in 0..<p.count {
-            guard let owner = p.owner[i]?.index else { continue }
-            let a = Double(geometry.pixelCount[i])
-            sumX[owner] += Double(p.labelPoint[i].x) * a
-            sumY[owner] += Double(p.labelPoint[i].y) * a
-            area[owner] += a
-        }
         var countryLabels: [MapLabel] = []
-        for k in 0..<c.count where area[k] > 0 {
-            let center = CGPoint(x: sumX[k] / area[k], y: sumY[k] / area[k])
-            var best = center
-            var bestDistance = Double.infinity
-            for i in 0..<p.count where p.owner[i]?.index == k {
-                let lp = CGPoint(x: p.labelPoint[i].x, y: p.labelPoint[i].y)
-                let d = hypot(lp.x - center.x, lp.y - center.y)
-                if d < bestDistance {
-                    bestDistance = d
-                    best = lp
+        var visited = [Bool](repeating: false, count: p.count)
+        var bestBlock = [[Int]](repeating: [], count: c.count)
+        var bestArea = [Double](repeating: 0, count: c.count)
+        for start in 0..<p.count {
+            guard !visited[start], let owner = p.owner[start]?.index else { continue }
+            var block: [Int] = []
+            var area = 0.0
+            var stack = [start]
+            visited[start] = true
+            while let i = stack.popLast() {
+                block.append(i)
+                area += Double(geometry.pixelCount[i])
+                for n in p.neighbors[i] where !visited[n.index] && p.owner[n.index]?.index == owner {
+                    visited[n.index] = true
+                    stack.append(n.index)
                 }
             }
-            // Keep the centre if it lies on the country's own land.
-            if let hit = idMap.province(x: Int(center.x), y: Int(center.y)), p.owner[hit.index]?.index == k {
-                best = center
+            if area > bestArea[owner] {
+                bestArea[owner] = area
+                bestBlock[owner] = block
             }
-            countryLabels.append(MapLabel(id: k, text: c.name[k], position: best, pixelArea: area[k]))
         }
+        for k in 0..<c.count where !bestBlock[k].isEmpty {
+            var sx = 0.0, sy = 0.0
+            for i in bestBlock[k] {
+                let a = Double(geometry.pixelCount[i])
+                sx += Double(p.labelPoint[i].x) * a
+                sy += Double(p.labelPoint[i].y) * a
+            }
+            let center = CGPoint(x: sx / bestArea[k], y: sy / bestArea[k])
+            var best = center
+            if idMap.province(x: Int(center.x), y: Int(center.y)).flatMap({ p.owner[$0.index]?.index }) != k {
+                var bestDistance = Double.infinity
+                for i in bestBlock[k] {
+                    let lp = CGPoint(x: p.labelPoint[i].x, y: p.labelPoint[i].y)
+                    let d = hypot(lp.x - center.x, lp.y - center.y)
+                    if d < bestDistance {
+                        bestDistance = d
+                        best = lp
+                    }
+                }
+            }
+            countryLabels.append(MapLabel(id: k, text: c.name[k], position: best, pixelArea: bestArea[k]))
+        }
+        // Biggest first, so they win when labels would overlap.
+        countryLabels.sort { $0.pixelArea > $1.pixelArea }
+        provinceLabels.sort { $0.pixelArea > $1.pixelArea }
+        self.provinceLabels = provinceLabels
         self.countryLabels = countryLabels
     }
 }

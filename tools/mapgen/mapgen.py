@@ -56,7 +56,7 @@ TERRAIN = {
     "w": "forest", "x": "marsh", "d": "desert", "s": "steppe",
 }
 GOVERNMENTS = {"monarchy", "republic", "theocracy", "steppeHorde"}
-RELIGIONS = {"catholic", "orthodox", "miaphysite", "sunni", "shia", "hindu", "buddhist"}
+RELIGIONS = {"catholic", "orthodox", "miaphysite", "sunni", "shia", "hindu", "buddhist", "folk"}
 
 # Sea crossings that armies can use even though the land does not touch.
 STRAITS = [
@@ -144,7 +144,11 @@ def parse_provinces(folder):
             elif line.startswith("@"):
                 if region is None:
                     sys.exit(f"{where}: state before region")
-                states.append({"name": line[1:].strip(), "region": region})
+                head = [p.strip() for p in line[1:].split("|")]
+                religion = head[1] if len(head) > 1 else None
+                if religion is not None and religion not in RELIGIONS:
+                    sys.exit(f"{where}: unknown religion {religion}")
+                states.append({"name": head[0], "region": region, "religion": religion})
                 state = len(states) - 1
             elif line.startswith("!"):
                 name, coords = [p.strip() for p in line[1:].split("|")]
@@ -152,9 +156,12 @@ def parse_provinces(folder):
                 wastes.append({"name": name, "lat": lat, "lon": lon})
             else:
                 parts = [p.strip() for p in line.split("|")]
-                if len(parts) != 3 or state is None:
+                if len(parts) not in (3, 4) or state is None:
                     sys.exit(f"{where}: bad province line: {line}")
-                name, coords, rest = parts
+                name, coords, rest = parts[:3]
+                religion = parts[3] if len(parts) == 4 else states[state]["religion"]
+                if religion is not None and religion not in RELIGIONS:
+                    sys.exit(f"{where}: unknown religion {religion}")
                 lat, lon = [float(v) for v in coords.split()]
                 owner, t, dev = rest.split()
                 if t not in TERRAIN:
@@ -163,11 +170,12 @@ def parse_provinces(folder):
                     "name": name, "lat": lat, "lon": lon, "state": state,
                     "owner": None if owner == "-" else owner,
                     "terrain": TERRAIN[t], "development": int(dev),
+                    "religion": religion,
                 })
     # Drop regions and states with no provinces (e.g. the wasteland file).
     used_states = sorted({p["state"] for p in provinces})
     state_map = {old: new for new, old in enumerate(used_states)}
-    states = [states[i] for i in used_states]
+    states = [{"name": states[i]["name"], "region": states[i]["region"]} for i in used_states]
     used_regions = sorted({s["region"] for s in states})
     region_map = {old: new for new, old in enumerate(used_regions)}
     regions = [regions[i] for i in used_regions]
@@ -480,6 +488,7 @@ def build(args):
                 "name": p["name"], "state": p["state"], "owner": p["owner"],
                 "latitude": p["lat"], "longitude": p["lon"],
                 "terrain": p["terrain"], "development": p["development"],
+                "religion": p["religion"],
                 "coastal": bool(coastal[i]), "areaKm2": round(float(area[i])),
                 "labelX": int(anchors[i][0]), "labelY": int(anchors[i][1]),
                 "adjacent": sorted(adjacent[i]),

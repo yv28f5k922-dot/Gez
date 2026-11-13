@@ -22,6 +22,13 @@ the modern China border, and the Indian subcontinent. Target: roughly
 Map data is built from public-domain geography (e.g. Natural Earth). No data
 or art from Paradox or Creative Assembly games may be used.
 
+## Map structure
+
+Region (e.g. *Anatolia*) → State (e.g. *Karaman*) → Province (e.g. *Konya*).
+Provinces are the unit of ownership, sieges and movement. A state can be
+split between several owners. The map data lives in `data/map/` and is
+turned into game files by `tools/mapgen/mapgen.py`.
+
 ## Time
 
 - Calendar: 365-day years, no leap years (as in Paradox games).
@@ -94,8 +101,11 @@ later from asset packs, an artist, or an AI image pipeline.
 1. **Foundation** (done in first commit): calendar, clock, daily tick,
    placeholder world, monthly income and growth, SwiftUI app shell with a
    placeholder map, CI.
-2. **Real map**: province shapes, adjacency graph, Metal map renderer, map
-   modes (political, terrain, religion), zoom and pan (pinch on iPad).
+2. **Real map** (done): 1,189 provinces in 228 states and 36 regions,
+   neighbours and sea crossings, map modes (political, states, terrain,
+   religion, development), zoom and pan, tap to select. Drawn on the CPU for
+   now; a Metal renderer can replace it when borders start moving often.
+   Historical judgment calls are listed in `docs/HISTORY_NOTES.md`.
 3. **Economy & pops**: pop classes, goods, trade, buildings.
 4. **Armies, diplomacy & war**: movement, alliances, war score, peace.
 5. **Sieges & forts**.

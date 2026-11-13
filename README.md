@@ -26,7 +26,9 @@ See [docs/DESIGN.md](docs/DESIGN.md) for the full design and milestones.
 - **Space**: pause / resume
 - **1–5**: set game speed
 - **+ / -**: faster / slower
+- **Q W E R T**: political, states, terrain, religion, development map
 - Click or tap a province to see its details.
+- Pinch or scroll to zoom; drag or two-finger scroll to pan.
 
 ## Layout
 
@@ -36,6 +38,20 @@ Packages/GezCore/     Simulation: calendar, tick, world, systems, scenario
 docs/DESIGN.md        Design document
 project.yml           XcodeGen spec (generates Gez.xcodeproj)
 ```
+
+## Changing the map
+
+Province, state and country data lives in `data/map/` (see its README).
+After editing, regenerate the game files:
+
+```sh
+tools/mapgen/fetch_coastlines.sh /tmp/geo        # once
+pip install numpy scipy pillow
+python3 tools/mapgen/mapgen.py --land /tmp/geo/land10m.geojson
+```
+
+This rewrites `scenario1453.json`, `provinces1453.idmap` and
+`docs/map_preview.png`.
 
 ## Tests
 

@@ -99,6 +99,7 @@ enum MapPalette {
             case .shia: return pack(40, 110, 70)
             case .hindu: return pack(240, 150, 60)
             case .buddhist: return pack(220, 110, 90)
+            case .folk: return pack(150, 120, 90)
             }
         case .development:
             let t = Double(min(max(p.development[i], 1), 10) - 1) / 9

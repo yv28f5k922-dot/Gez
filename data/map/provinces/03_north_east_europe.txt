@@ -52,7 +52,7 @@ Hudiksvall | 61.73 17.10 | SWE w 1
 Harnosand | 62.63 17.94 | SWE w 1
 Umea | 63.83 20.26 | SWE w 1
 Tornio | 65.84 24.15 | SWE w 1
-Lapland | 67.85 20.22 | - w 1
+Lapland | 67.85 20.22 | - w 1 | folk
 @ Finland
 Turku | 60.45 22.27 | SWE w 3
 Hameenlinna | 61.00 24.46 | SWE w 2
@@ -60,7 +60,7 @@ Viipuri | 60.71 28.75 | SWE w 2
 Savonlinna | 61.87 28.88 | SWE w 1
 Vaasa | 63.10 21.62 | SWE w 1
 Oulu | 65.01 25.47 | SWE w 1
-Kainuu | 64.22 27.73 | - w 1
+Kainuu | 64.22 27.73 | - w 1 | folk
 
 # Baltic
 @ Prussia
@@ -101,7 +101,7 @@ Bydgoszcz | 53.12 18.00 | POL f 3
 Warsaw | 52.23 21.01 | MAZ f 4
 Plock | 52.55 19.70 | MAZ f 3
 Lomza | 53.18 22.06 | MAZ w 2
-@ Red Ruthenia
+@ Red Ruthenia | orthodox
 Lwow | 49.84 24.03 | POL f 4
 Przemysl | 49.78 22.77 | POL h 3
 Halych | 49.12 24.72 | POL h 2
@@ -114,7 +114,7 @@ Kaunas | 54.90 23.90 | LIT w 3
 Raseiniai | 55.38 23.12 | LIT w 2
 Grodno | 53.68 23.83 | LIT w 2
 Navahrudak | 53.60 25.83 | LIT w 2
-@ Belarus
+@ Belarus | orthodox
 Minsk | 53.90 27.57 | LIT w 3
 Polotsk | 55.49 28.78 | LIT w 3
 Vitebsk | 55.19 30.20 | LIT w 2
@@ -123,23 +123,23 @@ Brest-Litovsk | 52.10 23.69 | LIT x 2
 Pinsk | 52.11 26.10 | LIT x 2
 Mozyr | 52.05 29.24 | LIT x 1
 Gomel | 52.43 31.00 | LIT w 2
-@ Smolensk
+@ Smolensk | orthodox
 Smolensk | 54.78 32.05 | LIT w 4
 Vyazma | 55.21 34.29 | LIT w 2
 Toropets | 56.50 31.63 | LIT w 1
 Velikiye Luki | 56.34 30.53 | LIT w 2
 Kozelsk | 54.03 35.79 | LIT w 2
-@ Severia
+@ Severia | orthodox
 Chernigov | 51.49 31.29 | LIT w 3
 Novgorod-Seversky | 52.00 33.27 | LIT w 2
 Bryansk | 53.24 34.36 | LIT w 2
 Putyvl | 51.34 33.87 | LIT w 2
 Kursk | 51.73 36.19 | LIT p 2
-@ Volhynia
+@ Volhynia | orthodox
 Lutsk | 50.75 25.33 | LIT f 3
 Volodymyr | 50.85 24.32 | LIT f 2
 Zhytomyr | 50.25 28.66 | LIT w 2
-@ Ukraine
+@ Ukraine | orthodox
 Kiev | 50.45 30.52 | LIT f 4
 Cherkasy | 49.44 32.06 | LIT p 2
 Bratslav | 48.82 28.94 | LIT p 2
@@ -190,18 +190,18 @@ Pskov | 57.82 28.33 | PSK w 4
 Kargopol | 61.50 38.95 | NOV w 1
 Kholmogory | 64.22 41.65 | NOV w 1
 Kem | 64.95 34.58 | NOV w 1
-Umba | 66.68 34.35 | NOV w 1
-Pechora | 65.15 57.20 | NOV w 1
+Umba | 66.68 34.35 | NOV w 1 | folk
+Pechora | 65.15 57.20 | NOV w 1 | folk
 Mezen | 65.84 44.25 | NOV w 1
 Vyatka | 58.60 49.66 | VYA w 2
 Perm | 59.00 56.25 | PRM w 1
-Komi | 61.67 50.83 | - w 1
+Komi | 61.67 50.83 | - w 1 | folk
 @ Volga
 Kazan | 55.79 49.12 | KAZ w 4
 Bolghar | 54.97 49.04 | KAZ p 2
-Cheboksary | 56.13 47.25 | KAZ w 2
+Cheboksary | 56.13 47.25 | KAZ w 2 | folk
 Simbirsk | 54.32 48.40 | KAZ p 1
-Udmurtia | 56.85 53.20 | KAZ w 1
-Mordva | 53.20 45.00 | - w 1
+Udmurtia | 56.85 53.20 | KAZ w 1 | folk
+Mordva | 53.20 45.00 | - w 1 | folk
 Tambov | 52.72 41.45 | - s 1
 Samara | 53.20 50.15 | - s 1

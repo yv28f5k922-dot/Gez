@@ -281,28 +281,33 @@ private struct MapLabelsLayer: View {
         Canvas { context, size in
             context.addFilter(.shadow(color: .white.opacity(0.85), radius: 1.2))
             let bounds = CGRect(origin: .zero, size: size).insetBy(dx: -60, dy: -20)
+            var placed: [CGRect] = []
             for label in labels {
                 let screenArea = label.pixelArea * Double(zoom * zoom)
                 let p = CGPoint(x: offset.x + label.position.x * zoom, y: offset.y + label.position.y * zoom)
                 guard bounds.contains(p) else { continue }
+                let fontSize: CGFloat
+                let text: Text
+                let width: CGFloat
                 if showProvinces {
                     guard screenArea > 2_200 else { continue }
-                    let size = min(max(sqrt(screenArea) / 9, 9), 14)
-                    context.draw(
-                        Text(label.text).font(.system(size: size, weight: .medium, design: .serif))
-                            .foregroundColor(Palette.ink.opacity(0.85)),
-                        at: p
-                    )
+                    fontSize = min(max(sqrt(screenArea) / 9, 9), 14)
+                    text = Text(label.text).font(.system(size: fontSize, weight: .medium, design: .serif))
+                        .foregroundColor(Palette.ink.opacity(0.85))
+                    width = CGFloat(label.text.count) * fontSize * 0.55
                 } else {
                     guard mode == .political, screenArea > 1_800 else { continue }
-                    let size = min(max(sqrt(screenArea) / 7, 9), 26)
-                    context.draw(
-                        Text(label.text.uppercased()).font(.system(size: size, weight: .semibold, design: .serif))
-                            .kerning(size * 0.12)
-                            .foregroundColor(Palette.ink.opacity(0.8)),
-                        at: p
-                    )
+                    fontSize = min(max(sqrt(screenArea) / 7, 9), 26)
+                    text = Text(label.text.uppercased()).font(.system(size: fontSize, weight: .semibold, design: .serif))
+                        .kerning(fontSize * 0.12)
+                        .foregroundColor(Palette.ink.opacity(0.8))
+                    width = CGFloat(label.text.count) * fontSize * 0.78
                 }
+                // Skip names that would sit on top of a bigger one.
+                let rect = CGRect(x: p.x - width / 2, y: p.y - fontSize * 0.7, width: width, height: fontSize * 1.4)
+                if placed.contains(where: { $0.intersects(rect) }) { continue }
+                placed.append(rect)
+                context.draw(text, at: p)
             }
         }
         .allowsHitTesting(false)
