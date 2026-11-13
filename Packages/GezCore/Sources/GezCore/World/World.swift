@@ -24,7 +24,12 @@ public struct ProvinceTable: Sendable {
     public var baseTax: [Double] = []
     /// Yearly production value in ducats.
     public var production: [Double] = []
+    /// Majority religion of the people (kept up to date from the pops).
     public var religion: [Religion] = []
+    /// Majority culture of the people (kept up to date from the pops).
+    public var majorityCulture: [CultureID] = []
+    /// Sufi brotherhoods active in the province.
+    public var sufiOrders: [[SufiPresence]] = []
     /// 0 = no fort. Higher levels take longer to siege.
     public var fortLevel: [Int] = []
 
@@ -65,6 +70,8 @@ public struct ProvinceTable: Sendable {
         self.baseTax.append(baseTax)
         self.production.append(production)
         self.religion.append(religion)
+        self.majorityCulture.append(CultureID(0))
+        self.sufiOrders.append([])
         self.fortLevel.append(fortLevel)
         return id
     }
@@ -113,6 +120,8 @@ public struct CountryTable: Sendable {
     public var government: [GovernmentType] = []
     public var religion: [Religion] = []
     public var capital: [ProvinceID?] = []
+    /// Share of the population that is enslaved (0 to 1).
+    public var slavery: [Double] = []
     /// Ducats.
     public var treasury: [Double] = []
     /// Income from the most recent monthly update.
@@ -146,6 +155,7 @@ public struct CountryTable: Sendable {
         self.government.append(government)
         self.religion.append(religion)
         self.capital.append(nil)
+        self.slavery.append(0)
         self.treasury.append(treasury)
         self.lastMonthlyIncome.append(0)
         indexByTag[tag] = id
@@ -159,6 +169,9 @@ public struct World: Sendable {
     public var states = StateTable()
     public var provinces = ProvinceTable()
     public var countries = CountryTable()
+    public var cultures = CultureTable()
+    /// Every group of people, split by culture, religion, sect and class.
+    public var pops = PopTable()
     /// Major rivers, for drawing.
     public var rivers: [MapPolyline] = []
     /// Neighbouring provinces whose shared border is mostly a river.

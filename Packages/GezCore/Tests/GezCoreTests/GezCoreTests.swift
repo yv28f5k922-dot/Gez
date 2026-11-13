@@ -170,6 +170,7 @@ final class ScenarioTests: XCTestCase {
         XCTAssertEqual(world.provinces.religion[delhi], .hindu)
         let lapland = world.provinces.id(named: "Lapland")!.index
         XCTAssertEqual(world.provinces.religion[lapland], .folk)
+        XCTAssertEqual(world.cultures.key[world.provinces.majorityCulture[lapland].index], "sami")
         let paris = world.provinces.id(named: "Paris")!.index
         XCTAssertEqual(world.provinces.religion[paris], .catholic)
     }
@@ -181,6 +182,89 @@ final class ScenarioTests: XCTestCase {
         XCTAssertGreaterThan(world.provinces.population[paris], world.provinces.population[lapland] * 10)
         XCTAssertNil(world.provinces.owner[lapland])
         XCTAssertGreaterThanOrEqual(world.provinces.fortLevel[world.provinces.id(named: "Konstantiniyye")!.index], 4)
+    }
+}
+
+final class PopTests: XCTestCase {
+    private func share<K: Hashable>(_ pairs: [(K, Double)], _ key: K) -> Double {
+        pairs.first { $0.0 == key }?.1 ?? 0
+    }
+
+    func testEveryProvinceHasPopsMatchingItsPopulation() {
+        let world = Scenario1453.makeWorld()
+        for p in world.provinces.ids {
+            let range = world.pops.range(for: p)
+            XCTAssertFalse(range.isEmpty, world.provinces.name[p.index])
+            let sum = range.reduce(0.0) { $0 + world.pops.size[$1] }
+            XCTAssertEqual(sum, world.provinces.population[p.index], accuracy: 1, world.provinces.name[p.index])
+        }
+    }
+
+    func testConstantinopleMix() {
+        let world = Scenario1453.makeWorld()
+        let b = world.breakdown(of: world.provinces.id(named: "Konstantiniyye")!)
+        let greek = world.cultures.id(forKey: "greek")!
+        let turkish = world.cultures.id(forKey: "turkish")!
+        XCTAssertGreaterThan(share(b.cultureShares(), greek), share(b.cultureShares(), turkish))
+        XCTAssertGreaterThan(share(b.religionShares(), .jewish), 0.01)
+        XCTAssertGreaterThan(share(b.religionShares(), .sunni), 0.2)
+    }
+
+    func testSocialClassesAddUp() {
+        let world = Scenario1453.makeWorld()
+        let b = world.breakdown(of: world.provinces.id(named: "Paris")!)
+        let classes = b.classShares()
+        XCTAssertEqual(classes.reduce(0) { $0 + $1.1 }, 1, accuracy: 0.0001)
+        XCTAssertGreaterThan(share(classes, .peasants), 0.6)
+        XCTAssertGreaterThan(share(classes, .burghers), 0.1)
+        XCTAssertGreaterThan(share(classes, .nobles), 0)
+        XCTAssertEqual(share(classes, .slaves), 0)
+        // Crimea keeps slaves.
+        let crimea = world.breakdown(ofCountry: world.countries.id(forTag: "CRI")!)
+        XCTAssertGreaterThan(share(crimea.classShares(), .slaves), 0.03)
+    }
+
+    func testOttomanEmpireIsMixed() {
+        let world = Scenario1453.makeWorld()
+        let b = world.breakdown(ofCountry: world.countries.id(forTag: "TUR")!)
+        XCTAssertGreaterThan(share(b.religionShares(), .orthodox), 0.3)
+        XCTAssertGreaterThan(share(b.religionShares(), .sunni), 0.3)
+    }
+
+    func testReligionsFromTheNewList() {
+        let world = Scenario1453.makeWorld()
+        func majority(_ name: String) -> Religion { world.provinces.religion[world.provinces.id(named: name)!.index] }
+        XCTAssertEqual(majority("Prague"), .hussite)
+        XCTAssertEqual(majority("Nizwa"), .ibadi)
+        XCTAssertEqual(majority("Sanaa"), .zaydi)
+        XCTAssertEqual(majority("Sinjar"), .yazidi)
+        XCTAssertEqual(majority("Semien"), .jewish)
+        XCTAssertEqual(majority("Kotte"), .theravada)
+        XCTAssertEqual(majority("Ladakh"), .tibetan)
+        XCTAssertEqual(majority("Aksum"), .ethiopian)
+        XCTAssertEqual(world.countries.religion[world.countries.id(forTag: "OMN")!.index], .ibadi)
+    }
+
+    func testStateBreakdownAndSects() {
+        let world = Scenario1453.makeWorld()
+        let state = world.provinces.state[world.provinces.id(named: "Sofia")!.index]
+        let b = world.breakdown(ofState: state)
+        let bulgarian = world.cultures.id(forKey: "bulgarian")!
+        XCTAssertGreaterThan(share(b.cultureShares(), bulgarian), 0.6)
+        XCTAssertGreaterThan(b.bySect[.hanafi] ?? 0, 0)
+    }
+
+    func testSafaviyyaInArdabil() {
+        let world = Scenario1453.makeWorld()
+        let orders = world.provinces.sufiOrders[world.provinces.id(named: "Ardabil")!.index]
+        XCTAssertTrue(orders.contains { $0.order == .safaviyya && $0.strength > 0.5 })
+    }
+
+    func testPopsGrowWithTime() {
+        let sim = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate)
+        let before = sim.world.pops.size.reduce(0, +)
+        sim.advance(days: 365)
+        XCTAssertGreaterThan(sim.world.pops.size.reduce(0, +), before)
     }
 }
 

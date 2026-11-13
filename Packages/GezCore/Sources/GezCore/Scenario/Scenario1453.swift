@@ -67,14 +67,53 @@ public enum Scenario1453 {
 
     // MARK: - Building the world
 
-    /// The people's religion: the province's own if the data gives one,
-    /// otherwise the ruler's.
-    private static func provinceReligion(_ p: ScenarioFile.Province, owner: CountryID?, world: World) throws -> Religion {
-        if let name = p.religion {
-            guard let religion = Religion(rawValue: name) else { throw LoadError.unknownValue("religion \(name)") }
-            return religion
+    /// Splits each province's people into pops by culture, religion, sect
+    /// and social class, from the shares in the scenario file.
+    private static func buildPops(_ file: ScenarioFile, into world: inout World) throws {
+        for (index, p) in file.provinces.enumerated() {
+            let id = ProvinceID(index)
+            world.pops.beginProvince(id)
+            let total = world.provinces.population[index]
+            var groups: [(culture: CultureID, family: String, religion: Religion, sect: Sect?, size: Double)] = []
+            for entry in p.pops ?? [] {
+                guard entry.culture < world.cultures.count else { throw LoadError.unknownValue("culture \(entry.culture)") }
+                guard let religion = Religion(rawValue: entry.religion) else { throw LoadError.unknownValue("religion \(entry.religion)") }
+                var sect: Sect?
+                if let name = entry.sect {
+                    guard let s = Sect(rawValue: name) else { throw LoadError.unknownValue("sect \(name)") }
+                    sect = s
+                }
+                let culture = CultureID(entry.culture)
+                groups.append((culture, world.cultures.family[culture.index], religion, sect, total * entry.share))
+            }
+            if groups.isEmpty {
+                // No data: everyone follows the ruler's faith, culture unknown (first culture).
+                let religion = world.provinces.religion[index]
+                groups.append((CultureID(0), world.cultures.count > 0 ? world.cultures.family[0] : "", religion, nil, total))
+            }
+            let owner = world.provinces.owner[index]
+            let targets = ClassSplit.targets(
+                development: world.provinces.development[index],
+                government: owner.map { world.countries.government[$0.index] },
+                slavery: owner.map { world.countries.slavery[$0.index] } ?? 0
+            )
+            let split = ClassSplit.split(
+                groups: groups,
+                targets: targets,
+                rulerReligion: owner.map { world.countries.religion[$0.index] }
+            )
+            // Keep rows tidy: group first, then class order.
+            let order = Dictionary(uniqueKeysWithValues: SocialClass.allCases.enumerated().map { ($1, $0) })
+            for row in split.sorted(by: { $0.group == $1.group ? order[$0.socialClass]! < order[$1.socialClass]! : $0.group < $1.group }) {
+                let g = groups[row.group]
+                world.pops.add(culture: g.culture, religion: g.religion, sect: g.sect, socialClass: row.socialClass, size: row.size)
+            }
+            world.provinces.sufiOrders[index] = (p.orders ?? []).compactMap { pair in
+                guard let order = SufiOrder(rawValue: pair.order) else { return nil }
+                return SufiPresence(order: order, strength: pair.strength)
+            }
         }
-        return owner.map { world.countries.religion[$0.index] } ?? .sunni
+        world.refreshProvinceSummaries()
     }
 
     private static func build(_ file: ScenarioFile) throws -> World {
@@ -86,6 +125,9 @@ public enum Scenario1453 {
             latitudeMax: file.map.latitudeMax
         ))
         world.regions = file.regions
+        for c in file.cultures ?? [] {
+            world.cultures.add(key: c.id, name: c.name, family: c.family)
+        }
         for state in file.states {
             world.states.add(name: state.name, region: RegionID(state.region))
         }
@@ -111,6 +153,7 @@ public enum Scenario1453 {
                 religion: religion,
                 treasury: startingTreasury(totalDevelopment: devByTag[c.tag] ?? 0)
             )
+            world.countries.slavery[world.countries.count - 1] = c.slavery ?? 0
         }
         let capitals = Set(file.countries.map(\.capital))
 
@@ -135,10 +178,10 @@ public enum Scenario1453 {
                 labelPoint: MapPoint(x: p.labelX, y: p.labelY),
                 owner: owner,
                 development: p.development,
-                population: startingPopulation(development: p.development),
+                population: p.population ?? startingPopulation(development: p.development),
                 baseTax: startingTax(development: p.development),
                 production: startingProduction(development: p.development),
-                religion: try provinceReligion(p, owner: owner, world: world),
+                religion: owner.map { world.countries.religion[$0.index] } ?? .folk,
                 fortLevel: startingFort(development: p.development, isCapital: capitals.contains(index))
             )
         }
@@ -149,19 +192,7 @@ public enum Scenario1453 {
             }
         }
 
-        // Unowned land without its own religion takes the most common
-        // religion among its neighbours.
-        for (i, p) in file.provinces.enumerated() where p.owner == nil && p.religion == nil {
-            var tally: [Religion: Int] = [:]
-            for n in world.provinces.neighbors[i] {
-                if world.provinces.owner[n.index] != nil {
-                    tally[world.provinces.religion[n.index], default: 0] += 1
-                }
-            }
-            if let best = tally.max(by: { a, b in a.value == b.value ? a.key.rawValue > b.key.rawValue : a.value < b.value }) {
-                world.provinces.religion[i] = best.key
-            }
-        }
+        try buildPops(file, into: &world)
 
         for (index, c) in file.countries.enumerated() {
             world.countries.capital[index] = ProvinceID(c.capital)
@@ -199,6 +230,45 @@ struct ScenarioFile: Decodable {
         let government: String
         let religion: String
         let capital: Int
+        let slavery: Double?
+    }
+
+    struct Culture: Decodable {
+        let id: String
+        let name: String
+        let family: String
+    }
+
+    /// [culture index, religion, sect or null, share]
+    struct PopShare: Decodable {
+        let culture: Int
+        let religion: String
+        let sect: String?
+        let share: Double
+
+        init(from decoder: Decoder) throws {
+            var c = try decoder.unkeyedContainer()
+            culture = try c.decode(Int.self)
+            religion = try c.decode(String.self)
+            if try c.decodeNil() {
+                sect = nil
+            } else {
+                sect = try c.decode(String.self)
+            }
+            share = try c.decode(Double.self)
+        }
+    }
+
+    /// [order, strength]
+    struct OrderPresence: Decodable {
+        let order: String
+        let strength: Double
+
+        init(from decoder: Decoder) throws {
+            var c = try decoder.unkeyedContainer()
+            order = try c.decode(String.self)
+            strength = try c.decode(Double.self)
+        }
     }
 
     struct Province: Decodable {
@@ -209,7 +279,9 @@ struct ScenarioFile: Decodable {
         let longitude: Double
         let terrain: String
         let development: Int
-        let religion: String?
+        let population: Double?
+        let pops: [PopShare]?
+        let orders: [OrderPresence]?
         let coastal: Bool
         let areaKm2: Double
         let labelX: Int
@@ -224,6 +296,7 @@ struct ScenarioFile: Decodable {
 
     let map: Map
     let regions: [String]
+    let cultures: [Culture]?
     let riverBorders: [[Int]]?
     let rivers: [River]?
     let states: [State]

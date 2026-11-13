@@ -54,7 +54,7 @@ final class SnapshotTests: XCTestCase {
         if let india = crop(image, model: model, lonMin: 60, latMax: 37, lonMax: 93, latMin: 5) {
             save(india, "map_political_india.png")
         }
-        for mode in [MapMode.states, .terrain, .religion, .development] {
+        for mode in [MapMode.states, .terrain, .religion, .culture, .development] {
             let previous = image
             model.mapMode = mode
             image = try await waitForMap(model, previous: previous)

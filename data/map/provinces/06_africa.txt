@@ -84,7 +84,7 @@ Damot | 6.80 37.75 | ETH h 1
 Hadiya | 7.50 37.90 | ETH h 1
 Bali | 7.00 40.00 | ETH h 1
 Dawaro | 8.00 40.70 | ETH h 1
-Bonga | 7.27 36.24 | KAF w 2 | folk
+Bonga | 7.27 36.24 | KAF w 2
 Ennarea | 7.80 36.90 | ETH w 1
 @ Adal
 Harar | 9.31 42.12 | ADA h 3

@@ -1,0 +1,225 @@
+# Germany
+@ Lower Rhine
+rhenish catholic 99
+ashkenazi jewish 1
+@ Westphalia
+westphalian catholic 100
+> Oldenburg
+low_saxon catholic 100
+> Bremen
+low_saxon catholic 100
+> Stade
+low_saxon catholic 100
+@ Middle Rhine
+rhenish catholic 98
+ashkenazi jewish 2
+> Frankfurt
+rhenish catholic 95
+ashkenazi jewish 5
+@ Hesse and Thuringia
+franconian catholic 99
+ashkenazi jewish 1
+> Erfurt
+upper_saxon catholic 98
+ashkenazi jewish 2
+> Weimar
+upper_saxon catholic 100
+@ Saxony
+upper_saxon catholic 97
+sorbian catholic 3
+> Magdeburg
+low_saxon catholic 99
+ashkenazi jewish 1
+> Halle
+upper_saxon catholic 99
+ashkenazi jewish 1
+@ Lower Saxony
+low_saxon catholic 100
+@ Holstein and Schleswig
+low_saxon catholic 60
+danish catholic 40
+> Schleswig
+danish catholic 70
+low_saxon catholic 30
+@ Mecklenburg and Pomerania
+low_saxon catholic 100
+> Stolp
+pomeranian catholic 60
+low_saxon catholic 40
+@ Brandenburg
+low_saxon catholic 98
+sorbian catholic 2
+> Cottbus
+sorbian catholic 65
+low_saxon catholic 35
+> Landsberg
+low_saxon catholic 85
+polish catholic 15
+@ Franconia
+franconian catholic 98
+ashkenazi jewish 2
+> Amberg
+bavarian catholic 100
+@ Swabia
+swabian catholic 99
+ashkenazi jewish 1
+> Montbeliard
+arpitan catholic 100
+@ Bavaria
+bavarian catholic 99
+ashkenazi jewish 1
+> Regensburg
+bavarian catholic 97
+ashkenazi jewish 3
+
+# Bohemian Crown
+@ Bohemia
+czech hussite 70
+czech catholic 12
+upper_saxon catholic 16
+ashkenazi jewish 2
+> Prague
+czech hussite 70
+upper_saxon catholic 22
+ashkenazi jewish 8
+> Litomerice
+upper_saxon catholic 50
+czech hussite 50
+@ Moravia
+czech hussite 40
+czech catholic 38
+austrian catholic 20
+ashkenazi jewish 2
+@ Silesia
+silesian catholic 55
+upper_saxon catholic 43
+ashkenazi jewish 2
+> Wroclaw
+upper_saxon catholic 80
+silesian catholic 17
+ashkenazi jewish 3
+@ Lusatia
+sorbian catholic 60
+upper_saxon catholic 40
+
+# Alps
+@ Austria
+austrian catholic 99
+ashkenazi jewish 1
+@ Inner Austria
+austrian catholic 60
+slovene catholic 40
+> Ljubljana
+slovene catholic 80
+austrian catholic 20
+> Celje
+slovene catholic 75
+austrian catholic 25
+> Trieste
+slovene catholic 50
+friulian catholic 30
+venetian catholic 20
+> Gorizia
+friulian catholic 50
+slovene catholic 50
+@ Tyrol
+bavarian catholic 100
+> Trento
+venetian catholic 80
+bavarian catholic 20
+@ Switzerland
+swiss catholic 100
+> Sion
+arpitan catholic 60
+swiss catholic 40
+> Chur
+swiss catholic 70
+lombard catholic 30
+
+# Italy
+@ Savoy
+arpitan catholic 100
+> Nice
+occitan catholic 70
+ligurian catholic 30
+> Fribourg
+arpitan catholic 60
+swiss catholic 40
+> Lausanne
+arpitan catholic 100
+> Geneva
+arpitan catholic 100
+@ Piedmont
+piedmontese catholic 100
+@ Lombardy
+lombard catholic 100
+> Parma
+emilian catholic 100
+> Piacenza
+emilian catholic 100
+> Mantua
+lombard catholic 96
+ashkenazi jewish 4
+@ Liguria
+ligurian catholic 100
+> Bastia
+corsican catholic 100
+> Ajaccio
+corsican catholic 100
+@ Venetia
+venetian catholic 100
+> Venice
+venetian catholic 90
+greek orthodox 4
+ashkenazi jewish 3
+dalmatian catholic 3
+> Udine
+friulian catholic 100
+> Capodistria
+venetian catholic 60
+slovene catholic 40
+> Bergamo
+lombard catholic 100
+> Brescia
+lombard catholic 100
+@ Emilia
+emilian catholic 99
+ashkenazi jewish 1
+> Ferrara
+emilian catholic 96
+sephardi jewish 4
+> Ravenna
+emilian catholic 100
+> Rimini
+emilian catholic 100
+@ Tuscany
+tuscan catholic 99
+ashkenazi jewish 1
+@ Papal States
+roman catholic 98
+ashkenazi jewish 2
+> Rome
+roman catholic 95
+romaniote jewish 5
+> Ancona
+roman catholic 95
+romaniote jewish 3
+dalmatian catholic 2
+@ Naples
+neapolitan catholic 98
+romaniote jewish 1
+albanian catholic 1
+> Lecce
+neapolitan catholic 85
+greek orthodox 15
+> Reggio
+neapolitan catholic 85
+greek orthodox 15
+@ Sicily
+sicilian catholic 95
+sephardi jewish 5
+> Malta
+maltese catholic 100
+@ Sardinia
+sardinian catholic 90
+catalan catholic 10

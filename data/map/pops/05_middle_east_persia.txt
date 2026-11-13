@@ -1,0 +1,352 @@
+# Levant
+@ Northern Syria
+levantine sunni.shafii 70
+levantine sunni.hanafi 10
+turkmen sunni.hanafi 8
+armenian armenian 5
+levantine orthodox 5
+mizrahi jewish 2
+> Aleppo
+levantine sunni.hanafi 60
+armenian armenian 12
+levantine orthodox 10
+mizrahi jewish 8
+turkmen sunni.hanafi 10
+> Antioch
+levantine orthodox 35
+levantine sunni.shafii 30
+levantine alawite 20
+turkmen sunni.hanafi 15
+> Hama
+levantine sunni.shafii 80
+levantine ismaili 15
+levantine orthodox 5
+> Raqqa
+bedouin sunni.shafii 100
+> Deir ez-Zor
+bedouin sunni.shafii 100
+> Palmyra
+bedouin sunni.shafii 100
+@ Southern Syria
+levantine sunni.shafii 75
+levantine orthodox 15
+levantine twelver 5
+mizrahi jewish 5
+> Damascus
+levantine sunni.shafii 70
+levantine sunni.hanafi 10
+levantine orthodox 10
+mizrahi jewish 7
+levantine twelver 3
+> Tripoli of Syria
+levantine sunni.shafii 35
+levantine catholic 30
+levantine alawite 20
+levantine orthodox 15
+> Beirut
+levantine druze 40
+levantine sunni.shafii 30
+levantine catholic 15
+levantine twelver 10
+levantine orthodox 5
+> Safed
+levantine twelver 45
+levantine sunni.shafii 35
+mizrahi jewish 10
+levantine druze 10
+@ Palestine
+levantine sunni.shafii 85
+levantine orthodox 10
+mizrahi jewish 5
+> Jerusalem
+levantine sunni.shafii 70
+levantine orthodox 15
+mizrahi jewish 8
+armenian armenian 5
+levantine coptic 2
+> Aqaba
+bedouin sunni.shafii 100
+
+# Egypt
+@ Lower Egypt
+egyptian sunni.shafii 87
+egyptian coptic 10
+mizrahi jewish 3
+> Cairo
+egyptian sunni.shafii 75
+egyptian coptic 12
+mizrahi jewish 5
+levantine sunni.hanafi 5
+armenian armenian 3
+> Alexandria
+egyptian sunni.maliki 75
+egyptian coptic 10
+mizrahi jewish 8
+venetian catholic 7
+@ Sinai
+bedouin sunni.shafii 100
+> Tor
+bedouin sunni.shafii 85
+egyptian orthodox 15
+@ Upper Egypt
+egyptian sunni.maliki 80
+egyptian coptic 20
+> Qusayr
+bedouin sunni.maliki 100
+> Aswan
+nubian sunni.maliki 60
+egyptian sunni.maliki 30
+egyptian coptic 10
+@ Western Desert
+berber sunni.maliki 50
+bedouin sunni.maliki 50
+
+# Arabia
+@ Hejaz
+hejazi sunni.shafii 90
+hejazi zaydi 5
+mizrahi jewish 5
+> Mecca
+hejazi sunni.shafii 80
+hejazi zaydi 10
+egyptian sunni.shafii 5
+persian sunni.shafii 5
+> Tabuk
+bedouin sunni.hanbali 100
+> Tayma
+bedouin sunni.hanbali 100
+@ Najd
+najdi sunni.hanbali 70
+bedouin sunni.hanbali 30
+@ Eastern Arabia
+gulf_arab twelver 60
+gulf_arab sunni.maliki 40
+> Qatar
+bedouin sunni.maliki 100
+@ Oman
+omani ibadi 90
+omani sunni.shafii 5
+baloch sunni.hanafi 5
+> Muscat
+omani ibadi 60
+persian sunni.shafii 20
+baloch sunni.hanafi 10
+gujarati hindu 10
+> Julfar
+gulf_arab sunni.shafii 70
+persian sunni.shafii 30
+@ Yemen
+yemeni sunni.shafii 92
+mizrahi jewish 5
+somali sunni.shafii 3
+> Sanaa
+yemeni zaydi 80
+yemeni sunni.shafii 10
+mizrahi jewish 10
+> Sadah
+yemeni zaydi 95
+mizrahi jewish 5
+> Aden
+yemeni sunni.shafii 70
+gujarati hindu 10
+somali sunni.shafii 10
+mizrahi jewish 10
+> Najran
+yemeni ismaili 60
+bedouin sunni.hanbali 30
+mizrahi jewish 10
+> Jizan
+yemeni sunni.shafii 80
+yemeni zaydi 20
+> Asir
+bedouin sunni.hanbali 100
+> Marib
+bedouin zaydi 60
+bedouin sunni.shafii 40
+@ Hadramawt
+hadrami sunni.shafii 100
+> Dhofar
+hadrami sunni.shafii 70
+omani ibadi 30
+
+# Mesopotamia
+@ Al-Jazira
+iraqi sunni.shafii 45
+kurdish sunni.shafii 25
+iraqi syriac 10
+iraqi nestorian 10
+kurdish yazidi 5
+mizrahi jewish 5
+> Sinjar
+kurdish yazidi 80
+bedouin sunni.shafii 20
+> Erbil
+kurdish sunni.shafii 70
+iraqi nestorian 20
+mizrahi jewish 10
+> Kirkuk
+turkmen sunni.hanafi 45
+kurdish sunni.shafii 40
+iraqi syriac 15
+@ Iraq
+iraqi twelver 55
+iraqi sunni.hanafi 35
+mizrahi jewish 7
+iraqi nestorian 3
+> Baghdad
+iraqi sunni.hanafi 50
+iraqi twelver 30
+mizrahi jewish 15
+persian twelver 5
+> Kufa
+iraqi twelver 95
+iraqi sunni.hanafi 5
+> Hit
+bedouin sunni.hanafi 100
+> Basra
+iraqi twelver 60
+iraqi sunni.shafii 30
+mizrahi jewish 10
+
+# Persia
+@ Azerbaijan
+azeri sunni.shafii 70
+persian sunni.shafii 15
+armenian armenian 10
+kurdish sunni.shafii 5
+> Tabriz
+azeri sunni.shafii 60
+persian twelver 20
+armenian armenian 15
+mizrahi jewish 5
+> Ardabil
+azeri sunni.shafii 70
+azeri twelver 30
+& Ardabil | safaviyya 0.8
+> Urmia
+kurdish sunni.shafii 45
+azeri sunni.shafii 30
+iraqi nestorian 25
+> Lankaran
+gilaki sunni.shafii 100
+@ Gilan and Mazandaran
+gilaki zaydi 60
+gilaki sunni.shafii 40
+> Sari
+mazandarani twelver 80
+mazandarani zaydi 20
+> Nur
+mazandarani twelver 100
+> Astarabad
+persian sunni.hanafi 60
+turkmen sunni.hanafi 40
+@ Persian Iraq
+persian sunni.shafii 70
+persian twelver 20
+mizrahi jewish 5
+persian zoroastrian 5
+> Isfahan
+persian sunni.shafii 70
+persian twelver 15
+mizrahi jewish 10
+armenian armenian 5
+> Kashan
+persian twelver 75
+persian sunni.shafii 15
+mizrahi jewish 10
+> Kermanshah
+kurdish sunni.shafii 80
+kurdish yazidi 10
+persian twelver 10
+> Hamadan
+persian sunni.shafii 70
+mizrahi jewish 15
+persian twelver 15
+> Qazvin
+persian sunni.shafii 80
+persian ismaili 10
+persian twelver 10
+@ Luristan and Khuzestan
+luri twelver 80
+luri sunni.shafii 20
+> Hoveyzeh
+iraqi twelver 90
+iraqi sunni.shafii 10
+> Shushtar
+persian sunni.shafii 50
+iraqi twelver 50
+@ Fars
+persian sunni.shafii 85
+persian twelver 7
+mizrahi jewish 5
+persian zoroastrian 3
+> Yazd
+persian sunni.shafii 70
+persian zoroastrian 25
+mizrahi jewish 5
+> Lar
+persian sunni.shafii 90
+mizrahi jewish 10
+@ Kerman
+persian sunni.shafii 82
+persian zoroastrian 15
+baloch sunni.hanafi 3
+> Hormuz
+persian sunni.shafii 50
+gulf_arab sunni.shafii 25
+gujarati hindu 15
+mizrahi jewish 10
+> Minab
+persian sunni.shafii 60
+baloch sunni.hanafi 40
+@ Makran
+baloch sunni.hanafi 100
+> Las Bela
+sindhi sunni.hanafi 40
+baloch sunni.hanafi 60
+> Quetta
+pashtun sunni.hanafi 60
+baloch sunni.hanafi 40
+
+# Khorasan and Afghanistan
+@ Khorasan
+persian sunni.hanafi 85
+turkmen sunni.hanafi 10
+mizrahi jewish 5
+& Herat | naqshbandi 0.4
+> Mashhad
+persian twelver 60
+persian sunni.hanafi 40
+> Quhistan
+persian ismaili 35
+persian sunni.hanafi 65
+> Abiward
+turkmen sunni.hanafi 80
+persian sunni.hanafi 20
+> Merv
+turkmen sunni.hanafi 60
+persian sunni.hanafi 40
+@ Sistan
+persian sunni.hanafi 70
+baloch sunni.hanafi 30
+@ Afghanistan
+pashtun sunni.hanafi 60
+tajik sunni.hanafi 40
+> Kabul
+tajik sunni.hanafi 60
+pashtun sunni.hanafi 30
+hindustani hindu 10
+> Ghor
+tajik sunni.hanafi 60
+hazara sunni.hanafi 40
+> Ghazni
+pashtun sunni.hanafi 50
+tajik sunni.hanafi 30
+hazara sunni.hanafi 20
+@ Tokharistan
+tajik sunni.hanafi 70
+uzbek sunni.hanafi 20
+pashtun sunni.hanafi 10
+> Faizabad
+tajik ismaili 60
+tajik sunni.hanafi 40

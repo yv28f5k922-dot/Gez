@@ -26,7 +26,7 @@ See [docs/DESIGN.md](docs/DESIGN.md) for the full design and milestones.
 - **Space**: pause / resume
 - **1–5**: set game speed
 - **+ / -**: faster / slower
-- **Q W E R T**: political, states, terrain, religion, development map
+- **Q W E R T Y**: political, states, terrain, religion, culture, development map
 - Click or tap a province to see its details.
 - Pinch or scroll to zoom; drag or two-finger scroll to pan.
 

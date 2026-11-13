@@ -23,10 +23,7 @@ faces the rest of their own country, so the river stays a clean border.
 ```
 # Region Name                     <- starts a region (a group of states)
 @ State Name                      <- starts a state (a group of provinces)
-@ State Name | religion           <- same, with the people's religion if it
-                                     differs from the ruler's
 Province Name | lat lon | OWNER t d
-Province Name | lat lon | OWNER t d | religion   <- religion for one province
 ! Wasteland label | lat lon       <- impassable land (deserts, high mountains, off-map)
 ```
 
@@ -34,9 +31,10 @@ Province Name | lat lon | OWNER t d | religion   <- religion for one province
 - `t` is terrain: `f` farmland, `p` plains, `h` hills, `m` mountains,
   `w` forest, `x` marsh, `d` desert, `s` steppe.
 - `d` is development, 1 (empty) to 10 (great city).
-- Religion, when not given, is the owner's religion (for unowned land, the
-  most common religion among its neighbours). Religions: catholic, orthodox,
-  miaphysite, sunni, shia, hindu, buddhist, folk.
+- Who lives in each province (culture, religion, sect, share) is in
+  `pops/`; see its README. `population_1453.txt` holds the estimated
+  population of each region, spread over its provinces by development and
+  size. `slavery.txt` holds each country's enslaved share.
 - The province shape grows outward from its lat/lon point, so put the point
   on the province's main town.
 

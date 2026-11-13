@@ -2,7 +2,7 @@ import GezCore
 import SwiftUI
 
 enum MapMode: String, CaseIterable, Identifiable {
-    case political, states, terrain, religion, development
+    case political, states, terrain, religion, culture, development
 
     var id: String { rawValue }
 
@@ -12,6 +12,7 @@ enum MapMode: String, CaseIterable, Identifiable {
         case .states: return "States"
         case .terrain: return "Terrain"
         case .religion: return "Religion"
+        case .culture: return "Culture"
         case .development: return "Development"
         }
     }
@@ -22,6 +23,7 @@ enum MapMode: String, CaseIterable, Identifiable {
         case .states: return "square.grid.3x3"
         case .terrain: return "mountain.2"
         case .religion: return "building.columns"
+        case .culture: return "person.3"
         case .development: return "chart.bar"
         }
     }
@@ -32,7 +34,8 @@ enum MapMode: String, CaseIterable, Identifiable {
         case .states: return "w"
         case .terrain: return "e"
         case .religion: return "r"
-        case .development: return "t"
+        case .culture: return "t"
+        case .development: return "y"
         }
     }
 }
@@ -91,16 +94,9 @@ enum MapPalette {
             case .steppe: return pack(205, 190, 120)
             }
         case .religion:
-            switch p.religion[i] {
-            case .catholic: return pack(235, 220, 120)
-            case .orthodox: return pack(160, 110, 200)
-            case .miaphysite: return pack(200, 140, 210)
-            case .sunni: return pack(70, 160, 80)
-            case .shia: return pack(40, 110, 70)
-            case .hindu: return pack(240, 150, 60)
-            case .buddhist: return pack(220, 110, 90)
-            case .folk: return pack(150, 120, 90)
-            }
+            return pack(p.religion[i].color)
+        case .culture:
+            return cultureColor(p.majorityCulture[i], world: world)
         case .development:
             let t = Double(min(max(p.development[i], 1), 10) - 1) / 9
             return pack(
@@ -109,6 +105,20 @@ enum MapPalette {
                 UInt8(170 - 130 * t)
             )
         }
+    }
+
+    /// Each culture family gets its own hue; cultures inside a family get
+    /// different shades so neighbours stay distinguishable.
+    static func cultureColor(_ culture: CultureID, world: World) -> UInt32 {
+        let families = world.cultures.families
+        let family = world.cultures.family[culture.index]
+        let f = families.firstIndex(of: family) ?? 0
+        let members = (0..<world.cultures.count).filter { world.cultures.family[$0] == family }
+        let k = members.firstIndex(of: culture.index) ?? 0
+        let hue = (Double(f) * 0.618_034).truncatingRemainder(dividingBy: 1)
+        let light = 0.45 + 0.3 * Double(k % 4) / 3
+        let sat = 0.35 + 0.25 * Double((k / 4) % 2)
+        return hsl(hue, sat, light)
     }
 
     private static func hsl(_ h: Double, _ s: Double, _ l: Double) -> UInt32 {

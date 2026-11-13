@@ -35,7 +35,7 @@ Ulytau | 48.00 67.00 | UZB s 1
 Turgai | 49.60 63.50 | UZB s 1
 Kostanay | 53.21 63.62 | UZB s 1
 Chimgi-Tura | 57.15 65.53 | UZB w 1
-Ishim | 56.10 69.50 | - w 1 | folk
+Ishim | 56.10 69.50 | - w 1
 @ Central Steppe
 Akmola | 51.17 71.45 | - s 1
 Karaganda | 49.80 73.10 | - s 1

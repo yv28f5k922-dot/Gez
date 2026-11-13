@@ -1,0 +1,328 @@
+# Northwest India
+@ Punjab
+punjabi hindu 60
+punjabi sunni.hanafi 35
+pashtun sunni.hanafi 5
+> Lahore
+punjabi sunni.hanafi 45
+punjabi hindu 45
+pashtun sunni.hanafi 5
+persian sunni.hanafi 5
+& Lahore | chishti 0.3
+> Bhera
+punjabi sunni.hanafi 70
+punjabi hindu 30
+@ Frontier
+pashtun sunni.hanafi 90
+punjabi hindu 10
+> Dera Ismail Khan
+baloch sunni.hanafi 60
+punjabi sunni.hanafi 40
+@ Multan
+punjabi sunni.hanafi 70
+punjabi hindu 25
+sindhi ismaili 5
+& Multan | qadiri 0.3
+@ Sindh
+sindhi sunni.hanafi 70
+sindhi hindu 25
+sindhi ismaili 5
+> Umarkot
+sindhi hindu 70
+sindhi sunni.hanafi 30
+@ Kashmir
+kashmiri sunni.hanafi 60
+kashmiri hindu.shaiva 40
+& Srinagar | kubrawi 0.4
+> Jammu
+punjabi hindu 85
+kashmiri sunni.hanafi 15
+> Ladakh
+ladakhi tibetan 90
+balti twelver 10
+> Skardu
+balti twelver 100
+> Gilgit
+dardic twelver 50
+dardic ismaili 30
+dardic sunni.hanafi 20
+
+# Hindustan
+@ Delhi
+hindustani hindu.vaishnava 70
+hindustani sunni.hanafi 22
+pashtun sunni.hanafi 5
+hindustani jain 3
+& Delhi | chishti 0.6
+@ Doab and Awadh
+awadhi hindu.vaishnava 85
+awadhi sunni.hanafi 15
+> Benares
+awadhi hindu.shaiva 90
+awadhi sunni.hanafi 10
+> Jaunpur
+awadhi hindu.vaishnava 70
+awadhi sunni.hanafi 30
+> Etawah
+hindustani hindu.vaishnava 90
+hindustani sunni.hanafi 10
+> Kannauj
+hindustani hindu.vaishnava 80
+hindustani sunni.hanafi 20
+> Kalpi
+hindustani hindu.vaishnava 85
+hindustani sunni.hanafi 15
+@ Bihar
+bihari hindu 85
+bihari sunni.hanafi 15
+> Tirhut
+maithili hindu.shakta 95
+maithili sunni.hanafi 5
+@ Himalayan Foothills
+pahari hindu.shaiva 100
+> Kathmandu
+newar hindu.shaiva 70
+newar tibetan 30
+> Jumla
+khas hindu.shaiva 100
+@ Bundelkhand
+hindustani hindu.vaishnava 85
+gond folk 15
+> Rewa
+hindustani hindu 60
+gond folk 40
+
+# Rajputana
+@ Mewar
+rajasthani hindu.vaishnava 80
+rajasthani jain 8
+bhil folk 12
+> Ajmer
+rajasthani hindu 70
+rajasthani sunni.hanafi 25
+rajasthani jain 5
+& Ajmer | chishti 0.8
+@ Marwar
+rajasthani hindu 88
+rajasthani jain 7
+rajasthani sunni.hanafi 5
+> Nagaur
+rajasthani sunni.hanafi 50
+rajasthani hindu 45
+rajasthani jain 5
+@ Dhundhar and Hadoti
+rajasthani hindu.vaishnava 85
+rajasthani jain 5
+bhil folk 10
+
+# Gujarat
+@ Gujarat
+gujarati hindu.vaishnava 72
+gujarati sunni.hanafi 15
+gujarati jain 10
+gujarati ismaili 3
+> Ahmedabad
+gujarati hindu.vaishnava 55
+gujarati sunni.hanafi 30
+gujarati jain 12
+gujarati ismaili 3
+> Cambay
+gujarati hindu 50
+gujarati sunni.hanafi 30
+gujarati jain 10
+persian zoroastrian 5
+gujarati ismaili 5
+> Surat
+gujarati hindu 70
+gujarati sunni.hanafi 20
+persian zoroastrian 5
+gujarati jain 5
+> Broach
+gujarati hindu 70
+gujarati sunni.hanafi 15
+persian zoroastrian 10
+gujarati jain 5
+> Champaner
+gujarati hindu 70
+bhil folk 30
+> Idar
+gujarati hindu 70
+bhil folk 30
+@ Saurashtra
+gujarati hindu.vaishnava 85
+gujarati sunni.hanafi 10
+gujarati jain 5
+> Diu
+gujarati sunni.hanafi 50
+gujarati hindu 40
+persian sunni.shafii 10
+> Bhuj
+sindhi hindu 60
+sindhi sunni.hanafi 40
+
+# Central India
+@ Malwa
+malvi hindu 72
+malvi sunni.hanafi 18
+malvi jain 5
+bhil folk 5
+> Mandu
+malvi sunni.hanafi 45
+malvi hindu 50
+malvi jain 5
+@ Khandesh
+marathi hindu 75
+deccani sunni.hanafi 15
+bhil folk 10
+@ Gondwana
+gond folk 60
+gond hindu 40
+
+# Bengal
+@ Bengal
+bengali hindu.shakta 65
+bengali sunni.hanafi 35
+> Gaur
+bengali sunni.hanafi 55
+bengali hindu.shakta 40
+persian sunni.hanafi 5
+> Sonargaon
+bengali sunni.hanafi 55
+bengali hindu 45
+> Chittagong
+bengali sunni.hanafi 50
+bengali theravada 30
+bengali hindu 20
+> Sylhet
+bengali sunni.hanafi 50
+bengali hindu 50
+@ Northeast
+assamese hindu.shakta 60
+bodo folk 40
+> Charaideo
+ahom folk 70
+assamese hindu 30
+> Dimapur
+bodo folk 100
+> Udaipur
+tripuri hindu.shakta 60
+tripuri folk 40
+> Imphal
+meitei folk 100
+@ Orissa
+odia hindu.vaishnava 92
+odia sunni.hanafi 3
+gond folk 5
+> Rajahmundry
+telugu hindu 100
+
+# Deccan
+@ Bahmani
+telugu hindu 65
+deccani sunni.hanafi 25
+kannada hindu 10
+> Bidar
+deccani sunni.hanafi 50
+telugu hindu 25
+kannada hindu 20
+persian twelver 5
+> Gulbarga
+kannada hindu.lingayat 45
+deccani sunni.hanafi 45
+kannada jain 10
+& Gulbarga | chishti 0.6
+> Raichur
+kannada hindu 65
+deccani sunni.hanafi 35
+@ Maharashtra
+marathi hindu 85
+deccani sunni.hanafi 15
+> Dabhol
+konkani hindu 50
+deccani sunni.hanafi 35
+persian sunni.shafii 15
+> Chaul
+konkani hindu 70
+deccani sunni.hanafi 20
+persian sunni.shafii 10
+> Kolhapur
+marathi hindu 75
+kannada hindu.lingayat 25
+@ Berar
+marathi hindu 75
+gond folk 15
+deccani sunni.hanafi 10
+
+# South India
+@ Vijayanagara
+kannada hindu.shaiva 50
+telugu hindu.vaishnava 35
+kannada hindu.lingayat 10
+kannada jain 5
+> Vijayanagara
+kannada hindu.shaiva 50
+telugu hindu.vaishnava 30
+tamil hindu 10
+kannada hindu.lingayat 5
+persian sunni.shafii 5
+> Udayagiri
+telugu hindu 100
+> Kondavidu
+telugu hindu 100
+> Chandragiri
+telugu hindu.vaishnava 80
+tamil hindu 20
+> Mysore
+kannada hindu.lingayat 40
+kannada hindu 50
+kannada jain 10
+@ Konkan and Kanara
+konkani hindu 60
+tulu hindu 25
+tulu jain 10
+konkani sunni.shafii 5
+> Goa
+konkani hindu 70
+konkani sunni.shafii 20
+persian sunni.shafii 10
+> Honnavar
+kannada hindu 70
+konkani sunni.shafii 20
+kannada jain 10
+@ Tamilakam
+tamil hindu.shaiva 92
+tamil sunni.shafii 5
+tamil jain 3
+> Kanchipuram
+tamil hindu.vaishnava 60
+tamil hindu.shaiva 40
+@ Malabar
+malayali hindu 75
+malayali sunni.shafii 15
+malayali nestorian 7
+mizrahi jewish 3
+> Calicut
+malayali hindu 65
+malayali sunni.shafii 25
+hejazi sunni.shafii 5
+malayali nestorian 5
+> Cochin
+malayali hindu 60
+malayali nestorian 20
+malayali sunni.shafii 12
+mizrahi jewish 8
+> Quilon
+malayali hindu 70
+malayali nestorian 20
+malayali sunni.shafii 10
+@ Lanka
+sinhala theravada 85
+tamil hindu 10
+malayali sunni.shafii 5
+> Jaffna
+tamil hindu.shaiva 95
+malayali sunni.shafii 5
+> Batticaloa
+tamil hindu 60
+sinhala theravada 30
+malayali sunni.shafii 10

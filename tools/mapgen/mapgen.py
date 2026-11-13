@@ -55,7 +55,16 @@ TERRAIN = {
     "w": "forest", "x": "marsh", "d": "desert", "s": "steppe",
 }
 GOVERNMENTS = {"monarchy", "republic", "theocracy", "steppeHorde"}
-RELIGIONS = {"catholic", "orthodox", "miaphysite", "sunni", "shia", "hindu", "buddhist", "folk"}
+RELIGIONS = {
+    "catholic", "hussite", "orthodox", "bosnian", "coptic", "ethiopian", "armenian", "syriac", "nestorian",
+    "sunni", "twelver", "zaydi", "ismaili", "ibadi", "druze", "alawite", "yazidi",
+    "hindu", "jain", "theravada", "tibetan", "zoroastrian", "jewish", "tengri", "folk",
+}
+SECTS = {
+    "hanafi": "sunni", "maliki": "sunni", "shafii": "sunni", "hanbali": "sunni",
+    "vaishnava": "hindu", "shaiva": "hindu", "shakta": "hindu", "lingayat": "hindu",
+}
+ORDERS = {"safaviyya", "naqshbandi", "bektashi", "hurufi", "mevlevi", "qadiri", "chishti", "kubrawi", "shadhili"}
 
 # Sea crossings that armies can use even though the land does not touch.
 STRAITS = [
@@ -183,6 +192,75 @@ def parse_provinces(folder):
     for p in provinces:
         p["state"] = state_map[p["state"]]
     return regions, states, provinces, wastes
+
+
+def parse_cultures(path):
+    cultures = []
+    for raw in open(path, encoding="utf-8"):
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        cid, name, family = [p.strip() for p in line.split("|")]
+        cultures.append({"id": cid, "name": name, "family": family})
+    ids = [c["id"] for c in cultures]
+    dup = {x for x in ids if ids.count(x) > 1}
+    if dup:
+        sys.exit(f"cultures.txt: duplicate ids {sorted(dup)}")
+    return cultures
+
+
+def parse_pops(folder, culture_index):
+    """Returns (state mixes, province mixes, province orders), keyed by name."""
+    state_mix, province_mix, orders = {}, {}, defaultdict(list)
+    for fname in sorted(os.listdir(folder)):
+        if not fname.endswith(".txt"):
+            continue
+        current = None
+        for n, raw in enumerate(open(os.path.join(folder, fname), encoding="utf-8"), 1):
+            line = raw.strip()
+            where = f"pops/{fname}:{n}"
+            if not line or line.startswith("#"):
+                continue
+            if line.startswith("@"):
+                name = line[1:].strip()
+                if name in state_mix:
+                    sys.exit(f"{where}: state {name} listed twice")
+                state_mix[name] = current = []
+            elif line.startswith(">"):
+                name = line[1:].strip()
+                if name in province_mix:
+                    sys.exit(f"{where}: province {name} listed twice")
+                province_mix[name] = current = []
+            elif line.startswith("&"):
+                name, rest = [x.strip() for x in line[1:].split("|")]
+                order, strength = rest.split()
+                if order not in ORDERS:
+                    sys.exit(f"{where}: unknown Sufi order {order}")
+                orders[name].append([order, float(strength)])
+            else:
+                if current is None:
+                    sys.exit(f"{where}: pop line before any state or province")
+                culture, faith, share = line.split()
+                religion, _, sect = faith.partition(".")
+                if culture not in culture_index:
+                    sys.exit(f"{where}: unknown culture {culture}")
+                if religion not in RELIGIONS:
+                    sys.exit(f"{where}: unknown religion {religion}")
+                if sect and SECTS.get(sect) != religion:
+                    sys.exit(f"{where}: {sect} is not a sect of {religion}")
+                current.append([culture_index[culture], religion, sect or None, float(share)])
+    return state_mix, province_mix, orders
+
+
+def parse_slavery(path):
+    out = {}
+    for raw in open(path, encoding="utf-8"):
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        tag, pct = line.split()
+        out[tag] = float(pct) / 100
+    return out
 
 
 def parse_lakes(path):
@@ -481,6 +559,34 @@ def build(args):
     for c in countries:
         if owned[c["tag"]] == 0:
             problems.append(f"country {c['tag']} owns no provinces")
+    cultures = parse_cultures(os.path.join(ROOT, "data/map/cultures.txt"))
+    culture_index = {c["id"]: i for i, c in enumerate(cultures)}
+    state_mix, province_mix, orders = parse_pops(os.path.join(ROOT, "data/map/pops"), culture_index)
+    slavery = parse_slavery(os.path.join(ROOT, "data/map/slavery.txt"))
+    state_names = [st["name"] for st in states]
+    for name in state_names:
+        if state_names.count(name) > 1:
+            problems.append(f"duplicate state name {name}")
+        if name not in state_mix:
+            problems.append(f"state {name} has no population mix in data/map/pops")
+    for name in state_mix:
+        if name not in state_names:
+            problems.append(f"pops: unknown state {name}")
+    province_names = {p["name"] for p in provinces}
+    for name in list(province_mix) + list(orders):
+        if name not in province_names:
+            problems.append(f"pops: unknown province {name}")
+    for tag in slavery:
+        if tag not in tags:
+            problems.append(f"slavery.txt: unknown country {tag}")
+    used = set()
+    for mix in list(state_mix.values()) + list(province_mix.values()):
+        if not mix or sum(m[3] for m in mix) <= 0:
+            problems.append("empty population mix")
+        used.update(m[0] for m in mix)
+    unused = [cultures[i]["id"] for i in range(len(cultures)) if i not in used]
+    if unused:
+        print(f"  note: cultures nobody belongs to yet: {', '.join(unused)}")
     if problems:
         sys.exit("Data problems:\n  " + "\n  ".join(problems))
 
@@ -623,6 +729,26 @@ def build(args):
     if lonely:
         print(f"  note: provinces with no land neighbours: {', '.join(lonely)}")
 
+    # Population: each region's 1453 estimate spread over its provinces,
+    # weighted mostly by development and a little by size.
+    region_total = {}
+    for raw in open(os.path.join(ROOT, "data/map/population_1453.txt"), encoding="utf-8"):
+        line = raw.strip()
+        if line and not line.startswith("#"):
+            name, total = [x.strip() for x in line.split("|")]
+            region_total[name] = float(total)
+    missing = [r for r in regions if r not in region_total]
+    if missing:
+        sys.exit(f"population_1453.txt: no estimate for {', '.join(missing)}")
+    weight = np.array([p["development"] ** 1.25 * max(area[i], 50.0) ** 0.5 for i, p in enumerate(provinces)])
+    population = np.zeros(n)
+    for r, name in enumerate(regions):
+        members = [i for i, p in enumerate(provinces) if states[p["state"]]["region"] == r]
+        wsum = weight[members].sum()
+        for i in members:
+            population[i] = region_total[name] * weight[i] / wsum
+    print(f"total population {population.sum() / 1e6:.0f} million")
+
     # Capitals.
     for c in countries:
         mine = [i for i, p in enumerate(provinces) if p["owner"] == c["tag"]]
@@ -647,9 +773,10 @@ def build(args):
         "startDate": {"year": 1453, "month": 5, "day": 30},
         "regions": regions,
         "states": states,
+        "cultures": [{"id": c["id"], "name": c["name"], "family": c["family"]} for c in cultures],
         "countries": [
             {"tag": c["tag"], "name": c["name"], "color": c["color"], "government": c["government"],
-             "religion": c["religion"], "capital": int(c["capital"])}
+             "religion": c["religion"], "capital": int(c["capital"]), "slavery": slavery.get(c["tag"], 0.0)}
             for c in countries
         ],
         "provinces": [
@@ -657,7 +784,9 @@ def build(args):
                 "name": p["name"], "state": p["state"], "owner": p["owner"],
                 "latitude": p["lat"], "longitude": p["lon"],
                 "terrain": p["terrain"], "development": p["development"],
-                "religion": p["religion"],
+                "population": int(round(population[i], -2)),
+                "pops": normalised_mix(province_mix.get(p["name"]) or state_mix[states[p["state"]]["name"]]),
+                "orders": orders.get(p["name"], []),
                 "coastal": bool(coastal[i]), "areaKm2": round(float(area[i])),
                 "labelX": int(anchors[i][0]), "labelY": int(anchors[i][1]),
                 "adjacent": sorted(adjacent[i]),
@@ -681,6 +810,12 @@ def build(args):
         preview(labels, provinces, states, countries, tags, args.full_preview, scale=1, river_mask=river_mask,
                 ridge_mask=ridge_mask if args.show_ridges else None)
     print(f"wrote {idmap_path}\nwrote {json_path}")
+
+
+def normalised_mix(mix):
+    """[[culture, religion, sect, share]] with shares summing to 1."""
+    total = sum(m[3] for m in mix)
+    return [[m[0], m[1], m[2], round(m[3] / total, 4)] for m in mix if m[3] > 0]
 
 
 def write_idmap(value, path):

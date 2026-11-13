@@ -1,0 +1,245 @@
+# Iberia
+@ Portugal
+portuguese catholic 97
+sephardi jewish 3
+> Lisbon
+portuguese catholic 92
+sephardi jewish 6
+andalusi sunni.maliki 2
+@ Portuguese Atlantic
+portuguese catholic 100
+> Ceuta
+portuguese catholic 85
+moroccan sunni.maliki 15
+@ Galicia
+galician catholic 99
+sephardi jewish 1
+@ Leon and Asturias
+castilian catholic 97
+sephardi jewish 3
+@ Old Castile
+castilian catholic 95
+sephardi jewish 4
+andalusi sunni.maliki 1
+@ Basque Country
+basque catholic 99
+castilian catholic 1
+@ New Castile
+castilian catholic 93
+sephardi jewish 4
+andalusi sunni.maliki 3
+@ Extremadura
+castilian catholic 96
+sephardi jewish 3
+andalusi sunni.maliki 1
+@ Andalusia
+andalusian catholic 90
+andalusi sunni.maliki 5
+sephardi jewish 5
+@ Murcia
+castilian catholic 80
+andalusi sunni.maliki 17
+sephardi jewish 3
+@ Canary Islands
+guanche folk 80
+castilian catholic 20
+> Lanzarote
+castilian catholic 55
+guanche folk 45
+@ Granada
+andalusi sunni.maliki 95
+sephardi jewish 4
+castilian catholic 1
+@ Navarre
+basque catholic 70
+aragonese catholic 26
+sephardi jewish 4
+@ Aragon
+aragonese catholic 78
+andalusi sunni.maliki 18
+sephardi jewish 4
+@ Catalonia
+catalan catholic 97
+sephardi jewish 3
+@ Valencia
+catalan catholic 65
+andalusi sunni.maliki 32
+sephardi jewish 3
+@ Balearic Islands
+catalan catholic 97
+sephardi jewish 3
+
+# France
+@ Ile-de-France
+french catholic 100
+@ Normandy
+french catholic 100
+@ Picardy
+french catholic 100
+@ Champagne
+french catholic 100
+@ Brittany
+breton catholic 80
+french catholic 20
+> Nantes
+french catholic 60
+breton catholic 40
+> Rennes
+french catholic 70
+breton catholic 30
+@ Loire
+french catholic 100
+@ Poitou
+french catholic 92
+occitan catholic 8
+@ Berry and Bourbonnais
+french catholic 100
+@ Auvergne and Limousin
+occitan catholic 100
+@ Guyenne
+gascon catholic 70
+occitan catholic 30
+> Bordeaux
+gascon catholic 92
+english catholic 8
+@ Gascony
+gascon catholic 100
+@ Languedoc
+occitan catholic 100
+@ Lyonnais and Dauphine
+arpitan catholic 60
+occitan catholic 40
+> Lyon
+french catholic 50
+arpitan catholic 45
+tuscan catholic 5
+@ Provence
+occitan catholic 97
+sephardi jewish 3
+> Avignon
+occitan catholic 90
+sephardi jewish 6
+tuscan catholic 4
+@ Burgundy
+french catholic 100
+@ Franche-Comte
+arpitan catholic 100
+@ Lorraine
+lorrainer catholic 55
+french catholic 45
+@ Alsace
+alsatian catholic 98
+ashkenazi jewish 2
+
+# British Isles
+@ Home Counties
+english catholic 100
+> London
+english catholic 95
+flemish catholic 3
+tuscan catholic 2
+> Calais
+english catholic 55
+flemish catholic 25
+french catholic 20
+@ Wessex
+english catholic 100
+> Bodmin
+cornish catholic 70
+english catholic 30
+@ East Anglia
+english catholic 100
+@ Midlands
+english catholic 100
+@ Welsh Marches
+english catholic 80
+welsh catholic 20
+@ Northern England
+english catholic 100
+> Berwick
+scots catholic 50
+english catholic 50
+> Roxburgh
+scots catholic 70
+english catholic 30
+> Isle of Man
+irish catholic 85
+english catholic 15
+@ Wales
+welsh catholic 92
+english catholic 8
+@ Lowlands
+scots catholic 100
+@ Highlands
+highland_scottish catholic 70
+scots catholic 30
+> Perth
+scots catholic 70
+highland_scottish catholic 30
+> Dundee
+scots catholic 100
+> Aberdeen
+scots catholic 90
+highland_scottish catholic 10
+@ The Isles
+highland_scottish catholic 100
+@ Leinster
+irish catholic 80
+english catholic 20
+> Dublin
+english catholic 60
+irish catholic 40
+> Drogheda
+english catholic 50
+irish catholic 50
+@ Munster
+irish catholic 90
+english catholic 10
+> Waterford
+english catholic 50
+irish catholic 50
+@ Connacht
+irish catholic 100
+@ Ulster
+irish catholic 95
+english catholic 5
+> Carrickfergus
+english catholic 50
+irish catholic 50
+
+# Low Countries
+@ Flanders and Artois
+flemish catholic 85
+french catholic 15
+> Lille
+walloon catholic 70
+flemish catholic 30
+> Arras
+french catholic 100
+> Boulogne
+french catholic 100
+@ Brabant and Hainaut
+flemish catholic 60
+walloon catholic 40
+> Mons
+walloon catholic 100
+> Namur
+walloon catholic 100
+> Luxembourg
+lorrainer catholic 60
+walloon catholic 40
+@ Holland and Zeeland
+dutch catholic 100
+@ Northern Netherlands
+dutch catholic 100
+> Leeuwarden
+frisian catholic 100
+> Groningen
+frisian catholic 60
+dutch catholic 40
+> Emden
+frisian catholic 70
+low_saxon catholic 30
+> Liege
+walloon catholic 90
+flemish catholic 10

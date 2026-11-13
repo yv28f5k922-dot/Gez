@@ -1,0 +1,284 @@
+# Maghreb
+@ Northern Morocco
+moroccan sunni.maliki 75
+berber sunni.maliki 20
+mizrahi jewish 5
+> Fez
+moroccan sunni.maliki 75
+andalusi sunni.maliki 12
+mizrahi jewish 10
+berber sunni.maliki 3
+> Taza
+berber sunni.maliki 70
+moroccan sunni.maliki 30
+> Melilla
+berber sunni.maliki 100
+@ Southern Morocco
+berber sunni.maliki 70
+moroccan sunni.maliki 25
+mizrahi jewish 5
+> Safi
+moroccan sunni.maliki 80
+mizrahi jewish 10
+berber sunni.maliki 10
+> Draa
+berber sunni.maliki 80
+mizrahi jewish 20
+> Figuig
+berber sunni.maliki 100
+@ Tlemcen
+algerian sunni.maliki 60
+berber sunni.maliki 35
+mizrahi jewish 5
+> Tlemcen
+algerian sunni.maliki 75
+andalusi sunni.maliki 10
+mizrahi jewish 10
+berber sunni.maliki 5
+> Laghouat
+berber ibadi 40
+bedouin sunni.maliki 60
+> Tiaret
+berber sunni.maliki 60
+bedouin sunni.maliki 40
+@ Eastern Algeria
+berber sunni.maliki 55
+algerian sunni.maliki 40
+mizrahi jewish 5
+> Ouargla
+berber ibadi 80
+berber sunni.maliki 20
+> Touggourt
+berber sunni.maliki 100
+@ Ifriqiya
+tunisian sunni.maliki 90
+mizrahi jewish 5
+berber sunni.maliki 5
+> Djerba
+berber ibadi 70
+tunisian sunni.maliki 15
+mizrahi jewish 15
+> Tunis
+tunisian sunni.maliki 85
+andalusi sunni.maliki 5
+mizrahi jewish 7
+ligurian catholic 3
+@ Tripolitania
+libyan sunni.maliki 70
+berber ibadi 20
+mizrahi jewish 10
+> Ghadames
+berber ibadi 60
+tuareg sunni.maliki 40
+> Murzuk
+tuareg sunni.maliki 60
+libyan sunni.maliki 40
+> Sirte
+bedouin sunni.maliki 100
+@ Cyrenaica
+bedouin sunni.maliki 95
+mizrahi jewish 5
+
+# Nubia
+@ Nubia
+nubian sunni.maliki 60
+nubian coptic 40
+> Soba
+nubian coptic 70
+sudanese sunni.maliki 30
+> Sennar
+sudanese sunni.maliki 60
+nubian folk 40
+@ Beja Lands
+beja sunni.shafii 90
+hejazi sunni.shafii 10
+
+# Horn of Africa
+@ Tigray and Medri Bahri
+tigrinya ethiopian 95
+afar sunni.shafii 5
+> Massawa
+tigrinya ethiopian 50
+afar sunni.shafii 30
+hejazi sunni.shafii 20
+> Semien
+beta_israel jewish 70
+agaw ethiopian 30
+@ Amhara
+amhara ethiopian 85
+agaw ethiopian 15
+> Bahir Dar
+agaw ethiopian 60
+amhara ethiopian 40
+> Lalibela
+agaw ethiopian 60
+amhara ethiopian 40
+@ Shewa
+amhara ethiopian 70
+gurage ethiopian 15
+oromo folk 15
+> Ifat
+amhara ethiopian 50
+harari sunni.shafii 50
+> Fatagar
+amhara ethiopian 70
+harari sunni.shafii 30
+> Damot
+sidama folk 70
+amhara ethiopian 30
+> Hadiya
+sidama sunni.shafii 50
+sidama ethiopian 30
+sidama folk 20
+> Bali
+oromo folk 60
+sidama sunni.shafii 30
+amhara ethiopian 10
+> Dawaro
+harari sunni.shafii 60
+oromo folk 40
+> Bonga
+kafa folk 85
+kafa ethiopian 15
+> Ennarea
+oromo folk 50
+sidama ethiopian 50
+@ Adal
+harari sunni.shafii 50
+somali sunni.shafii 30
+afar sunni.shafii 20
+> Zeila
+somali sunni.shafii 70
+hejazi sunni.shafii 15
+harari sunni.shafii 15
+> Aussa
+afar sunni.shafii 100
+> Tadjoura
+afar sunni.shafii 100
+@ Somali Coast
+somali sunni.shafii 95
+hadrami sunni.shafii 5
+> Mogadishu
+somali sunni.shafii 80
+hadrami sunni.shafii 10
+persian sunni.shafii 5
+swahili sunni.shafii 5
+> Pate
+swahili sunni.shafii 85
+hadrami sunni.shafii 10
+somali sunni.shafii 5
+> Kismayo
+somali sunni.shafii 60
+oromo folk 40
+> Baidoa
+somali sunni.shafii 80
+oromo folk 20
+
+# Pontic Steppe
+@ Crimea
+crimean_tatar sunni.hanafi 80
+greek orthodox 10
+armenian armenian 5
+mizrahi jewish 5
+> Kaffa
+armenian armenian 35
+ligurian catholic 25
+crimean_tatar sunni.hanafi 20
+greek orthodox 15
+mizrahi jewish 5
+> Cembalo
+greek orthodox 70
+ligurian catholic 30
+> Mangup
+greek orthodox 75
+alan orthodox 15
+mizrahi jewish 10
+> Tana
+venetian catholic 30
+crimean_tatar sunni.hanafi 40
+circassian orthodox 30
+
+# Volga Steppe
+@ Lower Volga
+volga_tatar sunni.hanafi 75
+nogai sunni.hanafi 20
+volga_tatar tengri 5
+> Astrakhan
+volga_tatar sunni.hanafi 80
+armenian armenian 10
+persian sunni.shafii 10
+@ Nogai Steppe
+nogai sunni.hanafi 70
+nogai tengri 30
+> Ufa
+bashkir sunni.hanafi 70
+bashkir tengri 30
+> Orenburg
+bashkir sunni.hanafi 60
+nogai sunni.hanafi 40
+> Mangyshlak
+turkmen sunni.hanafi 100
+
+# Kazakh Steppe
+@ Uzbek Steppe
+uzbek sunni.hanafi 75
+uzbek tengri 25
+> Chimgi-Tura
+uzbek sunni.hanafi 60
+uzbek tengri 20
+komi folk 20
+> Ishim
+uzbek tengri 60
+uzbek sunni.hanafi 40
+> Yasi
+uzbek sunni.hanafi 70
+chagatai sunni.hanafi 30
+& Yasi | naqshbandi 0.4
+@ Central Steppe
+uzbek tengri 55
+uzbek sunni.hanafi 45
+> Ust-Kamenogorsk
+moghul tengri 70
+uzbek sunni.hanafi 30
+@ Moghulistan
+moghul sunni.hanafi 60
+moghul tengri 25
+kyrgyz tengri 15
+> Karakol
+kyrgyz tengri 70
+moghul sunni.hanafi 30
+> Naryn
+kyrgyz tengri 80
+moghul sunni.hanafi 20
+> Taraz
+moghul sunni.hanafi 70
+chagatai sunni.hanafi 30
+
+# Transoxiana
+@ Mawarannahr
+tajik sunni.hanafi 55
+chagatai sunni.hanafi 40
+mizrahi jewish 5
+> Samarkand
+tajik sunni.hanafi 55
+chagatai sunni.hanafi 35
+mizrahi jewish 5
+persian sunni.hanafi 5
+& Samarkand | naqshbandi 0.9
+> Bukhara
+tajik sunni.hanafi 70
+chagatai sunni.hanafi 20
+mizrahi jewish 10
+& Bukhara | naqshbandi 0.7
+@ Ferghana and Tashkent
+chagatai sunni.hanafi 50
+tajik sunni.hanafi 50
+> Otrar
+chagatai sunni.hanafi 50
+uzbek sunni.hanafi 50
+@ Khwarazm
+chagatai sunni.hanafi 70
+turkmen sunni.hanafi 30
+& Urgench | kubrawi 0.5
+> Dehistan
+turkmen sunni.hanafi 100

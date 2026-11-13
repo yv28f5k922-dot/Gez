@@ -26,14 +26,14 @@ Skardu | 35.30 75.63 | SKD m 1
 Gilgit | 35.92 74.31 | - m 1
 
 # Hindustan
-@ Delhi | hindu
+@ Delhi
 Delhi | 28.61 77.21 | DEL f 8
 Mewat | 27.55 76.60 | DEL h 2
 Kol | 27.88 78.08 | DEL f 3
 Bayana | 26.90 77.29 | DEL h 2
 Sambhal | 28.58 78.57 | DEL f 2
 Badaun | 28.04 79.12 | DEL f 2
-@ Doab and Awadh | hindu
+@ Doab and Awadh
 Etawah | 26.78 79.02 | JNP f 2
 Kannauj | 27.05 79.92 | JNP f 3
 Kalpi | 26.12 79.74 | JNP f 2
@@ -43,7 +43,7 @@ Ayodhya | 26.79 82.20 | JNP f 3
 Bahraich | 27.57 81.60 | JNP f 2
 Gorakhpur | 26.76 83.37 | JNP f 2
 Benares | 25.32 83.00 | JNP f 4
-@ Bihar | hindu
+@ Bihar
 Bihar | 25.20 85.52 | JNP f 3
 Tirhut | 26.15 85.90 | MIT f 3
 @ Himalayan Foothills
@@ -72,7 +72,7 @@ Amber | 26.98 75.85 | AMB h 2
 Bundi | 25.44 75.64 | BUN h 2
 
 # Gujarat
-@ Gujarat | hindu
+@ Gujarat
 Ahmedabad | 23.02 72.57 | GUJ f 8
 Patan | 23.85 72.12 | GUJ f 3
 Idar | 23.84 73.00 | GUJ h 2
@@ -80,19 +80,19 @@ Cambay | 22.31 72.62 | GUJ f 5
 Broach | 21.70 72.98 | GUJ f 4
 Surat | 21.17 72.83 | GUJ f 4
 Champaner | 22.49 73.53 | CHP h 2
-@ Saurashtra | hindu
+@ Saurashtra
 Junagadh | 21.52 70.46 | JUN h 3
 Dwarka | 22.24 68.97 | JUN d 1
 Diu | 20.71 70.98 | GUJ d 2
 Bhuj | 23.25 69.67 | KUT d 2
 
 # Central India
-@ Malwa | hindu
+@ Malwa
 Mandu | 22.36 75.39 | MLW h 5
 Ujjain | 23.18 75.78 | MLW f 4
 Chanderi | 24.72 78.13 | MLW h 2
 Raisen | 23.33 77.78 | MLW h 2
-@ Khandesh | hindu
+@ Khandesh
 Burhanpur | 21.31 76.23 | KHA f 3
 @ Gondwana
 Garha | 22.60 80.37 | GON w 2
@@ -101,7 +101,7 @@ Bastar | 19.08 82.02 | BST w 1
 Ratanpur | 22.29 82.17 | RAT w 2
 
 # Bengal
-@ Bengal | hindu
+@ Bengal
 Gaur | 24.87 88.13 | BNG f 8
 Satgaon | 22.95 88.40 | BNG x 4
 Sonargaon | 23.65 90.62 | BNG x 5
@@ -112,10 +112,10 @@ Sylhet | 24.90 91.87 | BNG x 2
 Chittagong | 22.36 91.78 | BNG h 3
 @ Northeast
 Kamata | 26.32 89.45 | KAM f 2
-Charaideo | 26.98 94.63 | AHO w 2 | folk
-Dimapur | 25.90 93.73 | KAC w 1 | folk
+Charaideo | 26.98 94.63 | AHO w 2
+Dimapur | 25.90 93.73 | KAC w 1
 Udaipur | 23.53 91.48 | TPR w 1
-Imphal | 24.80 93.94 | MNP h 1 | folk
+Imphal | 24.80 93.94 | MNP h 1
 @ Orissa
 Cuttack | 20.46 85.88 | ORI f 5
 Puri | 19.81 85.83 | ORI f 3
@@ -124,20 +124,20 @@ Ganjam | 19.31 84.79 | ORI h 2
 Rajahmundry | 17.00 81.80 | ORI f 3
 
 # Deccan
-@ Bahmani | hindu
+@ Bahmani
 Bidar | 17.91 77.52 | BAH h 6
 Gulbarga | 17.33 76.83 | BAH h 4
 Raichur | 16.20 77.36 | BAH h 3
 Golconda | 17.38 78.40 | BAH h 3
 Warangal | 17.97 79.60 | BAH h 3
-@ Maharashtra | hindu
+@ Maharashtra
 Daulatabad | 19.94 75.21 | BAH h 4
 Junnar | 19.20 73.88 | BAH m 2
 Chaul | 18.55 72.93 | BAH h 2
 Dabhol | 17.58 73.18 | BAH h 3
 Kolhapur | 16.70 74.24 | BAH h 2
 Mahur | 19.83 77.92 | BAH h 1
-@ Berar | hindu
+@ Berar
 Ellichpur | 21.25 77.51 | BAH f 2
 
 # South India

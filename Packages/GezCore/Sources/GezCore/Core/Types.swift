@@ -92,11 +92,6 @@ public struct GeoPoint: Hashable, Sendable {
     }
 }
 
-public enum Religion: String, CaseIterable, Sendable {
-    case catholic, orthodox, miaphysite, sunni, shia, hindu, buddhist
-    /// Local folk and ancestral religions (Sami, Komi, Mordvins, Ahom, ...).
-    case folk
-}
 
 public enum GovernmentType: String, CaseIterable, Sendable {
     case monarchy, republic, theocracy, steppeHorde

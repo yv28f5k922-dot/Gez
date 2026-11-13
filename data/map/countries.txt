@@ -1,6 +1,8 @@
 # TAG | Name | R G B | government | religion | capital (optional; default = most developed province)
 # government: monarchy, republic, theocracy, steppeHorde
-# religion: catholic, orthodox, miaphysite, sunni, shia, hindu, buddhist
+# religion: see Packages/GezCore/Sources/GezCore/Faith/Religion.swift (catholic, hussite, orthodox, bosnian,
+#   coptic, ethiopian, armenian, syriac, nestorian, sunni, twelver, zaydi, ismaili, ibadi, druze,
+#   alawite, yazidi, hindu, jain, theravada, tibetan, zoroastrian, jewish, tengri, folk)
 
 # Iberia and France
 POR | Portugal | 40 120 70 | monarchy | catholic
@@ -67,7 +69,7 @@ AUG | Augsburg | 120 180 110 | republic | catholic
 BAV | Bavaria-Munich | 100 160 220 | monarchy | catholic
 LAN | Bavaria-Landshut | 60 120 200 | monarchy | catholic
 SAL | Salzburg | 230 180 200 | theocracy | catholic
-BOH | Bohemia | 225 175 100 | monarchy | catholic
+BOH | Bohemia | 225 175 100 | monarchy | hussite
 
 # Alps and Italy
 AUS | Austria | 245 245 245 | monarchy | catholic
@@ -121,7 +123,7 @@ WAL | Wallachia | 205 170 70 | monarchy | orthodox
 MOL | Moldavia | 235 205 90 | monarchy | orthodox
 RAG | Ragusa | 230 220 160 | republic | catholic
 BOS | Bosnia | 90 120 175 | monarchy | catholic
-HER | Herzegovina | 170 110 70 | monarchy | orthodox
+HER | Herzegovina | 170 110 70 | monarchy | bosnian
 SER | Serbia | 150 40 60 | monarchy | orthodox
 ZET | Zeta | 180 80 50 | monarchy | orthodox
 ALB | Albania | 180 30 30 | monarchy | catholic
@@ -141,13 +143,13 @@ RAM | Ramadanids | 200 150 180 | monarchy | sunni
 DUL | Dulkadir | 150 180 90 | monarchy | sunni
 TRE | Trebizond | 150 70 140 | monarchy | orthodox
 AKK | Aq Qoyunlu | 225 225 200 | steppeHorde | sunni
-QAR | Qara Qoyunlu | 55 55 85 | steppeHorde | shia
+QAR | Qara Qoyunlu | 55 55 85 | steppeHorde | twelver
 BIT | Bitlis | 160 120 80 | monarchy | sunni
 GEO | Georgia | 225 225 225 | monarchy | orthodox
 SAM | Samtskhe | 190 170 210 | monarchy | orthodox
 SHI | Shirvan | 110 190 180 | monarchy | sunni
 DAG | Dagestan | 130 110 90 | monarchy | sunni
-CIR | Circassia | 140 190 100 | steppeHorde | orthodox
+CIR | Circassia | 140 190 100 | steppeHorde | folk
 
 # Steppe and Central Asia
 CRI | Crimea | 110 175 70 | steppeHorde | sunni
@@ -165,14 +167,14 @@ MAM | Mamluk Sultanate | 220 200 110 | monarchy | sunni
 HEJ | Sharifate of Mecca | 110 190 150 | theocracy | sunni
 JAB | Jabrids | 200 180 140 | monarchy | sunni
 HOR | Hormuz | 100 130 200 | monarchy | sunni
-OMN | Oman | 200 70 70 | theocracy | sunni
+OMN | Oman | 200 70 70 | theocracy | ibadi
 YEM | Yemen | 120 90 60 | monarchy | sunni
-ZAY | Zaydi Imamate | 60 120 70 | theocracy | shia
+ZAY | Zaydi Imamate | 60 120 70 | theocracy | zaydi
 KTH | Kathiri | 180 140 100 | monarchy | sunni
-GIL | Gilan | 90 170 90 | monarchy | shia
-MZD | Mazandaran | 150 200 160 | monarchy | shia
-LUR | Luristan | 170 130 90 | monarchy | shia
-MSH | Mushasha | 120 200 200 | theocracy | shia
+GIL | Gilan | 90 170 90 | monarchy | zaydi
+MZD | Mazandaran | 150 200 160 | monarchy | twelver
+LUR | Luristan | 170 130 90 | monarchy | twelver
+MSH | Mushasha | 120 200 200 | theocracy | twelver
 LAR | Lar | 220 160 120 | monarchy | sunni
 SIS | Sistan | 200 210 140 | monarchy | sunni
 
@@ -180,9 +182,9 @@ SIS | Sistan | 200 210 140 | monarchy | sunni
 MOR | Morocco | 170 80 60 | monarchy | sunni
 TLE | Tlemcen | 210 150 110 | monarchy | sunni
 TUN | Hafsid Tunis | 120 160 70 | monarchy | sunni
-ALO | Alodia | 150 100 160 | monarchy | miaphysite
-ETH | Ethiopia | 100 165 60 | monarchy | miaphysite
-KAF | Kaffa | 170 120 70 | monarchy | miaphysite
+ALO | Alodia | 150 100 160 | monarchy | coptic
+ETH | Ethiopia | 100 165 60 | monarchy | ethiopian
+KAF | Kaffa | 170 120 70 | monarchy | folk
 ADA | Adal | 185 155 90 | monarchy | sunni
 MGD | Mogadishu | 90 170 160 | monarchy | sunni
 AJU | Ajuran | 200 120 60 | monarchy | sunni
@@ -194,8 +196,8 @@ DEL | Delhi Sultanate | 205 120 50 | monarchy | sunni
 MUL | Multan | 160 180 90 | monarchy | sunni
 SND | Sindh | 210 190 110 | monarchy | sunni
 KSH | Kashmir | 150 200 230 | monarchy | sunni
-LDK | Ladakh | 230 210 170 | monarchy | buddhist
-SKD | Baltistan | 150 140 190 | monarchy | shia
+LDK | Ladakh | 230 210 170 | monarchy | tibetan
+SKD | Baltistan | 150 140 190 | monarchy | twelver
 JNP | Jaunpur | 160 205 205 | monarchy | sunni
 MIT | Mithila | 220 140 170 | monarchy | hindu
 KUM | Kumaon | 210 170 210 | monarchy | hindu
@@ -231,4 +233,4 @@ KLT | Kolathunadu | 120 200 120 | monarchy | hindu
 CLT | Calicut | 200 80 60 | monarchy | hindu
 COC | Cochin | 100 160 200 | monarchy | hindu
 TRV | Venad | 180 200 80 | monarchy | hindu
-KOT | Kotte | 180 120 40 | monarchy | buddhist
+KOT | Kotte | 180 120 40 | monarchy | theravada

@@ -1,0 +1,39 @@
+# Share of each country's people who were enslaved in 1453 (percent).
+# Rough estimates: the Black Sea and Mamluk slave trades, African and
+# Indian Ocean slavery, galley slaves and household slaves in Italy and Iberia.
+# Countries not listed: 0.
+TUR 3
+MAM 4
+CRI 8
+GRH 4
+KAZ 3
+NOG 3
+TIM 2
+HRT 2
+QAR 2
+AKK 2
+MOR 2
+TLE 2
+TUN 3
+GRA 2
+POR 1
+CAS 1
+ARA 1
+VEN 1
+GEN 2
+HEJ 3
+YEM 3
+OMN 3
+HOR 4
+ADA 4
+ETH 2
+MGD 3
+AJU 2
+PTE 4
+DEL 2
+JNP 1
+BNG 2
+GUJ 2
+MLW 1
+BAH 2
+VIJ 1

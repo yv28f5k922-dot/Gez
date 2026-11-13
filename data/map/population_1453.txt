@@ -1,0 +1,39 @@
+# Estimated population of each region on 30 May 1453 (people).
+# Spread across the region's provinces by development (mostly) and size.
+# Sources disagree by 20-40% for most regions; these are middle estimates.
+Iberia | 7500000
+France | 12500000
+British Isles | 3800000
+Low Countries | 2600000
+Germany | 10000000
+Alps | 2500000
+Italy | 8500000
+Scandinavia | 1600000
+Baltic | 800000
+Poland and Lithuania | 5500000
+Russia | 4000000
+Carpathians and Danube | 4000000
+Balkans | 4500000
+Anatolia | 5500000
+Caucasus | 1500000
+Levant | 1200000
+Egypt | 3000000
+Arabia | 2500000
+Mesopotamia | 1000000
+Persia | 4000000
+Khorasan and Afghanistan | 2500000
+Maghreb | 5000000
+Nubia | 500000
+Horn of Africa | 4000000
+Pontic Steppe | 400000
+Volga Steppe | 500000
+Kazakh Steppe | 1000000
+Transoxiana | 2500000
+Northwest India | 7000000
+Hindustan | 25000000
+Rajputana | 5000000
+Gujarat | 6000000
+Central India | 6000000
+Bengal | 18000000
+Deccan | 14000000
+South India | 18000000

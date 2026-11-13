@@ -1,0 +1,217 @@
+# id | Display name | family
+# Families: iberian, french, dutch, british, gaelic, german, nordic, finnic,
+#   volga_ural, baltic, west_slavic, east_slavic, south_slavic, magyar,
+#   eastern_romance, italian, hellenic, albanian, turkic, caucasian, kartvelian,
+#   armenian, iranian, arab, berber, nilo_saharan, ethiopian, cushitic, bantu,
+#   jewish, indo_aryan, dravidian, himalayan, tibeto_burman, sinhalese, mongolic
+
+castilian | Castilian | iberian
+andalusian | Andalusian | iberian
+galician | Galician | iberian
+portuguese | Portuguese | iberian
+catalan | Catalan | iberian
+aragonese | Aragonese | iberian
+basque | Basque | iberian
+andalusi | Andalusi | iberian
+guanche | Guanche | berber
+
+french | French | french
+occitan | Occitan | french
+gascon | Gascon | french
+breton | Breton | french
+walloon | Walloon | french
+arpitan | Arpitan | french
+
+flemish | Flemish | dutch
+dutch | Dutch | dutch
+frisian | Frisian | dutch
+
+english | English | british
+scots | Scots | british
+welsh | Welsh | british
+cornish | Cornish | british
+irish | Irish | gaelic
+highland_scottish | Highland Scottish | gaelic
+
+rhenish | Rhenish | german
+westphalian | Westphalian | german
+low_saxon | Low Saxon | german
+franconian | Franconian | german
+swabian | Swabian | german
+bavarian | Bavarian | german
+austrian | Austrian | german
+upper_saxon | Upper Saxon | german
+swiss | Swiss | german
+prussian_german | Prussian German | german
+baltic_german | Baltic German | german
+lorrainer | Lorrainer | german
+alsatian | Alsatian | german
+
+danish | Danish | nordic
+swedish | Swedish | nordic
+norwegian | Norwegian | nordic
+icelandic | Icelandic | nordic
+
+finnish | Finnish | finnic
+karelian | Karelian | finnic
+estonian | Estonian | finnic
+sami | Sami | finnic
+komi | Komi | volga_ural
+mordvin | Mordvin | volga_ural
+mari | Mari | volga_ural
+udmurt | Udmurt | volga_ural
+
+lithuanian | Lithuanian | baltic
+latvian | Latvian | baltic
+
+polish | Polish | west_slavic
+masovian | Masovian | west_slavic
+czech | Czech | west_slavic
+slovak | Slovak | west_slavic
+silesian | Silesian | west_slavic
+sorbian | Sorbian | west_slavic
+pomeranian | Pomeranian | west_slavic
+
+russian | Russian | east_slavic
+novgorodian | Novgorodian | east_slavic
+ruthenian | Ruthenian | east_slavic
+belarusian | Belarusian | east_slavic
+
+slovene | Slovene | south_slavic
+croatian | Croatian | south_slavic
+bosnian | Bosnian | south_slavic
+serbian | Serbian | south_slavic
+bulgarian | Bulgarian | south_slavic
+
+hungarian | Hungarian | magyar
+szekely | Szekely | magyar
+
+romanian | Romanian | eastern_romance
+aromanian | Aromanian | eastern_romance
+
+piedmontese | Piedmontese | italian
+lombard | Lombard | italian
+ligurian | Ligurian | italian
+venetian | Venetian | italian
+emilian | Emilian | italian
+tuscan | Tuscan | italian
+roman | Roman | italian
+neapolitan | Neapolitan | italian
+sicilian | Sicilian | italian
+sardinian | Sardinian | italian
+corsican | Corsican | italian
+dalmatian | Dalmatian | italian
+friulian | Friulian | italian
+
+greek | Greek | hellenic
+pontic_greek | Pontic Greek | hellenic
+albanian | Albanian | albanian
+
+turkish | Turkish | turkic
+turkmen | Turkmen | turkic
+azeri | Azeri | turkic
+crimean_tatar | Crimean Tatar | turkic
+volga_tatar | Volga Tatar | turkic
+nogai | Nogai | turkic
+bashkir | Bashkir | turkic
+chuvash | Chuvash | turkic
+uzbek | Uzbek | turkic
+chagatai | Chagatai | turkic
+moghul | Moghul | turkic
+kyrgyz | Kyrgyz | turkic
+kumyk | Kumyk | turkic
+
+georgian | Georgian | kartvelian
+mingrelian | Mingrelian | kartvelian
+armenian | Armenian | armenian
+circassian | Circassian | caucasian
+abkhaz | Abkhaz | caucasian
+dagestani | Dagestani | caucasian
+vainakh | Vainakh | caucasian
+alan | Alan | iranian
+
+persian | Persian | iranian
+tajik | Tajik | iranian
+kurdish | Kurdish | iranian
+luri | Luri | iranian
+baloch | Baloch | iranian
+pashtun | Pashtun | iranian
+gilaki | Gilaki | iranian
+mazandarani | Mazandarani | iranian
+hazara | Hazara | mongolic
+
+levantine | Levantine | arab
+egyptian | Egyptian | arab
+iraqi | Iraqi | arab
+hejazi | Hejazi | arab
+najdi | Najdi | arab
+gulf_arab | Gulf Arab | arab
+omani | Omani | arab
+yemeni | Yemeni | arab
+hadrami | Hadrami | arab
+moroccan | Moroccan | arab
+algerian | Algerian | arab
+tunisian | Tunisian | arab
+libyan | Libyan | arab
+sudanese | Sudanese | arab
+bedouin | Bedouin | arab
+maltese | Maltese | arab
+
+berber | Berber | berber
+tuareg | Tuareg | berber
+
+nubian | Nubian | nilo_saharan
+beja | Beja | cushitic
+
+amhara | Amhara | ethiopian
+tigrinya | Tigrinya | ethiopian
+agaw | Agaw | cushitic
+harari | Harari | ethiopian
+gurage | Gurage | ethiopian
+afar | Afar | cushitic
+somali | Somali | cushitic
+oromo | Oromo | cushitic
+sidama | Sidama | cushitic
+kafa | Kafa | cushitic
+swahili | Swahili | bantu
+
+sephardi | Sephardi | jewish
+ashkenazi | Ashkenazi | jewish
+romaniote | Romaniote | jewish
+mizrahi | Mizrahi | jewish
+beta_israel | Beta Israel | jewish
+
+punjabi | Punjabi | indo_aryan
+sindhi | Sindhi | indo_aryan
+kashmiri | Kashmiri | indo_aryan
+dardic | Dardic | indo_aryan
+hindustani | Hindustani | indo_aryan
+awadhi | Awadhi | indo_aryan
+bihari | Bihari | indo_aryan
+maithili | Maithili | indo_aryan
+bengali | Bengali | indo_aryan
+odia | Odia | indo_aryan
+assamese | Assamese | indo_aryan
+gujarati | Gujarati | indo_aryan
+rajasthani | Rajasthani | indo_aryan
+malvi | Malvi | indo_aryan
+marathi | Marathi | indo_aryan
+konkani | Konkani | indo_aryan
+pahari | Pahari | himalayan
+khas | Khas | himalayan
+newar | Newar | himalayan
+deccani | Deccani | indo_aryan
+bhil | Bhil | indo_aryan
+kannada | Kannada | dravidian
+telugu | Telugu | dravidian
+tamil | Tamil | dravidian
+malayali | Malayali | dravidian
+tulu | Tulu | dravidian
+gond | Gond | dravidian
+sinhala | Sinhala | sinhalese
+ladakhi | Ladakhi | himalayan
+balti | Balti | himalayan
+ahom | Ahom | tibeto_burman
+bodo | Bodo | tibeto_burman
+tripuri | Tripuri | tibeto_burman
+meitei | Meitei | tibeto_burman

@@ -1,0 +1,272 @@
+# Scandinavia
+@ Denmark
+danish catholic 100
+@ Scania
+danish catholic 100
+> Visby
+swedish catholic 60
+low_saxon catholic 40
+@ Southern Norway
+norwegian catholic 100
+> Bahus
+norwegian catholic 100
+> Bergen
+norwegian catholic 80
+low_saxon catholic 20
+@ Northern Norway
+norwegian catholic 80
+sami folk 20
+> Jamtland
+swedish catholic 50
+norwegian catholic 50
+> Tromso
+sami folk 55
+norwegian catholic 45
+> Vardo
+sami folk 70
+norwegian catholic 30
+@ Norwegian Isles
+icelandic catholic 100
+> Faroe Islands
+norwegian catholic 100
+> Orkney
+norwegian catholic 70
+scots catholic 30
+> Shetland
+norwegian catholic 90
+scots catholic 10
+@ Svealand
+swedish catholic 100
+> Stockholm
+swedish catholic 85
+low_saxon catholic 15
+@ Gotaland
+swedish catholic 100
+@ Norrland
+swedish catholic 85
+sami folk 15
+> Lapland
+sami folk 100
+> Tornio
+finnish catholic 50
+swedish catholic 30
+sami folk 20
+@ Finland
+finnish catholic 85
+swedish catholic 15
+> Viipuri
+karelian catholic 50
+finnish catholic 40
+swedish catholic 10
+> Savonlinna
+finnish catholic 100
+> Kainuu
+finnish catholic 60
+sami folk 40
+
+# Baltic
+@ Prussia
+prussian_german catholic 75
+polish catholic 15
+lithuanian catholic 10
+> Danzig
+prussian_german catholic 85
+pomeranian catholic 15
+> Thorn
+prussian_german catholic 60
+polish catholic 40
+> Insterburg
+lithuanian catholic 55
+prussian_german catholic 45
+> Memel
+lithuanian catholic 60
+prussian_german catholic 40
+> Allenstein
+prussian_german catholic 60
+polish catholic 40
+> Lyck
+masovian catholic 60
+prussian_german catholic 40
+@ Livonia
+latvian catholic 85
+baltic_german catholic 15
+> Riga
+baltic_german catholic 60
+latvian catholic 30
+russian orthodox 10
+@ Estonia
+estonian catholic 88
+baltic_german catholic 12
+> Reval
+baltic_german catholic 55
+estonian catholic 40
+swedish catholic 5
+> Narva
+estonian catholic 50
+russian orthodox 30
+baltic_german catholic 20
+
+# Poland and Lithuania
+@ Lesser Poland
+polish catholic 96
+ashkenazi jewish 3
+ruthenian orthodox 1
+> Krakow
+polish catholic 75
+upper_saxon catholic 18
+ashkenazi jewish 7
+@ Greater Poland
+polish catholic 97
+ashkenazi jewish 3
+@ Mazovia
+masovian catholic 98
+ashkenazi jewish 2
+@ Red Ruthenia
+ruthenian orthodox 80
+polish catholic 13
+ashkenazi jewish 3
+armenian armenian 4
+> Lwow
+polish catholic 40
+ruthenian orthodox 25
+armenian armenian 20
+ashkenazi jewish 15
+> Kamianets
+ruthenian orthodox 60
+armenian armenian 20
+polish catholic 15
+ashkenazi jewish 5
+@ Lithuania Proper
+lithuanian catholic 85
+belarusian orthodox 10
+ashkenazi jewish 3
+mizrahi jewish 2
+> Vilnius
+lithuanian catholic 50
+belarusian orthodox 35
+ashkenazi jewish 10
+volga_tatar sunni.hanafi 5
+> Raseiniai
+lithuanian folk 30
+lithuanian catholic 70
+> Grodno
+belarusian orthodox 60
+lithuanian catholic 30
+ashkenazi jewish 10
+@ Belarus
+belarusian orthodox 95
+ashkenazi jewish 3
+lithuanian catholic 2
+> Brest-Litovsk
+belarusian orthodox 70
+ashkenazi jewish 20
+polish catholic 10
+@ Smolensk
+russian orthodox 100
+@ Severia
+ruthenian orthodox 85
+russian orthodox 15
+> Kursk
+russian orthodox 70
+ruthenian orthodox 30
+@ Volhynia
+ruthenian orthodox 92
+ashkenazi jewish 5
+polish catholic 3
+@ Ukraine
+ruthenian orthodox 92
+volga_tatar sunni.hanafi 4
+ashkenazi jewish 4
+> Ochakiv
+crimean_tatar sunni.hanafi 60
+ruthenian orthodox 40
+@ Wild Fields
+nogai sunni.hanafi 70
+ruthenian orthodox 30
+
+# Russia
+@ Moscow
+russian orthodox 100
+> Moscow
+russian orthodox 97
+volga_tatar sunni.hanafi 3
+@ Vladimir-Suzdal
+russian orthodox 100
+> Nizhny Novgorod
+russian orthodox 85
+mordvin folk 15
+> Murom
+russian orthodox 85
+mordvin folk 15
+@ Northern Muscovy
+russian orthodox 90
+komi orthodox 10
+@ Tver
+russian orthodox 100
+@ Ryazan
+russian orthodox 95
+mordvin folk 5
+> Kasimov
+volga_tatar sunni.hanafi 50
+russian orthodox 30
+mordvin folk 20
+> Yelets
+russian orthodox 80
+nogai sunni.hanafi 20
+@ Novgorod
+novgorodian orthodox 100
+> Korela
+karelian orthodox 100
+> Olonets
+karelian orthodox 70
+novgorodian orthodox 30
+> Ladoga
+novgorodian orthodox 60
+karelian orthodox 40
+> Pskov
+novgorodian orthodox 100
+@ Russian North
+novgorodian orthodox 75
+komi folk 15
+sami folk 10
+> Umba
+sami folk 80
+novgorodian orthodox 20
+> Pechora
+komi folk 85
+novgorodian orthodox 15
+> Mezen
+komi folk 50
+novgorodian orthodox 50
+> Komi
+komi folk 100
+> Perm
+komi orthodox 50
+komi folk 50
+> Vyatka
+russian orthodox 75
+udmurt folk 15
+mari folk 10
+@ Volga
+volga_tatar sunni.hanafi 75
+chuvash folk 15
+mari folk 10
+> Kazan
+volga_tatar sunni.hanafi 90
+russian orthodox 5
+armenian armenian 5
+> Cheboksary
+chuvash folk 70
+mari folk 20
+volga_tatar sunni.hanafi 10
+> Udmurtia
+udmurt folk 90
+volga_tatar sunni.hanafi 10
+> Mordva
+mordvin folk 100
+> Tambov
+mordvin folk 70
+nogai sunni.hanafi 30
+> Samara
+nogai sunni.hanafi 70
+bashkir sunni.hanafi 30

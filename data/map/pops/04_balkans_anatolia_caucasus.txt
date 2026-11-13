@@ -1,0 +1,427 @@
+# Carpathians and Danube
+@ Upper Hungary
+slovak catholic 60
+hungarian catholic 30
+upper_saxon catholic 8
+ashkenazi jewish 2
+> Kassa
+hungarian catholic 45
+upper_saxon catholic 35
+slovak catholic 20
+> Ungvar
+ruthenian orthodox 60
+hungarian catholic 40
+> Bartfa
+slovak catholic 50
+upper_saxon catholic 35
+ruthenian orthodox 15
+@ Hungary
+hungarian catholic 96
+ashkenazi jewish 2
+croatian catholic 2
+> Buda
+hungarian catholic 70
+upper_saxon catholic 22
+ashkenazi jewish 8
+> Pozsony
+upper_saxon catholic 45
+hungarian catholic 40
+slovak catholic 15
+@ Transylvania
+romanian orthodox 50
+hungarian catholic 30
+upper_saxon catholic 20
+> Brasso
+upper_saxon catholic 50
+szekely catholic 30
+romanian orthodox 20
+> Szeben
+upper_saxon catholic 60
+romanian orthodox 40
+> Maramaros
+romanian orthodox 70
+ruthenian orthodox 20
+hungarian catholic 10
+@ Banat
+romanian orthodox 40
+serbian orthodox 30
+hungarian catholic 30
+> Belgrade
+serbian orthodox 75
+hungarian catholic 20
+romaniote jewish 5
+@ Croatia and Slavonia
+croatian catholic 92
+serbian orthodox 8
+> Senj
+croatian catholic 100
+@ Wallachia
+romanian orthodox 97
+bulgarian orthodox 3
+@ Moldavia
+romanian orthodox 92
+ruthenian orthodox 4
+armenian armenian 4
+> Akkerman
+romanian orthodox 50
+armenian armenian 20
+greek orthodox 15
+crimean_tatar sunni.hanafi 15
+> Kilia
+romanian orthodox 70
+greek orthodox 15
+hungarian catholic 15
+
+# Balkans
+@ Dalmatia
+croatian catholic 70
+dalmatian catholic 30
+> Kotor
+serbian orthodox 50
+dalmatian catholic 50
+> Dubrovnik
+dalmatian catholic 75
+croatian catholic 22
+sephardi jewish 3
+@ Bosnia
+bosnian bosnian 45
+bosnian catholic 35
+serbian orthodox 20
+> Srebrenica
+bosnian bosnian 35
+serbian orthodox 30
+bosnian catholic 25
+upper_saxon catholic 10
+> Vrhbosna
+bosnian bosnian 60
+serbian orthodox 25
+turkish sunni.hanafi 15
+@ Herzegovina
+serbian orthodox 50
+bosnian bosnian 35
+croatian catholic 15
+@ Serbia
+serbian orthodox 95
+romaniote jewish 2
+upper_saxon catholic 3
+> Nis
+serbian orthodox 85
+turkish sunni.hanafi 15
+@ Albania
+albanian catholic 70
+albanian orthodox 30
+> Zabljak
+serbian orthodox 80
+albanian catholic 20
+> Scutari
+albanian catholic 80
+dalmatian catholic 20
+> Durazzo
+albanian catholic 60
+dalmatian catholic 25
+greek orthodox 15
+> Berat
+albanian orthodox 70
+turkish sunni.hanafi 15
+aromanian orthodox 15
+> Vlore
+albanian orthodox 75
+turkish sunni.hanafi 15
+romaniote jewish 10
+> Gjirokaster
+albanian orthodox 75
+greek orthodox 15
+turkish sunni.hanafi 10
+@ Macedonia
+bulgarian orthodox 72
+turkish sunni.hanafi 18
+aromanian orthodox 6
+romaniote jewish 4
+> Thessaloniki
+greek orthodox 70
+turkish sunni.hanafi 15
+romaniote jewish 15
+> Serres
+greek orthodox 55
+bulgarian orthodox 25
+turkish sunni.hanafi 20
+> Drama
+greek orthodox 50
+turkish sunni.hanafi 30
+bulgarian orthodox 20
+> Skopje
+bulgarian orthodox 55
+turkish sunni.hanafi 40
+romaniote jewish 5
+@ Bulgaria
+bulgarian orthodox 82
+turkish sunni.hanafi 15
+romaniote jewish 3
+> Plovdiv
+bulgarian orthodox 55
+turkish sunni.hanafi 40
+romaniote jewish 5
+> Varna
+bulgarian orthodox 60
+turkish sunni.hanafi 20
+greek orthodox 20
+> Silistra
+turkish sunni.hanafi 50
+bulgarian orthodox 40
+romanian orthodox 10
+@ Thrace
+greek orthodox 55
+turkish sunni.hanafi 40
+romaniote jewish 3
+armenian armenian 2
+> Konstantiniyye
+greek orthodox 55
+turkish sunni.hanafi 30
+armenian armenian 5
+romaniote jewish 5
+ligurian catholic 5
+> Edirne
+turkish sunni.hanafi 60
+greek orthodox 30
+romaniote jewish 7
+armenian armenian 3
+> Komotini
+turkish sunni.hanafi 50
+greek orthodox 50
+& Edirne | mevlevi 0.3
+& Konstantiniyye | naqshbandi 0.2
+& Gallipoli | bektashi 0.3
+@ Greece
+greek orthodox 85
+aromanian orthodox 10
+romaniote jewish 3
+turkish sunni.hanafi 2
+> Ioannina
+greek orthodox 60
+aromanian orthodox 20
+albanian orthodox 10
+romaniote jewish 10
+> Larissa
+greek orthodox 60
+turkish sunni.hanafi 30
+aromanian orthodox 10
+> Athens
+greek orthodox 90
+tuscan catholic 5
+albanian orthodox 5
+> Negroponte
+greek orthodox 85
+venetian catholic 10
+romaniote jewish 5
+@ Morea
+greek orthodox 85
+albanian orthodox 15
+> Modon
+greek orthodox 75
+venetian catholic 20
+romaniote jewish 5
+> Nauplia
+greek orthodox 75
+venetian catholic 20
+albanian orthodox 5
+@ Ionian Islands
+greek orthodox 90
+venetian catholic 10
+> Corfu
+greek orthodox 80
+venetian catholic 12
+romaniote jewish 8
+@ Aegean Islands
+greek orthodox 90
+ligurian catholic 10
+> Naxos
+greek orthodox 70
+venetian catholic 30
+> Rhodes
+greek orthodox 75
+roman catholic 20
+romaniote jewish 5
+> Chios
+greek orthodox 75
+ligurian catholic 25
+@ Crete
+greek orthodox 88
+venetian catholic 10
+romaniote jewish 2
+> Candia
+greek orthodox 75
+venetian catholic 18
+romaniote jewish 7
+@ Cyprus
+greek orthodox 75
+armenian armenian 8
+levantine catholic 7
+french catholic 5
+levantine syriac 5
+> Famagusta
+greek orthodox 50
+ligurian catholic 30
+armenian armenian 10
+mizrahi jewish 10
+
+# Anatolia
+@ Bithynia
+turkish sunni.hanafi 70
+greek orthodox 25
+armenian armenian 5
+> Bursa
+turkish sunni.hanafi 70
+greek orthodox 15
+armenian armenian 10
+romaniote jewish 5
+@ Western Anatolia
+turkish sunni.hanafi 80
+greek orthodox 20
+> Izmir
+turkish sunni.hanafi 50
+greek orthodox 40
+romaniote jewish 10
+@ Teke and Hamid
+turkish sunni.hanafi 85
+greek orthodox 15
+@ Central Anatolia
+turkish sunni.hanafi 85
+greek orthodox 7
+armenian armenian 8
+> Ankara
+turkish sunni.hanafi 80
+armenian armenian 12
+greek orthodox 8
+& Amasya | bektashi 0.3
+& Tokat | bektashi 0.2
+@ Candar
+turkish sunni.hanafi 85
+greek orthodox 15
+> Sinop
+turkish sunni.hanafi 60
+greek orthodox 35
+ligurian catholic 5
+@ Karaman
+turkish sunni.hanafi 88
+turkmen sunni.hanafi 7
+greek orthodox 5
+> Konya
+turkish sunni.hanafi 85
+greek orthodox 7
+armenian armenian 5
+romaniote jewish 3
+& Konya | mevlevi 0.8
+> Kayseri
+turkish sunni.hanafi 60
+armenian armenian 25
+greek orthodox 15
+@ Cilicia
+turkmen sunni.hanafi 55
+armenian armenian 35
+levantine sunni.shafii 10
+> Sis
+armenian armenian 60
+turkmen sunni.hanafi 40
+> Malatya
+kurdish sunni.shafii 40
+armenian armenian 35
+turkmen sunni.hanafi 25
+@ Trebizond
+pontic_greek orthodox 75
+armenian armenian 10
+turkish sunni.hanafi 10
+georgian orthodox 5
+> Rize
+pontic_greek orthodox 60
+georgian orthodox 40
+@ Upper Mesopotamia
+kurdish sunni.shafii 45
+armenian armenian 20
+turkmen sunni.hanafi 15
+iraqi syriac 15
+kurdish yazidi 5
+> Diyarbakir
+turkmen sunni.hanafi 30
+armenian armenian 30
+kurdish sunni.shafii 25
+iraqi syriac 15
+> Mardin
+iraqi syriac 40
+kurdish sunni.shafii 35
+iraqi sunni.shafii 25
+> Urfa
+iraqi sunni.shafii 40
+armenian armenian 30
+iraqi syriac 15
+kurdish sunni.shafii 15
+> Cizre
+kurdish sunni.shafii 60
+iraqi nestorian 25
+kurdish yazidi 15
+@ Armenian Highlands
+armenian armenian 55
+kurdish sunni.shafii 30
+turkmen sunni.hanafi 15
+> Bitlis
+kurdish sunni.shafii 70
+armenian armenian 30
+> Hakkari
+iraqi nestorian 55
+kurdish sunni.shafii 35
+kurdish yazidi 10
+> Kars
+armenian armenian 60
+georgian orthodox 20
+turkmen sunni.hanafi 20
+
+# Caucasus
+@ Georgia
+georgian orthodox 92
+armenian armenian 6
+mizrahi jewish 2
+> Zugdidi
+mingrelian orthodox 100
+> Sukhumi
+abkhaz orthodox 60
+abkhaz folk 25
+mingrelian orthodox 15
+@ Shirvan
+azeri sunni.shafii 70
+armenian armenian 10
+dagestani sunni.shafii 10
+mizrahi jewish 5
+persian twelver 5
+@ Arran and Armenia
+armenian armenian 50
+azeri sunni.shafii 40
+kurdish sunni.shafii 10
+> Ganja
+azeri sunni.shafii 60
+armenian armenian 30
+persian twelver 10
+> Barda
+azeri sunni.shafii 70
+armenian armenian 30
+@ North Caucasus
+circassian folk 55
+circassian orthodox 30
+nogai sunni.hanafi 15
+> Tarki
+kumyk sunni.shafii 90
+dagestani sunni.shafii 10
+> Khunzakh
+dagestani sunni.shafii 100
+> Alania
+alan orthodox 50
+alan folk 50
+> Chechnya
+vainakh folk 100
+> Matrega
+circassian orthodox 60
+ligurian catholic 20
+mizrahi jewish 20
+> Stavropol
+nogai sunni.hanafi 100
+> Kabarda
+circassian folk 80
+circassian orthodox 20

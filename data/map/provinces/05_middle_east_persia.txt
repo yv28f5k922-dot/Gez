@@ -90,7 +90,7 @@ Mosul | 36.34 43.13 | QAR f 4
 Sinjar | 36.32 41.88 | QAR s 1
 Erbil | 36.19 44.01 | QAR h 2
 Kirkuk | 35.47 44.39 | QAR p 2
-@ Iraq | shia
+@ Iraq
 Baghdad | 33.31 44.37 | QAR f 6
 Hillah | 32.48 44.43 | QAR f 3
 Kufa | 32.00 44.33 | QAR f 2
@@ -100,7 +100,7 @@ Basra | 30.51 47.81 | QAR x 4
 Amarah | 31.84 47.14 | QAR x 2
 
 # Persia
-@ Azerbaijan | sunni
+@ Azerbaijan
 Tabriz | 38.08 46.29 | QAR h 7
 Maragheh | 37.39 46.24 | QAR h 3
 Urmia | 37.55 45.07 | QAR h 2
@@ -113,7 +113,7 @@ Rasht | 37.28 49.58 | GIL x 2
 Sari | 36.57 53.06 | MZD x 3
 Nur | 36.57 52.00 | MZD m 1
 Astarabad | 36.84 54.43 | HRT x 2
-@ Persian Iraq | sunni
+@ Persian Iraq
 Qazvin | 36.27 50.00 | QAR p 3
 Ray | 35.59 51.44 | QAR p 3
 Hamadan | 34.80 48.51 | QAR h 3
@@ -126,14 +126,14 @@ Khorramabad | 33.49 48.36 | LUR m 2
 Izeh | 31.83 49.87 | QAR m 1
 Hoveyzeh | 31.46 48.07 | MSH x 2
 Shushtar | 32.04 48.85 | QAR f 2
-@ Fars | sunni
+@ Fars
 Shiraz | 29.60 52.53 | QAR h 6
 Kazerun | 29.62 51.65 | QAR h 2
 Bushehr | 28.97 50.84 | QAR d 1
 Darabgird | 28.75 54.54 | QAR h 2
 Yazd | 31.90 54.37 | QAR d 3
 Lar | 27.68 54.34 | LAR d 2
-@ Kerman | sunni
+@ Kerman
 Kerman | 30.28 57.08 | QAR d 3
 Bam | 29.10 58.36 | QAR d 2
 Hormuz | 27.10 56.45 | HOR d 4
