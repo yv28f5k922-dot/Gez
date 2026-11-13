@@ -101,7 +101,11 @@ Merchants move goods between markets along land and sea routes (Silk Road,
 spice route through the Red Sea and the Gulf, Hanseatic Baltic,
 Mediterranean). Control of routes earns money. Needs sea zones (Phase 1).
 
-### Phase 4: Characters and dynasties (CK-style)
+### Phase 4: Characters and dynasties (CK-style) ✅ (session 4)
+Owner's choices: real rulers, heirs, spouses and key figures; invented
+sibling heirs (and rulers) where history records no one; CK-style traits
+and skills; court, council and marriages (plots later). Done: all of steps
+1–5 except plots (step 4 has opinions only).
 1. **Real 1453 people** as starting data: rulers, heirs, spouses, key
    nobles and generals (Mehmed II, Hunyadi, Skanderbeg, Ladislaus,
    Frederick III, Charles VII, Zara Yaqob, Jahan Shah, Abu Sa'id,

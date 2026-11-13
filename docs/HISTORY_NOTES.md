@@ -132,3 +132,111 @@ Moldavia; French vassals Brittany and Foix; Muscovite vassal Kasimov.
   separate. A personal-union mechanic can link them later.
 - **Novgorod, Pskov and Vyatka** are independent republics; Yaroslavl, Tver
   and Ryazan are independent but close to Moscow.
+
+
+## People of 1453 (Phase 4)
+
+Real people are in `data/characters/people_1453.txt`. These facts are
+uncertain (mostly birth years, some 1453 office-holders). Countries with no
+recorded ruler got an invented ruler and an invented sibling heir (owner's
+rule); they are marked "invented" in the game.
+
+| Country | Person | Doubt |
+|---|---|---|
+| TUR | Gülbahar Hatun | origin disputed? |
+| TUR | Sitti Şah Hatun | birth year? |
+| TUR | Zağanos Pasha | birth year? |
+| TUR | Turahan Bey | birth year? |
+| TUR | İshak Pasha | birth year? |
+| MOE | Catherine Zaccaria | birth year? |
+| MOE | Theodora Asanina | birth year? |
+| TRE | John IV Megas Komnenos | birth year? |
+| TRE | Theodora Komnene | later wife of Uzun Hasan; birth year? |
+| CYP | James the Bastard | illegitimate; birth year? |
+| KNI | Jacques de Milly | birth year? |
+| NAX | Giacomo II Crispo | died 1453; birth year? |
+| LES | Dorino I Gattilusio | birth year? |
+| LES | Domenico Gattilusio | birth year? |
+| TOC | Leonardo III Tocco | birth year? |
+| ATH | Francesco I Acciaioli | child duke, mother Chiara Zorzi regent? |
+| ATH | Chiara Zorzi | regent? |
+| ZET | Stefan Crnojević | birth year? |
+| ZET | Ivan Crnojević | birth year? |
+| ALB | Donika Arianiti | birth year? |
+| ALB | Hamza Kastrioti | nephew; defected 1456; birth year? |
+| ALB | Moisi Golemi | birth year? |
+| ALB | Lekë Dukagjini | birth year? |
+| HUN | Elizabeth Szilágyi | birth year? |
+| HUN | Ladislaus Garai | palatine; birth year? |
+| JIS | Jan Jiskra | birth year? |
+| WAL | Vladislav II | birth year? |
+| WAL | Vlad Dracula | in exile; birth year? |
+| MOL | Alexăndrel | birth year? |
+| MOL | Peter Aron | rival claimant; birth year? |
+| MOL | Stephen of Moldavia | in exile; later Stephen the Great; birth year? |
+| SAL | Sigismund of Volkersdorf | archbishop; birth year? |
+| POM | Eric II of Pomerania | birth year? |
+| UTR | Rudolf van Diepholt | bishop; birth year? |
+| GEN | Pietro di Campofregoso | Doge; birth year? |
+| GRA | Muhammad XI | 1453 rulers of Granada uncertain? |
+| GRA | Sa'd of Granada | rival, king 1454; birth year? |
+| ENG | Richard of York | heir presumptive? |
+| TYR | Eoghan Ó Néill | birth year? |
+| TYR | Énrí Ó Néill | birth year? |
+| TMN | Toirdhealbhach Bóg Ó Briain | birth year? |
+| DAN | Knud of Denmark | birth year? |
+| MAZ | Bolesław IV of Warsaw | birth year? |
+| TVE | Mikhail of Tver | birth date? |
+| RYA | Ivan Fyodorovich | dies 1456; birth year? |
+| KAS | Qasim Khan | birth year? |
+| KAZ | Mahmud of Kazan | birth year? |
+| CRI | Nur Devlet | birth year? |
+| CRI | Meñli Giray | birth year? |
+| GRH | Küchük Muhammad | birth year? |
+| GRH | Mahmud of the Great Horde | birth year? |
+| GRH | Akhmat Khan | birth year? |
+| UZB | Shah Budaq | birth year? |
+| MGH | Esen Buqa II | birth year? |
+| AKK | Khalil Mirza | birth year? |
+| AKK | Jahangir Mirza | elder brother, deposed? |
+| QAR | Hasan Ali | birth year? |
+| QAR | Pir Budaq | birth year? |
+| KAR | İbrahim II of Karaman | birth year? |
+| KAR | Pir Ahmed | birth year? |
+| KAR | Kasım Bey | birth year? |
+| CND | İsmail Bey | birth year? |
+| DUL | Süleyman Bey | birth year? |
+| DUL | Malik Arslan | birth year? |
+| SHI | Khalilullah I | birth year? |
+| SHI | Farrukh Yasar | birth year? |
+| SAM | Kaikhosro Jaqeli | birth year? |
+| MAM | Ahmad ibn Inal | Mamluk succession is not hereditary in practice? |
+| ZAY | Al-Mutawakkil al-Mutahhar | imam; birth year? |
+| MSH | Muhammad ibn Falah | founder; birth year? |
+| MOR | Yahya al-Wattasi | vizier; birth year? |
+| ETH | Eleni | birth year? |
+| ADA | Muhammad ibn Badlay | birth year? |
+| DEL | Barbak Shah | birth year? |
+| JNP | Mahmud Shah Sharqi | birth year? |
+| JNP | Muhammad Shah Sharqi | birth year? |
+| JNP | Husain Shah Sharqi | birth year? |
+| KSH | Adam Khan | birth year? |
+| KSH | Haji Khan | birth year? |
+| MUL | Rai Sahra Langah | birth year? |
+| GUJ | Qutb-ud-din Ahmad Shah II | birth year? |
+| MLW | Ghiyath Shah | birth year? |
+| KHA | Miran Mubarak Khan | birth year? |
+| BNG | Nasiruddin Mahmud Shah | birth year? |
+| BNG | Rukunuddin Barbak Shah | birth year? |
+| BAH | Ala-ud-din Ahmad Shah II | birth year? |
+| BAH | Humayun Shah | birth year? |
+| ORI | Kapilendra Deva | birth year? |
+| ORI | Hamvira | birth year? |
+| ORI | Purushottama Deva | birth year? |
+| VIJ | Mallikarjuna Raya | birth year? |
+| VIJ | Virupaksha Raya | cousin; birth year? |
+| MEW | Rana Kumbha | birth year? |
+| MEW | Udai Singh | birth year? |
+| MEW | Raimal | birth year? |
+| AHO | Susenphaa | birth year? |
+| TPR | Dharma Manikya I | birth year? |

@@ -58,7 +58,11 @@ After changing `data/economy/`, run `python3 tools/economy/econgen.py`.
 Trade routes (Phase 3, session 4): see DESIGN.md "Trade";
 `Economy/Trade.swift`, `TradeView.swift`.
 
-Not started: characters, armies, diplomacy, war, sieges,
+Characters (Phase 4, session 4): see DESIGN.md "Characters";
+`Characters/`, `Systems/CharacterSystem.swift`, `CourtView.swift`;
+uncertain facts listed in HISTORY_NOTES.md.
+
+Not started: laws and estates, armies, diplomacy, war, sieges,
 battles, estates, government, AI, save/load, sound, menus, settings.
 
 ## How to work on it
@@ -140,9 +144,8 @@ docs/              DESIGN, HISTORY_NOTES, HANDOFF (this), CREDITS, previews
 ## What to do next
 
 **Follow `docs/ROADMAP.md`.** The owner chose every feature and the build
-order in session 2. **Phases 1–3 are done (sessions 3–4). Next: Phase 4, characters and
-dynasties (CK-style, real people of 1453)** — ask the owner first, and
-record uncertain facts in HISTORY_NOTES.md.
+order in session 2. **Phases 1–4 are done (sessions 3–4). Next: Phase 5, government, laws
+and estates** (ask the owner first). Then Phase 6 armies.
 
 CI note: GitHub's arm64 Mac runners are sometimes unavailable for hours.
 Simulation tests also run on Linux (`swift:6.0` container) and the app

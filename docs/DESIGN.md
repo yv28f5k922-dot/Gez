@@ -212,3 +212,36 @@ The owner found the first flat-colour look ugly, so looks are a priority.
 ## Milestones
 
 See `docs/ROADMAP.md` for the agreed feature decisions and build order.
+
+### Characters (Phase 4, owner's choices)
+- **Real people of 1453**: rulers, heirs, spouses, children and key figures
+  (`data/characters/people_1453.txt`, ~340 people: Mehmed II, Hunyadi,
+  Skanderbeg, Vlad Dracula, Cosimo de' Medici, Zara Yaqob, Bahlul Lodi,
+  Rana Kumbha...). Personal unions: one person can rule several countries
+  (Ladislaus V: Hungary, Austria, Bohemia; Christian I: Denmark, Norway).
+- **Gaps** (owner's rule): a country with no one recorded gets an invented
+  ruler and an invented sibling heir; empty council seats get invented
+  courtiers ("Isa of Silistra"). Invented people are flagged in the game.
+  `tools/characters/chargen.py` builds `characters1453.json`.
+- **CK-style traits and skills**: diplomacy, martial, stewardship,
+  intrigue, learning (0–20); 28 traits (`traits.txt`) change skills and
+  opinion (shared +10, opposite −15, family +20, faith −5/−20).
+- **Life**: monthly deaths (adult risk roughly doubles every ten years;
+  childhood is dangerous; sickly ×2), births to married women 16–42,
+  children named from culture lists (often after a grandparent), inheriting
+  a parent's trait half the time.
+- **Succession laws** (`succession.txt`): primogeniture (sons, brothers,
+  nephews, daughters, nearest of the dynasty), salic (France, Burgundy,
+  Anjou, Lorraine: never women), seniority (steppe hordes, tribes),
+  elective (republics, theocracies, Hungary, Bohemia, the Mamluks: ablest
+  courtier). No heir at all: a relative is found or invented.
+- **Council**: chancellor, marshal, steward, spymaster, court chaplain.
+  Now: ruler stewardship ±1.5% tax per point from 5, steward ±1%
+  (−15%…+25%); ruler learning/8 + chaplain learning/4 learning a year.
+  Chancellor, marshal and spymaster matter from Phases 6–7.
+- **Marriages**: you propose for unmarried members of your ruling family;
+  refused for wrong age (<15 or >25 years apart), different faith family,
+  or if a ruler/heir of a realm 2.5× bigger. Muslim men up to four wives.
+  The wife joins her husband's court unless she rules. AI marries off its
+  families each January (best realm first, else a local noble).
+- Plots and schemes come later.
