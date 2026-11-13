@@ -318,6 +318,7 @@ public enum MarketSystem {
             world.countries.learning[c.index] += CharacterSystem.learningPerYear(world, c) / 12
         }
         var classTax = Array(repeating: Array(repeating: 0.0, count: TaxClass.allCases.count), count: world.countries.count)
+        var vassalTax = Array(repeating: 0.0, count: world.countries.count)
         for p in 0..<P {
             guard let owner = world.provinces.owner[p] else {
                 provinceTax[p] = (landValue[p] * MarketModel.taxRaw + craftValue[p] * MarketModel.taxCraft) * (1 + bonus.tax[p])
@@ -331,10 +332,19 @@ public enum MarketSystem {
                 classTax[o][tc.rawValue] += tax
                 provinceTax[p] += tax
             }
-            income[o] += provinceTax[p]
+            if let h = world.provinces.holder[p] {
+                // A great vassal keeps his share, or everything if he refuses.
+                let kept = world.people.refusing.contains(h) ? provinceTax[p] : provinceTax[p] * VassalModel.keepShare
+                world.people.characters.gold[h.index] += kept
+                vassalTax[o] += kept
+                income[o] += provinceTax[p] - kept
+            } else {
+                income[o] += provinceTax[p]
+            }
             world.countries.learning[o] += bonus.learning[p] / 12
         }
         world.countries.lastTax = classTax
+        world.countries.lastVassalTax = vassalTax
 
         markets.pendingDemand = Array(repeating: 0, count: M * G)
         world.economy.workshopOutput = workshopOutput

@@ -39,10 +39,12 @@ public final class Simulation {
             BuildingSystem.runAI(&world, month: date.month)
             PopulationSystem.runMonthly(&world)
             CharacterSystem.runMonthly(&world, date: date, random: &random)
+            VassalSystem.runMonthly(&world, date: date, random: &random)
         }
 
         if date.isFirstOfYear {
             CharacterSystem.runYearly(&world, date: date, random: &random)
+            VassalSystem.runYearly(&world, date: date, random: &random)
         }
     }
 }

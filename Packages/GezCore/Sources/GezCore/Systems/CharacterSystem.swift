@@ -191,6 +191,7 @@ public enum CharacterSystem {
     public static func kill(_ world: inout World, _ x: CharacterID, date: GameDate, random: inout GameRandom) {
         guard world.people.characters.isAlive(x) else { return }
         world.people.characters.death[x.index] = date
+        VassalSystem.passOn(&world, from: x, date: date)
         for c in world.countries.ids {
             for s in CouncilSeat.allCases where world.countries.council[c.index][s.rawValue] == x {
                 world.countries.council[c.index][s.rawValue] = nil

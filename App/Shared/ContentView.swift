@@ -247,6 +247,7 @@ struct ProvincePanel: View {
             .background(Palette.ink.opacity(0.08), in: RoundedRectangle(cornerRadius: 6))
             switch tab {
             case .overview:
+                HolderRow(province: province)
                 row("Development", "\(p.development[i]) · fort \(p.fortLevel[i])")
                 row("Land", "\(p.terrain[i].rawValue.capitalized)\(p.isCoastal[i] ? ", coast" : "") · \(p.areaKm2[i].formatted(.number.precision(.fractionLength(0)))) km²")
                 let riverSides = p.neighbors[i].filter { world.isRiverBorder(province, $0) }.count

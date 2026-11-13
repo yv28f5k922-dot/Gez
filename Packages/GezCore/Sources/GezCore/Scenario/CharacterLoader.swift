@@ -52,8 +52,16 @@ enum CharacterLoader {
                 people.characters.children[m].append(id)
             }
             for s in c.spouses { people.characters.marry(id, CharacterID(s)) }
+            if let d = c.died {
+                people.characters.death[i] = GameDate(year: d[0], month: d[1], day: min(d[2], 28))
+            }
+            people.characters.illegitimate[i] = c.illegitimate ?? false
         }
         world.people = people
+        for (province, who) in file.holdings ?? [:] {
+            guard let p = Int(province), p < world.provinces.count, who < people.characters.count else { continue }
+            world.provinces.holder[p] = CharacterID(who)
+        }
 
         for (tag, roles) in file.countries {
             guard let country = world.countries.id(forTag: tag) else { continue }
@@ -100,6 +108,8 @@ struct CharacterFile: Decodable {
         let country: String
         let invented: Bool
         let note: String?
+        let died: [Int]?
+        let illegitimate: Bool?
     }
 
     struct Roles: Decodable {
@@ -118,4 +128,6 @@ struct CharacterFile: Decodable {
     let traits: [Trait]
     let characters: [Person]
     let countries: [String: Roles]
+    /// Province index (as text) → holder's character index.
+    let holdings: [String: Int]?
 }

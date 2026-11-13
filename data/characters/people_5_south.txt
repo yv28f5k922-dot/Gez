@@ -1,0 +1,51 @@
+# Families and great vassals of the Middle East, Africa and India, 1453.
+
+## Egypt, the Maghreb and Ethiopia
+@ MAM
+kin    | zaynab_k  | Khawand Zaynab       |           | f | 1410       | s:inal | ambitious, schemer | wife of Inal; birth year?
+link   | ahmad_i   | m:zaynab_k
+@ MOR
+dead   | uthman3_m | Abu Sa'id Uthman III | Marinid   | m | 1390       | d:1420 | |
+link   | abdalhaqq2 | f:uthman3_m
+@ ETH
+dead   | dawit1    | Dawit I              | Solomonic | m | 1365       | d:1413-10 | pious |
+link   | zara_yaqob | f:dawit1 s:seyon_m
+kin    | seyon_m   | Seyon Mogesa         |           | f | 1420       | | pious | mother of Baeda Maryam; birth year?
+link   | baeda_maryam | m:seyon_m
+
+## India
+@ DEL
+vassal | daria_khan | Daria Khan Lodi     | Lodi      | m | 1410       | holds:Sambhal | brave | governor of Sambhal?; birth year?
+vassal | ahmad_mewati | Ahmad Khan Mewati | Khanzada  | m | 1410       | holds:Mewat | ambitious | Khanzada chief of Mewat?; birth year?
+kin    | qutb_lodi | Qutb Khan Lodi       | Lodi      | m | 1410       | | brave, strategist | cousin of Bahlul; birth year?
+@ JNP
+dead   | ibrahim_sh | Ibrahim Shah Sharqi | Sharqi    | m | 1375       | d:1440 | scholar, pious |
+link   | mahmud_sh | f:ibrahim_sh s:bibi_raji
+kin    | bibi_raji | Bibi Raji            |           | f | 1415       | | pious, ambitious | birth year?
+link   | muhammad_sh | m:bibi_raji
+link   | husain_sh | m:bibi_raji
+@ GUJ
+dead   | muhammad2_g | Muhammad Shah II   | Muzaffarid | m | 1410      | d:1451-02 | generous, lazy |
+link   | qutb_ahmad | f:muhammad2_g
+link   | mahmud_beg | f:muhammad2_g m:bibi_mughli
+kin    | bibi_mughli | Bibi Mughli        |           | f | 1425       | | pious | mother of Fath Khan; birth year?
+@ MLW
+dead   | malik_mughith | Malik Mughith    | Khalji    | m | 1380       | d:1443 | |
+link   | mahmud_kh | f:malik_mughith
+@ MEW
+dead   | mokal     | Rana Mokal           | Sisodia   | m | 1405       | d:1433 | | murdered
+link   | kumbha    | f:mokal
+kin    | ramabai   | Ramabai              | Sisodia   | f | 1440       | f:kumbha | scholar, pious | birth year?
+@ MAR
+dead   | ranmal    | Rao Ranmal           | Rathore   | m | 1392       | d:1438 | brave, ambitious | killed at Chittor
+link   | jodha     | f:ranmal
+kin    | satal     | Satal                | Rathore   | m | 1435       | f:jodha | | birth year?
+kin    | bika      | Rao Bika             | Rathore   | m | 1438-08-05 | f:jodha | brave, ambitious | later founds Bikaner
+kin    | suja      | Suja                 | Rathore   | m | 1439       | f:jodha | | birth year?
+@ BAH
+dead   | ahmad1_b  | Ahmad Shah I Wali    | Bahmani   | m | 1373       | d:1436 | pious |
+link   | alauddin2 | f:ahmad1_b
+@ VIJ
+dead   | devaraya2 | Deva Raya II         | Sangama   | m | 1390       | d:1446 | strategist, scholar |
+link   | mallikarjuna | f:devaraya2
+link   | saluva_n  | holds:Chandragiri

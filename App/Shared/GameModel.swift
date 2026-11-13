@@ -239,6 +239,20 @@ final class GameModel {
         revision &+= 1
     }
 
+    // MARK: Vassal actions (player only)
+
+    func grant(_ province: ProvinceID, to x: CharacterID) {
+        guard let p = playerCountry, world.provinces.owner[province.index] == p else { return }
+        VassalSystem.grant(&simulation.world, province, to: x, date: date)
+        revision &+= 1
+    }
+
+    func revoke(_ province: ProvinceID) {
+        guard let p = playerCountry, world.provinces.owner[province.index] == p else { return }
+        VassalSystem.revoke(&simulation.world, province, date: date)
+        revision &+= 1
+    }
+
     // MARK: Trade actions (player only)
 
     @discardableResult

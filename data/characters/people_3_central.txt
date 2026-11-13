@@ -1,0 +1,140 @@
+# Families and great vassals of Central and Northern Europe and the Russias, 1453.
+
+## Habsburgs and Luxembourg heirs
+@ HAB
+dead   | ernest_iron | Ernest the Iron    | Habsburg  | m | 1377       | d:1424-06-10 s:cymburgis | brave |
+dead   | cymburgis | Cymburgis of Masovia | Piast     | f | 1394       | d:1429-09-28 | brave |
+link   | frederick3 | f:ernest_iron m:cymburgis
+link   | albert6   | f:ernest_iron m:cymburgis s:mechthild
+link   | margaret_a | f:ernest_iron m:cymburgis
+link   | catherine_a | f:ernest_iron m:cymburgis
+kin    | mechthild | Mechthild of the Palatinate | Wittelsbach | f | 1419-03-07 | f:louis3_p | scholar, generous | widow of Louis I of Württemberg
+
+@ HUN
+dead   | albert2   | Albert II of Germany | Habsburg  | m | 1397-08-10 | d:1439-10-27 s:elizabeth_lux | |
+dead   | elizabeth_lux | Elizabeth of Luxembourg | Luxembourg | f | 1409-10-07 | d:1442-12-19 f:sigismund_lux | ambitious |
+dead   | sigismund_lux | Sigismund of Luxembourg | Luxembourg | m | 1368-02-15 | d:1437-12-09 | ambitious, diplomat |
+link   | ladislaus5 | f:albert2 m:elizabeth_lux
+kin    | anne_h    | Anne of Austria      | Habsburg  | f | 1432-04-12 | f:albert2 m:elizabeth_lux s:william3_s | | Duchess of Thuringia
+kin    | elizabeth_h | Elizabeth of Austria | Habsburg | f | 1437     | f:albert2 m:elizabeth_lux | pious, patient | marries Casimir IV in 1454
+link   | hunyadi   | holds:Temesvar,Szoreny,Szeben
+link   | ujlaki    | holds:Osijek,Pozega
+link   | garai     | holds:Pecs
+kin    | szilagyi_m | Michael Szilágyi    | Szilágyi  | m | 1400       | | brave, ambitious | brother of Elizabeth; birth year?
+link   | szilagyi_e | s:hunyadi
+vassal | rozgonyi  | János Rozgonyi       | Rozgonyi  | m | 1410       | holds:Kolozsvar | | voivode of Transylvania?; birth year?
+figure | szecsi    | Dénes Szécsi         | Szécsi    | m | 1410       | | pious, diplomat | archbishop of Esztergom; birth year?
+
+@ BOH
+link   | podebrady | s:johana_r holds:Hradec_Kralove
+kin    | johana_r  | Johana of Rožmitál   | Rožmitál  | f | 1430       | | pious | birth year?
+dead   | kunhuta   | Kunhuta of Šternberk | Šternberk | f | 1425       | d:1449-11-19 s:podebrady | |
+kin    | bocek     | Boček of Poděbrady   | Kunštát   | m | 1442-05-15 | f:podebrady m:kunhuta | |
+kin    | victor_p  | Victor of Poděbrady  | Kunštát   | m | 1443-05-29 | f:podebrady m:kunhuta | brave |
+kin    | barbara_p | Barbara of Poděbrady | Kunštát   | f | 1446       | f:podebrady m:kunhuta | |
+kin    | henry_p   | Henry of Poděbrady   | Kunštát   | m | 1448-05-15 | f:podebrady m:kunhuta | scholar | poet
+kin    | catherine_p2 | Catherine of Poděbrady | Kunštát | f | 1449-11-11 | f:podebrady m:kunhuta | | later Queen of Hungary
+kin    | zdena_p   | Zdena of Poděbrady   | Kunštát   | f | 1449-11-11 | f:podebrady m:kunhuta | |
+vassal | rozmberk  | Oldřich II of Rožmberk | Rožmberk | m | 1403-01-13 | holds:Budejovice | schemer, greedy, deceitful | forger of charters
+kin    | jindrich_r | Jindřich IV of Rožmberk | Rožmberk | m | 1427     | f:rozmberk | |
+kin    | jan_r     | Jan II of Rožmberk   | Rožmberk  | m | 1434       | f:rozmberk | |
+vassal | bolko5    | Bolko V the Hussite  | Piast     | m | 1400       | holds:Opole | ambitious, tolerant | Duke of Opole-Głogówek; birth year?
+
+## Wettin, Hohenzollern, Wittelsbach, Württemberg and Lower Rhine kin
+@ SAX
+link   | amalia_s  | f:frederick2_s m:margaret_a
+kin    | anna_sx   | Anna of Saxony       | Wettin    | f | 1437-08-07 | f:frederick2_s m:margaret_a | | later wife of Albert Achilles
+kin    | hedwig_sx | Hedwig of Saxony     | Wettin    | f | 1445-10-31 | f:frederick2_s m:margaret_a | pious | later abbess
+@ BRA
+dead   | frederick1_b | Frederick I of Brandenburg | Hohenzollern | m | 1371 | d:1440-09-20 s:elisabeth_bl | strategist |
+dead   | elisabeth_bl | Elisabeth of Bavaria-Landshut | Wittelsbach | f | 1383 | d:1442-11-13 | |
+link   | frederick2_b | f:frederick1_b m:elisabeth_bl
+link   | albert_ach | f:frederick1_b m:elisabeth_bl
+link   | frederick_fat | f:frederick1_b m:elisabeth_bl
+kin    | john_alchemist | John the Alchemist | Hohenzollern | m | 1406-08 | f:frederick1_b m:elisabeth_bl | scholar, content | eldest brother, gave up Brandenburg
+link   | dorothea_b | f:john_alchemist
+link   | barbara_b | f:john_alchemist
+kin    | dorothea_br2 | Dorothea of Brandenburg | Hohenzollern | f | 1446 | f:frederick2_b m:catherine_s | |
+kin    | margaret_br2 | Margaret of Brandenburg | Hohenzollern | f | 1449 | f:frederick2_b m:catherine_s | | birth year?
+@ ANS
+kin    | ursula_br | Ursula of Brandenburg | Hohenzollern | f | 1450-09-25 | f:albert_ach m:margaret_bd | |
+kin    | elisabeth_br | Elisabeth of Brandenburg | Hohenzollern | f | 1451 | f:albert_ach m:margaret_bd | |
+link   | margaret_bd | f:jacob1_bd m:catherine_lor
+@ BAV
+kin    | margaret_bv | Margaret of Bavaria-Munich | Wittelsbach | f | 1442-01 | f:albert3_b m:anna_bru | | later wife of Federico Gonzaga
+kin    | elizabeth_bv | Elizabeth of Bavaria-Munich | Wittelsbach | f | 1443-04 | f:albert3_b m:anna_bru | |
+kin    | christoph_bv | Christoph the Strong | Wittelsbach | m | 1449-01-06 | f:albert3_b m:anna_bru | brave |
+kin    | wolfgang_bv | Wolfgang of Bavaria-Munich | Wittelsbach | m | 1451-11-01 | f:albert3_b m:anna_bru | |
+@ PAL
+dead   | louis3_p  | Louis III of the Palatinate | Wittelsbach | m | 1378-01-23 | d:1436-12-30 | |
+dead   | louis4_p  | Louis IV of the Palatinate | Wittelsbach | m | 1424-12-01 | d:1449-08-13 f:louis3_p s:margaret_sav | |
+link   | frederick1_p | f:louis3_p
+link   | philip_p  | f:louis4_p
+@ WUR
+dead   | louis1_w  | Louis I of Württemberg-Urach | Württemberg | m | 1412 | d:1450-09-24 s:mechthild | |
+link   | eberhard5_w | f:louis1_w m:mechthild
+kin    | louis2_w  | Louis II of Württemberg-Urach | Württemberg | m | 1439 | f:louis1_w m:mechthild | sickly | elder brother of Eberhard
+dead   | elisabeth_bl2 | Elisabeth of Bavaria-Landshut | Wittelsbach | f | 1419 | d:1451-01-01 s:ulrich5_w | |
+link   | eberhard6_w | m:elisabeth_bl2
+@ KLE
+dead   | adolph1_k | Adolph I of Cleves   | La Marck  | m | 1373-08-02 | d:1448-09-23 s:mary_bur | |
+kin    | mary_bur  | Mary of Burgundy     | Valois-Burgundy | f | 1393-09 | f:john_fearless | pious | dowager, sister of Philip the Good
+link   | john1_k   | f:adolph1_k m:mary_bur
+link   | adolf_ravenstein | f:adolph1_k m:mary_bur
+link   | marie_cleves | f:adolph1_k m:mary_bur
+link   | catherine_k | f:adolph1_k m:mary_bur
+@ GEL
+link   | mary_g    | f:arnold_e m:catherine_k
+kin    | margaret_eg | Margaret of Egmond | Egmond    | f | 1436       | f:arnold_e m:catherine_k | | birth year?
+kin    | catherine_eg | Catherine of Egmond | Egmond  | f | 1439       | f:arnold_e m:catherine_k | | birth year?
+
+## Scandinavia
+@ DAN
+dead   | dietrich_o | Dietrich of Oldenburg | Oldenburg | m | 1390      | d:1440-02-14 s:hedwig_h | |
+dead   | hedwig_h  | Hedwig of Holstein   | Schauenburg | f | 1398     | d:1436 | |
+link   | christian1 | f:dietrich_o m:hedwig_h
+link   | gerhard6_o | f:dietrich_o m:hedwig_h
+kin    | maurice_o | Maurice of Oldenburg | Oldenburg | m | 1428       | f:dietrich_o m:hedwig_h | | birth year?
+link   | dorothea_b | s:christopher_b
+dead   | christopher_b | Christopher of Bavaria | Wittelsbach | m | 1416-02-26 | d:1448-01-05 | | Dorothea's first husband
+@ SWE
+figure | jons_oxenstierna | Jöns Bengtsson Oxenstierna | Oxenstierna | m | 1417 | | ambitious, schemer | archbishop of Uppsala, Charles's rival
+figure | sten_sture | Sten Sture       | Sture     | m | 1440       | | ambitious | nephew of Charles VIII?; later regent
+vassal | tott      | Erik Axelsson Tott   | Tott      | m | 1415       | holds:Viipuri | administrator | birth year?
+
+## Poland and Lithuania
+@ POL
+dead   | jagiello  | Władysław II Jagiełło | Jagiellon | m | 1362     | d:1434-06-01 s:sophia_h | strategist |
+kin    | sophia_h  | Sophia of Halshany   | Halshany  | f | 1405       | | pious, ambitious | queen mother
+link   | casimir4  | f:jagiello m:sophia_h
+dead   | wladyslaw3 | Władysław III of Varna | Jagiellon | m | 1424-10-31 | d:1444-11-10 f:jagiello m:sophia_h | brave | fell at Varna
+vassal | teczynski | Jan Tęczyński        | Tęczyński | m | 1408       | holds:Sandomierz | | castellan; birth year?
+vassal | odrowaz   | Piotr Odrowąż        | Odrowąż   | m | 1400       | holds:Lwow | | voivode of Ruthenia?; birth year?
+@ LIT
+vassal | olelko    | Olelko of Kiev       | Gediminid | m | 1400       | holds:Kiev,Cherkasy | ambitious | Prince of Kiev, dies 1454
+kin    | semen_olelko | Semen Olelkovich  | Gediminid | m | 1420       | f:olelko | | birth year?
+kin    | mikhail_olelko | Mikhail Olelkovich | Gediminid | m | 1425   | f:olelko | ambitious | birth year?
+link   | boleslaw4 | s:barbara_ol
+vassal | gostautas | Jonas Goštautas      | Goštautas | m | 1385       | holds:Kaunas | ambitious, diplomat | birth year?
+@ MAZ
+kin    | barbara_ol | Barbara Olelkovna   | Gediminid | f | 1425       | f:olelko | | birth year?
+kin    | konrad3_m | Konrad III the Red   | Piast     | m | 1447       | f:boleslaw4 m:barbara_ol | wrathful | birth year?
+kin    | kazimierz3_m | Kazimierz III    | Piast     | m | 1448       | f:boleslaw4 m:barbara_ol | pious | birth year?
+kin    | boleslaw5_m | Bolesław V        | Piast     | m | 1452       | f:boleslaw4 m:barbara_ol | | birth year?
+
+## The Russias
+@ MOS
+dead   | vasily1   | Vasily I of Moscow   | Rurikid   | m | 1371-12-30 | d:1425-02-27 s:sophia_v | |
+kin    | sophia_v  | Sophia of Lithuania  | Gediminid | f | 1371       | | ambitious, schemer | grand princess mother; dies July 1453
+link   | vasily2   | f:vasily1 m:sophia_v
+kin    | anna_v    | Anna Vasilyevna      | Rurikid   | f | 1451       | f:vasily2 m:maria_y | | later Grand Princess of Ryazan
+vassal | ivan_mozhaysk | Ivan Andreyevich of Mozhaysk | Rurikid | m | 1420 | holds:Mozhaysk | deceitful | flees to Lithuania 1454; birth year?
+vassal | mikhail_vereya | Mikhail Andreyevich of Vereya | Rurikid | m | 1430 | holds:Beloozero | content | birth year?
+vassal | vasily_serpukhov | Vasily Yaroslavich of Serpukhov | Rurikid | m | 1427 | holds:Serpukhov | brave | jailed by Vasily II in 1456; birth year?
+@ NOV
+ruler  | euthymius | Euthymius II         |           | m | 1400       | | pious, scholar | archbishop, leads the republic
+figure | shemyaka  | Dmitry Shemyaka      | Rurikid   | m | 1420       | s:sophia_z | ambitious, cruel, deceitful | rival of Vasily II, poisoned July 1453
+kin    | sophia_z  | Sophia of Zaozerye   | Rurikid   | f | 1425       | | | birth year?
+kin    | ivan_shemyakin | Ivan Dmitrievich | Rurikid   | m | 1437       | f:shemyaka m:sophia_z | | birth year?
+figure | isaak_boretsky | Isaak Boretsky   | Boretsky  | m | 1410       | s:marfa | | posadnik; birth year?
+kin    | marfa     | Marfa Boretskaya     | Boretsky  | f | 1420       | | ambitious, schemer | Marfa the Posadnitsa; birth year?

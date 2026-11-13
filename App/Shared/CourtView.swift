@@ -29,7 +29,11 @@ struct CourtPanel: View {
                 Divider()
                 council(player)
                 Divider()
+                vassals(player)
+                Divider()
                 marriages(player)
+                Divider()
+                chronicle(player)
             }
         }
         Group {
@@ -154,6 +158,58 @@ struct CourtPanel: View {
         }
     }
 
+    private func vassals(_ c: CountryID) -> some View {
+        let w = model.world
+        let ch = w.people.characters
+        let list = VassalSystem.vassals(w, of: c)
+        return VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                Text("Vassals").font(.callout.bold())
+                Spacer()
+                Text(String(format: "keep %.0f%% of their tax", VassalModel.keepShare * 100))
+                    .font(.caption2).foregroundStyle(Palette.ink.opacity(0.6))
+            }
+            if list.isEmpty {
+                Text("No great vassals: all land is the crown's. Grant provinces from the province panel.")
+                    .font(.caption).foregroundStyle(Palette.ink.opacity(0.6))
+            }
+            ForEach(list, id: \.index) { v in
+                let o = VassalSystem.opinionOfLiege(w, v, c)
+                let stance = VassalSystem.stance(w, v, c)
+                HStack(spacing: 6) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Button(ch.fullName(v)) { model.viewedCharacter = v }.buttonStyle(.plain).font(.caption.bold())
+                        Text(VassalSystem.holdings(w, of: v).map { w.provinces.name[$0.index] }.joined(separator: ", ")
+                             + String(format: " · %.0f ducats", ch.gold[v.index]))
+                            .font(.caption2).foregroundStyle(Palette.ink.opacity(0.6))
+                    }
+                    Spacer()
+                    Text(stance.displayName).font(.caption2)
+                        .foregroundStyle(stance == .loyal ? Palette.ink.opacity(0.6) : Color.red.opacity(0.85))
+                    Text(o >= 0 ? "♥\(o)" : "✗\(-o)")
+                        .font(.caption2)
+                        .foregroundStyle(o >= 0 ? Color.green.opacity(0.8) : Color.red.opacity(0.8))
+                        .help("Opinion of your ruler")
+                }
+            }
+        }
+    }
+
+    private func chronicle(_ c: CountryID) -> some View {
+        let w = model.world
+        let entries = w.people.chronicle.filter { $0.country == c }.suffix(8).reversed()
+        return VStack(alignment: .leading, spacing: 3) {
+            Text("Chronicle").font(.callout.bold())
+            if entries.isEmpty {
+                Text("Nothing of note yet.").font(.caption).foregroundStyle(Palette.ink.opacity(0.6))
+            }
+            ForEach(Array(entries.enumerated()), id: \.offset) { _, e in
+                Text("\(e.date.day) \(GameDate.monthNames[e.date.month - 1].prefix(3)) \(String(e.date.year)): \(e.text)")
+                    .font(.caption2)
+            }
+        }
+    }
+
     private func roleText(_ x: CharacterID) -> String {
         let w = model.world
         guard let c = w.people.characters.court[x.index] else { return "" }
@@ -211,6 +267,14 @@ struct PersonCard: View {
             familyLine("Children", ch.children[x.index])
             familyLine("Siblings", ch.siblings(x))
             familyLine("Parents", [ch.father[x.index], ch.mother[x.index]].compactMap { $0 })
+            let held = VassalSystem.holdings(w, of: x)
+            if !held.isEmpty {
+                Text("Holds \(held.map { w.provinces.name[$0.index] }.joined(separator: ", ")) · \(Int(ch.gold[x.index])) ducats")
+                    .font(.caption)
+            }
+            if ch.illegitimate[x.index] {
+                Text("Born outside marriage").font(.caption2).foregroundStyle(Palette.ink.opacity(0.55))
+            }
         }
     }
 
@@ -271,6 +335,53 @@ struct FlowButtons: View {
                             .font(.caption)
                             .underline()
                     }
+                }
+            }
+        }
+    }
+}
+
+/// Who holds a province, with grant and revoke for the player's own land.
+struct HolderRow: View {
+    @Environment(GameModel.self) private var model
+    let province: ProvinceID
+
+    var body: some View {
+        let w = model.world
+        let ch = w.people.characters
+        let i = province.index
+        let mine = model.playerCountry != nil && w.provinces.owner[i] == model.playerCountry
+        HStack(spacing: 6) {
+            Text("Held by").font(.caption.bold())
+            if let h = w.provinces.holder[i] {
+                Button(ch.fullName(h)) {
+                    model.viewedCharacter = h
+                    model.showCourt = true
+                }
+                .buttonStyle(.plain).font(.caption).underline()
+                if let c = w.provinces.owner[i] {
+                    Text(VassalSystem.stance(w, h, c).displayName).font(.caption2).foregroundStyle(Palette.ink.opacity(0.6))
+                }
+            } else {
+                Text(w.provinces.owner[i] == nil ? "No one" : "The crown").font(.caption)
+            }
+            Spacer()
+            if mine, let c = model.playerCountry {
+                if w.provinces.holder[i] != nil {
+                    Button("Revoke") { model.revoke(province) }
+                        .font(.caption)
+                        .help("Take it back: all your vassals will trust you less")
+                } else {
+                    Menu("Grant") {
+                        let candidates = VassalSystem.grantCandidates(w, c, date: model.date)
+                            .sorted { ch.skills[$0.index].reduce(0, +) > ch.skills[$1.index].reduce(0, +) }
+                            .prefix(12)
+                        ForEach(Array(candidates), id: \.index) { x in
+                            Button("\(ch.fullName(x)) (\(ch.age(x, on: model.date)))") { model.grant(province, to: x) }
+                        }
+                    }
+                    .font(.caption)
+                    .fixedSize()
                 }
             }
         }

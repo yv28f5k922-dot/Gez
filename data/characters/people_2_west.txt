@@ -1,0 +1,235 @@
+# Families and great vassals of Western Europe, 1453. Same format as
+# people_1453.txt. Extra relation tokens: d:<year> (died; an ancestor kept
+# for family trees), illegit, holds:<Province>,<Province> (land held under
+# the ruler; underscores for spaces). "link | id | f:x m:y s:z holds:..."
+# adds relations to someone defined elsewhere.
+
+## England: Lancaster, York, Beaufort, Neville, Percy and the great lords
+@ ENG
+dead   | gaunt     | John of Gaunt        | Lancaster | m | 1340-03-06 | d:1399-02-03 | ambitious |
+dead   | henry4    | Henry IV             | Lancaster | m | 1367-04-15 | d:1413-03-20 f:gaunt | |
+dead   | henry5    | Henry V              | Lancaster | m | 1386-09-16 | d:1422-08-31 f:henry4 s:catherine_v | strategist, brave |
+dead   | catherine_v | Catherine of Valois | Valois   | f | 1401-10-27 | d:1437-01-03 f:charles6 m:isabeau s:owen_tudor | |
+figure | owen_tudor | Owen Tudor          | Tudor     | m | 1400       | | brave | second husband of Catherine of Valois; birth year?
+link   | henry6    | f:henry5 m:catherine_v
+link   | edmund_t  | f:owen_tudor m:catherine_v
+link   | jasper_t  | f:owen_tudor m:catherine_v holds:Pembroke
+link   | margaret_an | s:henry6
+dead   | john_beaufort1 | John Beaufort, Earl of Somerset | Beaufort | m | 1373 | d:1410-03-16 f:gaunt illegit s:margaret_holland | | legitimated son of Gaunt
+dead   | margaret_holland | Margaret Holland | Holland  | f | 1385       | d:1439-12-30 | |
+dead   | john_beaufort2 | John Beaufort, Duke of Somerset | Beaufort | m | 1404-03-25 | d:1444-05-27 f:john_beaufort1 m:margaret_holland | |
+link   | somerset  | f:john_beaufort1 m:margaret_holland s:eleanor_beauchamp
+kin    | eleanor_beauchamp | Eleanor Beauchamp | Beauchamp | f | 1408 | | |
+kin    | henry_beaufort | Henry Beaufort     | Beaufort  | m | 1436-04-26 | f:somerset m:eleanor_beauchamp | ambitious, brave | later 3rd Duke of Somerset
+kin    | edmund_beaufort2 | Edmund Beaufort | Beaufort  | m | 1438       | f:somerset m:eleanor_beauchamp | brave | birth year?
+kin    | john_beaufort3 | John Beaufort     | Beaufort  | m | 1441       | f:somerset m:eleanor_beauchamp | | birth year?
+kin    | margaret_beaufort | Margaret Beaufort | Beaufort | f | 1443-05-31 | f:john_beaufort2 m:margaret_bletso | pious, scholar, ambitious, diligent | unmarried in 1453
+kin    | margaret_bletso | Margaret Beauchamp of Bletso | Beauchamp | f | 1410 | | | birth year?
+dead   | ralph_neville | Ralph Neville, Earl of Westmorland | Neville | m | 1364 | d:1425-10-21 s:joan_beaufort | |
+dead   | joan_beaufort | Joan Beaufort      | Beaufort  | f | 1379       | d:1440-11-13 f:gaunt illegit | pious |
+link   | cecily    | f:ralph_neville m:joan_beaufort
+dead   | richard_conisburgh | Richard of Conisburgh | York | m | 1385 | d:1415-08-05 s:anne_mortimer | |
+dead   | anne_mortimer | Anne Mortimer     | Mortimer  | f | 1388-12-27 | d:1411-09-22 | |
+link   | york      | f:richard_conisburgh m:anne_mortimer holds:Hereford,Shrewsbury
+kin    | anne_y    | Anne of York         | York      | f | 1439-08-10 | f:york m:cecily s:henry_holland | |
+kin    | elizabeth_y | Elizabeth of York  | York      | f | 1444-04-22 | f:york m:cecily | |
+kin    | margaret_y | Margaret of York    | York      | f | 1446-05-03 | f:york m:cecily | diplomat, ambitious | later Duchess of Burgundy
+vassal | henry_holland | Henry Holland, Duke of Exeter | Holland | m | 1430-06-27 | | wrathful, arbitrary |
+vassal | salisbury | Richard Neville, Earl of Salisbury | Neville | m | 1400 | f:ralph_neville m:joan_beaufort s:alice_montacute holds:Durham,Carlisle | ambitious, strategist |
+kin    | alice_montacute | Alice Montacute | Montacute | f | 1407       | | |
+link   | warwick   | f:salisbury m:alice_montacute s:anne_beauchamp holds:Coventry,Cardiff
+kin    | anne_beauchamp | Anne Beauchamp, Countess of Warwick | Beauchamp | f | 1426-09-13 | | |
+kin    | isabel_neville | Isabel Neville  | Neville   | f | 1451-09-05 | f:warwick m:anne_beauchamp | |
+kin    | john_neville | John Neville       | Neville   | m | 1431       | f:salisbury m:alice_montacute | brave, strategist | later Marquess of Montagu
+kin    | thomas_neville | Thomas Neville   | Neville   | m | 1429       | f:salisbury m:alice_montacute | brave | birth year?
+kin    | george_neville | George Neville   | Neville   | m | 1432       | f:salisbury m:alice_montacute | scholar, ambitious | bishop of Exeter
+vassal | northumberland | Henry Percy, Earl of Northumberland | Percy | m | 1394-02-03 | s:eleanor_neville holds:Newcastle,Berwick | wrathful, ambitious |
+kin    | eleanor_neville | Eleanor Neville | Neville  | f | 1397       | f:ralph_neville m:joan_beaufort | | birth year?
+kin    | henry_percy3 | Henry Percy      | Percy     | m | 1421-07-25 | f:northumberland m:eleanor_neville | brave |
+kin    | egremont  | Thomas Percy, Lord Egremont | Percy | m | 1422-11-29 | f:northumberland m:eleanor_neville | wrathful, cruel | feuds with the Nevilles
+kin    | ralph_percy | Ralph Percy      | Percy     | m | 1425       | f:northumberland m:eleanor_neville | brave | birth year?
+vassal | buckingham | Humphrey Stafford, Duke of Buckingham | Stafford | m | 1402-08-15 | s:anne_neville_b holds:Brecon | pious, just |
+kin    | anne_neville_b | Anne Neville, Duchess of Buckingham | Neville | f | 1411 | f:ralph_neville m:joan_beaufort | | birth year?
+kin    | humphrey_stafford | Humphrey Stafford, Earl of Stafford | Stafford | m | 1425 | f:buckingham m:anne_neville_b | | birth year?
+vassal | norfolk   | John Mowbray, Duke of Norfolk | Mowbray | m | 1415-09-12 | s:eleanor_bourchier holds:Ipswich | |
+kin    | eleanor_bourchier | Eleanor Bourchier | Bourchier | f | 1417 | | |
+kin    | john_mowbray4 | John Mowbray      | Mowbray   | m | 1444-10-18 | f:norfolk m:eleanor_bourchier | |
+vassal | devon     | Thomas Courtenay, Earl of Devon | Courtenay | m | 1414-05-03 | s:margaret_beaufort_d holds:Exeter | wrathful |
+kin    | margaret_beaufort_d | Margaret Beaufort, Countess of Devon | Beaufort | f | 1409 | f:john_beaufort1 m:margaret_holland | | birth year?
+kin    | thomas_courtenay | Thomas Courtenay | Courtenay | m | 1432       | f:devon m:margaret_beaufort_d | |
+
+## Scotland: Stewarts, Douglases and northern earls
+@ SCO
+dead   | james1_s  | James I of Scotland  | Stewart   | m | 1394-07    | d:1437-02-21 s:joan_beaufort_s | scholar |
+dead   | joan_beaufort_s | Joan Beaufort, Queen of Scots | Beaufort | f | 1404 | d:1445-07-15 f:john_beaufort1 m:margaret_holland | |
+link   | james2_s  | f:james1_s m:joan_beaufort_s
+link   | eleanor_s | f:james1_s m:joan_beaufort_s
+kin    | mary_stewart | Mary Stewart     | Stewart   | f | 1453-05-13 | f:james2_s m:mary_g | | born two weeks before the start
+kin    | isabella_stewart | Isabella Stewart | Stewart | f | 1426      | f:james1_s m:joan_beaufort_s | pious | widow of Francis I of Brittany; birth year?
+kin    | joan_stewart | Joan Stewart       | Stewart   | f | 1428       | f:james1_s m:joan_beaufort_s | | deaf; birth year?
+kin    | annabella_stewart | Annabella Stewart | Stewart | f | 1433     | f:james1_s m:joan_beaufort_s | | birth year?
+link   | douglas9  | holds:Dumfries
+vassal | moray_d   | Archibald Douglas, Earl of Moray | Douglas | m | 1426 | holds:Elgin | brave | brother of the 9th Earl; birth year?
+vassal | huntly    | Alexander Gordon, Earl of Huntly | Gordon | m | 1409      | holds:Aberdeen | strategist, brave | birth year?
+vassal | crawford  | Alexander Lindsay, Earl of Crawford | Lindsay | m | 1410   | holds:Dundee | wrathful, cruel | the Tiger Earl; died 1453
+figure | crichton  | William Crichton     | Crichton  | m | 1390       | | schemer, administrator | Lord Chancellor; birth year?
+figure | kennedy   | James Kennedy        | Kennedy   | m | 1408       | | scholar, pious, diplomat | bishop of St Andrews
+
+## France: Valois, Anjou, Orléans, Bourbon and the great fiefs
+@ FRA
+dead   | charles5  | Charles V of France  | Valois    | m | 1338-01-21 | d:1380-09-16 | scholar, administrator |
+dead   | charles6  | Charles VI of France | Valois    | m | 1368-12-03 | d:1422-10-21 f:charles5 s:isabeau | | the Mad
+dead   | isabeau   | Isabeau of Bavaria   | Wittelsbach | f | 1370     | d:1435-09-24 | |
+dead   | louis_orl | Louis of Orléans     | Valois-Orléans | m | 1372-03-13 | d:1407-11-23 f:charles5 s:valentina | |
+dead   | valentina | Valentina Visconti   | Visconti  | f | 1371       | d:1408-12-04 | |
+link   | charles7  | f:charles6 m:isabeau
+link   | charles_orl | f:louis_orl m:valentina s:marie_cleves holds:Orleans,Blois
+kin    | marie_cleves | Marie of Cleves   | La Marck  | f | 1426-09-19 | | scholar |
+link   | dunois    | f:louis_orl illegit holds:Chartres
+vassal | angouleme | John of Angoulême    | Valois-Orléans | m | 1399-06-26 | f:louis_orl m:valentina holds:Angouleme | pious |
+link   | louis11   | holds:Grenoble,Valence,Embrun
+kin    | jeanne_f  | Jeanne of France     | Valois    | f | 1435       | f:charles7 m:marie_a s:bourbon_john | |
+kin    | marie_sorel | Marie de Valois    | Valois    | f | 1444       | f:charles7 illegit | | daughter of Agnès Sorel
+kin    | charlotte_sorel | Charlotte de Valois | Valois | f | 1446     | f:charles7 illegit | | daughter of Agnès Sorel
+kin    | jeanne_sorel | Jeanne de Valois   | Valois    | f | 1448       | f:charles7 illegit | | daughter of Agnès Sorel
+vassal | bourbon   | Charles I of Bourbon | Bourbon   | m | 1401       | s:agnes_bur holds:Moulins,Clermont | ambitious | dies 1456
+kin    | agnes_bur | Agnes of Burgundy    | Valois-Burgundy | f | 1407 | f:john_fearless | |
+kin    | bourbon_john | John of Bourbon    | Bourbon   | m | 1426       | f:bourbon m:agnes_bur | brave, strategist | later John II of Bourbon
+kin    | charles_bourbon_lyon | Charles of Bourbon | Bourbon | m | 1434 | f:bourbon m:agnes_bur | ambitious | archbishop of Lyon
+kin    | louis_bourbon_liege | Louis of Bourbon | Bourbon | m | 1438     | f:bourbon m:agnes_bur | | later bishop of Liège
+kin    | peter_beaujeu | Peter of Beaujeu   | Bourbon   | m | 1438       | f:bourbon m:agnes_bur | administrator |
+link   | isabelle_bb | f:bourbon m:agnes_bur
+link   | marie_bo  | f:bourbon m:agnes_bur
+vassal | alencon   | John II of Alençon   | Valois-Alençon | m | 1409-03-02 | holds:Alencon | brave, schemer | comrade of Joan of Arc
+vassal | armagnac  | John V of Armagnac   | Armagnac  | m | 1420       | holds:Auch,Rodez | arbitrary, wrathful |
+vassal | maine     | Charles of Maine     | Valois-Anjou | m | 1414-10-14 | holds:Le_Mans | | brother of René
+vassal | albret    | Charles II of Albret | Albret    | m | 1407       | holds:Agen | | birth year?
+
+## Burgundy: Valois-Burgundy and its kin
+@ BUR
+dead   | john_fearless | John the Fearless | Valois-Burgundy | m | 1371-05-28 | d:1419-09-10 | brave, cruel |
+link   | philip_good | f:john_fearless
+kin    | nevers    | John of Burgundy, Count of Nevers | Valois-Burgundy | m | 1415 | | | cousin; birth year?
+kin    | adolf_ravenstein | Adolf of Cleves-Ravenstein | La Marck | m | 1425 | | brave | nephew
+kin    | david_b   | David of Burgundy    | Valois-Burgundy | m | 1427 | f:philip_good illegit | pious | later bishop of Utrecht
+kin    | cornelius_b | Cornelius of Burgundy | Valois-Burgundy | m | 1420 | f:philip_good illegit | brave | killed 1452?
+
+## Anjou and Lorraine
+@ PRO
+dead   | isabella_lor | Isabella of Lorraine | Lorraine | f | 1400 | d:1453-02-28 s:rene | administrator | died three months before the start
+kin    | yolande_an | Yolande of Anjou    | Valois-Anjou | f | 1428-11-02 | f:rene m:isabella_lor | |
+link   | john2_l   | m:isabella_lor
+link   | margaret_an | m:isabella_lor
+
+## Iberia
+@ POR
+dead   | john1_p   | John I of Portugal   | Aviz      | m | 1357-04-11 | d:1433-08-14 s:philippa_l | strategist, just |
+dead   | philippa_l | Philippa of Lancaster | Lancaster | f | 1360-03-31 | d:1415-07-19 f:gaunt | pious |
+dead   | duarte    | Duarte of Portugal   | Aviz      | m | 1391-10-31 | d:1438-09-09 f:john1_p m:philippa_l s:leonor_ar | scholar |
+dead   | leonor_ar | Leonor of Aragon     | Trastámara | f | 1402      | d:1445-02-19 | |
+dead   | peter_coimbra | Peter of Coimbra | Aviz      | m | 1392-12-09 | d:1449-05-20 f:john1_p m:philippa_l | scholar | killed at Alfarrobeira
+link   | afonso5_p | f:duarte m:leonor_ar
+link   | fernando_v | f:duarte m:leonor_ar holds:Beja
+link   | catherine_p | f:duarte m:leonor_ar
+link   | joana_c   | f:duarte m:leonor_ar
+link   | eleanor_p | f:duarte m:leonor_ar
+link   | isabella_co | f:peter_coimbra
+link   | henry_nav | f:john1_p m:philippa_l holds:Viseu,Faro
+link   | isabella_bp | f:john1_p m:philippa_l
+link   | afonso_br | f:john1_p illegit holds:Braganca,Braga
+kin    | fernando_br | Fernando of Braganza | Braganza | m | 1403      | f:afonso_br | ambitious | later 2nd Duke
+kin    | afonso_ourem | Afonso, Count of Ourém | Braganza | m | 1400   | f:afonso_br | scholar | birth year?
+kin    | john_coimbra | John of Coimbra   | Aviz      | m | 1431       | f:peter_coimbra | | husband of Charlotte of Cyprus later; birth year?
+kin    | james_coimbra | James of Coimbra | Aviz      | m | 1433-09-17 | f:peter_coimbra | pious, scholar | cardinal
+
+@ CAS
+dead   | henry3_c  | Henry III of Castile | Trastámara | m | 1379-10-04 | d:1406-12-25 | sickly |
+link   | john2_c2  | f:henry3_c s:isabella_p
+link   | henry4_c  | f:john2_c2
+link   | isabella_p | f:john_portugal_reguengos
+dead   | john_portugal_reguengos | John of Reguengos | Aviz | m | 1400-01-13 | d:1442-10-18 f:john1_p m:philippa_l | | Constable of Portugal
+link   | pacheco   | holds:Albacete
+vassal | giron     | Pedro Girón          | Pacheco   | m | 1423       | holds:Ciudad_Real | ambitious, strategist | Master of Calatrava, brother of Pacheco
+vassal | santillana | Íñigo López de Mendoza | Mendoza | m | 1398-08-19 | holds:Guadalajara | scholar, diplomat | Marquis of Santillana, poet
+kin    | diego_mendoza | Diego Hurtado de Mendoza | Mendoza | m | 1415 | f:santillana | | later 1st Duke of the Infantado
+kin    | pedro_mendoza | Pedro González de Mendoza | Mendoza | m | 1428-05-03 | f:santillana | scholar, ambitious, diplomat | bishop, later Grand Cardinal
+vassal | medina_sidonia | Juan Alonso Pérez de Guzmán | Guzmán | m | 1410 | holds:Niebla | ambitious | Duke of Medina Sidonia
+vassal | arcos     | Juan Ponce de León   | Ponce de León | m | 1414   | holds:Jerez | brave | Count of Arcos; birth year?
+kin    | rodrigo_ponce | Rodrigo Ponce de León | Ponce de León | m | 1443 | f:arcos illegit | brave, strategist | later conqueror at Granada
+vassal | haro      | Pedro Fernández de Velasco | Velasco | m | 1399     | holds:Logrono | just, pious | Count of Haro
+figure | enriquez  | Fadrique Enríquez    | Enríquez  | m | 1390       | | ambitious, schemer | Admiral of Castile
+link   | juana_e   | f:enriquez
+figure | carrillo  | Alfonso Carrillo     | Carrillo  | m | 1410-08-11 | | ambitious, zealous | archbishop of Toledo
+figure | beltran   | Beltrán de la Cueva  | La Cueva  | m | 1435       | | ambitious, brave | Henry's favourite; birth year?
+
+@ ARA
+dead   | ferdinand1_a | Ferdinand I of Aragon | Trastámara | m | 1380-11-27 | d:1416-04-02 | |
+link   | alfonso5  | f:ferdinand1_a
+link   | john2_a   | f:ferdinand1_a
+kin    | alfonso_villahermosa | Alfonso of Aragon | Trastámara | m | 1415 | f:john2_a illegit | brave, strategist | later Duke of Villahermosa; birth year?
+kin    | juan_zaragoza | Juan of Aragon    | Trastámara | m | 1439       | f:john2_a illegit | | later archbishop of Zaragoza; birth year?
+vassal | cardona   | Joan Ramon Folc of Cardona | Cardona | m | 1400   | holds:Lleida | | Count of Cardona; birth year?
+
+@ NAV
+link   | blanche_n | m:blanche1_n
+dead   | blanche1_n | Blanche I of Navarre | Évreux   | f | 1385-07-06 | d:1441-04-01 s:john2_a | |
+link   | charles_v | m:blanche1_n
+link   | eleanor_n | m:blanche1_n
+
+## Naples and Italy
+@ NAP
+kin    | maria_ar  | Maria of Aragon      | Trastámara | f | 1425      | f:alfonso5 illegit | | wife of Lionello d'Este (widowed); birth year?
+kin    | eleanor_ar | Eleanor of Aragon   | Trastámara | f | 1430      | f:alfonso5 illegit s:marzano | | birth year?
+vassal | marzano   | Marino Marzano       | Marzano   | m | 1420       | holds:Cosenza | ambitious, deceitful | Prince of Rossano; birth year?
+vassal | taranto   | Giovanni Antonio Orsini del Balzo | Orsini | m | 1393 | holds:Taranto,Lecce | ambitious, greedy, schemer | Prince of Taranto
+link   | isabella_cl | f:tristan_clermont
+dead   | tristan_clermont | Tristan of Clermont | Clermont | m | 1380 | d:1432 | | birth year?
+figure | pontano   | Giovanni Pontano     | Pontano   | m | 1426-05-07 | | scholar, diplomat | humanist
+
+@ MLO
+kin    | alessandro_sforza | Alessandro Sforza | Sforza | m | 1409-10-21 | | strategist, brave | brother, lord of Pesaro
+kin    | tristano_sforza | Tristano Sforza  | Sforza    | m | 1422       | f:f_sforza illegit | brave | birth year?
+kin    | sforza_secondo | Sforza Secondo   | Sforza    | m | 1433       | f:f_sforza illegit | | birth year?
+kin    | elisabetta_s | Elisabetta Sforza | Sforza    | f | 1447       | f:f_sforza illegit | | birth year?
+dead   | filippo_visconti | Filippo Maria Visconti | Visconti | m | 1392-09-03 | d:1447-08-13 | schemer | last Visconti duke
+link   | bianca_mv | f:filippo_visconti illegit
+
+@ FLO
+kin    | bianca_m  | Bianca de' Medici    | Medici    | f | 1445       | f:piero_m m:lucrezia_t | |
+kin    | nannina_m | Nannina de' Medici   | Medici    | f | 1448       | f:piero_m m:lucrezia_t | |
+kin    | ginevra_a | Ginevra degli Alessandri | Alessandri | f | 1425   | s:giovanni_m | | birth year?
+kin    | cosimino_m | Cosimo di Giovanni de' Medici | Medici | m | 1452 | f:giovanni_m m:ginevra_a | sickly |
+kin    | carlo_m   | Carlo de' Medici     | Medici    | m | 1428       | f:cosimo illegit | pious | birth year?
+
+@ FER
+kin    | sigismondo_e | Sigismondo d'Este  | Este      | m | 1433-11-21 | | | half-brother
+kin    | niccolo_e | Niccolò d'Este       | Este      | m | 1438       | | ambitious | son of Leonello, rival claimant
+dead   | niccolo3_e | Niccolò III d'Este  | Este      | m | 1383-11-09 | d:1441-12-26 | |
+link   | borso     | f:niccolo3_e illegit
+link   | ercole_e  | f:niccolo3_e
+link   | sigismondo_e | f:niccolo3_e
+
+@ MAN
+kin    | gianfrancesco_g | Gianfrancesco Gonzaga | Gonzaga | m | 1446 | f:ludovico3_g m:barbara_b | |
+kin    | susanna_g | Susanna Gonzaga      | Gonzaga   | f | 1447       | f:ludovico3_g m:barbara_b | |
+kin    | dorotea_g | Dorotea Gonzaga      | Gonzaga   | f | 1449       | f:ludovico3_g m:barbara_b | |
+kin    | rodolfo_g | Rodolfo Gonzaga      | Gonzaga   | m | 1452       | f:ludovico3_g m:barbara_b | brave |
+
+@ SAV
+dead   | amadeus8  | Amadeus VIII (Antipope Felix V) | Savoy | m | 1383-09-04 | d:1451-01-07 | pious, diplomat |
+link   | louis_sav | f:amadeus8
+kin    | margaret_sav | Margaret of Savoy | Savoy     | f | 1420-08-07 | f:amadeus8 s:ulrich5_w | | widow of Louis IV of the Palatinate
+link   | philip_p  | m:margaret_sav
+kin    | margherita_sav | Margaret of Savoy | Savoy   | f | 1439       | f:louis_sav m:anne_l | |
+kin    | peter_sav | Peter of Savoy       | Savoy     | m | 1440       | f:louis_sav m:anne_l | pious | bishop
+kin    | janus_sav | Janus of Savoy       | Savoy     | m | 1440-11-08 | f:louis_sav m:anne_l | |
+link   | charlotte_s | f:louis_sav m:anne_l
+kin    | aimon_sav | Aimon of Savoy       | Savoy     | m | 1442       | f:louis_sav m:anne_l | | birth year?
+kin    | agnes_sav | Agnes of Savoy       | Savoy     | f | 1445       | f:louis_sav m:anne_l | |
+kin    | john_louis_sav | John Louis of Savoy | Savoy  | m | 1447       | f:louis_sav m:anne_l | |
+kin    | maria_sav | Maria of Savoy       | Savoy     | f | 1448-03-20 | f:louis_sav m:anne_l | |
+kin    | bona_sav  | Bona of Savoy        | Savoy     | f | 1449-08-10 | f:louis_sav m:anne_l | | later Duchess of Milan
+kin    | jacques_sav | Jacques of Savoy   | Savoy     | m | 1450-11-12 | f:louis_sav m:anne_l | |
+kin    | anne_sav  | Anne of Savoy        | Savoy     | f | 1452       | f:louis_sav m:anne_l | |
+link   | yolande_f | s:amadeus9
+link   | louis_cyp | m:anne_l

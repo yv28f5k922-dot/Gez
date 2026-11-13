@@ -1,0 +1,111 @@
+# Families and great vassals of the Balkans, Anatolia and the Caucasus, 1453.
+
+## Ottomans and their march lords
+@ TUR
+dead   | murad2    | Murad II             | Osmanoğlu | m | 1404-06-16 | d:1451-02-03 s:huma,mara_br | patient, pious, strategist |
+dead   | huma      | Hüma Hatun           |           | f | 1410       | d:1449-09 | pious | origin disputed?
+link   | mehmed2   | f:murad2 m:huma
+dead   | ahmed_k   | Küçük Ahmed          | Osmanoğlu | m | 1450       | d:1451-02-18 f:murad2 | | strangled on Mehmed's accession
+kin    | fatma_o   | Fatma Hatun          | Osmanoğlu | f | 1430       | f:murad2 s:zaganos | | daughter of Murad II, wife of Zağanos?; birth year?
+kin    | sehzade_o | Şehzade Hatun        | Osmanoğlu | f | 1428       | f:murad2 | | birth year?
+vassal | ali_evrenos | Evrenosoğlu Ali Bey | Evrenosoğulları | m | 1400 | holds:Serres | brave | march lord; seat at Yenice-i Vardar?; birth year?
+vassal | ali_mihal | Mihaloğlu Ali Bey    | Mihaloğulları | m | 1425     | holds:Nikopol | brave, wrathful | raider lord; birth year?
+link   | turahan   | holds:Larissa,Lamia
+kin    | omer_t    | Ömer Bey             | Turahanoğlu | m | 1420     | f:turahan | brave, strategist | birth year?
+vassal | ishak_bey | İshak Bey            | Ishaković | m | 1390       | holds:Skopje | strategist | march lord of Skopje; birth year?
+kin    | isa_bey   | Isa-Beg Ishaković    | Ishaković | m | 1420       | f:ishak_bey | administrator, ambitious | founder of Sarajevo; birth year?
+
+## Despotate of the Morea
+@ MOE
+dead   | manuel2_p | Manuel II Palaiologos | Palaiologos | m | 1350-06-27 | d:1425-07-21 s:helena_d | scholar, diplomat |
+dead   | helena_d  | Helena Dragaš        | Dragaš    | f | 1372       | d:1450-03-23 | pious, scholar |
+dead   | constantine11 | Constantine XI   | Palaiologos | m | 1405-02-08 | d:1453-05-29 f:manuel2_p m:helena_d | brave, just | fell at Constantinople
+link   | thomas_p  | f:manuel2_p m:helena_d
+link   | demetrios_p | f:manuel2_p m:helena_d
+
+## Serbia, Bosnia, Herzegovina, Albania
+@ SER
+dead   | vuk_br    | Vuk Branković        | Branković | m | 1345       | d:1397-10-06 | |
+link   | durad     | f:vuk_br
+kin    | jelena_l  | Jelena Branković     | Branković | f | 1447       | f:lazar_b m:helena_mp | | later Queen of Bosnia; birth year?
+kin    | milica_l  | Milica Branković     | Branković | f | 1448       | f:lazar_b m:helena_mp | | birth year?
+kin    | irina_l   | Irina Branković      | Branković | f | 1450       | f:lazar_b m:helena_mp | | birth year?
+kin    | vuk_grg   | Vuk Grgurević        | Branković | m | 1440       | f:grgur_b illegit | brave, wrathful | "Vuk the Fiery Dragon"; birth year?
+figure | mihailo_a | Mihailo Anđelović    | Angelović | m | 1415       | | ambitious | brother of Mahmud Pasha; birth year?
+@ BOS
+dead   | ostoja    | Stephen Ostoja       | Kotromanić | m | 1360      | d:1418-09 | |
+link   | stephen_thomas | f:ostoja
+kin    | vojaca    | Vojača               |           | f | 1415       | | | first wife of Stephen Thomas, set aside 1445; birth year?
+link   | stephen_tom | m:vojaca
+kin    | catherine_t | Catherine Tomašević | Kotromanić | f | 1453     | f:stephen_thomas m:catherine_bos | | birth year?
+@ HER
+kin    | jelena_b  | Jelena Balšić        | Balšić    | f | 1425       | s:stjepan_v | | dies late 1453?; birth year?
+kin    | catherine_hv | Katarina Hercegović | Kosača   | f | 1440       | f:stjepan_v | | birth year?
+@ ALB
+dead   | gjon_k    | Gjon Kastrioti       | Kastrioti | m | 1380       | d:1437 s:voisava | brave |
+dead   | voisava   | Voisava              |           | f | 1385       | | pious | origin disputed; death date unknown?
+link   | skanderbeg | f:gjon_k m:voisava
+dead   | stanisha  | Stanisha Kastrioti   | Kastrioti | m | 1400       | d:1446 f:gjon_k m:voisava | |
+link   | hamza_k   | f:stanisha
+kin    | mamica    | Mamica Kastrioti     | Kastrioti | f | 1416       | f:gjon_k m:voisava | | sister of Skanderbeg; birth year?
+figure | gjergj_ar | Gjergj Arianiti      | Arianiti  | m | 1383       | | brave, strategist | Donika's father
+link   | donika    | f:gjergj_ar
+
+## Wallachia and Moldavia
+@ WAL
+dead   | vlad2     | Vlad II Dracul       | Drăculești | m | 1395       | d:1447-11 | ambitious, brave |
+link   | vlad3     | f:vlad2
+kin    | radu_f    | Radu the Fair        | Drăculești | m | 1438       | f:vlad2 | content | hostage at the Ottoman court; birth year?
+kin    | vlad_calugarul | Vlad the Monk   | Drăculești | m | 1425       | f:vlad2 illegit | pious | birth year?
+dead   | dan2      | Dan II of Wallachia  | Dănești   | m | 1390       | d:1432 | brave |
+link   | vladislav2_w | f:dan2
+@ MOL
+dead   | ilias_m   | Iliaș of Moldavia    | Mușat     | m | 1409       | d:1448 s:maria_h | |
+kin    | maria_h   | Maria of Halshany    | Halshany  | f | 1407       | | pious | mother of Alexăndrel, aunt of Casimir IV
+link   | alexandrel | f:ilias_m m:maria_h
+dead   | bogdan2_m | Bogdan II of Moldavia | Mușat    | m | 1409       | d:1451-10-16 s:oltea | brave | killed by Peter Aron
+kin    | oltea     | Oltea                |           | f | 1410       | | pious | mother of Stephen; birth year?
+link   | stephen3_m | f:bogdan2_m m:oltea
+
+## Anatolian beyliks and Trebizond
+@ KAR
+kin    | sultan_h  | Sultan Hatun         | Osmanoğlu | f | 1410       | s:ibrahim2_k | | daughter of Mehmed I; birth year?
+link   | pir_ahmed | m:sultan_h
+link   | kasim_k   | m:sultan_h
+kin    | ishak_k   | İshak Bey            | Karamanid | m | 1426       | f:ibrahim2_k | ambitious | eldest son, mother not Sultan Hatun?; birth year?
+@ DUL
+kin    | shah_budak | Şah Budak           | Dulkadir  | m | 1435       | f:suleyman_dul | ambitious | birth year?
+kin    | shah_suwar | Şehsuvar Bey        | Dulkadir  | m | 1440       | f:suleyman_dul | brave, ambitious | birth year?
+@ TRE
+dead   | alexios4  | Alexios IV Megas Komnenos | Komnenos | m | 1382    | d:1429-10 | |
+link   | john4_t   | f:alexios4
+link   | david_t   | f:alexios4 s:helena_k
+kin    | helena_k  | Helena Kantakouzene  | Kantakouzenos | f | 1425   | | pious, brave | birth year?
+kin    | basil_t   | Basil Megas Komnenos | Komnenos  | m | 1449       | f:david_t m:helena_k | | birth year?
+kin    | manuel_t  | Manuel Megas Komnenos | Komnenos | m | 1450       | f:david_t m:helena_k | | birth year?
+
+## Turkmen confederations
+@ AKK
+dead   | ali_beg   | Ali Beg              | Bayandur  | m | 1390       | d:1438 s:sara_k | |
+kin    | sara_k    | Sara Khatun          |           | f | 1400       | | diplomat, ambitious, pious | mother of Uzun Hasan
+link   | uzun_hasan | f:ali_beg m:sara_k s:seljuk_shah
+link   | jahangir_a | f:ali_beg m:sara_k
+kin    | seljuk_shah | Seljuk Shah Begum  | Bayandur  | f | 1425       | | ambitious | birth year?
+link   | khalil_a  | m:seljuk_shah
+kin    | ughurlu   | Ughurlu Muhammad     | Bayandur  | m | 1450       | f:uzun_hasan | brave, ambitious | birth year?
+@ QAR
+dead   | qara_yusuf | Qara Yusuf          | Qara Yusuf | m | 1356      | d:1420-11-17 | brave, cruel |
+link   | jahan_shah | f:qara_yusuf s:bigim
+kin    | bigim     | Bigim Khatun         |           | f | 1405       | | ambitious, schemer | birth year?
+link   | hasan_ali | m:bigim
+link   | pir_budaq | m:bigim
+
+## Georgia and its princes
+@ GEO
+dead   | alexander1_g | Alexander I of Georgia | Bagrationi | m | 1386 | d:1446-03-07 | pious |
+link   | george8   | f:alexander1_g s:nestan
+kin    | nestan    | Nestan-Darejan       |           | f | 1425       | | | birth year?
+kin    | alexander_g8 | Alexander        | Bagrationi | m | 1445       | f:george8 m:nestan | | birth year?
+vassal | bagrat_im | Bagrat of Imereti    | Bagrationi | m | 1439       | holds:Kutaisi | ambitious, brave | later Bagrat VI
+vassal | liparit_d | Liparit I Dadiani    | Dadiani   | m | 1400       | holds:Zugdidi | ambitious | prince of Mingrelia; birth year?
+vassal | mamia_g   | Mamia Gurieli        | Gurieli   | m | 1410       | holds:Ozurgeti | | prince of Guria; dates uncertain?

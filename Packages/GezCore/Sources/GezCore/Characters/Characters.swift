@@ -129,6 +129,12 @@ public struct CharacterTable: Sendable {
     /// Made up where history is silent.
     public var invented: [Bool] = []
     public var note: [String?] = []
+    /// Born outside marriage: inherits land only when no lawful child is left.
+    public var illegitimate: [Bool] = []
+    /// Private wealth in ducats (vassals keep part of their provinces' tax).
+    public var gold: [Double] = []
+    /// Lasting goodwill (+) or grudge (−) toward their liege, fading each month.
+    public var favour: [Int] = []
 
     public init() {}
 
@@ -157,6 +163,9 @@ public struct CharacterTable: Sendable {
         self.court.append(court)
         self.invented.append(invented)
         self.note.append(note)
+        self.illegitimate.append(false)
+        self.gold.append(0)
+        self.favour.append(0)
         return id
     }
 
@@ -213,5 +222,21 @@ public struct People: Sendable {
     public var traits = TraitTable()
     public var characters = CharacterTable()
     public var names = NameLists()
+    /// Recent happenings at courts (newest last, kept short).
+    public var chronicle: [ChronicleEntry] = []
+    /// Vassals withholding their taxes this month (set by `VassalSystem`).
+    public var refusing: Set<CharacterID> = []
     public init() {}
+
+    public mutating func record(_ date: GameDate, _ country: CountryID?, _ text: String) {
+        chronicle.append(ChronicleEntry(date: date, country: country, text: text))
+        if chronicle.count > 200 { chronicle.removeFirst(chronicle.count - 200) }
+    }
+}
+
+/// One line in the court chronicle ("Ladislaus Garai refuses to pay taxes").
+public struct ChronicleEntry: Sendable, Equatable {
+    public let date: GameDate
+    public let country: CountryID?
+    public let text: String
 }

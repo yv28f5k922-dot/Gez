@@ -173,9 +173,14 @@ ruler  | ulrich5_w | Ulrich V of Württemberg | Württemberg | m | 1413   | | ge
 heir   | eberhard6_w | Eberhard VI       | Württemberg | m | 1447-07-01 | f:ulrich5_w | |
 kin    | eberhard5_w | Eberhard the Bearded | Württemberg | m | 1445-12-11 | | diligent, pious | cousin, Urach line
 @ BAD
-ruler  | charles1_bd | Charles I of Baden | Zähringen | m | 1427       | s:catherine_a | |
-spouse | catherine_a | Catherine of Austria | Habsburg | f | 1420     | | |
-heir   | bernard2_bd | Bernard of Baden  | Zähringen | m | 1428       | | pious, kind | Blessed Bernard
+ruler  | jacob1_bd | Jacob I of Baden     | Zähringen | m | 1407-03-15 | s:catherine_lor | pious, administrator | dies October 1453
+spouse | catherine_lor | Catherine of Lorraine | Lorraine | f | 1407     | | | birth year?
+heir   | charles1_bd | Charles of Baden   | Zähringen | m | 1427       | f:jacob1_bd m:catherine_lor s:catherine_a | |
+kin    | catherine_a | Catherine of Austria | Habsburg | f | 1420     | | |
+child  | bernard2_bd | Bernard of Baden  | Zähringen | m | 1428       | f:jacob1_bd m:catherine_lor | pious, kind | Blessed Bernard
+child  | john_bd   | John of Baden        | Zähringen | m | 1434       | f:jacob1_bd m:catherine_lor | ambitious | later archbishop of Trier
+child  | george_bd | George of Baden      | Zähringen | m | 1433       | f:jacob1_bd m:catherine_lor | pious | later bishop of Metz
+child  | markus_bd | Markus of Baden      | Zähringen | m | 1434       | f:jacob1_bd m:catherine_lor | | birth year?
 @ MKL
 ruler  | henry4_m  | Henry IV of Mecklenburg | Mecklenburg | m | 1417   | |  |
 heir   | albert6_m | Albert VI of Mecklenburg | Mecklenburg | m | 1438 | f:henry4_m | |
@@ -474,7 +479,7 @@ child  | haji_k    | Haji Khan            | Shah Mir  | m | 1425       | f:zain 
 ruler  | sahra_l   | Rai Sahra Langah     | Langah    | m | 1400       | | | birth year?
 @ GUJ
 ruler  | qutb_ahmad | Qutb-ud-din Ahmad Shah II | Muzaffarid | m | 1430 | | wrathful | birth year?
-figure | mahmud_beg | Fath Khan          | Muzaffarid | m | 1445       | | brave, ambitious | later Mahmud Begada; half-uncle
+figure | mahmud_beg | Fath Khan          | Muzaffarid | m | 1445       | | brave, ambitious | later Mahmud Begada; half-brother
 @ MLW
 ruler  | mahmud_kh | Mahmud Khalji        | Khalji    | m | 1404       | | ambitious, strategist, brave |
 heir   | ghiyath   | Ghiyath Shah         | Khalji    | m | 1430       | f:mahmud_kh | content | birth year?

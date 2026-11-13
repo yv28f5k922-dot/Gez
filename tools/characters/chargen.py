@@ -39,6 +39,7 @@ def main():
     culture_family = {c["id"]: c["family"] for c in cultures}
     countries = {c["tag"]: c for c in scen["countries"]}
     provinces = scen["provinces"]
+    province_names = {p["name"]: i for i, p in enumerate(provinces)}
 
     names = {}
     for line in rows(DATA / "names.txt"):
@@ -84,8 +85,13 @@ def main():
         people[pid] = kw
         order.append(pid)
 
+    holdings = {}    # province name -> person id
+    links = []       # (person id, "f:x m:y s:z") added after everyone is read
     tag = None
-    for line in rows(DATA / "people_1453.txt"):
+    lines = []
+    for path in sorted(DATA.glob("people_*.txt")):
+        lines += list(rows(path))
+    for line in lines:
         if line.startswith("@"):
             tag = line[1:].strip()
             if tag not in countries:
@@ -93,6 +99,9 @@ def main():
             continue
         parts = [x.strip() for x in line.split("|")]
         role = parts[0]
+        if role == "link":
+            links.append((parts[1], parts[2]))
+            continue
         if parts[1].startswith("="):
             ref = parts[1][1:]
             if role in ("ruler", "heir"):
@@ -107,9 +116,28 @@ def main():
         if culture_override and culture_override not in culture_family:
             sys.exit(f"people: unknown culture {culture_override} for {pid}")
         relations = {}
+        died = None
+        illegitimate = False
         for item in rel.split():
-            k, v = item.split(":")
-            relations[k] = v.split(",")
+            if item == "illegit":
+                illegitimate = True
+                continue
+            k, v = item.split(":", 1)
+            if k == "d":
+                d = v.split("-")
+                died = [int(d[0]), int(d[1]) if len(d) > 1 else 6, int(d[2]) if len(d) > 2 else 15]
+            elif k == "holds":
+                for prov in v.split(","):
+                    prov = prov.replace("_", " ")
+                    if prov not in province_names:
+                        sys.exit(f"{pid}: holds unknown province '{prov}'")
+                    if provinces[province_names[prov]].get("owner") != tag:
+                        sys.exit(f"{pid}: holds {prov}, which {tag} does not own")
+                    if prov in holdings:
+                        sys.exit(f"{prov} held by both {holdings[prov]} and {pid}")
+                    holdings[prov] = pid
+            else:
+                relations[k] = v.split(",")
         tlist = [t.strip() for t in tr.split(",") if t.strip()]
         for t in tlist:
             if t not in traits:
@@ -120,11 +148,40 @@ def main():
                          int(b[2]) if len(b) > 2 else 1 + h(pid, "d") % 28],
                    father=relations.get("f", [None])[0], mother=relations.get("m", [None])[0],
                    spouses=relations.get("s", []), traits=tlist, country=tag,
-                   culture=culture_override, religion=religion_override, invented=False, note=note or None)
+                   culture=culture_override, religion=religion_override, invented=False, note=note or None,
+                   died=died, illegitimate=illegitimate)
         if role in ("ruler", "heir"):
             roles[tag][role] = pid
         else:
             roles[tag]["court"].append(pid)
+
+    for pid, rel in links:
+        if pid not in people:
+            sys.exit(f"link: unknown person {pid}")
+        for item in rel.split():
+            if item == "illegit":
+                people[pid]["illegitimate"] = True
+                continue
+            k, v = item.split(":", 1)
+            if k == "f":
+                people[pid]["father"] = v
+            elif k == "m":
+                people[pid]["mother"] = v
+            elif k == "s":
+                people[pid]["spouses"] += [x for x in v.split(",") if x not in people[pid]["spouses"]]
+            elif k == "holds":
+                tag_of = people[pid]["country"]
+                for prov in v.split(","):
+                    prov = prov.replace("_", " ")
+                    if prov not in province_names:
+                        sys.exit(f"{pid}: holds unknown province '{prov}'")
+                    if provinces[province_names[prov]].get("owner") != tag_of:
+                        sys.exit(f"{pid}: holds {prov}, which {tag_of} does not own")
+                    if prov in holdings:
+                        sys.exit(f"{prov} held by both {holdings[prov]} and {pid}")
+                    holdings[prov] = pid
+            else:
+                sys.exit(f"link: unknown relation {k}")
 
     # Check relations and make marriages two-way.
     for pid, p in people.items():
@@ -160,7 +217,7 @@ def main():
         add_person(pid, name=given, dynasty=dynasty, female=female,
                    born=[START_YEAR - age, 1 + h(pid, "m") % 12, 1 + h(pid, "d") % 28],
                    father=None, mother=None, spouses=[], traits=tlist, country=tag,
-                   culture=culture, religion=None, invented=True, note=None)
+                   culture=culture, religion=None, invented=True, note=None, died=None, illegitimate=False)
         return pid
 
     for tag, c in countries.items():
@@ -190,6 +247,8 @@ def main():
             if not who:
                 continue
             for sp in people[who]["spouses"]:
+                if people[sp]["died"]:
+                    continue
                 if people[sp]["country"] != tag and roles[people[sp]["country"]]["ruler"] != sp:
                     old = people[sp]["country"]
                     if sp in roles[old]["court"]:
@@ -205,6 +264,7 @@ def main():
         skill_traits = {"diplomat", "strategist", "administrator", "schemer", "scholar"}
         ruler_spouses = set(people[r["ruler"]]["spouses"])
         candidates = [p for p in r["court"] if p != r["ruler"] and p not in ruler_spouses
+                      and not people[p]["died"]
                       and START_YEAR - people[p]["born"][0] >= 16 and "blind" not in people[p]["traits"]
                       and (not people[p]["female"] or skill_traits & set(people[p]["traits"]))]
         owned = [pp["name"] for pp in provinces if pp.get("owner") == tag] or [capital_name]
@@ -250,6 +310,7 @@ def main():
             "religion": p["religion"] or countries[p["country"]]["religion"],
             "traits": [trait_keys.index(t) for t in p["traits"]],
             "skills": skills, "country": p["country"], "invented": p["invented"], "note": p["note"],
+            "died": p["died"], "illegitimate": p["illegitimate"],
         })
 
     succession = {}
@@ -257,7 +318,12 @@ def main():
         t, law = [x.strip() for x in line.split("|")]
         if t in countries:
             succession[t] = law
+    for tag, r in roles.items():
+        for who in (r["ruler"], r["heir"]):
+            if who and people[who]["died"]:
+                sys.exit(f"{tag}: {who} is dead but ruler/heir")
     result = {
+        "holdings": {str(province_names[k]): index[v] for k, v in holdings.items()},
         "names": {k: {"male": v[0], "female": v[1]} for k, v in names.items()},
         "succession": succession,
         "traits": list(traits.values()),
@@ -267,8 +333,10 @@ def main():
                       for tag, r in roles.items()},
     }
     (RES / "characters1453.json").write_text(json.dumps(result, separators=(",", ":"), ensure_ascii=False))
-    real = sum(1 for p in out if not p["invented"])
-    print(f"{len(out)} characters ({real} real, {len(out) - real} invented)")
+    real = sum(1 for p in out if not p["invented"] and not p["died"])
+    dead = sum(1 for p in out if p["died"])
+    print(f"{len(out)} characters ({real} real living, {dead} real ancestors, "
+          f"{len(out) - real - dead} invented); {len(holdings)} provinces held by vassals")
 
 
 if __name__ == "__main__":

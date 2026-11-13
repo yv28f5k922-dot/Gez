@@ -70,6 +70,9 @@ struct BudgetPanel: View {
             ForEach(TaxClass.allCases, id: \.self) { tc in
                 line("Tax on \(tc.socialClass.displayName.lowercased())", money(tax[tc.rawValue]))
             }
+            if w.countries.lastVassalTax[c.index] > 0 {
+                line("Kept by vassals", "−" + money(w.countries.lastVassalTax[c.index]))
+            }
             if debasing > 0 { line("Debased coin", money(debasing)) }
             line("Merchants", String(format: "%+.1f", w.countries.lastTrade[c.index]))
             line("Tolls", money(w.countries.lastTolls[c.index]))
@@ -88,7 +91,7 @@ struct BudgetPanel: View {
         let w = model.world
         return VStack(alignment: .leading, spacing: 4) {
             Text("Taxes").font(.callout.bold())
-            Text("Higher taxes bring more money but make that class less content.")
+            Text("Higher taxes bring more money but make that class less content. Taxing nobles also angers your vassals.")
                 .font(.caption).foregroundStyle(Palette.ink.opacity(0.6))
             ForEach(TaxClass.allCases, id: \.self) { tc in
                 let level = w.countries.taxLevel[c.index][tc.rawValue]

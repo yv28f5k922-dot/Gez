@@ -32,6 +32,8 @@ public struct ProvinceTable: Sendable {
     public var sufiOrders: [[SufiPresence]] = []
     /// 0 = no fort. Higher levels take longer to siege.
     public var fortLevel: [Int] = []
+    /// The great vassal who holds this province for its owner (nil = the crown's own land).
+    public var holder: [CharacterID?] = []
 
     public init() {}
 
@@ -73,6 +75,7 @@ public struct ProvinceTable: Sendable {
         self.majorityCulture.append(CultureID(0))
         self.sufiOrders.append([])
         self.fortLevel.append(fortLevel)
+        self.holder.append(nil)
         return id
     }
 
@@ -183,6 +186,8 @@ public struct CountryTable: Sendable {
     /// Merchants' profit and tolls collected last month.
     public var lastTrade: [Double] = []
     public var lastTolls: [Double] = []
+    /// Tax kept (or withheld) by vassals last month.
+    public var lastVassalTax: [Double] = []
 
     private var indexByTag: [String: CountryID] = [:]
 
@@ -239,6 +244,7 @@ public struct CountryTable: Sendable {
         self.tollPolicy.append(.open)
         self.lastTrade.append(0)
         self.lastTolls.append(0)
+        self.lastVassalTax.append(0)
         indexByTag[tag] = id
         return id
     }

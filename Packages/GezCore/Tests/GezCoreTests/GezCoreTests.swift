@@ -882,3 +882,95 @@ final class CharacterTests: XCTestCase {
         XCTAssertGreaterThan(married, 100)
     }
 }
+
+final class VassalTests: XCTestCase {
+    let start = Scenario1453.startDate
+    func person(_ w: World, _ key: String) -> CharacterID { w.people.characters.id(forKey: key)! }
+    func country(_ w: World, _ t: String) -> CountryID { w.countries.id(forTag: t)! }
+    func province(_ w: World, _ name: String) -> ProvinceID { ProvinceID(w.provinces.name.firstIndex(of: name)!) }
+
+    func testRealFamiliesAndAncestors() {
+        let w = Scenario1453.makeWorld()
+        let ch = w.people.characters
+        let mehmed = person(w, "mehmed2"), murad = person(w, "murad2")
+        XCTAssertEqual(ch.father[mehmed.index], murad)
+        XCTAssertFalse(ch.isAlive(murad))
+        XCTAssertFalse(ch.isAlive(person(w, "constantine11")))
+        XCTAssertEqual(ch.father[person(w, "frederick3").index], person(w, "ernest_iron"))
+        XCTAssertTrue(ch.children[person(w, "jodha").index].contains(person(w, "bika")))
+        XCTAssertTrue(ch.illegitimate[person(w, "vuk_grg").index])
+        // The dead never sit on councils or rule.
+        for c in w.countries.ids {
+            for x in w.countries.council[c.index].compactMap({ $0 }) { XCTAssertTrue(ch.isAlive(x)) }
+        }
+    }
+
+    func testHunyadiHoldsHisLands() {
+        let w = Scenario1453.makeWorld()
+        let hunyadi = person(w, "hunyadi")
+        XCTAssertEqual(w.provinces.holder[province(w, "Temesvar").index], hunyadi)
+        XCTAssertTrue(VassalSystem.vassals(w, of: country(w, "HUN")).contains(hunyadi))
+        XCTAssertGreaterThan(VassalSystem.holdings(w, of: hunyadi).count, 1)
+    }
+
+    func testLandPassesToEldestSon() {
+        var w = Scenario1453.makeWorld()
+        var rng = GameRandom(seed: 3)
+        CharacterSystem.kill(&w, person(w, "hunyadi"), date: start, random: &rng)
+        XCTAssertEqual(w.provinces.holder[province(w, "Temesvar").index], person(w, "ladislaus_h"))
+        XCTAssertTrue(w.people.chronicle.contains { $0.text.contains("inherits") })
+    }
+
+    func testBrothersComeBeforeBastards() {
+        let w = Scenario1453.makeWorld()
+        let heir = VassalSystem.landHeir(w, of: person(w, "grgur_b"), realm: country(w, "SER"))
+        XCTAssertEqual(heir, person(w, "stefan_b"))
+    }
+
+    func testVassalsKeepTheirShare() {
+        let sim = Simulation(world: Scenario1453.makeWorld(), startDate: start)
+        sim.advance(days: 40)
+        let hun = sim.world.countries.id(forTag: "HUN")!
+        XCTAssertGreaterThan(sim.world.countries.lastVassalTax[hun.index], 0)
+        XCTAssertGreaterThan(sim.world.people.characters.gold[sim.world.people.characters.id(forKey: "hunyadi")!.index], 0)
+    }
+
+    func testGrantAndRevoke() {
+        var w = Scenario1453.makeWorld()
+        let hun = country(w, "HUN")
+        let buda = province(w, "Buda")
+        let vitez = person(w, "vitez"), hunyadi = person(w, "hunyadi"), ujlaki = person(w, "ujlaki")
+        XCTAssertNil(w.provinces.holder[buda.index])
+        let before = VassalSystem.opinionOfLiege(w, vitez, hun)
+        XCTAssertTrue(VassalSystem.grant(&w, buda, to: vitez, date: start))
+        XCTAssertEqual(w.provinces.holder[buda.index], vitez)
+        XCTAssertGreaterThan(VassalSystem.opinionOfLiege(w, vitez, hun), before)
+        let ujlakiBefore = w.people.characters.favour[ujlaki.index]
+        XCTAssertTrue(VassalSystem.revoke(&w, province(w, "Temesvar"), date: start))
+        XCTAssertNil(w.provinces.holder[province(w, "Temesvar").index])
+        XCTAssertEqual(w.people.characters.favour[hunyadi.index], VassalModel.revokeFavour)
+        XCTAssertEqual(w.people.characters.favour[ujlaki.index], ujlakiBefore + VassalModel.revokeOthersFavour)
+    }
+
+    func testAngryVassalsWithholdTaxes() {
+        var w = Scenario1453.makeWorld()
+        var rng = GameRandom(seed: 5)
+        let hun = country(w, "HUN"), garai = person(w, "garai")
+        w.countries.taxLevel[hun.index][TaxClass.nobles.rawValue] = 2
+        w.people.characters.favour[garai.index] = -60
+        XCTAssertNotEqual(VassalSystem.stance(w, garai, hun), .loyal)
+        VassalSystem.runMonthly(&w, date: start, random: &rng)
+        XCTAssertTrue(w.people.refusing.contains(garai) || !w.people.characters.isAlive(w.countries.ruler[hun.index]!))
+    }
+
+    func testVassalLinesGoOn() {
+        let sim = Simulation(world: Scenario1453.makeWorld(), startDate: start)
+        sim.advance(days: 365 * 30)
+        let w = sim.world
+        let held = (0..<w.provinces.count).filter { w.provinces.holder[$0] != nil }.count
+        XCTAssertGreaterThan(held, 20, "most vassal lines should survive 30 years")
+        for p in 0..<w.provinces.count {
+            if let h = w.provinces.holder[p] { XCTAssertTrue(w.people.characters.isAlive(h)) }
+        }
+    }
+}
