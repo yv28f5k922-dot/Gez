@@ -57,6 +57,9 @@ public enum BuildingSystem {
                 total += amount * world.economy.markets.price(m, g)
             }
         }
+        if let owner = world.provinces.owner[p.index] {
+            total *= 1 + world.countries.inflation[owner.index]
+        }
         return total
     }
 
@@ -128,6 +131,7 @@ public enum BuildingSystem {
         }
         for c in 0..<world.countries.count {
             world.countries.treasury[c] -= upkeep[c]
+            world.countries.lastUpkeep[c] = upkeep[c]
             world.countries.lastMonthlyExpenses[c] = upkeep[c]
         }
     }

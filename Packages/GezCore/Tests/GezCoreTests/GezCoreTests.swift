@@ -620,3 +620,88 @@ final class BuildingTests: XCTestCase {
         XCTAssertFalse(sim.world.economy.buildings.constructions.contains { sim.world.provinces.owner[$0.province.index] == tur })
     }
 }
+
+final class FinanceTests: XCTestCase {
+    func country(_ world: World, _ tag: String) -> CountryID { world.countries.id(forTag: tag)! }
+    func bank(_ world: World, _ name: String) -> BankID {
+        BankID(world.finance.banks.name.firstIndex(of: name)!)
+    }
+
+    func testBanksLoad() {
+        let world = Scenario1453.makeWorld()
+        XCTAssertEqual(world.finance.banks.count, 15)
+        XCTAssertTrue(world.finance.loans.isEmpty)
+    }
+
+    func testHigherTaxMoreMoneyLessHappy() {
+        var world = Scenario1453.makeWorld()
+        let tur = country(world, "TUR")
+        MarketSystem.runMonthly(&world)
+        let normal = world.countries.lastMonthlyIncome[tur.index]
+        let mood = world.satisfaction(of: .peasants, in: world.provinces(ownedBy: tur))!
+        world.countries.taxLevel[tur.index][TaxClass.peasants.rawValue] = 2
+        for _ in 0..<6 { MarketSystem.runMonthly(&world) }
+        XCTAssertGreaterThan(world.countries.lastMonthlyIncome[tur.index], normal * 1.2)
+        XCTAssertLessThan(world.satisfaction(of: .peasants, in: world.provinces(ownedBy: tur))!, mood - 0.05)
+    }
+
+    func testBorrowPayInterestRepay() {
+        var world = Scenario1453.makeWorld()
+        let tur = country(world, "TUR")
+        let galata = bank(world, "Galata Merchants")
+        let capital = world.finance.banks.capital[galata.index]
+        let treasury = world.countries.treasury[tur.index]
+        XCTAssertNotNil(world.loanRate(galata, for: tur))
+        XCTAssertTrue(FinanceSystem.borrow(&world, tur, from: galata, amount: 100))
+        XCTAssertEqual(world.countries.treasury[tur.index], treasury + 100, accuracy: 0.001)
+        XCTAssertEqual(world.finance.banks.capital[galata.index], capital - 100, accuracy: 0.001)
+        FinanceSystem.runMonthly(&world)
+        XCTAssertGreaterThan(world.countries.lastInterest[tur.index], 0)
+        XCTAssertTrue(FinanceSystem.repay(&world, loan: 0))
+        XCTAssertGreaterThan(world.finance.banks.capital[galata.index], capital)
+        XCTAssertTrue(world.finance.loans.isEmpty)
+    }
+
+    func testFarAwayBankWontLend() {
+        let world = Scenario1453.makeWorld()
+        XCTAssertNil(world.loanRate(bank(world, "Chetti Merchants"), for: country(world, "FRA")))
+    }
+
+    func testMoreDebtCostsMore() {
+        var world = Scenario1453.makeWorld()
+        MarketSystem.runMonthly(&world)
+        let fra = country(world, "FRA")
+        let medici = bank(world, "Medici Bank")
+        let first = world.loanRate(medici, for: fra)!
+        FinanceSystem.borrow(&world, fra, from: medici, amount: 500)
+        XCTAssertGreaterThan(world.loanRate(medici, for: fra)!, first)
+    }
+
+    func testBankruptcyWhenNobodyLends() {
+        var world = Scenario1453.makeWorld()
+        let fra = country(world, "FRA")
+        FinanceSystem.borrow(&world, fra, from: bank(world, "Medici Bank"), amount: 100)
+        for b in world.finance.banks.ids { world.finance.banks.capital[b.index] = 0 }
+        world.countries.treasury[fra.index] = -5000
+        FinanceSystem.runMonthly(&world)
+        XCTAssertEqual(world.countries.treasury[fra.index], 0)
+        XCTAssertEqual(world.countries.bankruptMonthsLeft[fra.index], Finance.bankruptcyMonths)
+        XCTAssertFalse(world.finance.loans.contains { $0.country == fra })
+        XCTAssertNil(world.loanRate(bank(world, "Medici Bank"), for: fra))
+    }
+
+    func testDebasementRaisesInflationAndCosts() {
+        var world = Scenario1453.makeWorld()
+        let tur = country(world, "TUR")
+        let edirne = world.provinces.id(named: "Edirne")!
+        let hall = world.economy.buildingType(key: "market_hall")!
+        let cost = BuildingSystem.cost(world, edirne, hall)
+        let treasury = world.countries.treasury[tur.index]
+        let gain = FinanceSystem.debaseOnce(&world, tur)
+        XCTAssertEqual(world.countries.treasury[tur.index], treasury + gain, accuracy: 0.001)
+        XCTAssertEqual(world.countries.inflation[tur.index], Finance.debaseOnceInflation, accuracy: 1e-9)
+        XCTAssertGreaterThan(BuildingSystem.cost(world, edirne, hall), cost)
+        FinanceSystem.runMonthly(&world)
+        XCTAssertLessThan(world.countries.inflation[tur.index], Finance.debaseOnceInflation)
+    }
+}

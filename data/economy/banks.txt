@@ -1,0 +1,18 @@
+# Lenders in 1453. Name | home province | money to lend (ducats) | yearly interest | regions they lend in (* = anywhere)
+# Interest rises with how indebted the borrower is. Repaid loans return
+# the money plus interest to the bank, so banks grow.
+Medici Bank                  | Florence       | 2500 | 0.08 | Italy, France, Low Countries, British Isles, Iberia, Germany, Alps
+Casa di San Giorgio          | Genoa          | 2000 | 0.06 | Italy, Iberia, France, Pontic Steppe, Balkans, Anatolia, Maghreb
+Venetian Banchi di Scritta   | Venice         | 1800 | 0.07 | Italy, Balkans, Alps, Germany, Carpathians and Danube, Levant, Egypt
+Taula de Canvi               | Barcelona      | 800  | 0.06 | Iberia, Italy, France, Maghreb
+Hanseatic Merchants          | Lubeck         | 1200 | 0.08 | Germany, Scandinavia, Baltic, Low Countries, Poland and Lithuania, Russia, British Isles
+Nuremberg Merchant Houses    | Nuremberg      | 900  | 0.08 | Germany, Alps, Carpathians and Danube, Poland and Lithuania
+Jewish Bankers of Kraków     | Krakow         | 500  | 0.10 | Poland and Lithuania, Carpathians and Danube, Germany, Russia
+Galata Merchants             | Konstantiniyye | 1500 | 0.09 | Balkans, Anatolia, Pontic Steppe, Caucasus, Carpathians and Danube, Levant
+Karimi Merchants             | Cairo          | 1500 | 0.09 | Egypt, Levant, Arabia, Nubia, Horn of Africa, Maghreb, Mesopotamia
+Tabriz Silk Merchants        | Tabriz         | 1000 | 0.10 | Persia, Caucasus, Anatolia, Mesopotamia, Khorasan and Afghanistan
+Bukharan Merchants           | Samarkand      | 900  | 0.11 | Transoxiana, Khorasan and Afghanistan, Kazakh Steppe, Volga Steppe, Persia
+Multani Moneylenders         | Multan         | 1200 | 0.12 | Northwest India, Hindustan, Khorasan and Afghanistan, Persia, Rajputana
+Gujarati Shroffs             | Cambay         | 2000 | 0.10 | Gujarat, Rajputana, Central India, Deccan, South India, Hindustan, Arabia, Horn of Africa
+Chetti Merchants             | Calicut        | 1200 | 0.11 | South India, Deccan, Bengal
+Bengal Sarrafs               | Sonargaon      | 1000 | 0.11 | Bengal, Hindustan, Central India, Deccan

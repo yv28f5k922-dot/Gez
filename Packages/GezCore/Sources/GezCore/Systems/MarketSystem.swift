@@ -264,7 +264,12 @@ public enum MarketSystem {
         for i in 0..<pops.count {
             let needsMet = groupSatisfaction[popGroup[i]]
             if needsMet >= 0 {
-                let target = min(1, needsMet + bonus.mood[pops.province[i].index])
+                let p = pops.province[i].index
+                var target = needsMet + bonus.mood[p]
+                if let owner = world.provinces.owner[p] {
+                    target += world.taxMood(owner, pops.socialClass[i]) + world.financeMood(owner, pops.socialClass[i])
+                }
+                target = min(1, max(0, target))
                 pops.satisfaction[i] += MarketModel.satisfactionSpeed * (target - pops.satisfaction[i])
             }
         }
@@ -273,6 +278,7 @@ public enum MarketSystem {
         var income = Array(repeating: 0.0, count: world.countries.count)
         var provinceValue = Array(repeating: 0.0, count: P)
         var provinceTax = Array(repeating: 0.0, count: P)
+        var landValue = Array(repeating: 0.0, count: P)
         for k in 0..<producers.count where producers.kind[k] == .raw {
             let p = producers.province[k].index
             let m = eco.provinceMarket[p].index
@@ -285,9 +291,10 @@ public enum MarketSystem {
             }
             producers.value[k] = value
             provinceValue[p] += value
-            provinceTax[p] += value * MarketModel.taxRaw
+            landValue[p] += value
         }
         var workshopValue = Array(repeating: 0.0, count: P * T)
+        var craftValue = Array(repeating: 0.0, count: P)
         for p in 0..<P {
             let m = eco.provinceMarket[p].index
             for t in 0..<T where workshopOutput[p * T + t] > 0 {
@@ -301,16 +308,27 @@ public enum MarketSystem {
                 let value = max(0, workshopOutput[p * T + t] * (markets.price[m * G + g] * sold[m * G + g] - cost))
                 workshopValue[p * T + t] = value
                 provinceValue[p] += value
-                provinceTax[p] += value * MarketModel.taxCraft
+                craftValue[p] += value
             }
         }
+        var classTax = Array(repeating: Array(repeating: 0.0, count: TaxClass.allCases.count), count: world.countries.count)
         for p in 0..<P {
-            provinceTax[p] *= 1 + bonus.tax[p]
-            if let owner = world.provinces.owner[p] {
-                income[owner.index] += provinceTax[p]
-                world.countries.learning[owner.index] += bonus.learning[p] / 12
+            guard let owner = world.provinces.owner[p] else {
+                provinceTax[p] = (landValue[p] * MarketModel.taxRaw + craftValue[p] * MarketModel.taxCraft) * (1 + bonus.tax[p])
+                continue
             }
+            let o = owner.index
+            let factor = (1 + bonus.tax[p]) * (world.countries.bankruptMonthsLeft[o] > 0 ? Finance.bankruptcyIncome : 1)
+            for tc in TaxClass.allCases {
+                let baseValue = tc == .burghers ? craftValue[p] : landValue[p] * tc.shareOfLand
+                let tax = baseValue * tc.normalRate * world.countries.taxLevel[o][tc.rawValue] * factor
+                classTax[o][tc.rawValue] += tax
+                provinceTax[p] += tax
+            }
+            income[o] += provinceTax[p]
+            world.countries.learning[o] += bonus.learning[p] / 12
         }
+        world.countries.lastTax = classTax
 
         markets.pendingDemand = Array(repeating: 0, count: M * G)
         world.economy.workshopOutput = workshopOutput

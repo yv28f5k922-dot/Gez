@@ -160,6 +160,18 @@ public struct CountryTable: Sendable {
     public var lastMonthlyExpenses: [Double] = []
     /// Learning points gathered so far (spent on technology later).
     public var learning: [Double] = []
+    /// Tax level per class (`TaxClass` order): 1 normal, 0 none, up to 2.
+    public var taxLevel: [[Double]] = []
+    /// Tax collected last month per class (`TaxClass` order).
+    public var lastTax: [[Double]] = []
+    public var lastUpkeep: [Double] = []
+    public var lastInterest: [Double] = []
+    /// 0 = none; 0.1 = everything the state buys costs 10% more.
+    public var inflation: [Double] = []
+    /// Debasing the coinage every month.
+    public var debasing: [Bool] = []
+    /// Months of bankruptcy penalties left.
+    public var bankruptMonthsLeft: [Int] = []
 
     private var indexByTag: [String: CountryID] = [:]
 
@@ -201,6 +213,13 @@ public struct CountryTable: Sendable {
         self.lastMonthlyIncome.append(0)
         self.lastMonthlyExpenses.append(0)
         self.learning.append(0)
+        self.taxLevel.append(Array(repeating: 1, count: TaxClass.allCases.count))
+        self.lastTax.append(Array(repeating: 0, count: TaxClass.allCases.count))
+        self.lastUpkeep.append(0)
+        self.lastInterest.append(0)
+        self.inflation.append(0)
+        self.debasing.append(false)
+        self.bankruptMonthsLeft.append(0)
         indexByTag[tag] = id
         return id
     }
@@ -225,6 +244,8 @@ public struct World: Sendable {
     public var riverBorders: Set<ProvincePair> = []
     /// Goods, markets, producers and prices.
     public var economy = Economy()
+    /// Banks and loans.
+    public var finance = Finance()
     /// Countries played by people; the AI leaves them alone.
     public var humanCountries: Set<CountryID> = []
 

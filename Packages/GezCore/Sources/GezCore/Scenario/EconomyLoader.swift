@@ -108,6 +108,11 @@ enum EconomyLoader {
             }
         }
 
+        world.finance = Finance()
+        for b in file.banks {
+            world.finance.banks.add(name: b.name, home: ProvinceID(b.home), capital: b.capital,
+                                    baseRate: b.rate, regions: b.regions.map(RegionID.init))
+        }
         world.economy = eco
         world.assignMarkets()
     }
@@ -179,6 +184,15 @@ struct EconomyFile: Decodable {
         let requiresFamily: String?
     }
 
+    struct Bank: Decodable {
+        let name: String
+        let home: Int
+        let capital: Double
+        let rate: Double
+        let regions: [Int]
+    }
+
+    let banks: [Bank]
     let imports: [Import]
     let producers: [[Producer]]
     let buildings: [Building]

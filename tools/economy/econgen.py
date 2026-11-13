@@ -357,7 +357,20 @@ def main():
         out_buildings.append(sorted([b, l] for b, l in start.items()))
 
     calibrate(goods, recipes, needs, provinces, out_provinces, out_buildings, buildings, imports)
-    result = {"goods": goods, "recipes": recipes, "needs": needs, "markets": markets,
+    banks = []
+    for line in rows("banks.txt"):
+        name, home, capital, rate, reach = [x.strip() for x in line.split("|")]
+        if home not in names:
+            sys.exit(f"banks: unknown province '{home}'")
+        reach_list = [x.strip() for x in reach.split(",")]
+        for r in reach_list:
+            if r != "*" and r not in regions:
+                sys.exit(f"banks: unknown region '{r}'")
+        banks.append({"name": name, "home": names.index(home), "capital": float(capital),
+                      "rate": float(rate),
+                      "regions": [] if "*" in reach_list else [regions.index(r) for r in reach_list]})
+
+    result = {"banks": banks, "goods": goods, "recipes": recipes, "needs": needs, "markets": markets,
               "imports": imports, "producers": out_provinces, "buildings": buildings,
               "startBuildings": out_buildings}
     (RES / "economy1453.json").write_text(json.dumps(result, separators=(",", ":"), ensure_ascii=False))

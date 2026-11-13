@@ -32,6 +32,8 @@ public final class Simulation {
         if date.isFirstOfMonth {
             EconomySystem.runMonthly(&world)
             BuildingSystem.runMonthly(&world)
+            FinanceSystem.runMonthly(&world)
+            FinanceSystem.runAI(&world)
             BuildingSystem.runAI(&world, month: date.month)
             PopulationSystem.runMonthly(&world)
         }
