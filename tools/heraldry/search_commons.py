@@ -67,7 +67,7 @@ def article_files(term):
     text = p.get("parse", {}).get("wikitext", "")
     files = []
     for m in FILE_RE.finditer(text):
-        f = m.group(1).strip()
+        f = re.sub(r"^(File|Image):", "", m.group(1).strip(), flags=re.I)
         if SKIP.search(f):
             continue
         t = "File:" + f[0].upper() + f[1:].replace("_", " ")

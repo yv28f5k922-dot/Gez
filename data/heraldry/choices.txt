@@ -1,0 +1,142 @@
+# TAG | Wikimedia Commons file | note
+# Real arms/banners as used c.1453. Edit, push, and the Heraldry CI job downloads them.
+POR | File:Brasão de armas do reino de Portugal (1385).svg
+CAS | File:Arms of the Crown of Castile (15th Century).svg
+ARA | File:Royal arms of Aragon (Crowned).svg
+NAV | File:Coat of Arms of the Kingdom of Navarre.svg
+GRA | File:Royal Standard of Nasrid Dynasty Kingdom of Grenade.svg
+FRA | File:Arms of France (France Moderne).svg
+BRI | File:Arms of Jean III de Bretagne.svg
+BUR | File:Arms of Philippe le Bon.svg
+PRO | File:Coat of arms of René of Anjou (1453-1470).svg | René of Anjou, 1453-1470
+FOI | File:Blason du comté de Foix.svg
+LOR | File:Blason Lorraine.svg
+STB | File:Blason Strasbourg.svg
+ENG | File:Royal Arms of England (1399-1603).svg
+SCO | File:Royal Arms of the Kingdom of Scotland.svg
+LOI | File:Arms of the Lord of the Isles.svg
+KID | File:FitzGerald arms.svg
+DES | File:Blason famille ie Fitzgerald de Desmond.svg
+TMN | File:O'Brien Arms.svg
+CLA | File:Arms of the House of de Burgh.svg
+TYC | File:Arms of the house of O'Donnell (ancient).svg
+TYR | File:O'Neill Red Hand.svg | seal of Aodh Reamhar O'Neill, 14th c.
+UTR | File:Wappen Bistum Utrecht.png
+GEL | File:Guelders-Jülich Arms.svg
+LIE | File:Wappen Bistum Lüttich.png
+CLN | File:Wappen Erzbistum Köln.png
+JUL | File:Arms of the House of Jülich-Guelders.svg
+KLE | File:Coat of Arms of the Duchy of Cleves.svg
+MUN | File:Wappen Bistum Münster.png
+OLD | File:Arms of the County of Oldenburg.svg
+BRE | File:Bremen-Erzbistum.svg
+MAI | File:Wappen Erzbistum Mainz.png
+FFM | File:Wappen Frankfurt am Main nach Klemens Stadler.svg
+TRI | File:Wappen Erzbistum Trier.png
+PAL | File:Arms of the Palatinate (Old).svg
+HES | File:Coat of arms of Hesse.svg
+SAX | File:Arms of Elector of Saxony.svg
+MAG | File:Coat of Arms of the Archbishopric of Magdeburg.svg
+BRU | File:Shield of the Duchy of Brunswick.svg
+HAM | File:DEU Hamburg COA.svg
+LUB | File:DEU Luebeck COA.svg
+HOL | File:Holstein Arms.svg
+DIT | File:DEU Kreis Dithmarschen COA.svg
+MKL | File:Wappen Mecklenburg 2.svg
+POM | File:COA Pomerania-Stettin Iberian style shield white.svg
+BRA | File:Arms of Brandenburg.svg
+TEU | File:Insignia Germany Order Teutonic.svg
+NUR | File:DEU Nürnberg COA (klein).svg
+ANS | File:COA family de Burggrafen von Nürnberg (Haus Hohenzollern).svg
+WBZ | File:CoA Würzburg Diocese.svg
+BAM | File:Wappen Bistum Bamberg.png
+WUR | File:Armoiries Wurtemberg.svg
+BAD | File:Arms of the house of Baden.svg
+ULM | File:DEU Ulm COA.svg
+AUG | File:DEU Augsburg COA.svg
+BAV | File:Banner of Bavaria-München.svg
+LAN | File:Banner of Bavaria-Landshut.svg
+SAL | File:Wappen Erzbistum Salzburg.png
+BOH | File:Coat of arms of the Kingdom of Bohemia.svg
+HAB | File:Arms of Frederick III, Holy Roman Emperor.svg | Frederick III as emperor
+CIL | File:Counts of Celje coat of arms (1-4).svg
+GOR | File:Arms of the house of Gorizia.svg
+TIR | File:Arms of the County of Tyrol.svg
+SWI | File:Early Swiss cross.svg
+GRI | File:CHE Graubünden COA.svg
+SAV | File:Coat of arms of the Duchy of Savoy (XV-XVI century).svg
+SLZ | File:Arms of the house of Del Vasto.svg
+MFA | File:Arms of the house of Palaiologos-Montferrat (2).svg
+MLO | File:Coat of arms of the House of Sforza.svg
+MAN | File:Arms of Gianfrancesco I Gonzaga, Marquess of Mantua.svg
+GEN | File:Flag of Genoa.svg
+VEN | File:Coat of arms of Republic of Venice.svg
+FER | File:Arms of the house of Este (6).svg
+FLO | File:Stemma di Firenze dal 1251.svg
+LUC | File:Arms of the Republic of Lucca.svg
+SIE | File:Stemma Repubblica di Siena.svg
+PAP | File:Emblem of the Papacy SE.svg
+URB | File:Coat of arms of the House of Montefeltro.svg
+NAP | File:Coat of arms of the Kingdom of Naples under Aragonese monarchs (1442–1501).svg
+DAN | File:National Coat of arms of Denmark.svg
+NOR | File:Coat of arms of Norway.svg
+SWE | File:Coat of arms of Sweden.svg
+RIG | File:Two crossed black keys - Coat of Arms of Riga.svg
+DOR | File:Biskupstwo Dorpatu COA.svg
+POL | File:Herb Polski.svg
+MAZ | File:Chorągiew księcia mazowieckiego Siemowita.svg
+LIT | File:Coat of arms of the Grand Duchy of Lithuania.svg
+MOS | File:Seal of Ivan 3 (reverse).svg | seal of Ivan III, 1490s (nearest known)
+YAR | File:Coa yaroslavl.svg
+TVE | File:Symbol of Principality of Tver.svg
+RYA | File:Symbol Duchy of Ryazan.svg
+NOV | File:Coat of Arms of Veliky Novgorod.svg
+PSK | File:Печать Плесковская.svg
+PRM | File:GreatPermEmblem.png
+KAZ | File:Banner of Kazan.svg
+HUN | File:Coa Hungary Country History (15th century).svg
+WAL | File:Flag of Wallachia.svg
+MOL | File:Coat of arms of Moldavia.svg
+RAG | File:Ragusan Republic Coat of Arms.svg
+BOS | File:Coat of arms of Kingdom of Bosnia.svg
+HER | File:Kosačegrb.png
+SER | File:Coat of arms of the Serbian Despotate.svg
+ZET | File:Coat of Arms of Crnojević dynasty.svg
+ATH | File:Arms of Acciaioli Family.svg
+MOE | File:Byzantine imperial flag, 14th century.svg
+TOC | File:Coat of arms of Carlo I Tocco in Arta.svg
+NAX | File:Crispi Coat of Arms.svg
+KNI | File:Coat of arms of the Knights Hospitaller.svg
+CYP | File:Coat of Arms of the House of Lusignan (Kings of Armenia, Cyprus and Jerusalem).svg
+TUR | File:Fictitious Ottoman flag 2.svg | red with yellow crescent, as the owner asked
+CND | File:Candar.png | Catalan Atlas
+KAR | File:Karamanid Dynasty flag.svg
+RAM | File:Yuregir.svg | Yüreğir tamga
+TRE | File:Banner of the Empire of Trebizond.svg
+AKK | File:راية اوزون حسن.svg
+QAR | File:Flag of Kara Koyunlu dynasty.png
+GEO | File:Flag of Kingdom of Georgia.svg
+SAM | File:Coat of arms of Principality of Samtskhe.svg
+CIR | File:Zichian banner.svg
+CRI | File:Flag of the Crimean Khanate (15th century).svg
+THE | File:Coat of arms of Gothia.svg
+GRH | File:Golden Horde flag 1339.svg | Golden Horde flag, Dulcert 1339
+NOG | File:Tamga Mengu-Timur.svg | Nogai tamga
+UZB | File:Flag of the Shaybanid Uzbek State (Khanate of Bukhra) in 1510.svg | Shaybanid flag of 1510 (nearest known)
+MGH | File:Flag of Chagatai Khanate.svg | Chagatai flag, Catalan Atlas 1375
+TIM | File:Banner of Timur Khan.svg
+HRT | File:Flag in the name of Timurid ruler Muhammad Juki, Shahnama, probably Herat, c. 1440 (Royal Asiatic Society of Great Britain and Ireland, no. 239), folio 296a (reconstructed).jpg
+MAM | File:Mameluke Flag.svg | Catalan Atlas 1375
+TAH | File:Flag of the Rasulid Dynasty.png | Rasulid flag; Tahirids succeeded them in 1454
+MOR | File:Banner of the Merinids.svg
+TLE | File:Banner of Kingdom of Tlemcen according to Albino de Canepa (1489).svg
+TUN | File:Flag of Hafsid Dynasty (15th century).svg
+ALO | File:Possible Flag of the Kingdom of Alodia (c. 1350).svg
+ADA | File:Flag of Adal Sultanate.svg
+MGD | File:Flag of Mogadishu.png
+BNG | File:Alam (banner) of Ala-ud-din Husain Shah.svg | banner of Husain Shah, c.1500 (nearest known)
+TKM | File:Salur.svg | Salur tamga
+DOT | File:The flag of the 'Kingdom of Dongola' (Makuria) in the "Book of all kingdoms" (C. 1350).svg | Libro del Conoscimiento
+JIS | File:Coa Czech Family Jiskra.svg
+VYA | File:Coat of arms of Vyatka Governorate 1856.svg
+AUS | File:Arms of Albert II and Frederick III of Habsbourg.svg | Austrian Bindenschild
