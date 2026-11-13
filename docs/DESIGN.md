@@ -44,7 +44,7 @@ turned into game files by `tools/mapgen/mapgen.py`.
   3. monthly systems (1st of month): economy, population, estates, diplomacy AI
   4. yearly systems (1 January): long-term changes
 
-## Systems (first version)
+## Systems
 
 ### Economy & pops (Phase 2, owner's choices)
 - **62 goods** (EU5-like): food, luxuries, materials, animals, manufactured.
@@ -137,19 +137,19 @@ turned into game files by `tools/mapgen/mapgen.py`.
   routes losing money 6 months running are dropped.
 - Markets map mode draws routes (gold = yours), widths by value.
 
-### Diplomacy & war
+### Diplomacy & war (planned, Phase 7)
 - Relations, alliances, royal marriages, vassals, guarantees.
 - Claims and casus belli, war goals, war score, peace deals.
 - Armies move province to province along a graph; movement takes days.
 
-### Sieges & forts
+### Sieges & forts (planned, Phases 8–9)
 - Fort levels; forts exert zone of control and block movement.
 - Daily siege progress affected by artillery, fort level, terrain, supply,
   disease and a random siege roll.
 - Player can **assault** (casualties, fast) or **starve** (slow).
 - Assaults can be fought in the battle view.
 
-### Battles
+### Battles (planned, Phase 9)
 - Triggered when hostile armies end up in the same province.
 - Player chooses: **fight** (2D real-time tactical battle) or **auto-resolve**.
 - 2D battle view: unit blocks with facing, formation, morale and fatigue;
@@ -167,8 +167,66 @@ turned into game files by `tools/mapgen/mapgen.py`.
   Ardabil will matter politically).
 - Population comes from 1453 estimates per region (202 million in total),
   spread over provinces by development and size.
-- Later: conversion, assimilation, migration, plague, unrest by unhappy
-  groups, class-based estates.
+- Pops feed the estates (Phase 5). Later: conversion, assimilation,
+  migration, plague, unrest by unhappy groups.
+
+### Characters (Phase 4, owner's choices)
+- **Real people of 1453**: rulers, heirs, spouses, children and key figures
+  (`data/characters/people_1453.txt` for rulers and courts: Mehmed II, Hunyadi,
+  Skanderbeg, Vlad Dracula, Cosimo de' Medici, Zara Yaqob, Bahlul Lodi,
+  Rana Kumbha...). Personal unions: one person can rule several countries
+  (Ladislaus V: Hungary, Austria, Bohemia; Christian I: Denmark, Norway).
+- **Gaps** (owner's rule): a country with no one recorded gets an invented
+  ruler and an invented sibling heir; empty council seats get invented
+  courtiers ("Isa of Silistra"). Invented people are flagged in the game.
+  `tools/characters/chargen.py` builds `characters1453.json`.
+- **CK-style traits and skills**: diplomacy, martial, stewardship,
+  intrigue, learning (0–20); 28 traits (`traits.txt`) change skills and
+  opinion (shared +10, opposite −15, family +20, faith −5/−20).
+- **Life**: monthly deaths (adult risk roughly doubles every ten years;
+  childhood is dangerous; sickly ×2), births to married women 16–42,
+  children named from culture lists (often after a grandparent), inheriting
+  a parent's trait half the time.
+- **Succession laws** (`succession.txt`): primogeniture (sons, brothers,
+  nephews, daughters, nearest of the dynasty), salic (France, Burgundy,
+  Anjou, Lorraine: never women), seniority (steppe hordes, tribes),
+  elective (republics, theocracies, Hungary, Bohemia, the Mamluks: ablest
+  courtier). No heir at all: a relative is found or invented.
+- **Council**: chancellor, marshal, steward, spymaster, court chaplain.
+  Now: ruler stewardship ±1.5% tax per point from 5, steward ±1%
+  (−15%…+25%); ruler learning/8 + chaplain learning/4 learning a year.
+  Chancellor, marshal and spymaster matter from Phases 6–7.
+- **Marriages**: you propose for unmarried members of your ruling family;
+  refused for wrong age (<15 or >25 years apart), different faith family,
+  or if a ruler/heir of a realm 2.5× bigger. Muslim men up to four wives.
+  The wife joins her husband's court unless she rules. AI marries off its
+  families each January (best realm first, else a local noble).
+- **Whole real families** (owner: "fully like CK3"): parents (dead ones as
+  ancestors), brothers, sisters, children and bastards are recorded where
+  history knows them (`people_2_west.txt` … `people_5_south.txt`, ~560
+  living real people and ~80 ancestors). Only gaps are invented.
+- **Great vassals** (owner chose "real landed nobles"): real lords hold
+  provinces for their liege (Hunyadi: Temesvár, Szörény, Szeben; Rožmberk:
+  Budějovice; Olelko: Kiev; Ottoman march lords; Georgian princes...),
+  about 75 provinces in all.
+  - A vassal keeps 40% of his provinces' tax as private gold; the crown
+    gets the rest (shown in the budget as "Kept by vassals").
+  - Opinion of the liege: personal opinion of the ruler + 10, +15 same
+    house, ± lasting favour (fades 1 a month), and −30 at the highest noble
+    tax (+30 at none).
+  - Below 0: discontent. Below −25: refuses all taxes. Below −50 with
+    intrigue 8+: plots; 1% a month to strike. Success 30% ± 5% per point of
+    intrigue over the spymaster's, +5% per 100 gold in bribes (5–60%); the
+    ruler dies. If caught, the plotter loses all land.
+  - Land passes to lawful sons (and their sons), then brothers and nephews,
+    then daughters (not under Salic law), then bastard sons, else back to
+    the crown. A vassal who becomes ruler merges his land into the crown.
+  - The player grants crown provinces to courtiers (+40 favour) and can
+    revoke them (−80 for the holder, −20 for every other vassal).
+  - Vassal families marry local nobles each January so lines go on.
+  - Open revolt with armies comes with Phase 6 (armies).
+- **Chronicle**: inheritances, grants, refusals and plots are logged and
+  shown in the Court window.
 
 ### Government, laws and estates (Phase 5, owner's choices)
 Data in `data/government/` → `tools/government/govgen.py` →
@@ -244,7 +302,7 @@ The owner found the first flat-colour look ugly, so looks are a priority.
   country borders, animated water and a light paper grain.
 - **Map (later):** the same shading on a 3D terrain mesh with a camera
   that tilts as you zoom in, then 3D cities, forts and armies.
-- **Interface (next):** period fonts, parchment panels with frames, icons,
+- **Interface (skipped for now by the owner):** period fonts, parchment panels with frames, icons,
   coats of arms, curved country names.
 - **Battles:** fight or auto-resolve. 2D sprites or 3D models (free CC0
   medieval models exist); to be decided with the owner.
@@ -254,61 +312,3 @@ The owner found the first flat-colour look ugly, so looks are a priority.
 ## Milestones
 
 See `docs/ROADMAP.md` for the agreed feature decisions and build order.
-
-### Characters (Phase 4, owner's choices)
-- **Real people of 1453**: rulers, heirs, spouses, children and key figures
-  (`data/characters/people_1453.txt`, ~340 people: Mehmed II, Hunyadi,
-  Skanderbeg, Vlad Dracula, Cosimo de' Medici, Zara Yaqob, Bahlul Lodi,
-  Rana Kumbha...). Personal unions: one person can rule several countries
-  (Ladislaus V: Hungary, Austria, Bohemia; Christian I: Denmark, Norway).
-- **Gaps** (owner's rule): a country with no one recorded gets an invented
-  ruler and an invented sibling heir; empty council seats get invented
-  courtiers ("Isa of Silistra"). Invented people are flagged in the game.
-  `tools/characters/chargen.py` builds `characters1453.json`.
-- **CK-style traits and skills**: diplomacy, martial, stewardship,
-  intrigue, learning (0–20); 28 traits (`traits.txt`) change skills and
-  opinion (shared +10, opposite −15, family +20, faith −5/−20).
-- **Life**: monthly deaths (adult risk roughly doubles every ten years;
-  childhood is dangerous; sickly ×2), births to married women 16–42,
-  children named from culture lists (often after a grandparent), inheriting
-  a parent's trait half the time.
-- **Succession laws** (`succession.txt`): primogeniture (sons, brothers,
-  nephews, daughters, nearest of the dynasty), salic (France, Burgundy,
-  Anjou, Lorraine: never women), seniority (steppe hordes, tribes),
-  elective (republics, theocracies, Hungary, Bohemia, the Mamluks: ablest
-  courtier). No heir at all: a relative is found or invented.
-- **Council**: chancellor, marshal, steward, spymaster, court chaplain.
-  Now: ruler stewardship ±1.5% tax per point from 5, steward ±1%
-  (−15%…+25%); ruler learning/8 + chaplain learning/4 learning a year.
-  Chancellor, marshal and spymaster matter from Phases 6–7.
-- **Marriages**: you propose for unmarried members of your ruling family;
-  refused for wrong age (<15 or >25 years apart), different faith family,
-  or if a ruler/heir of a realm 2.5× bigger. Muslim men up to four wives.
-  The wife joins her husband's court unless she rules. AI marries off its
-  families each January (best realm first, else a local noble).
-- **Whole real families** (owner: "fully like CK3"): parents (dead ones as
-  ancestors), brothers, sisters, children and bastards are recorded where
-  history knows them (`people_2_west.txt` … `people_5_south.txt`, ~560
-  living real people and ~80 ancestors). Only gaps are invented.
-- **Great vassals** (owner chose "real landed nobles"): real lords hold
-  provinces for their liege (Hunyadi: Temesvár, Szörény, Szeben; Rožmberk:
-  Budějovice; Olelko: Kiev; Ottoman march lords; Georgian princes...),
-  about 75 provinces in all.
-  - A vassal keeps 40% of his provinces' tax as private gold; the crown
-    gets the rest (shown in the budget as "Kept by vassals").
-  - Opinion of the liege: personal opinion of the ruler + 10, +15 same
-    house, ± lasting favour (fades 1 a month), and −30 at the highest noble
-    tax (+30 at none).
-  - Below 0: discontent. Below −25: refuses all taxes. Below −50 with
-    intrigue 8+: plots; 1% a month to strike. Success 30% ± 5% per point of
-    intrigue over the spymaster's, +5% per 100 gold in bribes (5–60%); the
-    ruler dies. If caught, the plotter loses all land.
-  - Land passes to lawful sons (and their sons), then brothers and nephews,
-    then daughters (not under Salic law), then bastard sons, else back to
-    the crown. A vassal who becomes ruler merges his land into the crown.
-  - The player grants crown provinces to courtiers (+40 favour) and can
-    revoke them (−80 for the holder, −20 for every other vassal).
-  - Vassal families marry local nobles each January so lines go on.
-  - Open revolt with armies comes with Phase 6 (armies).
-- **Chronicle**: inheritances, grants, refusals and plots are logged and
-  shown in the Court window.

@@ -8,6 +8,9 @@
   https://github.com/tilezen/joerd/blob/master/docs/attribution.md
 - **Rivers, mountain ridges, lakes, 1453 coast edits, provinces,
   cultures, populations:** drawn and estimated by hand for this game.
+- **People of 1453, goods, markets, trade routes, banks, laws, estates
+  and reforms:** compiled by hand for this game from general historical
+  knowledge; doubtful points are listed in `docs/HISTORY_NOTES.md`.
 - No data or art from Paradox Interactive or Creative Assembly games is
   used.
 - **Coats of arms, flags, banners and tamgas:** files from Wikimedia

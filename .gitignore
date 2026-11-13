@@ -16,3 +16,7 @@ Package.resolved
 # Secrets
 .env
 *.p8
+
+# Python
+__pycache__/
+*.pyc

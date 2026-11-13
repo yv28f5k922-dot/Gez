@@ -3,7 +3,8 @@
 A grand strategy game for Mac and iPad, starting 30 May 1453, with EU-style
 real-time-with-pause gameplay and Total War–style battles and sieges.
 
-See [docs/DESIGN.md](docs/DESIGN.md) for the full design and milestones.
+See [docs/HANDOFF.md](docs/HANDOFF.md) for the current state and
+[docs/DESIGN.md](docs/DESIGN.md) for the full design.
 
 ## Running it on your Mac
 
@@ -25,33 +26,44 @@ See [docs/DESIGN.md](docs/DESIGN.md) for the full design and milestones.
 
 - **Space**: pause / resume
 - **1–5**: set game speed
-- **+ / -**: faster / slower
-- **Q W E R T Y**: political, states, terrain, religion, culture, development map
-- Click or tap a province to see its details.
+- **= / -**: faster / slower
+- **Q W E R T Y U I**: political, states, terrain, religion, culture,
+  development, goods and markets map modes
+- Click or tap a province for its panel (Overview, Economy, People).
 - Pinch or scroll to zoom; drag or two-finger scroll to pan.
+- Top bar: treasury opens the **Budget** (taxes, loans, coinage);
+  **Trade** (routes, tolls, embargoes); **Court** (ruler, family, council,
+  vassals, marriages, chronicle); **Stability** opens **Government**
+  (estates, privileges, laws, reforms).
 
 ## Layout
 
 ```
-App/Shared/           SwiftUI app (Mac + iPad)
+App/Shared/           SwiftUI app (Mac + iPad) and Metal map
+App/Tests/            Snapshot tests (render PNGs on CI)
 Packages/GezCore/     Simulation: calendar, tick, world, systems, scenario
-docs/DESIGN.md        Design document
+data/                 Hand-written game data (map, economy, characters,
+                      government, heraldry)
+tools/                Generators that turn data/ into game files
+docs/                 Handoff, roadmap, design, history notes, credits
 project.yml           XcodeGen spec (generates Gez.xcodeproj)
 ```
 
-## Changing the map
+## Changing game data
 
-Province, state and country data lives in `data/map/` (see its README).
-After editing, regenerate the game files:
+Edit the text files in `data/`, then run the matching generator and commit
+both. Full table and run order: [docs/HANDOFF.md](docs/HANDOFF.md)
+("Data pipelines").
 
 ```sh
 tools/mapgen/fetch_coastlines.sh /tmp/geo        # once
 pip install numpy scipy pillow
 python3 tools/mapgen/mapgen.py --land /tmp/geo/land10m.geojson
+python3 tools/terrain/bake_terrain.py
+python3 tools/economy/econgen.py
+python3 tools/characters/chargen.py
+python3 tools/government/govgen.py
 ```
-
-This rewrites `scenario1453.json`, `provinces1453.idmap` and
-`docs/map_preview.png`.
 
 ## Tests
 
@@ -59,4 +71,13 @@ This rewrites `scenario1453.json`, `provinces1453.idmap` and
 swift test --package-path Packages/GezCore
 ```
 
-GitHub Actions runs the simulation tests and builds both apps on every push.
+GitHub Actions runs the simulation tests (macOS and Linux), builds both
+apps and renders snapshots on every push.
+
+## Documents
+
+- [docs/HANDOFF.md](docs/HANDOFF.md): where things stand and how to work on it
+- [docs/ROADMAP.md](docs/ROADMAP.md): the agreed plan, phase by phase
+- [docs/DESIGN.md](docs/DESIGN.md): how each system works
+- [docs/HISTORY_NOTES.md](docs/HISTORY_NOTES.md): historical judgment calls
+- [docs/CREDITS.md](docs/CREDITS.md): outside data and art

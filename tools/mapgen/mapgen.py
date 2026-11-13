@@ -160,10 +160,9 @@ def parse_provinces(folder):
                 if region is None:
                     sys.exit(f"{where}: state before region")
                 head = [p.strip() for p in line[1:].split("|")]
-                religion = head[1] if len(head) > 1 else None
-                if religion is not None and religion not in RELIGIONS:
-                    sys.exit(f"{where}: unknown religion {religion}")
-                states.append({"name": head[0], "region": region, "religion": religion})
+                if len(head) > 1:
+                    sys.exit(f"{where}: states take no religion (pops decide it): {line}")
+                states.append({"name": head[0], "region": region})
                 state = len(states) - 1
             elif line.startswith("!"):
                 name, coords = [p.strip() for p in line[1:].split("|")]
@@ -171,12 +170,9 @@ def parse_provinces(folder):
                 wastes.append({"name": name, "lat": lat, "lon": lon})
             else:
                 parts = [p.strip() for p in line.split("|")]
-                if len(parts) not in (3, 4) or state is None:
-                    sys.exit(f"{where}: bad province line: {line}")
-                name, coords, rest = parts[:3]
-                religion = parts[3] if len(parts) == 4 else states[state]["religion"]
-                if religion is not None and religion not in RELIGIONS:
-                    sys.exit(f"{where}: unknown religion {religion}")
+                if len(parts) != 3 or state is None:
+                    sys.exit(f"{where}: bad province line (name | lat lon | owner terrain dev): {line}")
+                name, coords, rest = parts
                 lat, lon = [float(v) for v in coords.split()]
                 owner, t, dev = rest.split()
                 if t not in TERRAIN:
@@ -185,7 +181,6 @@ def parse_provinces(folder):
                     "name": name, "lat": lat, "lon": lon, "state": state,
                     "owner": None if owner == "-" else owner,
                     "terrain": TERRAIN[t], "development": int(dev),
-                    "religion": religion,
                 })
     # Drop regions and states with no provinces (e.g. the wasteland file).
     used_states = sorted({p["state"] for p in provinces})
