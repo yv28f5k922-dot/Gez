@@ -60,6 +60,7 @@ final class GameModel {
     private(set) var selectedSea: SeaZoneID?
     /// Market whose prices are shown, if any.
     var openMarket: MarketID?
+    var showBudget = false
     private(set) var seaLabels: [MapLabel] = []
     private(set) var selectionOverlay: (image: CGImage, box: CGRect)?
     private(set) var countryLabels: [MapLabel] = []
@@ -153,6 +154,37 @@ final class GameModel {
         let result = BuildingSystem.start(&simulation.world, player, province, type)
         revision &+= 1
         return result
+    }
+
+    // MARK: Budget actions (player only)
+
+    func setTax(_ c: TaxClass, level: Double) {
+        guard let p = playerCountry else { return }
+        simulation.world.countries.taxLevel[p.index][c.rawValue] = min(Finance.maxTaxLevel, max(0, level))
+        revision &+= 1
+    }
+
+    func borrow(from bank: BankID, amount: Double) {
+        guard let p = playerCountry else { return }
+        FinanceSystem.borrow(&simulation.world, p, from: bank, amount: amount)
+        revision &+= 1
+    }
+
+    func repay(loan index: Int) {
+        FinanceSystem.repay(&simulation.world, loan: index)
+        revision &+= 1
+    }
+
+    func debaseOnce() {
+        guard let p = playerCountry else { return }
+        FinanceSystem.debaseOnce(&simulation.world, p)
+        revision &+= 1
+    }
+
+    func setDebasing(_ on: Bool) {
+        guard let p = playerCountry, simulation.world.countries.bankruptMonthsLeft[p.index] == 0 || !on else { return }
+        simulation.world.countries.debasing[p.index] = on
+        revision &+= 1
     }
 
     func select(province: ProvinceID?, keepSea: Bool = false) {

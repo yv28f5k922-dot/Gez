@@ -20,6 +20,11 @@ struct ContentView: View {
             .overlay(alignment: .topTrailing) {
                 MapModeBar().padding(12)
             }
+            .overlay(alignment: .topLeading) {
+                if model.showBudget {
+                    BudgetPanel().padding(12)
+                }
+            }
             .overlay(alignment: .bottomTrailing) {
                 if let market = model.openMarket {
                     MarketPanel(market: market).padding(12)
@@ -53,11 +58,23 @@ struct TopBar: View {
                     .frame(height: 28)
                 Text(countries.name[player.index])
                     .font(.headline)
-                Label(
-                    String(format: "%.0f  (%+.1f)", countries.treasury[player.index], countries.lastMonthlyIncome[player.index]),
-                    systemImage: "dollarsign.circle"
-                )
-                .monospacedDigit()
+                Button {
+                    model.showBudget.toggle()
+                } label: {
+                    Label(
+                        String(format: "%.0f  (%+.1f)", countries.treasury[player.index],
+                               countries.lastMonthlyIncome[player.index] - countries.lastMonthlyExpenses[player.index]),
+                        systemImage: "dollarsign.circle"
+                    )
+                    .monospacedDigit()
+                }
+                .buttonStyle(.plain)
+                .help("Budget, taxes and loans")
+                if countries.inflation[player.index] >= 0.01 {
+                    Text(String(format: "Inflation %.0f%%", countries.inflation[player.index] * 100))
+                        .font(.caption)
+                        .foregroundStyle(.red.opacity(0.8))
+                }
             }
             Spacer()
             Text(model.date.description)

@@ -155,6 +155,14 @@ final class SnapshotTests: XCTestCase {
         }
     }
 
+    func testBudgetPanel() throws {
+        let model = GameModel(useMetal: false)
+        model.borrow(from: BankID(model.world.finance.banks.name.firstIndex(of: "Galata Merchants")!), amount: 100)
+        let renderer = ImageRenderer(content: BudgetPanel(scrolls: false).environment(model))
+        renderer.scale = 1
+        save(try XCTUnwrap(renderer.cgImage), "budget.png")
+    }
+
     func testMainScreen() async throws {
         let model = GameModel()
         if let metal = model.metal {
