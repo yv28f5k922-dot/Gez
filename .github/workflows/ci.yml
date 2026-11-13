@@ -29,7 +29,9 @@ jobs:
 
   app-build:
     name: Build Mac and iPad apps
-    runs-on: macos-15
+    # Intel Mac runners: arm64 ones are often queued for a long time. The
+    # snapshot job below still needs arm64 for Metal.
+    runs-on: macos-15-intel
     steps:
       - uses: actions/checkout@v5
       - name: Install XcodeGen
