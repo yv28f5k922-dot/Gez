@@ -44,10 +44,8 @@ struct TopBar: View {
         HStack(spacing: 16) {
             if let player = model.playerCountry {
                 let countries = model.world.countries
-                Circle()
-                    .fill(Palette.color(countries.color[player.index]))
-                    .overlay(Circle().stroke(Palette.ink.opacity(0.6), lineWidth: 1))
-                    .frame(width: 18, height: 18)
+                CoatOfArmsView(arms: model.world.arms(of: player))
+                    .frame(height: 28)
                 Text(countries.name[player.index])
                     .font(.headline)
                 Label(
@@ -172,7 +170,7 @@ struct ProvincePanel: View {
                 .foregroundStyle(Palette.ink.opacity(0.7))
             HStack(spacing: 6) {
                 if let owner = p.owner[i] {
-                    Circle().fill(Palette.color(c.color[owner.index])).frame(width: 12, height: 12)
+                    CoatOfArmsView(arms: world.arms(of: owner)).frame(height: 20)
                     Text(c.name[owner.index])
                     if c.capital[owner.index] == province {
                         Image(systemName: "star.fill").font(.caption).help("Capital")

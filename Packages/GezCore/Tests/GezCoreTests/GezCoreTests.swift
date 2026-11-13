@@ -356,6 +356,45 @@ final class SeaZoneTests: XCTestCase {
     }
 }
 
+final class HeraldryTests: XCTestCase {
+    func testSameInputsSameArms() {
+        let world = Scenario1453.makeWorld()
+        let tur = world.countries.id(forTag: "TUR")!
+        XCTAssertEqual(world.arms(of: tur), world.arms(of: tur))
+    }
+
+    func testMuslimArmsHaveNoCrosses() {
+        let world = Scenario1453.makeWorld()
+        for c in world.countries.ids where world.countries.religion[c.index].family == .muslim {
+            let a = world.arms(of: c)
+            XCTAssertFalse([.cross, .nordicCross, .saltire].contains(a.ordinary), world.countries.tag[c.index])
+            XCTAssertNotEqual(a.charge, .crossPattee)
+            XCTAssertNotEqual(a.charge, .fleur)
+        }
+    }
+
+    func testShapesFollowTradition() {
+        let world = Scenario1453.makeWorld()
+        func arms(_ tag: String) -> CoatOfArms { world.arms(of: world.countries.id(forTag: tag)!) }
+        XCTAssertEqual(arms("FRA").shape, .heater)
+        XCTAssertEqual(arms("TUR").shape, .round)
+        XCTAssertEqual(arms("VIJ").shape, .banner)
+        XCTAssertEqual(arms("BLC").shape, .banner)
+        XCTAssertEqual(arms("DAN").ordinary, .nordicCross)
+    }
+
+    func testRuleOfTincture() {
+        let world = Scenario1453.makeWorld()
+        for c in world.countries.ids {
+            let a = world.arms(of: c)
+            if a.ordinary != .none {
+                XCTAssertNotEqual(a.field.isMetal, a.ordinaryTincture.isMetal, world.countries.tag[c.index])
+            }
+            XCTAssertTrue((0...3).contains(a.chargeCount))
+        }
+    }
+}
+
 final class ProvinceIDMapTests: XCTestCase {
     func testMapMatchesScenario() throws {
         let world = Scenario1453.makeWorld()

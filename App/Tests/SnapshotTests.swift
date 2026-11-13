@@ -101,6 +101,31 @@ final class SnapshotTests: XCTestCase {
         }
     }
 
+    /// A sheet of generated coats of arms.
+    func testHeraldrySheet() throws {
+        let model = GameModel(useMetal: false)
+        let tags = ["TUR", "FRA", "ENG", "CAS", "POR", "VEN", "GEN", "PAP", "HUN", "POL", "LIT", "MOS",
+                    "DAN", "NOR", "SWE", "TEU", "BOH", "AUS", "MAM", "QAR", "AKK", "TIM", "HRT", "DEL",
+                    "BAH", "VIJ", "BNG", "GUJ", "ETH", "ADA", "MOR", "TUN", "CRI", "GRH", "BLC", "NJD",
+                    "KAN", "NEP", "AHO", "KOT", "JIS", "SER", "WAL", "MOL", "GEO", "TRE", "SCO", "BUR"]
+        let world = model.world
+        let view = LazyVGrid(columns: Array(repeating: GridItem(.fixed(110)), count: 8), spacing: 10) {
+            ForEach(tags, id: \.self) { tag in
+                let id = world.countries.id(forTag: tag)!
+                VStack(spacing: 4) {
+                    CoatOfArmsView(arms: world.arms(of: id)).frame(height: 80)
+                    Text(world.countries.name[id.index]).font(.caption2).lineLimit(1)
+                }
+            }
+        }
+        .padding(16)
+        .frame(width: 940)
+        .background(Palette.parchment)
+        let renderer = ImageRenderer(content: view)
+        renderer.scale = 1
+        save(try XCTUnwrap(renderer.cgImage), "heraldry.png")
+    }
+
     func testMainScreen() async throws {
         let model = GameModel()
         if let metal = model.metal {
