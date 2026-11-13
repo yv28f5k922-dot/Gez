@@ -48,13 +48,14 @@ Also on the map: sea zone borders and names, tap the sea for a sea panel;
 town icons sized by development, capital stars, fort towers, port anchors
 (`MapIconsLayer` in `MapCanvasView.swift`).
 
-Economy (Phase 2, steps 1–3 done in session 4): see DESIGN.md "Economy &
+Economy (Phase 2, steps 1–4 done in session 4: goods, markets, needs,
+prices, buildings): see DESIGN.md "Economy &
 pops". Code in `Packages/GezCore/Sources/GezCore/Economy/` and
 `Systems/MarketSystem.swift`; balance with `python3 tools/economy/prototype.py`
 (a Python copy of the monthly model; keep constants in step).
 After changing `data/economy/`, run `python3 tools/economy/econgen.py`.
 
-Not started: buildings, budget/loans, armies, diplomacy, war, sieges,
+Not started: budget screen, loans, debasement, armies, diplomacy, war, sieges,
 battles, estates, government, AI, save/load, sound, menus, settings.
 
 ## How to work on it
@@ -136,10 +137,10 @@ docs/              DESIGN, HISTORY_NOTES, HANDOFF (this), CREDITS, previews
 ## What to do next
 
 **Follow `docs/ROADMAP.md`.** The owner chose every feature and the build
-order in session 2. **Phase 1 is done (session 3). Phase 2 (economy) steps 1–3 are done
-(session 4). Next: Phase 2 step 4, buildings** (ask the owner about
-building types, costs and slots first), then step 5 budget, loans and
-debasement.
+order in session 2. **Phase 1 is done (session 3). Phase 2 (economy) steps 1–4 are done
+(session 4). Next: Phase 2 step 5: budget screen, loans from bankers,
+debasement and inflation** (ask the owner first). Then Phase 3, trade
+routes (this replaces the simple neighbour exchange in MarketSystem).
 
 Notes:
 - The interface art pass was **skipped by the owner for now**; don't do it

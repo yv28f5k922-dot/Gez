@@ -78,7 +78,9 @@ Owner's choices: ~60 goods (EU5-like), supply-and-demand prices, "you build,
 pops work", ducats + loans + debasement, ~40 markets that can grow,
 needs by class, building slots limited by size and terrain.
 Done: steps 1–3 (goods, markets, needs, prices, taxes, satisfaction; Goods
-and Markets map modes; market panel). Next: step 4 buildings, step 5 budget.
+and Markets map modes; market panel) and step 4 buildings (owner: levels
+1–5, months-to-years build time, ducats + goods, all four kinds).
+Next: step 5 budget, loans and debasement.
 1. **Goods**: each province produces goods from its terrain and pops
    (grain, wine, wool, cloth, iron, salt, fish, timber, spices, silk,
    horses...). Data file of goods and where they come from.

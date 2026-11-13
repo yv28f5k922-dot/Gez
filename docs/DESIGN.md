@@ -68,9 +68,25 @@ turned into game files by `tools/mapgen/mapgen.py`.
 - **Taxes**: 2.5% of farm/mine value, 3% of workshop profit go to the owner.
 - Start-of-game yields are calibrated so world supply ≈ 1.15 × demand; the
   market runs 12 months before the start so prices settle.
-- **You build, pops work** (buildings with time and cost: next step).
+- **Buildings** (`data/economy/buildings.txt`, `Economy/Buildings.swift`,
+  `Systems/BuildingSystem.swift`): 33 types in four categories
+  (production, trade and towns, religion and learning, military), levels
+  1–5. Cost = ducats (+50% per level) plus materials bought from the
+  province's market (they raise demand there next month). Build time in
+  months (+25% per level). Upkeep 5% of the level-1 cost per level per year.
+  Slots: 2 + development (+1 on the coast); each level uses one.
+  Requirements: coast, matching trade good (mines need metal/stone...).
+- **You build, pops work**: workshop buildings give 2,500 burgher jobs per
+  level; if a province has fewer burghers (×0.7) than jobs, all its
+  workshops run short-handed. Starting workshops come from `crafts.txt`;
+  other starting buildings (universities, arsenals, market halls, temples,
+  ports, forts) from `buildings_1453.txt` and simple rules.
+- Temples show as Church/Mosque/Synagogue/Temple, colleges as
+  University/Madrasa, by local faith.
+- **AI**: each month a twelfth of computer countries consider their 8 most
+  productive provinces and build the best tax return per ducat if it pays
+  back within ~15 years and leaves 6 months of income in reserve.
 - **Money**: ducats, loans from bankers, debasement causing inflation (next).
-- Building slots are limited by size and terrain (next).
 
 ### Diplomacy & war
 - Relations, alliances, royal marriages, vassals, guarantees.
