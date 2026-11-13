@@ -37,7 +37,6 @@ PAL | File:Arms of the Palatinate (Old).svg
 HES | File:Coat of arms of Hesse.svg
 SAX | File:Arms of Elector of Saxony.svg
 MAG | File:Coat of Arms of the Archbishopric of Magdeburg.svg
-BRU | File:Shield of the Duchy of Brunswick.svg
 HAM | File:DEU Hamburg COA.svg
 LUB | File:DEU Luebeck COA.svg
 HOL | File:Holstein Arms.svg
@@ -86,7 +85,6 @@ DOR | File:Biskupstwo Dorpatu COA.svg
 POL | File:Herb Polski.svg
 MAZ | File:Chorągiew księcia mazowieckiego Siemowita.svg
 LIT | File:Coat of arms of the Grand Duchy of Lithuania.svg
-MOS | File:Seal of Ivan 3 (reverse).svg | seal of Ivan III, 1490s (nearest known)
 YAR | File:Coa yaroslavl.svg
 TVE | File:Symbol of Principality of Tver.svg
 RYA | File:Symbol Duchy of Ryazan.svg
@@ -140,3 +138,53 @@ DOT | File:The flag of the 'Kingdom of Dongola' (Makuria) in the "Book of all ki
 JIS | File:Coa Czech Family Jiskra.svg
 VYA | File:Coat of arms of Vyatka Governorate 1856.svg
 AUS | File:Arms of Albert II and Frederick III of Habsbourg.svg | Austrian Bindenschild
+MEW | File:In mewar-1727.PNG | Mewar flag of 1727 (nearest known)
+MAR | File:Flag of Jodhpur.svg
+BUN | File:Bundi State Royal Flag.svg
+BST | File:Flag of Bastar State.svg
+TRV | File:Flag of Kingdom of Travancore.svg
+COC | File:Cochin flag.svg
+CHB | File:Drapeau Chamba.png
+TPR | File:Flag of Tripura State.png
+KAN | File:Flag of the Princely State of Kangra.svg
+GAR | File:Flag of the Princely State of Tehri Garhwal.svg
+KUM | File:Flag of the Kumaon Kingdom.svg
+DGP | File:Flag of Dungarp St.svg
+RJP | File:Flag of Rajpipla.svg
+BGL | File:Flag of the Rewa State.svg
+AMB | File:Flag of Jaipur (c. 1699-1818).svg
+JSL | File:Jaisalmer Flag.svg
+KUT | File:Kutch Flag.png
+SRH | File:Flag of Sirohi.svg
+KRL | File:Flag of Karauli.png
+JMU | File:Flag of the Maharaja of Jammu and Kashmir (1846-1936).svg
+MNP | File:Flag of Kangleipak.svg
+AHO | File:Ahom Kingdom.webp
+DEL | File:Delhi Sultanate Flag.svg | Catalan Atlas 1375
+VIJ | File:Flag of Vijaynagara.svg | modern reconstruction (boar emblem)
+GUJ | File:Flag of the Gujarat Sultanate.svg
+MLW | File:Sultanate of Malwa.png
+BAH | File:Qutbshahi Flag.svg | Qutb Shahi flag, a successor state (modern guess)
+ORI | File:Gajapati empire flag.png
+HEJ | File:Hashemite banner.svg | Hashemite banner (modern)
+OMN | File:Flag of the Imamate of Oman (1954–1959).svg | Imamate flag (1950s)
+KTH | File:Kathiri flag.svg | later Kathiri flag
+HOR | File:Flag of Kingdom of Hormuz.svg
+DUL | File:Flag of Dulkadir Beylik.png
+DAG | File:Flag of the Shamkhalate of Tarki.jpg
+SHI | File:Shirvan gerb.png
+BDK | File:Flag of Badakhshan (1657–1873).svg | flag of 1657-1873 (nearest known)
+ETH | File:Flag of Ethiopia (1270–1897).png | reconstruction, 1270-1897
+AJU | File:Ajuran Empire flag.png
+WAR | File:Warsangali Flag.png
+ENN | File:Ennarea royal flag.png
+DAM | File:Traditional Damot triband.png
+ALB | File:Coat of arms of the House of Kastrioti (by Giuseppe Schirò).svg | Kastrioti family arms
+BRU | File:Coat of arms of Brunswick-Lüneburg.svg
+FRI | File:Small coat of arms of Friesland.png
+ORM | File:Butler arms.svg
+LEI | File:Kavanagh Coat of arms.svg
+MOS | File:Печать Василия II Васильевича Темного.svg | seal of Vasily II
+ZAY | File:Flag of the Mutawakkilite Kingdom of Yemen.svg | Mutawakkilite flag (later Zaydi imamate)
+KOT | File:Flag of Kotte.svg
+CLT | File:Zamorin.jpg | modern guess

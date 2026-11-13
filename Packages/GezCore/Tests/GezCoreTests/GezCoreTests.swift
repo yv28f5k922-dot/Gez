@@ -357,41 +357,24 @@ final class SeaZoneTests: XCTestCase {
 }
 
 final class HeraldryTests: XCTestCase {
-    func testSameInputsSameArms() {
+    /// data/heraldry/choices.txt lists the real arms/banner for each country.
+    /// Every tag must be a real country, listed once.
+    func testChoicesMatchCountries() throws {
+        let repo = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+        let text = try String(contentsOf: repo.appendingPathComponent("data/heraldry/choices.txt"), encoding: .utf8)
         let world = Scenario1453.makeWorld()
-        let tur = world.countries.id(forTag: "TUR")!
-        XCTAssertEqual(world.arms(of: tur), world.arms(of: tur))
-    }
-
-    func testMuslimArmsHaveNoCrosses() {
-        let world = Scenario1453.makeWorld()
-        for c in world.countries.ids where world.countries.religion[c.index].family == .muslim {
-            let a = world.arms(of: c)
-            XCTAssertFalse([.cross, .nordicCross, .saltire].contains(a.ordinary), world.countries.tag[c.index])
-            XCTAssertNotEqual(a.charge, .crossPattee)
-            XCTAssertNotEqual(a.charge, .fleur)
+        var seen = Set<String>()
+        for line in text.split(separator: "\n") where !line.hasPrefix("#") && !line.isEmpty {
+            let parts = line.split(separator: "|").map { $0.trimmingCharacters(in: .whitespaces) }
+            XCTAssertGreaterThanOrEqual(parts.count, 2, String(line))
+            let tag = parts[0]
+            XCTAssertNotNil(world.countries.id(forTag: tag), "unknown tag \(tag)")
+            XCTAssertTrue(seen.insert(tag).inserted, "duplicate tag \(tag)")
+            XCTAssertTrue(parts[1].hasPrefix("File:"), "\(tag) needs a Commons File: title")
         }
-    }
-
-    func testShapesFollowTradition() {
-        let world = Scenario1453.makeWorld()
-        func arms(_ tag: String) -> CoatOfArms { world.arms(of: world.countries.id(forTag: tag)!) }
-        XCTAssertEqual(arms("FRA").shape, .heater)
-        XCTAssertEqual(arms("TUR").shape, .round)
-        XCTAssertEqual(arms("VIJ").shape, .banner)
-        XCTAssertEqual(arms("BLC").shape, .banner)
-        XCTAssertEqual(arms("DAN").ordinary, .nordicCross)
-    }
-
-    func testRuleOfTincture() {
-        let world = Scenario1453.makeWorld()
-        for c in world.countries.ids {
-            let a = world.arms(of: c)
-            if a.ordinary != .none {
-                XCTAssertNotEqual(a.field.isMetal, a.ordinaryTincture.isMetal, world.countries.tag[c.index])
-            }
-            XCTAssertTrue((0...3).contains(a.chargeCount))
-        }
+        XCTAssertGreaterThan(seen.count, 150)
     }
 }
 

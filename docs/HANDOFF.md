@@ -38,7 +38,7 @@ Done and tested on CI (Mac and iPad builds green, 38 simulation tests):
 | Simulation core | Pure-Swift package `Packages/GezCore`: 365-day calendar, EU4-style speed clock, deterministic RNG, daily tick with monthly economy and population growth |
 | Map data | 1,373 provinces (India split into ~280), 238 states, 36 regions, 266 countries, 79 sea zones (`data/map/seas.txt`) with straits and coasts; hand-written in `data/map/` |
 | Map shapes | Grown from town points over Natural Earth coasts; stop at 72 rivers, 20 mountain ridges and 3 frontier lines (`data/map/barriers.txt`); 1453 coast edits; neighbours, straits, river borders |
-| Heraldry | Generated coats of arms per country (`Heraldry/CoatOfArms.swift`, drawn by `CoatOfArmsView`) |
+| Heraldry | Real 1453 arms/banners/tamgas from Wikimedia Commons (`data/heraldry/choices.txt` → CI → `App/Resources/Heraldry/arms_<TAG>.png`, credits in `data/heraldry/credits.json`). Shown by `CountryArmsView`; countries with no known symbol get a plain banner in their map colour. See "Heraldry workflow" below. |
 | Countries | 266 countries incl. tribal confederations (government `tribal`); subjects (vassal, tributary, personal union) in `data/map/subjects.txt`; no unclaimed land left |
 | People | 187 cultures in families, 25 religions in 6 families, Sunni schools and Hindu traditions as sects, Sufi orders per province, pops split into nobles, clergy, burghers, peasants and slaves; 202 million people from regional 1453 estimates |
 | App | SwiftUI shell for Mac and iPad: top bar (date, treasury, speeds), map modes (political, states, terrain, religion, culture, development; keys Q–Y), zoom and pan, tap to select, province panel with people breakdown (province or whole state) |
@@ -115,7 +115,7 @@ App/Shared/
   ContentView.swift top bar, speed controls, map-mode bar, province + people panels
   Map/MapCanvasView.swift  camera, gestures (pinch, drag, Mac scroll), labels
   Map/Metal/       MapShaders.metal, MetalMapRenderer, MetalMapView
-  CoatOfArmsView.swift  draws generated arms
+  CountryArmsView.swift real arms image, or plain banner fallback
   Map/MapRenderer.swift, MapMode.swift  CPU fallback + palettes
 App/Resources/Terrain/terrain.jpg   baked terrain picture
 App/Tests/SnapshotTests.swift       renders PNGs on CI
@@ -157,3 +157,22 @@ Notes:
   decide religion); safe to remove.
 - GitHub Actions warns about Node 20 for `actions/setup-python@v5`;
   harmless for now.
+
+## Heraldry workflow
+
+The owner rejected generated arms. Rules from the owner:
+- Real arms/flags as used in 1453, from Wikimedia Commons, credited.
+- If none from 1453 is known, use one from a few decades earlier/later.
+- Indian kingdoms: use their 1800s princely-state flags where they exist.
+- Sultanates: Catalan Atlas (1375) flags and modern online guesses are OK.
+- Turkic tribes use tamgas. Other tribes: ask the owner one by one.
+- Otherwise a plain banner in the map colour.
+
+How to change one: edit `data/heraldry/choices.txt` (`TAG | File:Name.svg | note`)
+and push; the "Heraldry" workflow downloads, converts to PNG and commits.
+To look for candidates: put rows in `data/heraldry/check.txt`
+(`TAG | Name | wiki articles | commons searches | File: titles`) and run the
+workflow by hand with mode `check` (REST: `gh api -X POST
+repos/yv28f5k922-dot/Gez/actions/workflows/heraldry.yml/dispatches -f ref=main
+-f 'inputs[mode]=check'`). Contact sheets go to the `heraldry-candidates`
+branch. CC BY-SA credits must be shown in-game (credits screen still to do).
