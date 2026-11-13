@@ -1,9 +1,9 @@
 name: Heraldry
 
 # Needs internet (the cloud workspace has none).
-# "search": finds Wikimedia Commons candidates per country and force-pushes
+# "search" (run by hand): finds Wikimedia Commons candidates per country and force-pushes
 #   contact sheets to the heraldry-candidates branch for Claude to review.
-# "download": fetches the files chosen in data/heraldry/choices.txt, turns
+# "download" (runs when choices.txt changes): fetches the files chosen in data/heraldry/choices.txt, turns
 #   them into PNGs in App/Resources/Heraldry/, and writes the credits list.
 on:
   workflow_dispatch:
@@ -14,13 +14,12 @@ on:
   push:
     branches: [main]
     paths:
-      - data/heraldry/queries.txt
       - data/heraldry/choices.txt
-      - tools/heraldry/**
+      - tools/heraldry/download_arms.py
 
 jobs:
   search:
-    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'search' || github.event_name == 'push' && contains(join(github.event.commits.*.modified, ' '), 'queries.txt') || github.event_name == 'push' && contains(join(github.event.commits.*.added, ' '), 'queries.txt') || github.event_name == 'push' && contains(join(github.event.commits.*.modified, ' '), 'search_commons.py') || github.event_name == 'push' && contains(join(github.event.commits.*.added, ' '), 'search_commons.py')
+    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'search'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -42,7 +41,7 @@ jobs:
           git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" heraldry-candidates
 
   download:
-    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'download' || github.event_name == 'push' && contains(join(github.event.commits.*.modified, ' '), 'choices.txt') || github.event_name == 'push' && contains(join(github.event.commits.*.added, ' '), 'choices.txt') || github.event_name == 'push' && contains(join(github.event.commits.*.modified, ' '), 'download_arms.py') || github.event_name == 'push' && contains(join(github.event.commits.*.added, ' '), 'download_arms.py')
+    if: github.event_name == 'push' || inputs.mode == 'download'
     runs-on: ubuntu-latest
     permissions:
       contents: write

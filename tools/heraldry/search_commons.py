@@ -7,14 +7,14 @@ Reads data/heraldry/queries.txt, writes into an output folder:
   sheet_XX.png     - contact sheets: one row per country, numbered thumbnails
 Claude looks at the sheets and writes data/heraldry/choices.txt.
 """
-import io, json, sys, time, urllib.parse, urllib.request
+import io, json, re, sys, time, urllib.parse, urllib.request
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 API = "https://commons.wikimedia.org/w/api.php"
 UA = "GezGame/0.1 (https://github.com/yv28f5k922-dot/Gez; heraldry research)"
-PER_QUERY = 6
-MAX_PER_TAG = 12
+PER_QUERY = 5
+MAX_PER_TAG = 16
 THUMB = 96
 
 
@@ -37,10 +37,43 @@ def api(**params):
     return json.loads(data) if data else {}
 
 
+WIKI = "https://en.wikipedia.org/w/api.php"
+SKIP = re.compile(r"(locator|location|map|orthographic|commons-logo|question|edit-clear|"
+                  r"wiktionary|wikisource|symbol_support|flag_of_none|ambox|padlock|"
+                  r"\bicon\b|portal|oojs|crystal)", re.I)
+FILE_RE = re.compile(r"(?:File:|Image:|=\s*)([^|\[\]{}=\n]+?\.(?:svg|png|jpg|jpeg|gif))", re.I)
+
+
+def wiki(**params):
+    params.update(format="json", formatversion="2")
+    data = get(WIKI + "?" + urllib.parse.urlencode(params))
+    return json.loads(data) if data else {}
+
+
 def search(q):
     r = api(action="query", list="search", srnamespace="6", srlimit=str(PER_QUERY),
             srsearch=q + " filetype:bitmap|drawing")
     return [h["title"] for h in r.get("query", {}).get("search", [])]
+
+
+def article_files(term):
+    """Image files named in the lead section of the best Wikipedia article."""
+    r = wiki(action="query", list="search", srlimit="1", srsearch=term)
+    hits = r.get("query", {}).get("search", [])
+    if not hits:
+        return None, []
+    title = hits[0]["title"]
+    p = wiki(action="parse", page=title, prop="wikitext", section="0", redirects="1")
+    text = p.get("parse", {}).get("wikitext", "")
+    files = []
+    for m in FILE_RE.finditer(text):
+        f = m.group(1).strip()
+        if SKIP.search(f):
+            continue
+        t = "File:" + f[0].upper() + f[1:].replace("_", " ")
+        if t not in files:
+            files.append(t)
+    return title, files[:8]
 
 
 def info(titles):
@@ -67,12 +100,22 @@ def main(out_dir):
     for line in Path("data/heraldry/queries.txt").read_text().splitlines():
         if not line.strip() or line.startswith("#"):
             continue
-        tag, name, qs = [x.strip() for x in line.split("|", 2)]
-        rows.append((tag, name, [q.strip() for q in qs.split(";") if q.strip()]))
+        parts = [x.strip() for x in line.split("|")]
+        tag, name, arts = parts[0], parts[1], parts[2]
+        extra = parts[3] if len(parts) > 3 else ""
+        rows.append((tag, name, [a.strip() for a in arts.split(";") if a.strip()],
+                     [q.strip() for q in extra.split(";") if q.strip()]))
 
     result = {}
-    for tag, name, qs in rows:
-        titles = []
+    for tag, name, arts, qs in rows:
+        titles, found = [], []
+        for a in arts:
+            art, files = article_files(a)
+            found.append(art)
+            for t in files:
+                if t not in titles:
+                    titles.append(t)
+            time.sleep(0.2)
         for q in qs:
             for t in search(q):
                 if t not in titles:
@@ -80,7 +123,7 @@ def main(out_dir):
             time.sleep(0.2)
         titles = titles[:MAX_PER_TAG]
         meta = info(titles) if titles else {}
-        result[tag] = {"name": name, "candidates": [
+        result[tag] = {"name": name, "articles": found, "candidates": [
             {"n": i + 1, "title": t, **meta.get(t, {})} for i, t in enumerate(titles)]}
         print(tag, len(titles), flush=True)
     (out / "candidates.json").write_text(json.dumps(result, indent=1, ensure_ascii=False))
@@ -99,6 +142,8 @@ def main(out_dir):
             y = r * (cell + 14)
             d.text((4, y + 4), tag, fill=(0, 0, 0), font=font)
             d.text((4, y + 18), result[tag]["name"][:26], fill=(60, 60, 60), font=font)
+            for k, a in enumerate(result[tag].get("articles", [])[:3]):
+                d.text((4, y + 34 + 14 * k), (a or "-")[:26], fill=(0, 0, 160), font=font)
             for c in result[tag]["candidates"]:
                 x = 170 + (c["n"] - 1) * cell
                 d.text((x, y), str(c["n"]), fill=(200, 0, 0), font=font)

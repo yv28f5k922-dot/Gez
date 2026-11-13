@@ -44,7 +44,7 @@ struct TopBar: View {
         HStack(spacing: 16) {
             if let player = model.playerCountry {
                 let countries = model.world.countries
-                CoatOfArmsView(arms: model.world.arms(of: player))
+                CountryArmsView(world: model.world, country: player)
                     .frame(height: 28)
                 Text(countries.name[player.index])
                     .font(.headline)
@@ -170,7 +170,7 @@ struct ProvincePanel: View {
                 .foregroundStyle(Palette.ink.opacity(0.7))
             HStack(spacing: 6) {
                 if let owner = p.owner[i] {
-                    CoatOfArmsView(arms: world.arms(of: owner)).frame(height: 20)
+                    CountryArmsView(world: world, country: owner).frame(height: 20)
                     Text(c.name[owner.index])
                     if c.capital[owner.index] == province {
                         Image(systemName: "star.fill").font(.caption).help("Capital")

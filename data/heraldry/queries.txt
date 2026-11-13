@@ -1,267 +1,267 @@
-# TAG | search ; search   (generated; edit freely)
-POR | Portugal | Kingdom of Portugal coat of arms ; Kingdom of Portugal arms 15th century
-CAS | Castile | Crown of Castile coat of arms ; Crown of Castile arms 15th century
-ARA | Aragon | Crown of Aragon coat of arms ; Crown of Aragon arms 15th century
-NAV | Navarre | Kingdom of Navarre coat of arms ; Kingdom of Navarre arms 15th century
-GRA | Granada | Emirate of Granada flag ; Emirate of Granada banner ; Emirate of Granada tamga emblem
-FRA | France | Kingdom of France coat of arms ; Kingdom of France arms 15th century
-BRI | Brittany | Duchy of Brittany coat of arms ; Duchy of Brittany arms 15th century
-BUR | Burgundy | Duchy of Burgundy Philip the Good coat of arms ; Duchy of Burgundy Philip the Good arms 15th century
-PRO | Provence | County of Provence René of Anjou coat of arms ; County of Provence René of Anjou arms 15th century
-FOI | Foix-Bearn | County of Foix coat of arms ; County of Foix arms 15th century
-LOR | Lorraine | Duchy of Lorraine coat of arms ; Duchy of Lorraine arms 15th century
-STB | Strasbourg | Strasbourg coat of arms ; Strasbourg arms 15th century
-ENG | England | Kingdom of England Lancaster coat of arms ; Kingdom of England Lancaster arms 15th century
-SCO | Scotland | Kingdom of Scotland coat of arms ; Kingdom of Scotland arms 15th century
-LOI | Lordship of the Isles | Lordship of the Isles coat of arms ; Lordship of the Isles arms 15th century
-KID | Kildare | FitzGerald Earl of Kildare coat of arms ; FitzGerald Earl of Kildare arms 15th century
-LEI | Leinster | MacMurrough Kavanagh coat of arms ; MacMurrough Kavanagh arms 15th century
-ORM | Ormond | Butler Earl of Ormond coat of arms ; Butler Earl of Ormond arms 15th century
-DES | Desmond | FitzGerald Earl of Desmond coat of arms ; FitzGerald Earl of Desmond arms 15th century
-TMN | Thomond | O'Brien Thomond coat of arms ; O'Brien Thomond arms 15th century
-CLA | Clanricarde | Burke Clanricarde coat of arms ; Burke Clanricarde arms 15th century
-TYC | Tyrconnell | O'Donnell Tyrconnell coat of arms ; O'Donnell Tyrconnell arms 15th century
-TYR | Tyrone | O'Neill Tyrone coat of arms ; O'Neill Tyrone arms 15th century
-UTR | Utrecht | Prince-Bishopric of Utrecht coat of arms ; Prince-Bishopric of Utrecht arms 15th century
-GEL | Guelders | Duchy of Guelders coat of arms ; Duchy of Guelders arms 15th century
-FRI | Frisia | Frisia coat of arms ; Frisia arms 15th century
-LIE | Liege | Prince-Bishopric of Liège coat of arms ; Prince-Bishopric of Liège arms 15th century
-CLN | Cologne | Electorate of Cologne coat of arms ; Electorate of Cologne arms 15th century
-JUL | Julich-Berg | Duchy of Jülich-Berg coat of arms ; Duchy of Jülich-Berg arms 15th century
-KLE | Cleves | Duchy of Cleves coat of arms ; Duchy of Cleves arms 15th century
-MUN | Munster | Prince-Bishopric of Münster coat of arms ; Prince-Bishopric of Münster arms 15th century
-OLD | Oldenburg | County of Oldenburg coat of arms ; County of Oldenburg arms 15th century
-BRE | Bremen | Prince-Archbishopric of Bremen coat of arms ; Prince-Archbishopric of Bremen arms 15th century
-MAI | Mainz | Electorate of Mainz coat of arms ; Electorate of Mainz arms 15th century
-FFM | Frankfurt | Free City of Frankfurt coat of arms ; Free City of Frankfurt arms 15th century
-TRI | Trier | Electorate of Trier coat of arms ; Electorate of Trier arms 15th century
-PAL | Palatinate | Electoral Palatinate coat of arms ; Electoral Palatinate arms 15th century
-HES | Hesse | Landgraviate of Hesse coat of arms ; Landgraviate of Hesse arms 15th century
-SAX | Saxony | Electorate of Saxony coat of arms ; Electorate of Saxony arms 15th century
-MAG | Magdeburg | Archbishopric of Magdeburg coat of arms ; Archbishopric of Magdeburg arms 15th century
-BRU | Brunswick-Luneburg | Duchy of Brunswick-Lüneburg coat of arms ; Duchy of Brunswick-Lüneburg arms 15th century
-HAM | Hamburg | Hamburg coat of arms ; Hamburg arms 15th century
-LUB | Lubeck | Lübeck coat of arms ; Lübeck arms 15th century
-HOL | Holstein | County of Holstein coat of arms ; County of Holstein arms 15th century
-DIT | Dithmarschen | Dithmarschen coat of arms ; Dithmarschen arms 15th century
-MKL | Mecklenburg | Duchy of Mecklenburg coat of arms ; Duchy of Mecklenburg arms 15th century
-POM | Pomerania | Duchy of Pomerania coat of arms ; Duchy of Pomerania arms 15th century
-BRA | Brandenburg | Margraviate of Brandenburg coat of arms ; Margraviate of Brandenburg arms 15th century
-TEU | Teutonic Order | Teutonic Order coat of arms ; Teutonic Order arms 15th century
-NUR | Nuremberg | Nuremberg coat of arms ; Nuremberg arms 15th century
-ANS | Ansbach | Brandenburg-Ansbach coat of arms ; Brandenburg-Ansbach arms 15th century
-WBZ | Wurzburg | Prince-Bishopric of Würzburg coat of arms ; Prince-Bishopric of Würzburg arms 15th century
-BAM | Bamberg | Prince-Bishopric of Bamberg coat of arms ; Prince-Bishopric of Bamberg arms 15th century
-WUR | Wurttemberg | County of Württemberg coat of arms ; County of Württemberg arms 15th century
-BAD | Baden | Margraviate of Baden coat of arms ; Margraviate of Baden arms 15th century
-ULM | Ulm | Ulm coat of arms ; Ulm arms 15th century
-AUG | Augsburg | Augsburg coat of arms ; Augsburg arms 15th century
-BAV | Bavaria-Munich | Bavaria-Munich coat of arms ; Bavaria-Munich arms 15th century
-LAN | Bavaria-Landshut | Bavaria-Landshut coat of arms ; Bavaria-Landshut arms 15th century
-SAL | Salzburg | Prince-Archbishopric of Salzburg coat of arms ; Prince-Archbishopric of Salzburg arms 15th century
-BOH | Bohemia | Kingdom of Bohemia coat of arms ; Kingdom of Bohemia arms 15th century
-AUS | Austria | Archduchy of Austria coat of arms ; Archduchy of Austria arms 15th century
-HAB | Inner Austria | Inner Austria Frederick III coat of arms ; Inner Austria Frederick III arms 15th century
-CIL | Cilli | Counts of Celje coat of arms ; Counts of Celje arms 15th century
-GOR | Gorizia | County of Gorizia coat of arms ; County of Gorizia arms 15th century
-TIR | Tyrol | County of Tyrol coat of arms ; County of Tyrol arms 15th century
-SWI | Swiss Confederation | Old Swiss Confederacy coat of arms ; Old Swiss Confederacy arms 15th century
-GRI | Grisons | Three Leagues Grisons coat of arms ; Three Leagues Grisons arms 15th century
-SAV | Savoy | Duchy of Savoy coat of arms ; Duchy of Savoy arms 15th century
-SLZ | Saluzzo | Marquisate of Saluzzo coat of arms ; Marquisate of Saluzzo arms 15th century
-MFA | Montferrat | Marquisate of Montferrat coat of arms ; Marquisate of Montferrat arms 15th century
-MLO | Milan | Duchy of Milan Sforza coat of arms ; Duchy of Milan Sforza arms 15th century
-MAN | Mantua | Marquisate of Mantua Gonzaga coat of arms ; Marquisate of Mantua Gonzaga arms 15th century
-GEN | Genoa | Republic of Genoa coat of arms ; Republic of Genoa arms 15th century
-VEN | Venice | Republic of Venice coat of arms ; Republic of Venice arms 15th century
-FER | Ferrara | Duchy of Ferrara Este coat of arms ; Duchy of Ferrara Este arms 15th century
-FLO | Florence | Republic of Florence coat of arms ; Republic of Florence arms 15th century
-LUC | Lucca | Republic of Lucca coat of arms ; Republic of Lucca arms 15th century
-SIE | Siena | Republic of Siena coat of arms ; Republic of Siena arms 15th century
-PAP | Papal States | Papal States coat of arms ; Papal States arms 15th century
-URB | Urbino | Duchy of Urbino Montefeltro coat of arms ; Duchy of Urbino Montefeltro arms 15th century
-NAP | Naples | Kingdom of Naples Alfonso coat of arms ; Kingdom of Naples Alfonso arms 15th century
-DAN | Denmark | Kingdom of Denmark coat of arms ; Kingdom of Denmark arms 15th century
-NOR | Norway | Kingdom of Norway coat of arms ; Kingdom of Norway arms 15th century
-SWE | Sweden | Kingdom of Sweden coat of arms ; Kingdom of Sweden arms 15th century
-RIG | Riga | Archbishopric of Riga coat of arms ; Archbishopric of Riga arms 15th century
-LVO | Livonian Order | Livonian Order coat of arms ; Livonian Order arms 15th century
-DOR | Dorpat | Bishopric of Dorpat coat of arms ; Bishopric of Dorpat arms 15th century
-POL | Poland | Kingdom of Poland coat of arms ; Kingdom of Poland arms 15th century
-MAZ | Mazovia | Duchy of Masovia coat of arms ; Duchy of Masovia arms 15th century
-LIT | Lithuania | Grand Duchy of Lithuania coat of arms ; Grand Duchy of Lithuania arms 15th century
-MOS | Muscovy | Grand Duchy of Moscow coat of arms ; Grand Duchy of Moscow arms 15th century
-YAR | Yaroslavl | Principality of Yaroslavl coat of arms ; Principality of Yaroslavl arms 15th century
-TVE | Tver | Principality of Tver coat of arms ; Principality of Tver arms 15th century
-RYA | Ryazan | Principality of Ryazan coat of arms ; Principality of Ryazan arms 15th century
-KAS | Kasimov | Qasim Khanate flag ; Qasim Khanate banner ; Qasim Khanate tamga emblem
-NOV | Novgorod | Novgorod Republic coat of arms ; Novgorod Republic arms 15th century
-PSK | Pskov | Pskov Republic coat of arms ; Pskov Republic arms 15th century
-VYA | Vyatka | Vyatka Land coat of arms ; Vyatka Land arms 15th century
-PRM | Perm | Great Perm coat of arms ; Great Perm arms 15th century
-KAZ | Kazan | Khanate of Kazan flag ; Khanate of Kazan banner ; Khanate of Kazan tamga emblem
-HUN | Hungary | Kingdom of Hungary coat of arms ; Kingdom of Hungary arms 15th century
-WAL | Wallachia | Wallachia coat of arms ; Wallachia arms 15th century
-MOL | Moldavia | Moldavia coat of arms ; Moldavia arms 15th century
-RAG | Ragusa | Republic of Ragusa coat of arms ; Republic of Ragusa arms 15th century
-BOS | Bosnia | Kingdom of Bosnia Kotromanić coat of arms ; Kingdom of Bosnia Kotromanić arms 15th century
-HER | Herzegovina | Kosača Herzegovina coat of arms ; Kosača Herzegovina arms 15th century
-SER | Serbia | Serbian Despotate coat of arms ; Serbian Despotate arms 15th century
-ZET | Zeta | Crnojević Zeta coat of arms ; Crnojević Zeta arms 15th century
-ALB | Albania | League of Lezhë Skanderbeg coat of arms ; League of Lezhë Skanderbeg arms 15th century
-ATH | Athens | Duchy of Athens Acciaioli coat of arms ; Duchy of Athens Acciaioli arms 15th century
-MOE | Morea | Despotate of the Morea Palaiologos coat of arms ; Despotate of the Morea Palaiologos arms 15th century
-TOC | Tocco | Tocco Cephalonia coat of arms ; Tocco Cephalonia arms 15th century
-NAX | Naxos | Duchy of the Archipelago coat of arms ; Duchy of the Archipelago arms 15th century
-LES | Lesbos | Gattilusio Lesbos coat of arms ; Gattilusio Lesbos arms 15th century
-KNI | Knights Hospitaller | Knights Hospitaller coat of arms ; Knights Hospitaller arms 15th century
-CYP | Cyprus | Kingdom of Cyprus Lusignan coat of arms ; Kingdom of Cyprus Lusignan arms 15th century
-TUR | Ottoman Empire | Ottoman Empire flag ; Ottoman Empire banner ; Ottoman Empire tamga emblem
-CND | Candar | Candar Isfendiyarids flag ; Candar Isfendiyarids banner ; Candar Isfendiyarids tamga emblem
-KAR | Karaman | Karamanids flag ; Karamanids banner ; Karamanids tamga emblem
-RAM | Ramadanids | Ramadanids flag ; Ramadanids banner ; Ramadanids tamga emblem
-DUL | Dulkadir | Dulkadirids flag ; Dulkadirids banner ; Dulkadirids tamga emblem
-TRE | Trebizond | Empire of Trebizond coat of arms ; Empire of Trebizond arms 15th century
-AKK | Aq Qoyunlu | Aq Qoyunlu flag ; Aq Qoyunlu banner ; Aq Qoyunlu tamga emblem
-QAR | Qara Qoyunlu | Qara Qoyunlu flag ; Qara Qoyunlu banner ; Qara Qoyunlu tamga emblem
-BIT | Bitlis | Bitlis Rojki flag ; Bitlis Rojki banner ; Bitlis Rojki tamga emblem
-GEO | Georgia | Kingdom of Georgia coat of arms ; Kingdom of Georgia arms 15th century
-SAM | Samtskhe | Principality of Samtskhe coat of arms ; Principality of Samtskhe arms 15th century
-SHI | Shirvan | Shirvanshah flag ; Shirvanshah banner ; Shirvanshah tamga emblem
-DAG | Dagestan | Shamkhalate flag ; Shamkhalate banner ; Shamkhalate tamga emblem
-CIR | Circassia | Circassia flag ; Circassia banner ; Circassia tamga emblem
-CRI | Crimea | Crimean Khanate flag ; Crimean Khanate banner ; Crimean Khanate tamga emblem
-THE | Theodoro | Principality of Theodoro coat of arms ; Principality of Theodoro arms 15th century
-GRH | Great Horde | Great Horde flag ; Great Horde banner ; Great Horde tamga emblem
-NOG | Nogai Horde | Nogai Horde flag ; Nogai Horde banner ; Nogai Horde tamga emblem
-UZB | Uzbek Khanate | Abu'l-Khayr Khan Uzbek flag ; Abu'l-Khayr Khan Uzbek banner ; Abu'l-Khayr Khan Uzbek tamga emblem
-MGH | Moghulistan | Moghulistan flag ; Moghulistan banner ; Moghulistan tamga emblem
-TIM | Timurids of Samarkand | Timurid Empire flag ; Timurid Empire banner ; Timurid Empire tamga emblem
-HRT | Timurids of Herat | Timurid Herat flag ; Timurid Herat banner ; Timurid Herat tamga emblem
-BDK | Badakhshan | Badakhshan flag ; Badakhshan banner ; Badakhshan tamga emblem
-MAM | Mamluk Sultanate | Mamluk Sultanate flag ; Mamluk Sultanate banner ; Mamluk Sultanate tamga emblem
-HEJ | Sharifate of Mecca | Sharif of Mecca flag ; Sharif of Mecca banner ; Sharif of Mecca tamga emblem
-JAB | Jabrids | Jabrid flag ; Jabrid banner ; Jabrid tamga emblem
-HOR | Hormuz | Kingdom of Hormuz flag ; Kingdom of Hormuz banner ; Kingdom of Hormuz tamga emblem
-OMN | Oman | Imamate of Oman flag ; Imamate of Oman banner ; Imamate of Oman tamga emblem
-TAH | Tahirid Sultanate | Tahirid Sultanate flag ; Tahirid Sultanate banner ; Tahirid Sultanate tamga emblem
-ZAY | Zaydi Imamate | Zaydi Imamate flag ; Zaydi Imamate banner ; Zaydi Imamate tamga emblem
-KTH | Kathiri | Kathiri flag ; Kathiri banner ; Kathiri tamga emblem
-GIL | Gilan | Gilan flag ; Gilan banner ; Gilan tamga emblem
-MZD | Mazandaran | Marashi flag ; Marashi banner ; Marashi tamga emblem
-LUR | Luristan | Luristan flag ; Luristan banner ; Luristan tamga emblem
-MSH | Mushasha | Musha'sha flag ; Musha'sha banner ; Musha'sha tamga emblem
-LAR | Lar | Lar flag ; Lar banner ; Lar tamga emblem
-SIS | Sistan | Sistan Mihrabanid flag ; Sistan Mihrabanid banner ; Sistan Mihrabanid tamga emblem
-MOR | Morocco | Marinid Sultanate flag ; Marinid Sultanate banner ; Marinid Sultanate tamga emblem
-TLE | Tlemcen | Zayyanid Kingdom of Tlemcen flag ; Zayyanid Kingdom of Tlemcen banner ; Zayyanid Kingdom of Tlemcen tamga emblem
-TUN | Hafsid Tunis | Hafsid Kingdom flag ; Hafsid Kingdom banner ; Hafsid Kingdom tamga emblem
-ALO | Alodia | Alodia flag ; Alodia banner ; Alodia tamga emblem
-ETH | Ethiopia | Ethiopian Empire Solomonic flag ; Ethiopian Empire Solomonic banner ; Ethiopian Empire Solomonic tamga emblem
-KAF | Kaffa | Kingdom of Kaffa flag ; Kingdom of Kaffa banner ; Kingdom of Kaffa tamga emblem
-ADA | Adal | Adal Sultanate flag ; Adal Sultanate banner ; Adal Sultanate tamga emblem
-MGD | Mogadishu | Sultanate of Mogadishu flag ; Sultanate of Mogadishu banner ; Sultanate of Mogadishu tamga emblem
-AJU | Ajuran | Ajuran Sultanate flag ; Ajuran Sultanate banner ; Ajuran Sultanate tamga emblem
-WAR | Warsangali | Warsangali flag ; Warsangali banner ; Warsangali tamga emblem
-PTE | Pate | Pate Sultanate flag ; Pate Sultanate banner ; Pate Sultanate tamga emblem
-DEL | Delhi Sultanate | Lodi dynasty Delhi Sultanate flag ; Lodi dynasty Delhi Sultanate banner ; Lodi dynasty Delhi Sultanate tamga emblem
-MUL | Multan | Langah Sultanate flag ; Langah Sultanate banner ; Langah Sultanate tamga emblem
-SND | Sindh | Samma dynasty flag ; Samma dynasty banner ; Samma dynasty tamga emblem
-KSH | Kashmir | Kashmir Sultanate Shah Mir flag ; Kashmir Sultanate Shah Mir banner ; Kashmir Sultanate Shah Mir tamga emblem
-LDK | Ladakh | Ladakh flag ; Ladakh banner ; Ladakh tamga emblem
-SKD | Baltistan | Baltistan flag ; Baltistan banner ; Baltistan tamga emblem
-JNP | Jaunpur | Jaunpur Sultanate flag ; Jaunpur Sultanate banner ; Jaunpur Sultanate tamga emblem
-MIT | Mithila | Oiniwar Mithila flag ; Oiniwar Mithila banner ; Oiniwar Mithila tamga emblem
-KUM | Kumaon | Chand Kumaon flag ; Chand Kumaon banner ; Chand Kumaon tamga emblem
-GAR | Garhwal | Garhwal Kingdom flag ; Garhwal Kingdom banner ; Garhwal Kingdom tamga emblem
-NEP | Nepal | Malla Nepal flag ; Malla Nepal banner ; Malla Nepal tamga emblem
-GWA | Gwalior | Tomara Gwalior flag ; Tomara Gwalior banner ; Tomara Gwalior tamga emblem
-MEW | Mewar | Kingdom of Mewar flag ; Kingdom of Mewar banner ; Kingdom of Mewar tamga emblem
-MAR | Marwar | Rathore Marwar flag ; Rathore Marwar banner ; Rathore Marwar tamga emblem
-NGR | Nagaur | Nagaur flag ; Nagaur banner ; Nagaur tamga emblem
-JSL | Jaisalmer | Jaisalmer flag ; Jaisalmer banner ; Jaisalmer tamga emblem
-AMB | Amber | Kachwaha Amber flag ; Kachwaha Amber banner ; Kachwaha Amber tamga emblem
-BUN | Bundi | Bundi flag ; Bundi banner ; Bundi tamga emblem
-GUJ | Gujarat | Gujarat Sultanate flag ; Gujarat Sultanate banner ; Gujarat Sultanate tamga emblem
-CHP | Champaner | Champaner flag ; Champaner banner ; Champaner tamga emblem
-JUN | Junagadh | Chudasama Junagadh flag ; Chudasama Junagadh banner ; Chudasama Junagadh tamga emblem
-KUT | Kutch | Jadeja Kutch flag ; Jadeja Kutch banner ; Jadeja Kutch tamga emblem
-MLW | Malwa | Malwa Sultanate flag ; Malwa Sultanate banner ; Malwa Sultanate tamga emblem
-KHA | Khandesh | Khandesh Faruqi flag ; Khandesh Faruqi banner ; Khandesh Faruqi tamga emblem
-GON | Garha | Garha Gond flag ; Garha Gond banner ; Garha Gond tamga emblem
-CHD | Chanda | Chanda Gond flag ; Chanda Gond banner ; Chanda Gond tamga emblem
-BST | Bastar | Bastar flag ; Bastar banner ; Bastar tamga emblem
-RAT | Ratanpur | Kalachuri Ratanpur flag ; Kalachuri Ratanpur banner ; Kalachuri Ratanpur tamga emblem
-BNG | Bengal | Bengal Sultanate flag ; Bengal Sultanate banner ; Bengal Sultanate tamga emblem
-KAM | Kamata | Kamata Kingdom flag ; Kamata Kingdom banner ; Kamata Kingdom tamga emblem
-AHO | Ahom | Ahom Kingdom flag ; Ahom Kingdom banner ; Ahom Kingdom tamga emblem
-KAC | Kachari | Dimasa Kachari flag ; Dimasa Kachari banner ; Dimasa Kachari tamga emblem
-TPR | Tripura | Tripura Kingdom flag ; Tripura Kingdom banner ; Tripura Kingdom tamga emblem
-MNP | Manipur | Manipur Kingdom flag ; Manipur Kingdom banner ; Manipur Kingdom tamga emblem
-ORI | Orissa | Gajapati Empire flag ; Gajapati Empire banner ; Gajapati Empire tamga emblem
-BAH | Bahmani Sultanate | Bahmani Sultanate flag ; Bahmani Sultanate banner ; Bahmani Sultanate tamga emblem
-VIJ | Vijayanagara | Vijayanagara Empire flag ; Vijayanagara Empire banner ; Vijayanagara Empire tamga emblem
-KLT | Kolathunadu | Kolathunadu flag ; Kolathunadu banner ; Kolathunadu tamga emblem
-CLT | Calicut | Zamorin Calicut flag ; Zamorin Calicut banner ; Zamorin Calicut tamga emblem
-COC | Cochin | Kingdom of Cochin flag ; Kingdom of Cochin banner ; Kingdom of Cochin tamga emblem
-TRV | Venad | Venad Travancore flag ; Venad Travancore banner ; Venad Travancore tamga emblem
-KOT | Kotte | Kingdom of Kotte flag ; Kingdom of Kotte banner ; Kingdom of Kotte tamga emblem
-BLC | Baloch Tribes | Baloch flag ; Baloch banner ; Baloch tamga emblem
-PSH | Pashtun Tribes | Pashtun flag ; Pashtun banner ; Pashtun tamga emblem
-HZR | Hazara Tribes | Hazara flag ; Hazara banner ; Hazara tamga emblem
-NJD | Najdi Tribes | Najd flag ; Najd banner ; Najd tamga emblem
-SHM | Shammar | Shammar flag ; Shammar banner ; Shammar tamga emblem
-ASR | Asir Tribes | Asir flag ; Asir banner ; Asir tamga emblem
-YAM | Yam Tribes | Yam tribe flag ; Yam tribe banner ; Yam tribe tamga emblem
-CYR | Cyrenaican Bedouin | Senussi Cyrenaica flag ; Senussi Cyrenaica banner ; Senussi Cyrenaica tamga emblem
-FEZ | Fezzan | Fezzan flag ; Fezzan banner ; Fezzan tamga emblem
-SUS | Sous Confederation | Sous Berber flag ; Sous Berber banner ; Sous Berber tamga emblem
-ZNT | Zenata Tribes | Zenata flag ; Zenata banner ; Zenata tamga emblem
-JAA | Ja'alin Arabs | Ja'alin flag ; Ja'alin banner ; Ja'alin tamga emblem
-BEJ | Beja Tribes | Beja flag ; Beja banner ; Beja tamga emblem
-SOM | Somali Clans | Somali flag ; Somali banner ; Somali tamga emblem
-HAK | Hakkari Emirate | Hakkari flag ; Hakkari banner ; Hakkari tamga emblem
-MRD | Mordvins | Mordvins flag ; Mordvins banner ; Mordvins tamga emblem
-KOM | Komi | Komi flag ; Komi banner ; Komi tamga emblem
-SMI | Sami | Sami flag ; Sami banner ; Sami tamga emblem
-OIR | Oirats | Oirat flag ; Oirat banner ; Oirat tamga emblem
-TKM | Turkmen Tribes | Turkmen tamga flag ; Turkmen tamga banner ; Turkmen tamga tamga emblem
-KHK | Khokhars | Khokhar flag ; Khokhar banner ; Khokhar tamga emblem
-DRD | Dard Tribes | Gilgit flag ; Gilgit banner ; Gilgit tamga emblem
-JAT | Jat Tribes | Jat flag ; Jat banner ; Jat tamga emblem
-GUA | Guanche Tribes | Guanche flag ; Guanche banner ; Guanche tamga emblem
-KBD | Kabarda | Kabardia flag ; Kabardia banner ; Kabardia tamga emblem
-ALN | Alania | Alania flag ; Alania banner ; Alania tamga emblem
-VNK | Vainakh Tribes | Vainakh flag ; Vainakh banner ; Vainakh tamga emblem
-JIS | Jiskra's Brotherhood | Jan Jiskra coat of arms ; Jan Jiskra arms 15th century
-HIN | Hintata Emirate | Hintata flag ; Hintata banner ; Hintata tamga emblem
-DOT | Dotawo | Makuria Dotawo flag ; Makuria Dotawo banner ; Makuria Dotawo tamga emblem
-TGT | Touggourt | Touggourt flag ; Touggourt banner ; Touggourt tamga emblem
-JMU | Jammu | Jammu flag ; Jammu banner ; Jammu tamga emblem
-JUM | Jumla | Jumla Khasa flag ; Jumla Khasa banner ; Jumla Khasa tamga emblem
-BGL | Baghela | Baghela Rewa flag ; Baghela Rewa banner ; Baghela Rewa tamga emblem
-HAD | Hadiya | Hadiya Sultanate flag ; Hadiya Sultanate banner ; Hadiya Sultanate tamga emblem
-BLI | Bali | Bale Ethiopia flag ; Bale Ethiopia banner ; Bale Ethiopia tamga emblem
-DAW | Dawaro | Dawaro flag ; Dawaro banner ; Dawaro tamga emblem
-IFT | Ifat | Ifat Sultanate flag ; Ifat Sultanate banner ; Ifat Sultanate tamga emblem
-ENN | Ennarea | Kingdom of Ennarea flag ; Kingdom of Ennarea banner ; Kingdom of Ennarea tamga emblem
-DAM | Damot | Kingdom of Damot flag ; Kingdom of Damot banner ; Kingdom of Damot tamga emblem
-KAN | Kangra | Katoch Kangra flag ; Katoch Kangra banner ; Katoch Kangra tamga emblem
-CHB | Chamba | Chamba State flag ; Chamba State banner ; Chamba State tamga emblem
-KUL | Kullu | Kullu flag ; Kullu banner ; Kullu tamga emblem
-DTI | Doti | Doti flag ; Doti banner ; Doti tamga emblem
-PLP | Palpa | Palpa flag ; Palpa banner ; Palpa tamga emblem
-LMJ | Lamjung | Lamjung flag ; Lamjung banner ; Lamjung tamga emblem
-KIR | Kirat Tribes | Kirat Limbu flag ; Kirat Limbu banner ; Kirat Limbu tamga emblem
-DGP | Dungarpur | Dungarpur State flag ; Dungarpur State banner ; Dungarpur State tamga emblem
-SRH | Sirohi | Sirohi flag ; Sirohi banner ; Sirohi tamga emblem
-JLR | Jalore | Jalore flag ; Jalore banner ; Jalore tamga emblem
-KRL | Karauli | Karauli flag ; Karauli banner ; Karauli tamga emblem
-RJP | Rajpipla | Rajpipla flag ; Rajpipla banner ; Rajpipla tamga emblem
-DGR | Deogarh | Deogarh Gond flag ; Deogarh Gond banner ; Deogarh Gond tamga emblem
-MLB | Mallabhum | Mallabhum flag ; Mallabhum banner ; Mallabhum tamga emblem
-CDW | Chandradwip | Chandradwip flag ; Chandradwip banner ; Chandradwip tamga emblem
-BHY | Bhuyan Chiefs | Baro-Bhuyan flag ; Baro-Bhuyan banner ; Baro-Bhuyan tamga emblem
-CHU | Chutia | Chutia Kingdom flag ; Chutia Kingdom banner ; Chutia Kingdom tamga emblem
-KHS | Khasi Chiefs | Khasi flag ; Khasi banner ; Khasi tamga emblem
-JNT | Jaintia | Jaintia Kingdom flag ; Jaintia Kingdom banner ; Jaintia Kingdom tamga emblem
+# TAG | Name | Wikipedia article searches (; separated) | Commons searches (; separated)
+POR | Portugal | Kingdom of Portugal ; Coat of arms of Portugal | Kingdom of Portugal coat of arms 15th century
+CAS | Castile | Crown of Castile ; Coat of arms of Castile | Crown of Castile coat of arms 15th century
+ARA | Aragon | Crown of Aragon ; Coat of arms of Aragon | Crown of Aragon coat of arms 15th century
+NAV | Navarre | Kingdom of Navarre ; Coat of arms of Navarre | Kingdom of Navarre coat of arms 15th century
+GRA | Granada | Emirate of Granada ; Flag of Granada | Emirate of Granada flag banner
+FRA | France | Kingdom of France ; Coat of arms of France | Kingdom of France coat of arms 15th century
+BRI | Brittany | Duchy of Brittany ; Coat of arms of Brittany | Duchy of Brittany coat of arms 15th century
+BUR | Burgundy | Duchy of Burgundy Philip the Good ; Coat of arms of Burgundy | Duchy of Burgundy Philip the Good coat of arms 15th century
+PRO | Provence | County of Provence René of Anjou ; Coat of arms of Provence | County of Provence René of Anjou coat of arms 15th century
+FOI | Foix-Bearn | County of Foix ; Coat of arms of Foix-Bearn | County of Foix coat of arms 15th century
+LOR | Lorraine | Duchy of Lorraine ; Coat of arms of Lorraine | Duchy of Lorraine coat of arms 15th century
+STB | Strasbourg | Strasbourg ; Coat of arms of Strasbourg | Strasbourg coat of arms 15th century
+ENG | England | Kingdom of England Lancaster ; Coat of arms of England | Kingdom of England Lancaster coat of arms 15th century
+SCO | Scotland | Kingdom of Scotland ; Coat of arms of Scotland | Kingdom of Scotland coat of arms 15th century
+LOI | Lordship of the Isles | Lordship of the Isles ; Coat of arms of Lordship of the Isles | Lordship of the Isles coat of arms 15th century
+KID | Kildare | FitzGerald Earl of Kildare ; Coat of arms of Kildare | FitzGerald Earl of Kildare coat of arms 15th century
+LEI | Leinster | MacMurrough Kavanagh ; Coat of arms of Leinster | MacMurrough Kavanagh coat of arms 15th century
+ORM | Ormond | Butler Earl of Ormond ; Coat of arms of Ormond | Butler Earl of Ormond coat of arms 15th century
+DES | Desmond | FitzGerald Earl of Desmond ; Coat of arms of Desmond | FitzGerald Earl of Desmond coat of arms 15th century
+TMN | Thomond | O'Brien Thomond ; Coat of arms of Thomond | O'Brien Thomond coat of arms 15th century
+CLA | Clanricarde | Burke Clanricarde ; Coat of arms of Clanricarde | Burke Clanricarde coat of arms 15th century
+TYC | Tyrconnell | O'Donnell Tyrconnell ; Coat of arms of Tyrconnell | O'Donnell Tyrconnell coat of arms 15th century
+TYR | Tyrone | O'Neill Tyrone ; Coat of arms of Tyrone | O'Neill Tyrone coat of arms 15th century
+UTR | Utrecht | Prince-Bishopric of Utrecht ; Coat of arms of Utrecht | Prince-Bishopric of Utrecht coat of arms 15th century
+GEL | Guelders | Duchy of Guelders ; Coat of arms of Guelders | Duchy of Guelders coat of arms 15th century
+FRI | Frisia | Frisia ; Coat of arms of Frisia | Frisia coat of arms 15th century
+LIE | Liege | Prince-Bishopric of Liège ; Coat of arms of Liege | Prince-Bishopric of Liège coat of arms 15th century
+CLN | Cologne | Electorate of Cologne ; Coat of arms of Cologne | Electorate of Cologne coat of arms 15th century
+JUL | Julich-Berg | Duchy of Jülich-Berg ; Coat of arms of Julich-Berg | Duchy of Jülich-Berg coat of arms 15th century
+KLE | Cleves | Duchy of Cleves ; Coat of arms of Cleves | Duchy of Cleves coat of arms 15th century
+MUN | Munster | Prince-Bishopric of Münster ; Coat of arms of Munster | Prince-Bishopric of Münster coat of arms 15th century
+OLD | Oldenburg | County of Oldenburg ; Coat of arms of Oldenburg | County of Oldenburg coat of arms 15th century
+BRE | Bremen | Prince-Archbishopric of Bremen ; Coat of arms of Bremen | Prince-Archbishopric of Bremen coat of arms 15th century
+MAI | Mainz | Electorate of Mainz ; Coat of arms of Mainz | Electorate of Mainz coat of arms 15th century
+FFM | Frankfurt | Free City of Frankfurt ; Coat of arms of Frankfurt | Free City of Frankfurt coat of arms 15th century
+TRI | Trier | Electorate of Trier ; Coat of arms of Trier | Electorate of Trier coat of arms 15th century
+PAL | Palatinate | Electoral Palatinate ; Coat of arms of Palatinate | Electoral Palatinate coat of arms 15th century
+HES | Hesse | Landgraviate of Hesse ; Coat of arms of Hesse | Landgraviate of Hesse coat of arms 15th century
+SAX | Saxony | Electorate of Saxony ; Coat of arms of Saxony | Electorate of Saxony coat of arms 15th century
+MAG | Magdeburg | Archbishopric of Magdeburg ; Coat of arms of Magdeburg | Archbishopric of Magdeburg coat of arms 15th century
+BRU | Brunswick-Luneburg | Duchy of Brunswick-Lüneburg ; Coat of arms of Brunswick-Luneburg | Duchy of Brunswick-Lüneburg coat of arms 15th century
+HAM | Hamburg | Hamburg ; Coat of arms of Hamburg | Hamburg coat of arms 15th century
+LUB | Lubeck | Lübeck ; Coat of arms of Lubeck | Lübeck coat of arms 15th century
+HOL | Holstein | County of Holstein ; Coat of arms of Holstein | County of Holstein coat of arms 15th century
+DIT | Dithmarschen | Dithmarschen ; Coat of arms of Dithmarschen | Dithmarschen coat of arms 15th century
+MKL | Mecklenburg | Duchy of Mecklenburg ; Coat of arms of Mecklenburg | Duchy of Mecklenburg coat of arms 15th century
+POM | Pomerania | Duchy of Pomerania ; Coat of arms of Pomerania | Duchy of Pomerania coat of arms 15th century
+BRA | Brandenburg | Margraviate of Brandenburg ; Coat of arms of Brandenburg | Margraviate of Brandenburg coat of arms 15th century
+TEU | Teutonic Order | Teutonic Order ; Coat of arms of Teutonic Order | Teutonic Order coat of arms 15th century
+NUR | Nuremberg | Nuremberg ; Coat of arms of Nuremberg | Nuremberg coat of arms 15th century
+ANS | Ansbach | Brandenburg-Ansbach ; Coat of arms of Ansbach | Brandenburg-Ansbach coat of arms 15th century
+WBZ | Wurzburg | Prince-Bishopric of Würzburg ; Coat of arms of Wurzburg | Prince-Bishopric of Würzburg coat of arms 15th century
+BAM | Bamberg | Prince-Bishopric of Bamberg ; Coat of arms of Bamberg | Prince-Bishopric of Bamberg coat of arms 15th century
+WUR | Wurttemberg | County of Württemberg ; Coat of arms of Wurttemberg | County of Württemberg coat of arms 15th century
+BAD | Baden | Margraviate of Baden ; Coat of arms of Baden | Margraviate of Baden coat of arms 15th century
+ULM | Ulm | Ulm ; Coat of arms of Ulm | Ulm coat of arms 15th century
+AUG | Augsburg | Augsburg ; Coat of arms of Augsburg | Augsburg coat of arms 15th century
+BAV | Bavaria-Munich | Bavaria-Munich ; Coat of arms of Bavaria-Munich | Bavaria-Munich coat of arms 15th century
+LAN | Bavaria-Landshut | Bavaria-Landshut ; Coat of arms of Bavaria-Landshut | Bavaria-Landshut coat of arms 15th century
+SAL | Salzburg | Prince-Archbishopric of Salzburg ; Coat of arms of Salzburg | Prince-Archbishopric of Salzburg coat of arms 15th century
+BOH | Bohemia | Kingdom of Bohemia ; Coat of arms of Bohemia | Kingdom of Bohemia coat of arms 15th century
+AUS | Austria | Archduchy of Austria ; Coat of arms of Austria | Archduchy of Austria coat of arms 15th century
+HAB | Inner Austria | Inner Austria Frederick III ; Coat of arms of Inner Austria | Inner Austria Frederick III coat of arms 15th century
+CIL | Cilli | Counts of Celje ; Coat of arms of Cilli | Counts of Celje coat of arms 15th century
+GOR | Gorizia | County of Gorizia ; Coat of arms of Gorizia | County of Gorizia coat of arms 15th century
+TIR | Tyrol | County of Tyrol ; Coat of arms of Tyrol | County of Tyrol coat of arms 15th century
+SWI | Swiss Confederation | Old Swiss Confederacy ; Coat of arms of Swiss Confederation | Old Swiss Confederacy coat of arms 15th century
+GRI | Grisons | Three Leagues Grisons ; Coat of arms of Grisons | Three Leagues Grisons coat of arms 15th century
+SAV | Savoy | Duchy of Savoy ; Coat of arms of Savoy | Duchy of Savoy coat of arms 15th century
+SLZ | Saluzzo | Marquisate of Saluzzo ; Coat of arms of Saluzzo | Marquisate of Saluzzo coat of arms 15th century
+MFA | Montferrat | Marquisate of Montferrat ; Coat of arms of Montferrat | Marquisate of Montferrat coat of arms 15th century
+MLO | Milan | Duchy of Milan Sforza ; Coat of arms of Milan | Duchy of Milan Sforza coat of arms 15th century
+MAN | Mantua | Marquisate of Mantua Gonzaga ; Coat of arms of Mantua | Marquisate of Mantua Gonzaga coat of arms 15th century
+GEN | Genoa | Republic of Genoa ; Coat of arms of Genoa | Republic of Genoa coat of arms 15th century
+VEN | Venice | Republic of Venice ; Coat of arms of Venice | Republic of Venice coat of arms 15th century
+FER | Ferrara | Duchy of Ferrara Este ; Coat of arms of Ferrara | Duchy of Ferrara Este coat of arms 15th century
+FLO | Florence | Republic of Florence ; Coat of arms of Florence | Republic of Florence coat of arms 15th century
+LUC | Lucca | Republic of Lucca ; Coat of arms of Lucca | Republic of Lucca coat of arms 15th century
+SIE | Siena | Republic of Siena ; Coat of arms of Siena | Republic of Siena coat of arms 15th century
+PAP | Papal States | Papal States ; Coat of arms of Papal States | Papal States coat of arms 15th century
+URB | Urbino | Duchy of Urbino Montefeltro ; Coat of arms of Urbino | Duchy of Urbino Montefeltro coat of arms 15th century
+NAP | Naples | Kingdom of Naples Alfonso ; Coat of arms of Naples | Kingdom of Naples Alfonso coat of arms 15th century
+DAN | Denmark | Kingdom of Denmark ; Coat of arms of Denmark | Kingdom of Denmark coat of arms 15th century
+NOR | Norway | Kingdom of Norway ; Coat of arms of Norway | Kingdom of Norway coat of arms 15th century
+SWE | Sweden | Kingdom of Sweden ; Coat of arms of Sweden | Kingdom of Sweden coat of arms 15th century
+RIG | Riga | Archbishopric of Riga ; Coat of arms of Riga | Archbishopric of Riga coat of arms 15th century
+LVO | Livonian Order | Livonian Order ; Coat of arms of Livonian Order | Livonian Order coat of arms 15th century
+DOR | Dorpat | Bishopric of Dorpat ; Coat of arms of Dorpat | Bishopric of Dorpat coat of arms 15th century
+POL | Poland | Kingdom of Poland ; Coat of arms of Poland | Kingdom of Poland coat of arms 15th century
+MAZ | Mazovia | Duchy of Masovia ; Coat of arms of Mazovia | Duchy of Masovia coat of arms 15th century
+LIT | Lithuania | Grand Duchy of Lithuania ; Coat of arms of Lithuania | Grand Duchy of Lithuania coat of arms 15th century
+MOS | Muscovy | Grand Duchy of Moscow ; Coat of arms of Muscovy | Grand Duchy of Moscow coat of arms 15th century
+YAR | Yaroslavl | Principality of Yaroslavl ; Coat of arms of Yaroslavl | Principality of Yaroslavl coat of arms 15th century
+TVE | Tver | Principality of Tver ; Coat of arms of Tver | Principality of Tver coat of arms 15th century
+RYA | Ryazan | Principality of Ryazan ; Coat of arms of Ryazan | Principality of Ryazan coat of arms 15th century
+KAS | Kasimov | Qasim Khanate ; Flag of Kasimov | Qasim Khanate flag banner
+NOV | Novgorod | Novgorod Republic ; Coat of arms of Novgorod | Novgorod Republic coat of arms 15th century
+PSK | Pskov | Pskov Republic ; Coat of arms of Pskov | Pskov Republic coat of arms 15th century
+VYA | Vyatka | Vyatka Land ; Coat of arms of Vyatka | Vyatka Land coat of arms 15th century
+PRM | Perm | Great Perm ; Coat of arms of Perm | Great Perm coat of arms 15th century
+KAZ | Kazan | Khanate of Kazan ; Flag of Kazan | Khanate of Kazan flag banner
+HUN | Hungary | Kingdom of Hungary ; Coat of arms of Hungary | Kingdom of Hungary coat of arms 15th century
+WAL | Wallachia | Wallachia ; Coat of arms of Wallachia | Wallachia coat of arms 15th century
+MOL | Moldavia | Moldavia ; Coat of arms of Moldavia | Moldavia coat of arms 15th century
+RAG | Ragusa | Republic of Ragusa ; Coat of arms of Ragusa | Republic of Ragusa coat of arms 15th century
+BOS | Bosnia | Kingdom of Bosnia Kotromanić ; Coat of arms of Bosnia | Kingdom of Bosnia Kotromanić coat of arms 15th century
+HER | Herzegovina | Kosača Herzegovina ; Coat of arms of Herzegovina | Kosača Herzegovina coat of arms 15th century
+SER | Serbia | Serbian Despotate ; Coat of arms of Serbia | Serbian Despotate coat of arms 15th century
+ZET | Zeta | Crnojević Zeta ; Coat of arms of Zeta | Crnojević Zeta coat of arms 15th century
+ALB | Albania | League of Lezhë Skanderbeg ; Coat of arms of Albania | League of Lezhë Skanderbeg coat of arms 15th century
+ATH | Athens | Duchy of Athens Acciaioli ; Coat of arms of Athens | Duchy of Athens Acciaioli coat of arms 15th century
+MOE | Morea | Despotate of the Morea Palaiologos ; Coat of arms of Morea | Despotate of the Morea Palaiologos coat of arms 15th century
+TOC | Tocco | Tocco Cephalonia ; Coat of arms of Tocco | Tocco Cephalonia coat of arms 15th century
+NAX | Naxos | Duchy of the Archipelago ; Coat of arms of Naxos | Duchy of the Archipelago coat of arms 15th century
+LES | Lesbos | Gattilusio Lesbos ; Coat of arms of Lesbos | Gattilusio Lesbos coat of arms 15th century
+KNI | Knights Hospitaller | Knights Hospitaller ; Coat of arms of Knights Hospitaller | Knights Hospitaller coat of arms 15th century
+CYP | Cyprus | Kingdom of Cyprus Lusignan ; Coat of arms of Cyprus | Kingdom of Cyprus Lusignan coat of arms 15th century
+TUR | Ottoman Empire | Ottoman Empire ; Flag of Ottoman Empire | Ottoman Empire flag banner
+CND | Candar | Candar Isfendiyarids ; Flag of Candar | Candar Isfendiyarids flag banner
+KAR | Karaman | Karamanids ; Flag of Karaman | Karamanids flag banner
+RAM | Ramadanids | Ramadanids ; Flag of Ramadanids | Ramadanids flag banner
+DUL | Dulkadir | Dulkadirids ; Flag of Dulkadir | Dulkadirids flag banner
+TRE | Trebizond | Empire of Trebizond ; Coat of arms of Trebizond | Empire of Trebizond coat of arms 15th century
+AKK | Aq Qoyunlu | Aq Qoyunlu ; Flag of Aq Qoyunlu | Aq Qoyunlu flag banner
+QAR | Qara Qoyunlu | Qara Qoyunlu ; Flag of Qara Qoyunlu | Qara Qoyunlu flag banner
+BIT | Bitlis | Bitlis Rojki ; Flag of Bitlis | Bitlis Rojki flag banner
+GEO | Georgia | Kingdom of Georgia ; Coat of arms of Georgia | Kingdom of Georgia coat of arms 15th century
+SAM | Samtskhe | Principality of Samtskhe ; Coat of arms of Samtskhe | Principality of Samtskhe coat of arms 15th century
+SHI | Shirvan | Shirvanshah ; Flag of Shirvan | Shirvanshah flag banner
+DAG | Dagestan | Shamkhalate ; Flag of Dagestan | Shamkhalate flag banner
+CIR | Circassia | Circassia ; Flag of Circassia | Circassia flag banner
+CRI | Crimea | Crimean Khanate ; Flag of Crimea | Crimean Khanate flag banner
+THE | Theodoro | Principality of Theodoro ; Coat of arms of Theodoro | Principality of Theodoro coat of arms 15th century
+GRH | Great Horde | Great Horde ; Flag of Great Horde | Great Horde flag banner
+NOG | Nogai Horde | Nogai Horde ; Flag of Nogai Horde | Nogai Horde flag banner
+UZB | Uzbek Khanate | Abu'l-Khayr Khan Uzbek ; Flag of Uzbek Khanate | Abu'l-Khayr Khan Uzbek flag banner
+MGH | Moghulistan | Moghulistan ; Flag of Moghulistan | Moghulistan flag banner
+TIM | Timurids of Samarkand | Timurid Empire ; Flag of Timurids of Samarkand | Timurid Empire flag banner
+HRT | Timurids of Herat | Timurid Herat ; Flag of Timurids of Herat | Timurid Herat flag banner
+BDK | Badakhshan | Badakhshan ; Flag of Badakhshan | Badakhshan flag banner
+MAM | Mamluk Sultanate | Mamluk Sultanate ; Flag of Mamluk Sultanate | Mamluk Sultanate flag banner
+HEJ | Sharifate of Mecca | Sharif of Mecca ; Flag of Sharifate of Mecca | Sharif of Mecca flag banner
+JAB | Jabrids | Jabrid ; Flag of Jabrids | Jabrid flag banner
+HOR | Hormuz | Kingdom of Hormuz ; Flag of Hormuz | Kingdom of Hormuz flag banner
+OMN | Oman | Imamate of Oman ; Flag of Oman | Imamate of Oman flag banner
+TAH | Tahirid Sultanate | Tahirid Sultanate ; Flag of Tahirid Sultanate | Tahirid Sultanate flag banner
+ZAY | Zaydi Imamate | Zaydi Imamate ; Flag of Zaydi Imamate | Zaydi Imamate flag banner
+KTH | Kathiri | Kathiri ; Flag of Kathiri | Kathiri flag banner
+GIL | Gilan | Gilan ; Flag of Gilan | Gilan flag banner
+MZD | Mazandaran | Marashi ; Flag of Mazandaran | Marashi flag banner
+LUR | Luristan | Luristan ; Flag of Luristan | Luristan flag banner
+MSH | Mushasha | Musha'sha ; Flag of Mushasha | Musha'sha flag banner
+LAR | Lar | Lar ; Flag of Lar | Lar flag banner
+SIS | Sistan | Sistan Mihrabanid ; Flag of Sistan | Sistan Mihrabanid flag banner
+MOR | Morocco | Marinid Sultanate ; Flag of Morocco | Marinid Sultanate flag banner
+TLE | Tlemcen | Zayyanid Kingdom of Tlemcen ; Flag of Tlemcen | Zayyanid Kingdom of Tlemcen flag banner
+TUN | Hafsid Tunis | Hafsid Kingdom ; Flag of Hafsid Tunis | Hafsid Kingdom flag banner
+ALO | Alodia | Alodia ; Flag of Alodia | Alodia flag banner
+ETH | Ethiopia | Ethiopian Empire Solomonic ; Flag of Ethiopia | Ethiopian Empire Solomonic flag banner
+KAF | Kaffa | Kingdom of Kaffa ; Flag of Kaffa | Kingdom of Kaffa flag banner
+ADA | Adal | Adal Sultanate ; Flag of Adal | Adal Sultanate flag banner
+MGD | Mogadishu | Sultanate of Mogadishu ; Flag of Mogadishu | Sultanate of Mogadishu flag banner
+AJU | Ajuran | Ajuran Sultanate ; Flag of Ajuran | Ajuran Sultanate flag banner
+WAR | Warsangali | Warsangali ; Flag of Warsangali | Warsangali flag banner
+PTE | Pate | Pate Sultanate ; Flag of Pate | Pate Sultanate flag banner
+DEL | Delhi Sultanate | Lodi dynasty Delhi Sultanate ; Flag of Delhi Sultanate | Lodi dynasty Delhi Sultanate flag banner
+MUL | Multan | Langah Sultanate ; Flag of Multan | Langah Sultanate flag banner
+SND | Sindh | Samma dynasty ; Flag of Sindh | Samma dynasty flag banner
+KSH | Kashmir | Kashmir Sultanate Shah Mir ; Flag of Kashmir | Kashmir Sultanate Shah Mir flag banner
+LDK | Ladakh | Ladakh ; Flag of Ladakh | Ladakh flag banner
+SKD | Baltistan | Baltistan ; Flag of Baltistan | Baltistan flag banner
+JNP | Jaunpur | Jaunpur Sultanate ; Flag of Jaunpur | Jaunpur Sultanate flag banner
+MIT | Mithila | Oiniwar Mithila ; Flag of Mithila | Oiniwar Mithila flag banner
+KUM | Kumaon | Chand Kumaon ; Flag of Kumaon | Chand Kumaon flag banner
+GAR | Garhwal | Garhwal Kingdom ; Flag of Garhwal | Garhwal Kingdom flag banner
+NEP | Nepal | Malla Nepal ; Flag of Nepal | Malla Nepal flag banner
+GWA | Gwalior | Tomara Gwalior ; Flag of Gwalior | Tomara Gwalior flag banner
+MEW | Mewar | Kingdom of Mewar ; Flag of Mewar | Kingdom of Mewar flag banner
+MAR | Marwar | Rathore Marwar ; Flag of Marwar | Rathore Marwar flag banner
+NGR | Nagaur | Nagaur ; Flag of Nagaur | Nagaur flag banner
+JSL | Jaisalmer | Jaisalmer ; Flag of Jaisalmer | Jaisalmer flag banner
+AMB | Amber | Kachwaha Amber ; Flag of Amber | Kachwaha Amber flag banner
+BUN | Bundi | Bundi ; Flag of Bundi | Bundi flag banner
+GUJ | Gujarat | Gujarat Sultanate ; Flag of Gujarat | Gujarat Sultanate flag banner
+CHP | Champaner | Champaner ; Flag of Champaner | Champaner flag banner
+JUN | Junagadh | Chudasama Junagadh ; Flag of Junagadh | Chudasama Junagadh flag banner
+KUT | Kutch | Jadeja Kutch ; Flag of Kutch | Jadeja Kutch flag banner
+MLW | Malwa | Malwa Sultanate ; Flag of Malwa | Malwa Sultanate flag banner
+KHA | Khandesh | Khandesh Faruqi ; Flag of Khandesh | Khandesh Faruqi flag banner
+GON | Garha | Garha Gond ; Flag of Garha | Garha Gond flag banner
+CHD | Chanda | Chanda Gond ; Flag of Chanda | Chanda Gond flag banner
+BST | Bastar | Bastar ; Flag of Bastar | Bastar flag banner
+RAT | Ratanpur | Kalachuri Ratanpur ; Flag of Ratanpur | Kalachuri Ratanpur flag banner
+BNG | Bengal | Bengal Sultanate ; Flag of Bengal | Bengal Sultanate flag banner
+KAM | Kamata | Kamata Kingdom ; Flag of Kamata | Kamata Kingdom flag banner
+AHO | Ahom | Ahom Kingdom ; Flag of Ahom | Ahom Kingdom flag banner
+KAC | Kachari | Dimasa Kachari ; Flag of Kachari | Dimasa Kachari flag banner
+TPR | Tripura | Tripura Kingdom ; Flag of Tripura | Tripura Kingdom flag banner
+MNP | Manipur | Manipur Kingdom ; Flag of Manipur | Manipur Kingdom flag banner
+ORI | Orissa | Gajapati Empire ; Flag of Orissa | Gajapati Empire flag banner
+BAH | Bahmani Sultanate | Bahmani Sultanate ; Flag of Bahmani Sultanate | Bahmani Sultanate flag banner
+VIJ | Vijayanagara | Vijayanagara Empire ; Flag of Vijayanagara | Vijayanagara Empire flag banner
+KLT | Kolathunadu | Kolathunadu ; Flag of Kolathunadu | Kolathunadu flag banner
+CLT | Calicut | Zamorin Calicut ; Flag of Calicut | Zamorin Calicut flag banner
+COC | Cochin | Kingdom of Cochin ; Flag of Cochin | Kingdom of Cochin flag banner
+TRV | Venad | Venad Travancore ; Flag of Venad | Venad Travancore flag banner
+KOT | Kotte | Kingdom of Kotte ; Flag of Kotte | Kingdom of Kotte flag banner
+BLC | Baloch Tribes | Baloch ; Flag of Baloch Tribes | Baloch flag banner
+PSH | Pashtun Tribes | Pashtun ; Flag of Pashtun Tribes | Pashtun flag banner
+HZR | Hazara Tribes | Hazara ; Flag of Hazara Tribes | Hazara flag banner
+NJD | Najdi Tribes | Najd ; Flag of Najdi Tribes | Najd flag banner
+SHM | Shammar | Shammar ; Flag of Shammar | Shammar flag banner
+ASR | Asir Tribes | Asir ; Flag of Asir Tribes | Asir flag banner
+YAM | Yam Tribes | Yam tribe ; Flag of Yam Tribes | Yam tribe flag banner
+CYR | Cyrenaican Bedouin | Senussi Cyrenaica ; Flag of Cyrenaican Bedouin | Senussi Cyrenaica flag banner
+FEZ | Fezzan | Fezzan ; Flag of Fezzan | Fezzan flag banner
+SUS | Sous Confederation | Sous Berber ; Flag of Sous Confederation | Sous Berber flag banner
+ZNT | Zenata Tribes | Zenata ; Flag of Zenata Tribes | Zenata flag banner
+JAA | Ja'alin Arabs | Ja'alin ; Flag of Ja'alin Arabs | Ja'alin flag banner
+BEJ | Beja Tribes | Beja ; Flag of Beja Tribes | Beja flag banner
+SOM | Somali Clans | Somali ; Flag of Somali Clans | Somali flag banner
+HAK | Hakkari Emirate | Hakkari ; Flag of Hakkari Emirate | Hakkari flag banner
+MRD | Mordvins | Mordvins ; Flag of Mordvins | Mordvins flag banner
+KOM | Komi | Komi ; Flag of Komi | Komi flag banner
+SMI | Sami | Sami ; Flag of Sami | Sami flag banner
+OIR | Oirats | Oirat ; Flag of Oirats | Oirat flag banner
+TKM | Turkmen Tribes | Turkmen tamga ; Flag of Turkmen Tribes | Turkmen tamga flag banner
+KHK | Khokhars | Khokhar ; Flag of Khokhars | Khokhar flag banner
+DRD | Dard Tribes | Gilgit ; Flag of Dard Tribes | Gilgit flag banner
+JAT | Jat Tribes | Jat ; Flag of Jat Tribes | Jat flag banner
+GUA | Guanche Tribes | Guanche ; Flag of Guanche Tribes | Guanche flag banner
+KBD | Kabarda | Kabardia ; Flag of Kabarda | Kabardia flag banner
+ALN | Alania | Alania ; Flag of Alania | Alania flag banner
+VNK | Vainakh Tribes | Vainakh ; Flag of Vainakh Tribes | Vainakh flag banner
+JIS | Jiskra's Brotherhood | Jan Jiskra ; Coat of arms of Jiskra's Brotherhood | Jan Jiskra coat of arms 15th century
+HIN | Hintata Emirate | Hintata ; Flag of Hintata Emirate | Hintata flag banner
+DOT | Dotawo | Makuria Dotawo ; Flag of Dotawo | Makuria Dotawo flag banner
+TGT | Touggourt | Touggourt ; Flag of Touggourt | Touggourt flag banner
+JMU | Jammu | Jammu ; Flag of Jammu | Jammu flag banner
+JUM | Jumla | Jumla Khasa ; Flag of Jumla | Jumla Khasa flag banner
+BGL | Baghela | Baghela Rewa ; Flag of Baghela | Baghela Rewa flag banner
+HAD | Hadiya | Hadiya Sultanate ; Flag of Hadiya | Hadiya Sultanate flag banner
+BLI | Bali | Bale Ethiopia ; Flag of Bali | Bale Ethiopia flag banner
+DAW | Dawaro | Dawaro ; Flag of Dawaro | Dawaro flag banner
+IFT | Ifat | Ifat Sultanate ; Flag of Ifat | Ifat Sultanate flag banner
+ENN | Ennarea | Kingdom of Ennarea ; Flag of Ennarea | Kingdom of Ennarea flag banner
+DAM | Damot | Kingdom of Damot ; Flag of Damot | Kingdom of Damot flag banner
+KAN | Kangra | Katoch Kangra ; Flag of Kangra | Katoch Kangra flag banner
+CHB | Chamba | Chamba State ; Flag of Chamba | Chamba State flag banner
+KUL | Kullu | Kullu ; Flag of Kullu | Kullu flag banner
+DTI | Doti | Doti ; Flag of Doti | Doti flag banner
+PLP | Palpa | Palpa ; Flag of Palpa | Palpa flag banner
+LMJ | Lamjung | Lamjung ; Flag of Lamjung | Lamjung flag banner
+KIR | Kirat Tribes | Kirat Limbu ; Flag of Kirat Tribes | Kirat Limbu flag banner
+DGP | Dungarpur | Dungarpur State ; Flag of Dungarpur | Dungarpur State flag banner
+SRH | Sirohi | Sirohi ; Flag of Sirohi | Sirohi flag banner
+JLR | Jalore | Jalore ; Flag of Jalore | Jalore flag banner
+KRL | Karauli | Karauli ; Flag of Karauli | Karauli flag banner
+RJP | Rajpipla | Rajpipla ; Flag of Rajpipla | Rajpipla flag banner
+DGR | Deogarh | Deogarh Gond ; Flag of Deogarh | Deogarh Gond flag banner
+MLB | Mallabhum | Mallabhum ; Flag of Mallabhum | Mallabhum flag banner
+CDW | Chandradwip | Chandradwip ; Flag of Chandradwip | Chandradwip flag banner
+BHY | Bhuyan Chiefs | Baro-Bhuyan ; Flag of Bhuyan Chiefs | Baro-Bhuyan flag banner
+CHU | Chutia | Chutia Kingdom ; Flag of Chutia | Chutia Kingdom flag banner
+KHS | Khasi Chiefs | Khasi ; Flag of Khasi Chiefs | Khasi flag banner
+JNT | Jaintia | Jaintia Kingdom ; Flag of Jaintia | Jaintia Kingdom flag banner

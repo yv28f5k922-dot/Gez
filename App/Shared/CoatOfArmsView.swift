@@ -251,3 +251,40 @@ struct CoatOfArmsView: View {
         return p
     }
 }
+
+/// A country's real arms or banner (from Wikimedia Commons, bundled as
+/// `arms_<TAG>.png`), falling back to the generated arms when none is chosen.
+struct CountryArmsView: View {
+    let world: World
+    let country: CountryID
+
+    var body: some View {
+        if let image = Self.image(forTag: world.countries.tag[country.index]) {
+            image
+                .resizable()
+                .interpolation(.high)
+                .aspectRatio(contentMode: .fit)
+                .shadow(color: .black.opacity(0.35), radius: 1, y: 0.5)
+                .accessibilityHidden(true)
+        } else {
+            CoatOfArmsView(arms: world.arms(of: country))
+        }
+    }
+
+    @MainActor private static var cache: [String: Image?] = [:]
+
+    @MainActor static func image(forTag tag: String) -> Image? {
+        if let hit = cache[tag] { return hit }
+        var result: Image?
+        if let url = Bundle.main.url(forResource: "arms_\(tag)", withExtension: "png")
+            ?? Bundle.main.url(forResource: "arms_\(tag)", withExtension: "png", subdirectory: "Heraldry") {
+            #if canImport(UIKit)
+            if let ui = UIImage(contentsOfFile: url.path) { result = Image(uiImage: ui) }
+            #else
+            if let ns = NSImage(contentsOf: url) { result = Image(nsImage: ns) }
+            #endif
+        }
+        cache[tag] = result
+        return result
+    }
+}

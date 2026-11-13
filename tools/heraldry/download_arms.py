@@ -69,8 +69,8 @@ def main():
             bbox = im.getbbox()
             if bbox:
                 im = im.crop(bbox)
-            im.save(OUT / f"{tag}.png", optimize=True)
-        keep.add(f"{tag}.png")
+            im.save(OUT / f"arms_{tag}.png", optimize=True)
+        keep.add(f"arms_{tag}.png")
         credits[tag] = {
             "file": title,
             "page": ii.get("descriptionurl"),
