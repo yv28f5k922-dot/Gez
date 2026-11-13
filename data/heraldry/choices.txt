@@ -188,3 +188,15 @@ MOS | File:Печать Василия II Васильевича Темного.
 ZAY | File:Flag of the Mutawakkilite Kingdom of Yemen.svg | Mutawakkilite flag (later Zaydi imamate)
 KOT | File:Flag of Kotte.svg
 CLT | File:Zamorin.jpg | modern guess
+SHM | File:Flag of the Emirate of Ha'il.svg | later emirate flag (owner's pick)
+ASR | File:Flag of the Emirate of Asir.svg | Idrisid flag, 1900s (owner's pick)
+CYR | File:Flag of Cyrenaica.svg | Senussi flag, 1840s+ (owner's pick)
+YAM | File:علم قبيلة يام في فترة حكم إمارة آل يزيد.jpg | Yam banner under the Al Yazid emirate (owner's pick)
+PSH | File:1839 Pashtun banner captured at Ghazni.png | 1839 war banner (owner's pick)
+KBD | File:Знамя Боташевых.svg | banner of a Kabardian noble family, date uncertain
+OIR | File:Banner of the Dzungar Khanate.png | Dzungar banner, 1600s-1700s (owner's pick)
+JAT | File:Flag of Bharatpur.svg | Jat kingdom of Bharatpur, 1700s+ (owner's pick)
+SMI | File:Sami flag.svg | modern, 1986 (owner's pick)
+ALN | File:Flag of North Ossetia.svg | later era (owner's pick)
+VNK | File:Flag of Ingushetia.svg | modern, with the old Vainakh sun sign (owner: later era)
+KIR | File:Kirat Flag Danesh Rai.svg | modern Kirat flag (owner's pick)
