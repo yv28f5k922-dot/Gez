@@ -4,7 +4,10 @@ The owner does not write code; Claude writes everything. Explain changes in
 plain language, not jargon.
 
 **Start with `docs/HANDOFF.md`**: current state, the owner's wishes, how to
-build and verify from the cloud workspace, and what to do next.
+build and verify from the cloud workspace. **The agreed plan is
+`docs/ROADMAP.md`**: work through its phases in order.
+- Ask the owner design or history questions as multiple-choice questions
+  (2–4 options, recommended first), one topic at a time.
 
 - Read `docs/DESIGN.md` next. Keep it up to date when design decisions change.
 - `Packages/GezCore` must stay pure Swift: never import SwiftUI, Metal, UIKit,

@@ -125,18 +125,4 @@ The owner found the first flat-colour look ugly, so looks are a priority.
 
 ## Milestones
 
-1. **Foundation** (done in first commit): calendar, clock, daily tick,
-   placeholder world, monthly income and growth, SwiftUI app shell with a
-   placeholder map, CI.
-2. **Real map** (done): 1,189 provinces in 228 states and 36 regions,
-   neighbours and sea crossings, map modes (political, states, terrain,
-   religion, development), zoom and pan, tap to select. Drawn on the CPU for
-   now; a Metal renderer can replace it when borders start moving often.
-   Historical judgment calls are listed in `docs/HISTORY_NOTES.md`.
-3. **Economy & pops**: pop classes, goods, trade, buildings.
-4. **Armies, diplomacy & war**: movement, alliances, war score, peace.
-5. **Sieges & forts**.
-6. **2D battles** with fight / auto-resolve.
-7. **Estates, religion & government**. (Religions, cultures and pops with
-   classes are in place since milestone 2.)
-8. **AI**, save/load, polish.
+See `docs/ROADMAP.md` for the agreed feature decisions and build order.

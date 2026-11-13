@@ -1,7 +1,7 @@
 # Gez: handoff for the next session
 
-Read this first, then `docs/DESIGN.md`, `docs/HISTORY_NOTES.md` and
-`CLAUDE.md`. This file says where the project stands, how to work on it,
+Read this first, then `docs/ROADMAP.md` (the agreed plan),
+`docs/DESIGN.md`, `docs/HISTORY_NOTES.md` and `CLAUDE.md`. This file says where the project stands, how to work on it,
 and what to do next.
 
 ## The owner
@@ -18,6 +18,7 @@ and what to do next.
 - Start date: **30 May 1453**, the day after Mehmed II took Constantinople.
 - Map: Europe, North Africa, Horn of Africa, Middle East, Central Asia to
   the modern China border, Indian subcontinent.
+- **The full feature plan and build order is in `docs/ROADMAP.md`.**
 - **Graphics matter a lot.** The owner called the flat-colour map "very
   ugly". Agreed direction: a good-looking map now, built so it can become
   a real 3D map (tilting camera, 3D cities and armies) later. Battles were
@@ -120,41 +121,20 @@ tools/terrain/     fetch_elevation.py (CI), bake_terrain.py
 docs/              DESIGN, HISTORY_NOTES, HANDOFF (this), CREDITS, previews
 ```
 
-## What to do next (recommended order)
+## What to do next
 
-1. **Check the new Metal map look with the owner** (send `metal_start.png`
-   and `metal_europe.png` from the snapshots branch) and tune: tint
-   strength, border band width, terrain colours, water. Settings live in
-   `MapShaders.metal` and `bake_terrain.py`.
-2. **Interface art pass** (the other half of "ugly"):
-   - Period fonts: Cinzel or IM Fell (SIL Open Font License), bundled.
-   - Textured parchment panels with drawn frames; proper icons (e.g.
-     game-icons.net, CC BY 3.0, needs credit).
-   - Generated coats of arms or flags per country instead of coloured dots.
-   - Curved country names that follow the shape of the land.
-3. **Owner decisions still open:**
-   - Split India into more provinces (recommended; Indian provinces now hold
-     millions of people each)?
-   - (Settled in session 2: all 30 uncertain borders, tribal countries for
-     blank land, Ladislaus as a personal union. See `HISTORY_NOTES.md`.)
-   - **How the owner likes to decide:** one question at a time with context
-     and 2–4 options in the multiple-choice question tool, recommended
-     option first. Do it that way for future decisions.
-4. **Economy milestone:** goods per province, trade, buildings, army
-   upkeep, estates' share of income. Uses pops (burghers, peasants).
-5. **Armies, diplomacy and war:** units, movement along province
-   neighbours (river crossings slower), supply and attrition, alliances,
-   claims, war score, peace deals.
-6. **Sieges and forts:** fort levels already exist per province.
-7. **Battles:** fight or auto-resolve, same unit stats for both. Decide 2D
-   sprites vs 3D with the owner; free CC0 3D medieval models exist
-   (Quaternius). Instanced rendering handles thousands of soldiers on M1.
-8. **Path to the 3D map:** replace the full-screen triangle in
-   `MapShaders.metal` with a terrain mesh displaced by
-   `data/terrain/elevation.png`, keep the fragment shading, add a camera
-   that tilts as you zoom in. Then 3D cities, forts and army models.
-9. Estates, government, religion mechanics (conversion, the Safaviyya,
-   Hussites), AI, save/load, main menu, sound.
+**Follow `docs/ROADMAP.md`.** The owner chose every feature and the build
+order in session 2. Next up is **Phase 1: finish the map** (split India,
+sea zones, coats of arms, 2D map icons), then Phase 2 (economy).
+
+Notes:
+- The interface art pass was **skipped by the owner for now**; don't do it
+  unless asked. The Metal map look can still be tuned when the owner
+  comments on it.
+- No music or instruments ever; sound effects only (Phase 16).
+- Saves are local only; no iCloud.
+- Characters are CK-style (courts, councils, relationships) and start with
+  the real people of 1453.
 
 ## Known issues and tech debt
 
