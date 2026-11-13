@@ -1,76 +1,13 @@
 # TAG | Name | articles | searches | files
-MEW | Mewar | Udaipur State | Flag of Udaipur State ; Mewar flag | File:In mewar-state.png
-MAR | Marwar | Jodhpur State | Flag of Jodhpur | File:Flag of Jodhpur.svg
-BUN | Bundi | Bundi State | Flag of Bundi | File:Flag of Bundi.svg
-BST | Bastar | Bastar State |  | File:Flag of Bastar State.svg
-TRV | Venad | Kingdom of Travancore |  | File:Flag of Kingdom of Travancore.svg
-COC | Cochin | Kingdom of Cochin |  | File:Cochin flag.svg
-CHB | Chamba | Chamba State |  | File:Drapeau Chamba.png
-TPR | Tripura | Tripura (princely state) | Flag of Tripura princely state | File:Coat of Arms of Tripura Princely State.gif
-KAN | Kangra | Kangra State |  | File:Flag of the Princely State of Kangra.svg
-GAR | Garhwal | Tehri Garhwal State |  | File:Flag of the Princely State of Tehri Garhwal.svg
-KUM | Kumaon | Kumaon Kingdom |  | File:Flag of the Kumaon Kingdom.svg
-DGP | Dungarpur | Dungarpur State |  | File:Flag of Dungarp St.svg
-RJP | Rajpipla | Rajpipla State |  | File:Flag of Rajpipla.svg
-BGL | Rewa | Rewa State |  | File:Flag of the Rewa State.svg
-AMB | Amber | Jaipur State | Flag of Jaipur State
-JSL | Jaisalmer | Jaisalmer State | Flag of Jaisalmer
-KUT | Kutch | Cutch State | Flag of Kutch State
-SRH | Sirohi | Sirohi State | Flag of Sirohi State
-KRL | Karauli | Karauli State | Flag of Karauli State
-KUL | Kullu | Kullu kingdom | Kullu state flag
-JMU | Jammu | Jammu (princely state) | Flag of Jammu Dogra | File:Flag of Dar Raj 1699-1801.png
-MNP | Manipur | Manipur (princely state) | Flag of Manipur kingdom | File:Flag of Kangleipak.svg
-AHO | Ahom | Ahom kingdom | Ahom flag | File:Ahom insignia plain.svg
-NEP | Kathmandu Malla | Malla (Nepal) | Malla dynasty flag Nepal
-KAM | Kamata | Kamata Kingdom | Koch dynasty flag
-KAC | Kachari | Dimasa Kingdom | Dimasa kingdom flag
-JNT | Jaintia | Jaintia Kingdom | Jaintia kingdom flag
-CHU | Chutia | Chutia Kingdom | Chutia flag
-DEL | Delhi | | | File:Delhi Sultanate Flag.svg ; File:Flag of the Delhi Sultanate.svg
-VIJ | Vijayanagara | | | File:Flag of Vijaynagara.svg ; File:Flag of the King of Vijayanagara in the Catalan Atlas (1375).png
-GUJ | Gujarat | | | File:Flag of the Gujarat Sultanate.svg
-MLW | Malwa | | | File:Sultanate of Malwa.png
-BAH | Bahmani | Bahmani Sultanate | Bahmani flag | File:Qutbshahi Flag.svg
-ORI | Gajapati | | | File:Gajapati empire flag.png ; File:Flag of Gajapati Empire.jpg
-KSH | Kashmir | Shah Mir dynasty | Kashmir Sultanate flag
-JNP | Jaunpur | Sharqi dynasty | Jaunpur Sultanate flag ; Sharqi flag
-MUL | Multan | Langah Sultanate | Langah flag
-SND | Samma | Samma dynasty | Samma flag
-KHA | Khandesh | Farooqui dynasty | Khandesh Sultanate flag
-HEJ | Mecca | Sharifate of Mecca | Sharifate of Mecca flag ; Sharif of Mecca banner
-OMN | Oman | Nabhani dynasty | Nabhani flag | File:Flag of the Imamate of Oman (1954–1959).svg
-ZAY | Zaydi Imamate | Zaydi imams of Yemen | Zaydi imamate flag Yemen ; Rassid flag
-KTH | Kathiri | Kathiri | | File:Kathiri flag.svg
-GIL | Gilan | Kar-Kiya dynasty | Kar-Kiya flag ; Gilan Biyapish flag
-MZD | Marashi | Marashiyan | Marashi dynasty flag
-HOR | Hormuz | Kingdom of Ormus | Kingdom of Hormuz flag | File:Flag of Ormus.png
-JAB | Jabrids | Jabrid dynasty | Jabrid flag | File:Jabrids (Banu Jabr).png
-LUR | Luristan | Khorshidi dynasty | Lur atabegs flag
-MSH | Musha'sha | Musha'sha'iyyah | Musha'sha flag
-LAR | Lar | Lar (Iran) Miladi | Lar kingdom flag
-SIS | Sistan | Mihrabanid dynasty | Mihrabanid flag
-DUL | Dulkadir | | | File:Flag of Dulkadir Beylik.png
-DAG | Tarki | | | File:Flag of the Shamkhalate of Tarki.jpg
-BIT | Bitlis | Rozhaki | Bitlis emirate flag ; Rojiki flag
-SHI | Shirvan | Shirvanshah | Shirvanshahs flag ; Derbent dynasty flag
-BDK | Badakhshan | Badakhshan | Badakhshan flag historical
-ETH | Ethiopia | | Ethiopian Empire flag 1897 | File:Flag of Ethiopia (1897).svg
-KAF | Kaffa | Kingdom of Kaffa | Kingdom of Kaffa flag
-AJU | Ajuran | Ajuran Sultanate | Ajuran flag
-WAR | Warsangali | Warsangali Sultanate | Warsangali flag
-PTE | Pate | Pate Sultanate | Pate flag ; Nabhani Pate flag
-HAD | Hadiya | Hadiya Sultanate | Hadiya flag
-BLI | Bale | Sultanate of Bale | Bale sultanate flag
-DAW | Dawaro | Sultanate of Dawaro | Dawaro flag
-IFT | Ifat | Ifat Sultanate | Walashma flag ; Ifat sultanate flag
-ENN | Ennarea | Kingdom of Ennarea | Ennarea flag
-DAM | Damot | Kingdom of Damot | Damot flag
-ALB | Albania | | | File:Coat of arms of the House of Kastrioti (by Giuseppe Schirò).svg ; File:Coat of arms of the House of Kastrioti (by Charles Du Cange).svg
-BRU | Brunswick | | Duchy of Brunswick arms two lions ; Welfen Wappen
-LVO | Livonian Order | | Livonian Order coat of arms ; Livländischer Orden Wappen
-FRI | Frisia | | Coat of arms of Friesland ; Friesland wapen | File:Coat of arms of Friesland.svg
-ORM | Ormond | | Butler arms chief indented ; Butler family coat of arms
-LEI | Leinster | | MacMurrough coat of arms ; Kavanagh coat of arms
-LES | Lesbos | | Gattilusio coat of arms ; Gattilusi stemma
-MOS | Muscovy | | Vasily II seal ; Moscow coat of arms 15th century ; Saint George Moscow seal
+KIR | Kirat | Limbuwan | Kirat flag ; Limbu flag ; Kirati flag
+KBD | Kabarda | | Kabardian banner ; Kabarda flag 17th century | File:Байрак–знамя–Уорка 1-й ст. Кожохова.png ; File:Kabardia Banner.png ; File:Flag of Kabardia.svg ; File:Kabardian Flag.svg
+YAM | Yam | | | File:علم قبيلة يام في فترة حكم إمارة آل يزيد.jpg
+SHM | Shammar | | | File:Flag of the Emirate of Ha'il.svg
+ASR | Asir | | | File:Flag of the Emirate of Asir.svg
+CYR | Cyrenaica | | | File:Flag of Cyrenaica.svg
+PSH | Pashtun | | | File:1839 Pashtun banner captured at Ghazni.png
+OIR | Oirats | | | File:Banner of the Dzungar Khanate.png
+JAT | Jats | | | File:Flag of Bharatpur.svg
+SMI | Sami | | | File:Sami flag.svg
+ALN | Alania | | | File:Flag of North Ossetia.svg
+VNK | Vainakh | | | File:Flag of Chechen Republic since 2004.svg ; File:Flag of Ingushetia.svg

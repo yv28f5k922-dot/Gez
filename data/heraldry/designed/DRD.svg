@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 144 104" width="288" height="208">
+<defs><clipPath id="c"><path d="M0,0 H140 L110,50 L140,100 H0 Z"/></clipPath></defs>
+<g clip-path="url(#c)"><rect x="0" y="0" width="140" height="100" fill="#2d5f8b"/><path d="M30,70 L34,50 C36,44 44,42 56,42 L74,42 L80,34 C78,26 70,18 60,16 C72,14 84,22 86,34 L90,40 L86,46 L80,46 L78,52 L80,72 L74,72 L72,56 L44,56 L42,72 L36,72 Z" fill="#f4f1ea"/></g>
+<path d="M0,0 H140 L110,50 L140,100 H0 Z" fill="none" stroke="#2a2018" stroke-width="2.5"/>
+</svg>

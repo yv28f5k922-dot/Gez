@@ -86,6 +86,21 @@ def main():
         }
         print(tag, "ok", flush=True)
         time.sleep(0.3)
+    # Invented banners (no historical source found; the owner asked for them).
+    for svg in sorted(Path("data/heraldry/designed").glob("*.svg")):
+        tag = svg.stem
+        png = OUT / f"arms_{tag}.png"
+        subprocess.run(["rsvg-convert", "-h", str(SIZE), "-o", str(png), str(svg)], check=True)
+        im = Image.open(png).convert("RGBA")
+        bbox = im.getbbox()
+        if bbox:
+            im = im.crop(bbox)
+        im.save(png, optimize=True)
+        keep.add(png.name)
+        credits[tag] = {"file": str(svg), "page": "", "author": "Designed for Gez",
+                        "license": "CC0", "licenseUrl": "",
+                        "note": "Invented: no historical symbol is known"}
+        print(tag, "designed", flush=True)
     for f in OUT.glob("*.png"):
         if f.name not in keep:
             f.unlink()

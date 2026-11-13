@@ -15,6 +15,7 @@ on:
     branches: [main]
     paths:
       - data/heraldry/choices.txt
+      - data/heraldry/designed/**
       - tools/heraldry/download_arms.py
 
 jobs:
