@@ -62,6 +62,9 @@ final class GameModel {
     var openMarket: MarketID?
     var showBudget = false
     var showTrade = false
+    var showCourt = false
+    /// Person shown in the court window (nil = your ruler).
+    var viewedCharacter: CharacterID?
     /// Map positions of market towns, for drawing trade routes.
     private(set) var marketCentrePoints: [CGPoint] = []
     /// A route being planned in the trade window.
@@ -192,6 +195,47 @@ final class GameModel {
     func setDebasing(_ on: Bool) {
         guard let p = playerCountry, simulation.world.countries.bankruptMonthsLeft[p.index] == 0 || !on else { return }
         simulation.world.countries.debasing[p.index] = on
+        revision &+= 1
+    }
+
+    // MARK: Court actions (player only)
+
+    func appoint(_ seat: CouncilSeat, _ who: CharacterID?) {
+        guard let p = playerCountry else { return }
+        CharacterSystem.appoint(&simulation.world, p, seat, who)
+        revision &+= 1
+    }
+
+    func appointNewcomer(_ seat: CouncilSeat) {
+        guard let p = playerCountry else { return }
+        var rng = GameRandom(seed: UInt64(simulation.world.people.characters.count) &* 7919 &+ UInt64(date.ordinal))
+        let home = simulation.world.provinces(ownedBy: p).first.map { "of \(simulation.world.provinces.name[$0.index])" }
+        let who = CharacterSystem.invent(&simulation.world, court: p, date: date, random: &rng, dynasty: home)
+        CharacterSystem.appoint(&simulation.world, p, seat, who)
+        revision &+= 1
+    }
+
+    /// Best foreign matches (bigger realms first).
+    func marriageCandidates(for x: CharacterID) -> [CharacterID] {
+        guard let p = playerCountry else { return [] }
+        let w = world
+        var pool: [CharacterID] = []
+        for c in w.countries.ids where c != p {
+            pool += CharacterSystem.marriageableFamily(w, c, date: date)
+        }
+        return pool
+            .filter { CharacterSystem.marriageRefusal(w, x, $0, date: date) == nil }
+            .sorted { a, b in
+                let pa = w.people.characters.court[a.index].map { w.provinces(ownedBy: $0).count } ?? 0
+                let pb = w.people.characters.court[b.index].map { w.provinces(ownedBy: $0).count } ?? 0
+                return pa != pb ? pa > pb : a.index < b.index
+            }
+            .prefix(10).map { $0 }
+    }
+
+    func propose(_ a: CharacterID, _ b: CharacterID) {
+        guard CharacterSystem.marriageRefusal(world, a, b, date: date) == nil else { return }
+        CharacterSystem.marry(&simulation.world, a, b)
         revision &+= 1
     }
 

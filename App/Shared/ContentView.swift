@@ -25,6 +25,8 @@ struct ContentView: View {
                     BudgetPanel().padding(12)
                 } else if model.showTrade {
                     TradePanel().padding(12)
+                } else if model.showCourt {
+                    CourtPanel().padding(12)
                 }
             }
             .overlay(alignment: .bottomTrailing) {
@@ -76,6 +78,12 @@ struct TopBar: View {
                     model.showTrade.toggle()
                 } label: {
                     Label("Trade", systemImage: "shippingbox")
+                }
+                .buttonStyle(.plain)
+                Button {
+                    model.showCourt.toggle()
+                } label: {
+                    Label("Court", systemImage: "crown")
                 }
                 .buttonStyle(.plain)
                 .help("Trade routes, tolls and embargoes")

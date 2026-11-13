@@ -174,6 +174,14 @@ final class SnapshotTests: XCTestCase {
         save(try XCTUnwrap(renderer.cgImage), "trade.png")
     }
 
+    func testCourtPanel() throws {
+        let model = GameModel(useMetal: false)
+        let bayezid = model.world.people.characters.id(forKey: "bayezid2")
+        let renderer = ImageRenderer(content: CourtPanel(scrolls: false, marrying: bayezid).environment(model))
+        renderer.scale = 1
+        save(try XCTUnwrap(renderer.cgImage), "court.png")
+    }
+
     func testMainScreen() async throws {
         let model = GameModel()
         if let metal = model.metal {
