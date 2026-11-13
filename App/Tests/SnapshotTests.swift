@@ -104,22 +104,20 @@ final class SnapshotTests: XCTestCase {
     /// A sheet of generated coats of arms.
     func testHeraldrySheet() throws {
         let model = GameModel(useMetal: false)
-        let tags = ["TUR", "FRA", "ENG", "CAS", "POR", "VEN", "GEN", "PAP", "HUN", "POL", "LIT", "MOS",
-                    "DAN", "NOR", "SWE", "TEU", "BOH", "AUS", "MAM", "QAR", "AKK", "TIM", "HRT", "DEL",
-                    "BAH", "VIJ", "BNG", "GUJ", "ETH", "ADA", "MOR", "TUN", "CRI", "GRH", "BLC", "NJD",
-                    "KAN", "NEP", "AHO", "KOT", "JIS", "SER", "WAL", "MOL", "GEO", "TRE", "SCO", "BUR"]
         let world = model.world
-        let view = LazyVGrid(columns: Array(repeating: GridItem(.fixed(110)), count: 8), spacing: 10) {
-            ForEach(tags, id: \.self) { tag in
-                let id = world.countries.id(forTag: tag)!
-                VStack(spacing: 4) {
-                    CoatOfArmsView(arms: world.arms(of: id)).frame(height: 80)
-                    Text(world.countries.name[id.index]).font(.caption2).lineLimit(1)
+        let ids = (0..<world.countries.count).map { CountryID($0) }
+        let view = LazyVGrid(columns: Array(repeating: GridItem(.fixed(96)), count: 14), spacing: 8) {
+            ForEach(ids, id: \.index) { id in
+                VStack(spacing: 3) {
+                    CountryArmsView(world: world, country: id).frame(height: 56)
+                    Text(world.countries.tag[id.index]).font(.caption2.bold())
+                    Text(world.countries.name[id.index]).font(.system(size: 9)).lineLimit(1)
                 }
+                .frame(width: 92)
             }
         }
-        .padding(16)
-        .frame(width: 940)
+        .padding(12)
+        .frame(width: 1400)
         .background(Palette.parchment)
         let renderer = ImageRenderer(content: view)
         renderer.scale = 1

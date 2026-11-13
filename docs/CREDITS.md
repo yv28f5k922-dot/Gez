@@ -10,3 +10,9 @@
   cultures, populations:** drawn and estimated by hand for this game.
 - No data or art from Paradox Interactive or Creative Assembly games is
   used.
+- **Coats of arms, flags, banners and tamgas:** files from Wikimedia
+  Commons, by many authors. Each file's author, licence and source page is
+  listed in `data/heraldry/credits.json` (written by the Heraldry CI job).
+  Licences are public domain, CC0, CC BY or CC BY-SA. The images were only
+  resized and trimmed. CC BY-SA images stay under their licence. The game
+  must show these credits in-game (credits screen, planned).
