@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  core-tests:
+    name: Simulation tests
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Swift version
+        run: swift --version
+      - name: Test GezCore
+        run: swift test --package-path Packages/GezCore
+
+  app-build:
+    name: Build Mac and iPad apps
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate Xcode project
+        run: xcodegen generate
+      - name: Build Mac app
+        run: >
+          xcodebuild -project Gez.xcodeproj -scheme GezMac
+          -destination 'generic/platform=macOS'
+          CODE_SIGNING_ALLOWED=NO build
+      - name: Build iPad app
+        run: >
+          xcodebuild -project Gez.xcodeproj -scheme GeziPad
+          -destination 'generic/platform=iOS Simulator'
+          CODE_SIGNING_ALLOWED=NO build

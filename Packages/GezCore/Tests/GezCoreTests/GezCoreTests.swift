@@ -1,0 +1,137 @@
+import XCTest
+@testable import GezCore
+
+final class GameDateTests: XCTestCase {
+    func testStartDateDescription() {
+        XCTAssertEqual(Scenario1453.startDate.description, "30 May 1453")
+    }
+
+    func testAdvancesAcrossMonthEnd() {
+        var date = GameDate(year: 1453, month: 2, day: 28)
+        date.advanceOneDay()
+        XCTAssertEqual(date, GameDate(year: 1453, month: 3, day: 1))
+        XCTAssertTrue(date.isFirstOfMonth)
+    }
+
+    func testAdvancesAcrossYearEnd() {
+        var date = GameDate(year: 1453, month: 12, day: 31)
+        date.advanceOneDay()
+        XCTAssertEqual(date, GameDate(year: 1454, month: 1, day: 1))
+        XCTAssertTrue(date.isFirstOfYear)
+    }
+
+    func testYearIs365Days() {
+        let start = GameDate(year: 1453, month: 5, day: 30)
+        XCTAssertEqual(start.adding(days: 365), GameDate(year: 1454, month: 5, day: 30))
+        XCTAssertEqual(start.adding(days: 365).ordinal - start.ordinal, 365)
+    }
+
+    func testOrdering() {
+        XCTAssertLessThan(GameDate(year: 1453, month: 5, day: 30), GameDate(year: 1453, month: 6, day: 1))
+        XCTAssertLessThan(GameDate(year: 1453, month: 12, day: 31), GameDate(year: 1454, month: 1, day: 1))
+    }
+}
+
+final class GameClockTests: XCTestCase {
+    func testPausedNeverAdvances() {
+        var clock = GameClock(speed: .paused)
+        XCTAssertEqual(clock.daysToAdvance(elapsedSeconds: 100), 0)
+    }
+
+    func testFractionsCarryOver() {
+        var clock = GameClock(speed: .two) // 1 day per second
+        XCTAssertEqual(clock.daysToAdvance(elapsedSeconds: 0.5), 0)
+        XCTAssertEqual(clock.daysToAdvance(elapsedSeconds: 0.6), 1)
+        XCTAssertEqual(clock.daysToAdvance(elapsedSeconds: 0.9), 1)
+    }
+
+    func testLongHitchIsCapped() {
+        var clock = GameClock(speed: .five)
+        XCTAssertEqual(clock.daysToAdvance(elapsedSeconds: 60), clock.maxDaysPerUpdate)
+    }
+}
+
+final class ScenarioTests: XCTestCase {
+    func testEveryCountryHasOwnedCapital() {
+        let world = Scenario1453.makeWorld()
+        for country in world.countries.ids {
+            let tag = world.countries.tag[country.index]
+            guard let capital = world.countries.capital[country.index] else {
+                XCTFail("\(tag) has no capital")
+                continue
+            }
+            XCTAssertEqual(world.provinces.owner[capital.index], country, "\(tag) does not own its capital")
+        }
+    }
+
+    func testConstantinopleIsOttoman() {
+        let world = Scenario1453.makeWorld()
+        let tur = world.countries.id(forTag: "TUR")
+        XCTAssertNotNil(tur)
+        let index = world.provinces.name.firstIndex(of: "Konstantiniyye")
+        XCTAssertNotNil(index)
+        if let index {
+            XCTAssertEqual(world.provinces.owner[index], tur)
+            XCTAssertEqual(world.countries.capital[tur!.index], ProvinceID(index))
+        }
+    }
+
+    func testCoordinatesAreInsideGameArea() {
+        let world = Scenario1453.makeWorld()
+        for i in 0..<world.provinces.count {
+            let p = world.provinces.location[i]
+            XCTAssertTrue((-20...130).contains(p.longitude), world.provinces.name[i])
+            XCTAssertTrue((0...72).contains(p.latitude), world.provinces.name[i])
+        }
+    }
+}
+
+final class SimulationTests: XCTestCase {
+    func testMonthlyIncomeArrivesOnFirstOfMonth() {
+        let sim = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate)
+        let tur = sim.world.countries.id(forTag: "TUR")!.index
+        let before = sim.world.countries.treasury[tur]
+
+        sim.advance(days: 1) // 31 May: no income yet
+        XCTAssertEqual(sim.world.countries.treasury[tur], before)
+
+        sim.advance(days: 1) // 1 June: monthly tick
+        XCTAssertEqual(sim.date, GameDate(year: 1453, month: 6, day: 1))
+        XCTAssertGreaterThan(sim.world.countries.treasury[tur], before)
+        XCTAssertGreaterThan(sim.world.countries.lastMonthlyIncome[tur], 0)
+    }
+
+    func testPopulationGrowsOverAYear() {
+        let sim = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate)
+        let before = sim.world.provinces.population.reduce(0, +)
+        sim.advance(days: 365)
+        XCTAssertGreaterThan(sim.world.provinces.population.reduce(0, +), before)
+    }
+
+    func testDeterministicForSameSeed() {
+        let a = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate, seed: 7)
+        let b = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate, seed: 7)
+        a.advance(days: 400)
+        b.advance(days: 400)
+        XCTAssertEqual(a.date, b.date)
+        XCTAssertEqual(a.world.countries.treasury, b.world.countries.treasury)
+        XCTAssertEqual(a.world.provinces.population, b.world.provinces.population)
+    }
+
+    func testTenYearsRunsQuickly() {
+        let sim = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate)
+        measure {
+            sim.advance(days: 3650)
+        }
+    }
+}
+
+final class RandomTests: XCTestCase {
+    func testSameSeedSameSequence() {
+        var a = GameRandom(seed: 1453)
+        var b = GameRandom(seed: 1453)
+        for _ in 0..<100 {
+            XCTAssertEqual(a.next(), b.next())
+        }
+    }
+}

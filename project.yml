@@ -1,0 +1,53 @@
+# XcodeGen spec. Generate the Xcode project with:
+#   brew install xcodegen
+#   xcodegen generate
+# Gez.xcodeproj is generated and not committed; edit this file instead.
+name: Gez
+options:
+  bundleIdPrefix: com.gez
+  deploymentTarget:
+    macOS: "14.0"
+    iOS: "17.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+packages:
+  GezCore:
+    path: Packages/GezCore
+targets:
+  GezMac:
+    type: application
+    platform: macOS
+    sources:
+      - App/Shared
+    dependencies:
+      - package: GezCore
+    settings:
+      base:
+        PRODUCT_NAME: Gez
+        PRODUCT_BUNDLE_IDENTIFIER: com.gez.game
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Gez
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.strategy-games
+    scheme: {}
+  GeziPad:
+    type: application
+    platform: iOS
+    sources:
+      - App/Shared
+    dependencies:
+      - package: GezCore
+    settings:
+      base:
+        PRODUCT_NAME: Gez
+        PRODUCT_BUNDLE_IDENTIFIER: com.gez.game
+        TARGETED_DEVICE_FAMILY: "2"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Gez
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIRequiresFullScreen: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.strategy-games
+    scheme: {}
