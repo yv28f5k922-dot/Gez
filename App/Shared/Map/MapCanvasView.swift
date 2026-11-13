@@ -35,6 +35,7 @@ struct MapCanvasView: View {
             let o = zoom > 0 ? offset : startOffset(for: geo.size)
             ZStack(alignment: .topLeading) {
                 MapPalette.waterColor
+                    .frame(width: geo.size.width, height: geo.size.height)
 
                 if let image = model.mapImage, z > 0 {
                     Image(decorative: image, scale: 1)
@@ -58,10 +59,12 @@ struct MapCanvasView: View {
 
                 if model.mapImage == nil {
                     ProgressView("Drawing map…")
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .frame(width: geo.size.width, height: geo.size.height)
                 }
             }
-            .frame(width: geo.size.width, height: geo.size.height)
+            // The map image is far bigger than the view; pin its top-left
+            // corner to the view's so offsets and taps line up.
+            .frame(width: geo.size.width, height: geo.size.height, alignment: .topLeading)
             .clipped()
             .contentShape(Rectangle())
             .gesture(tapGesture)
