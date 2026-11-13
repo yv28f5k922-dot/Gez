@@ -54,9 +54,14 @@ def main():
             continue
         ii = page["imageinfo"][0]
         md = ii.get("extmetadata", {})
-        data = get(ii["url"])
+        try:
+            data = get(ii["url"])
+        except Exception as e:
+            print("FAILED", tag, title, e, file=sys.stderr)
+            continue
         with tempfile.TemporaryDirectory() as tmp:
-            src = Path(tmp) / ("src" + Path(ii["url"]).suffix.lower())
+            suffix = Path(urllib.parse.urlparse(ii["url"]).path).suffix.lower()
+            src = Path(tmp) / ("src" + suffix)
             src.write_bytes(data)
             if src.suffix == ".svg":
                 png = Path(tmp) / "r.png"
