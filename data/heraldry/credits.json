@@ -7,6 +7,22 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Adal_Sultanate.svg"
  },
+ "AHO": {
+  "author": "WikiEditor2.04(I)",
+  "file": "File:Ahom Kingdom.webp",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Ahom_Kingdom.webp"
+ },
+ "AJU": {
+  "author": "Sultanatemaker",
+  "file": "File:Ajuran Empire flag.png",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Ajuran_Empire_flag.png"
+ },
  "AKK": {
   "author": "Ahmadf.alabbasi",
   "file": "File:راية اوزون حسن.svg",
@@ -15,6 +31,14 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:%D8%B1%D8%A7%D9%8A%D8%A9_%D8%A7%D9%88%D8%B2%D9%88%D9%86_%D8%AD%D8%B3%D9%86.svg"
  },
+ "ALB": {
+  "author": "Vectorized by Kj1595",
+  "file": "File:Coat of arms of the House of Kastrioti (by Giuseppe Schirò).svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "Kastrioti family arms",
+  "page": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_the_House_of_Kastrioti_(by_Giuseppe_Schir%C3%B2).svg"
+ },
  "ALO": {
   "author": "Dekodrak",
   "file": "File:Possible Flag of the Kingdom of Alodia (c. 1350).svg",
@@ -22,6 +46,14 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Possible_Flag_of_the_Kingdom_of_Alodia_(c._1350).svg"
+ },
+ "AMB": {
+  "author": "Dekodrak\n\nmodified on 2021-11-04: modified colors as dyes cannot be full scale RGB colors ; new colors assumed from [1], as written in Commons:Graphic Lab/Illustration workshop#Flag of Jaipur; En rouge",
+  "file": "File:Flag of Jaipur (c. 1699-1818).svg",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Jaipur_(c._1699-1818).svg"
  },
  "ANS": {
   "author": "",
@@ -71,6 +103,14 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Arms_of_the_house_of_Baden.svg"
  },
+ "BAH": {
+  "author": "LG02",
+  "file": "File:Qutbshahi Flag.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "Qutb Shahi flag, a successor state (modern guess)",
+  "page": "https://commons.wikimedia.org/wiki/File:Qutbshahi_Flag.svg"
+ },
  "BAM": {
   "author": "David Liuzzo",
   "file": "File:Wappen Bistum Bamberg.png",
@@ -86,6 +126,22 @@
   "licenseUrl": "",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Banner_of_Bavaria-M%C3%BCnchen.svg"
+ },
+ "BDK": {
+  "author": "AfghanTsakhtan",
+  "file": "File:Flag of Badakhshan (1657–1873).svg",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "note": "flag of 1657-1873 (nearest known)",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Badakhshan_(1657%E2%80%931873).svg"
+ },
+ "BGL": {
+  "author": "Germenfer",
+  "file": "File:Flag of the Rewa State.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_the_Rewa_State.svg"
  },
  "BNG": {
   "author": "Vectorised by Greatswrd",
@@ -136,12 +192,28 @@
   "page": "https://commons.wikimedia.org/wiki/File:Arms_of_Jean_III_de_Bretagne.svg"
  },
  "BRU": {
-  "author": "Glasshouse",
-  "file": "File:Shield of the Duchy of Brunswick.svg",
-  "license": "CC BY-SA 4.0",
-  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "author": "Ipankonin",
+  "file": "File:Coat of arms of Brunswick-Lüneburg.svg",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
   "note": "",
-  "page": "https://commons.wikimedia.org/wiki/File:Shield_of_the_Duchy_of_Brunswick.svg"
+  "page": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Brunswick-L%C3%BCneburg.svg"
+ },
+ "BST": {
+  "author": "GourgPie",
+  "file": "File:Flag of Bastar State.svg",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Bastar_State.svg"
+ },
+ "BUN": {
+  "author": "Flag drawn by Greatswrd",
+  "file": "File:Bundi State Royal Flag.svg",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Bundi_State_Royal_Flag.svg"
  },
  "BUR": {
   "author": "Carlodangio",
@@ -158,6 +230,14 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Arms_of_the_Crown_of_Castile_(15th_Century).svg"
+ },
+ "CHB": {
+  "author": "The original uploader was Nataraja at French Wikipedia.",
+  "file": "File:Drapeau Chamba.png",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Drapeau_Chamba.png"
  },
  "CIL": {
   "author": "SVG-conversion: User:Dbc334",
@@ -191,6 +271,14 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Wappen_Erzbistum_K%C3%B6ln.png"
  },
+ "CLT": {
+  "author": "Cheralatron",
+  "file": "File:Zamorin.jpg",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "note": "modern guess",
+  "page": "https://commons.wikimedia.org/wiki/File:Zamorin.jpg"
+ },
  "CND": {
   "author": "Original uploader was Ingoman at en.wikipedia",
   "file": "File:Candar.png",
@@ -198,6 +286,14 @@
   "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
   "note": "Catalan Atlas",
   "page": "https://commons.wikimedia.org/wiki/File:Candar.png"
+ },
+ "COC": {
+  "author": "Robert Alfers",
+  "file": "File:Cochin flag.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Cochin_flag.svg"
  },
  "CRI": {
   "author": "Ultimete",
@@ -215,6 +311,22 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Coat_of_Arms_of_the_House_of_Lusignan_(Kings_of_Armenia,_Cyprus_and_Jerusalem).svg"
  },
+ "DAG": {
+  "author": "Kamil Aliev",
+  "file": "File:Flag of the Shamkhalate of Tarki.jpg",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_the_Shamkhalate_of_Tarki.jpg"
+ },
+ "DAM": {
+  "author": "El Bux",
+  "file": "File:Traditional Damot triband.png",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Traditional_Damot_triband.png"
+ },
  "DAN": {
   "author": "",
   "file": "File:National Coat of arms of Denmark.svg",
@@ -223,6 +335,14 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:National_coat_of_arms_of_Denmark.svg"
  },
+ "DEL": {
+  "author": "LG02, पाटलिपुत्र (talk) for the grey and black version.",
+  "file": "File:Delhi Sultanate Flag.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "Catalan Atlas 1375",
+  "page": "https://commons.wikimedia.org/wiki/File:Delhi_Sultanate_Flag.svg"
+ },
  "DES": {
   "author": "",
   "file": "File:Blason famille ie Fitzgerald de Desmond.svg",
@@ -230,6 +350,14 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Blason_famille_ie_Fitzgerald_de_Desmond.svg"
+ },
+ "DGP": {
+  "author": "GaelVector",
+  "file": "File:Flag of Dungarp St.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Dungarp_St.svg"
  },
  "DIT": {
   "author": "Willy „Horsa“ Lippert, Brunsbüttel",
@@ -255,6 +383,14 @@
   "note": "Libro del Conoscimiento",
   "page": "https://commons.wikimedia.org/wiki/File:The_flag_of_the_%27Kingdom_of_Dongola%27_(Makuria)_in_the_%22Book_of_all_kingdoms%22_(C._1350).svg"
  },
+ "DUL": {
+  "author": "Shiedist",
+  "file": "File:Flag of Dulkadir Beylik.png",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Dulkadir_Beylik.png"
+ },
  "ENG": {
   "author": "",
   "file": "File:Royal Arms of England (1399-1603).svg",
@@ -262,6 +398,22 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Royal_Arms_of_England_(1399-1603).svg"
+ },
+ "ENN": {
+  "author": "LeGabrie",
+  "file": "File:Ennarea royal flag.png",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Ennarea_royal_flag.png"
+ },
+ "ETH": {
+  "author": "Orange Tuesday (talk)",
+  "file": "File:Flag of Ethiopia (1270–1897).png",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "reconstruction, 1270-1897",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Ethiopia_(1270%E2%80%931897).png"
  },
  "FER": {
   "author": "MostEpic",
@@ -302,6 +454,22 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Arms_of_France_(France_Moderne).svg"
+ },
+ "FRI": {
+  "author": "OwenBlacker",
+  "file": "File:Small coat of arms of Friesland.png",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Small_coat_of_arms_of_Friesland.png"
+ },
+ "GAR": {
+  "author": "Robert Alfers",
+  "file": "File:Flag of the Princely State of Tehri Garhwal.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_the_Princely_State_of_Tehri_Garhwal.svg"
  },
  "GEL": {
   "author": "Ipankonin",
@@ -359,6 +527,14 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:CHE_Graub%C3%BCnden_COA.svg"
  },
+ "GUJ": {
+  "author": "User:Hosmich",
+  "file": "File:Flag of the Gujarat Sultanate.svg",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_the_Gujarat_Sultanate.svg"
+ },
  "HAB": {
   "author": "Tom Lemmens &amp; Heralder",
   "file": "File:Arms of Frederick III, Holy Roman Emperor.svg",
@@ -374,6 +550,14 @@
   "licenseUrl": "",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:DEU_Hamburg_COA.svg"
+ },
+ "HEJ": {
+  "author": "Original: 圣本笃 Vector:  Hexifi",
+  "file": "File:Hashemite banner.svg",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "note": "Hashemite banner (modern)",
+  "page": "https://commons.wikimedia.org/wiki/File:Hashemite_banner.svg"
  },
  "HER": {
   "author": "",
@@ -399,6 +583,14 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Holstein_Arms.svg"
  },
+ "HOR": {
+  "author": "NLLI17",
+  "file": "File:Flag of Kingdom of Hormuz.svg",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Kingdom_of_Hormuz.svg"
+ },
  "HRT": {
   "author": "c. 1440 artist",
   "file": "File:Flag in the name of Timurid ruler Muhammad Juki, Shahnama, probably Herat, c. 1440 (Royal Asiatic Society of Great Britain and Ireland, no. 239), folio 296a (reconstructed).jpg",
@@ -423,6 +615,22 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Coa_Czech_Family_Jiskra.svg"
  },
+ "JMU": {
+  "author": "Zuse",
+  "file": "File:Flag of the Maharaja of Jammu and Kashmir (1846-1936).svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_the_Maharaja_of_Jammu_and_Kashmir_(1846-1936).svg"
+ },
+ "JSL": {
+  "author": "Harshvardhan Singh Rawlot ‍(हर्षवर्धन सिंह रावलोत)",
+  "file": "File:Jaisalmer Flag.svg",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Jaisalmer_Flag.svg"
+ },
  "JUL": {
   "author": "",
   "file": "File:Arms of the House of Jülich-Guelders.svg",
@@ -430,6 +638,14 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Arms_of_the_House_of_J%C3%BClich-Guelders.svg"
+ },
+ "KAN": {
+  "author": "Germenfer",
+  "file": "File:Flag of the Princely State of Kangra.svg",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_the_Princely_State_of_Kangra.svg"
  },
  "KAR": {
   "author": "Jecowa",
@@ -471,6 +687,46 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_the_Knights_Hospitaller.svg"
  },
+ "KOT": {
+  "author": "Blackknight12",
+  "file": "File:Flag of Kotte.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Kotte.svg"
+ },
+ "KRL": {
+  "author": "Jaume Ollé",
+  "file": "File:Flag of Karauli.png",
+  "license": "CC BY 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Karauli.png"
+ },
+ "KTH": {
+  "author": "Kathiri_flag.gif: Jaume Ollé\nderivative work: Malyszkz (talk)",
+  "file": "File:Kathiri flag.svg",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "note": "later Kathiri flag",
+  "page": "https://commons.wikimedia.org/wiki/File:Kathiri_flag.svg"
+ },
+ "KUM": {
+  "author": "Germenfer",
+  "file": "File:Flag of the Kumaon Kingdom.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_the_Kumaon_Kingdom.svg"
+ },
+ "KUT": {
+  "author": "Zorawarsinh",
+  "file": "File:Kutch Flag.png",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Kutch_Flag.png"
+ },
  "LAN": {
   "author": "Sir Iain",
   "file": "File:Banner of Bavaria-Landshut.svg",
@@ -478,6 +734,14 @@
   "licenseUrl": "",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Banner_of_Bavaria-Landshut.svg"
+ },
+ "LEI": {
+  "author": "Cookieman1.1.1",
+  "file": "File:Kavanagh Coat of arms.svg",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Kavanagh_Coat_of_arms.svg"
  },
  "LIE": {
   "author": "David Liuzzo",
@@ -559,6 +823,14 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Arms_of_Gianfrancesco_I_Gonzaga,_Marquess_of_Mantua.svg"
  },
+ "MAR": {
+  "author": "PD",
+  "file": "File:Flag of Jodhpur.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Jodhpur.svg"
+ },
  "MAZ": {
   "author": "Poznaniak",
   "file": "File:Chorągiew księcia mazowieckiego Siemowita.svg",
@@ -566,6 +838,14 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Chor%C4%85giew_ksi%C4%99cia_mazowieckiego_Siemowita.svg"
+ },
+ "MEW": {
+  "author": "Jolle",
+  "file": "File:In mewar-1727.PNG",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "note": "Mewar flag of 1727 (nearest known)",
+  "page": "https://commons.wikimedia.org/wiki/File:In_mewar-1727.PNG"
  },
  "MFA": {
   "author": "MostEpic",
@@ -607,6 +887,22 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_the_House_of_Sforza.svg"
  },
+ "MLW": {
+  "author": "کوروش نیک نژاد1010",
+  "file": "File:Sultanate of Malwa.png",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Sultanate_of_Malwa.png"
+ },
+ "MNP": {
+  "author": "Dekodrak",
+  "file": "File:Flag of Kangleipak.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Kangleipak.svg"
+ },
  "MOE": {
   "author": "Cplakidas\n\nThis file was derived from:  Byzantine imperial flag, 14th century (firesteels vesion).svg",
   "file": "File:Byzantine imperial flag, 14th century.svg",
@@ -633,11 +929,11 @@
  },
  "MOS": {
   "author": "Лобачев Владимир",
-  "file": "File:Seal of Ivan 3 (reverse).svg",
-  "license": "Public domain",
-  "licenseUrl": "",
-  "note": "seal of Ivan III, 1490s (nearest known)",
-  "page": "https://commons.wikimedia.org/wiki/File:Seal_of_Ivan_3_(reverse).svg"
+  "file": "File:Печать Василия II Васильевича Темного.svg",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "seal of Vasily II",
+  "page": "https://commons.wikimedia.org/wiki/File:%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C_%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D1%8F_II_%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D1%8C%D0%B5%D0%B2%D0%B8%D1%87%D0%B0_%D0%A2%D0%B5%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE.svg"
  },
  "MUN": {
   "author": "David Liuzzo",
@@ -710,6 +1006,30 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Arms_of_the_County_of_Oldenburg.svg"
+ },
+ "OMN": {
+  "author": "BlinxTheKitty",
+  "file": "File:Flag of the Imamate of Oman (1954–1959).svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "Imamate flag (1950s)",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_the_Imamate_of_Oman_(1954%E2%80%931959).svg"
+ },
+ "ORI": {
+  "author": "WikiEditor2.04(I)",
+  "file": "File:Gajapati empire flag.png",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Gajapati_empire_flag.png"
+ },
+ "ORM": {
+  "author": "Wikimandia",
+  "file": "File:Butler arms.svg",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Butler_arms.svg"
  },
  "PAL": {
   "author": "Sir Iain, lion and crown by User:Sodacan",
@@ -807,6 +1127,14 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Two_crossed_black_keys_-_Coat_of_Arms_of_Riga.svg"
  },
+ "RJP": {
+  "author": "Bossk-Office",
+  "file": "File:Flag of Rajpipla.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Rajpipla.svg"
+ },
  "RYA": {
   "author": "Лобачев Владимир",
   "file": "File:Symbol Duchy of Ryazan.svg",
@@ -863,6 +1191,14 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_the_Serbian_Despotate.svg"
  },
+ "SHI": {
+  "author": "Cavidaga",
+  "file": "File:Shirvan gerb.png",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Shirvan_gerb.png"
+ },
  "SIE": {
   "author": "FDRMRZUSA",
   "file": "File:Stemma Repubblica di Siena.svg",
@@ -878,6 +1214,14 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Arms_of_the_house_of_Del_Vasto.svg"
+ },
+ "SRH": {
+  "author": "Robert Alfers",
+  "file": "File:Flag of Sirohi.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Sirohi.svg"
  },
  "STB": {
   "author": "",
@@ -975,6 +1319,14 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Carlo_I_Tocco_in_Arta.svg"
  },
+ "TPR": {
+  "author": "Tripura State",
+  "file": "File:Flag of Tripura State.png",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Tripura_State.png"
+ },
  "TRE": {
   "author": "Samhanin",
   "file": "File:Banner of the Empire of Trebizond.svg",
@@ -990,6 +1342,14 @@
   "licenseUrl": "",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Wappen_Erzbistum_Trier.png"
+ },
+ "TRV": {
+  "author": "Washiucho",
+  "file": "File:Flag of Kingdom of Travancore.svg",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Kingdom_of_Travancore.svg"
  },
  "TUN": {
   "author": "DrFO.Jr.Tn",
@@ -1071,6 +1431,14 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Republic_of_Venice.svg"
  },
+ "VIJ": {
+  "author": "LG02",
+  "file": "File:Flag of Vijaynagara.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "modern reconstruction (boar emblem)",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Vijaynagara.svg"
+ },
  "VYA": {
   "author": "Лобачев Владимир",
   "file": "File:Coat of arms of Vyatka Governorate 1856.svg",
@@ -1086,6 +1454,14 @@
   "licenseUrl": "",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Wallachia.svg"
+ },
+ "WAR": {
+  "author": "Dorian Blanchard",
+  "file": "File:Warsangali Flag.png",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "note": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Warsangali_Flag.png"
  },
  "WBZ": {
   "author": "Nomadic1",
@@ -1110,6 +1486,14 @@
   "licenseUrl": "",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Coa_yaroslavl.svg"
+ },
+ "ZAY": {
+  "author": "Urmas (SVG file)",
+  "file": "File:Flag of the Mutawakkilite Kingdom of Yemen.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "Mutawakkilite flag (later Zaydi imamate)",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_the_Mutawakkilite_Kingdom_of_Yemen.svg"
  },
  "ZET": {
   "author": "Медун 1876",
