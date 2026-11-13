@@ -73,8 +73,11 @@ turned into game files by `tools/mapgen/mapgen.py`.
   (production, trade and towns, religion and learning, military), levels
   1–5. Cost = ducats (+50% per level) plus materials bought from the
   province's market (they raise demand there next month). Build time in
-  months (+25% per level). Upkeep 5% of the level-1 cost per level per year.
-  Slots: 2 + development (+1 on the coast); each level uses one.
+  months (+25% per level). The state pays upkeep per level per year: 2% of
+  the level-1 cost for trade and religion buildings, 1% for military (the
+  first fort level is free); production buildings are run by their owners.
+  Slots: 4 + 2 × development (+2 on the coast, +2 in a market town); each
+  level uses one.
   Requirements: coast, matching trade good (mines need metal/stone...).
 - **You build, pops work**: workshop buildings give 2,500 burgher jobs per
   level; if a province has fewer burghers (×0.7) than jobs, all its

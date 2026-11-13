@@ -414,6 +414,7 @@ final class SimulationTests: XCTestCase {
     func testMonthlyIncomeArrivesOnFirstOfMonth() {
         let sim = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate)
         let tur = sim.world.countries.id(forTag: "TUR")!.index
+        sim.world.humanCountries = [CountryID(tur)]
         let before = sim.world.countries.treasury[tur]
 
         sim.advance(days: 1) // 31 May: no income yet

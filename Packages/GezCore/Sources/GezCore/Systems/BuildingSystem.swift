@@ -1,8 +1,22 @@
 /// Ordering, building and paying for buildings; and a simple AI that builds
 /// for computer-run countries.
 public enum BuildingSystem {
-    /// Yearly upkeep per level, as a share of the level-1 cost.
-    public static let upkeepShare = 0.05
+    /// Yearly upkeep per level paid by the state, as a share of the level-1
+    /// cost. Workshops, farms and mines are run by their owners (no upkeep);
+    /// the first fort level is a local lord's castle (free).
+    public static func upkeepShare(_ category: BuildingCategory) -> Double {
+        switch category {
+        case .production: return 0
+        case .trade, .religion: return 0.02
+        case .military: return 0.01
+        }
+    }
+
+    /// Ducats a year the owner pays for this many levels of a building.
+    public static func yearlyUpkeep(_ type: BuildingType, levels: Int) -> Double {
+        let paid = type.effect == .fort ? max(0, levels - 1) : levels
+        return Double(paid) * type.cost * upkeepShare(type.category)
+    }
 
     public enum Refusal: Equatable, Sendable {
         case notOwner, maxLevel, noSlots, alreadyBuilding, needsCoast, wrongGood, wrongTerrain, wrongReligion, cannotAfford
@@ -22,9 +36,11 @@ public enum BuildingSystem {
         }
     }
 
-    /// Building slots: 2 + development, +1 on the coast.
+    /// Building slots: 4 + 2 × development, +2 on the coast, +2 in a market town.
     public static func slots(_ world: World, _ p: ProvinceID) -> Int {
-        2 + world.provinces.development[p.index] + (world.provinces.isCoastal[p.index] ? 1 : 0)
+        let isMarketTown = world.economy.markets.centre.contains(p)
+        return 4 + 2 * world.provinces.development[p.index]
+            + (world.provinces.isCoastal[p.index] ? 2 : 0) + (isMarketTown ? 2 : 0)
     }
 
     /// The level the next construction would reach.
@@ -106,7 +122,7 @@ public enum BuildingSystem {
             for t in 0..<T {
                 let l = eco.buildings.level[p * T + t]
                 if l > 0 {
-                    upkeep[owner.index] += Double(l) * eco.buildingTypes[t].cost * upkeepShare / 12
+                    upkeep[owner.index] += yearlyUpkeep(eco.buildingTypes[t], levels: l) / 12
                 }
             }
         }
@@ -155,7 +171,8 @@ public enum BuildingSystem {
     public static func yearlyGain(_ world: World, _ p: ProvinceID, _ t: BuildingTypeID) -> Double {
         let eco = world.economy
         let type = eco.buildingTypes[t.index]
-        let upkeep = type.cost * upkeepShare
+        let current = eco.buildings.level(p, t)
+        let upkeep = yearlyUpkeep(type, levels: current + 1) - yearlyUpkeep(type, levels: current)
         let prov = world.provinces
         let range = eco.producers.range(for: p)
         func producerValue(_ match: (Int) -> Bool) -> Double {
