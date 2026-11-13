@@ -61,6 +61,14 @@ final class GameModel {
     /// Market whose prices are shown, if any.
     var openMarket: MarketID?
     var showBudget = false
+    var showTrade = false
+    /// Map positions of market towns, for drawing trade routes.
+    private(set) var marketCentrePoints: [CGPoint] = []
+    /// A route being planned in the trade window.
+    var draftGood: GoodID?
+    var draftFrom: MarketID?
+    var draftTo: MarketID?
+    var draftVolume: Double = 25
     private(set) var seaLabels: [MapLabel] = []
     private(set) var selectionOverlay: (image: CGImage, box: CGRect)?
     private(set) var countryLabels: [MapLabel] = []
@@ -187,6 +195,47 @@ final class GameModel {
         revision &+= 1
     }
 
+    // MARK: Trade actions (player only)
+
+    @discardableResult
+    func createRoute() -> TradeSystem.Refusal? {
+        guard let p = playerCountry, let g = draftGood, let a = draftFrom, let b = draftTo else { return .noPath }
+        let r = TradeSystem.create(&simulation.world, owner: p, good: g, from: a, to: b, volume: draftVolume)
+        revision &+= 1
+        return r
+    }
+
+    func cancelRoute(_ index: Int) {
+        TradeSystem.cancel(&simulation.world, route: index)
+        revision &+= 1
+    }
+
+    func setTollPolicy(_ policy: TollPolicy) {
+        guard let p = playerCountry else { return }
+        simulation.world.countries.tollPolicy[p.index] = policy
+        TradeSystem.refreshPaths(&simulation.world)
+        revision &+= 1
+    }
+
+    func toggleEmbargo(_ c: CountryID) {
+        guard let p = playerCountry, c != p else { return }
+        if simulation.world.countries.embargoes[p.index].contains(c) {
+            simulation.world.countries.embargoes[p.index].remove(c)
+        } else {
+            simulation.world.countries.embargoes[p.index].insert(c)
+        }
+        TradeSystem.refreshPaths(&simulation.world)
+        revision &+= 1
+    }
+
+    /// Opens the trade window with a route into this market planned.
+    func planImport(_ good: GoodID, into market: MarketID) {
+        draftGood = good
+        draftTo = market
+        draftFrom = nil
+        showTrade = true
+    }
+
     func select(province: ProvinceID?, keepSea: Bool = false) {
         if !keepSea && selectedSea != nil {
             selectedSea = nil
@@ -258,6 +307,7 @@ final class GameModel {
             ))
         }
         // Big towns last so they draw on top.
+        marketCentrePoints = world.economy.markets.centre.map { icons[$0.index].position }
         townIcons = icons.sorted { $0.development < $1.development }
     }
 

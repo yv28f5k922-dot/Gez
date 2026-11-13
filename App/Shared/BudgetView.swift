@@ -71,6 +71,8 @@ struct BudgetPanel: View {
                 line("Tax on \(tc.socialClass.displayName.lowercased())", money(tax[tc.rawValue]))
             }
             if debasing > 0 { line("Debased coin", money(debasing)) }
+            line("Merchants", String(format: "%+.1f", w.countries.lastTrade[c.index]))
+            line("Tolls", money(w.countries.lastTolls[c.index]))
             line("Building upkeep", "−" + money(w.countries.lastUpkeep[c.index]))
             line("Interest", "−" + money(w.countries.lastInterest[c.index]))
             line("Balance", String(format: "%+.1f / month", income - spend), bold: true)

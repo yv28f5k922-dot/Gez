@@ -72,6 +72,10 @@ public struct Economy: Sendable {
     public var marketLinks: [(MarketID, MarketID)] = []
     /// Whether each link (same order as `marketLinks`) goes by sea.
     public var marketLinkIsSea: [Bool] = []
+    /// Neighbours of each market with whether the step is by sea (from the links).
+    public var marketAdjacency: [[(MarketID, Bool)]] = []
+    /// Link index for a pair of markets, `[a * marketCount + b]`, -1 if none.
+    public var linkLookup: [Int] = []
     /// Trade routes run by countries' merchants.
     public var routes: [TradeRoute] = []
     public var buildingTypes: [BuildingType] = []
@@ -189,6 +193,15 @@ extension World {
         let sorted = links.sorted()
         economy.marketLinks = sorted.map { (MarketID($0 / mc), MarketID($0 % mc)) }
         economy.marketLinkIsSea = sorted.map { seaLinks.contains($0) }
+        economy.marketAdjacency = Array(repeating: [], count: mc)
+        economy.linkLookup = Array(repeating: -1, count: mc * mc)
+        for (k, link) in economy.marketLinks.enumerated() {
+            let sea = economy.marketLinkIsSea[k]
+            economy.marketAdjacency[link.0.index].append((link.1, sea))
+            economy.marketAdjacency[link.1.index].append((link.0, sea))
+            economy.linkLookup[link.0.index * mc + link.1.index] = k
+            economy.linkLookup[link.1.index * mc + link.0.index] = k
+        }
     }
 }
 

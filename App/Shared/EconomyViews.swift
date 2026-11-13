@@ -168,7 +168,13 @@ struct MarketPanel: View {
             RoundedRectangle(cornerRadius: 2)
                 .fill(Palette.color(eco.goods.color[g.index]))
                 .frame(width: 10, height: 10)
-            Text(eco.goods.name[g.index]).lineLimit(1)
+            Button {
+                model.planImport(g, into: market)
+            } label: {
+                Text(eco.goods.name[g.index]).lineLimit(1)
+            }
+            .buttonStyle(.plain)
+            .help("Plan a route bringing this here")
             Spacer()
             Text(String(format: "%.1f", price))
             Text(ratio >= 1.15 ? "▲" : (ratio <= 0.87 ? "▼" : "·"))

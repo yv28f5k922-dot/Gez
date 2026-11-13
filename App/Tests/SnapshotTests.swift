@@ -163,6 +163,17 @@ final class SnapshotTests: XCTestCase {
         save(try XCTUnwrap(renderer.cgImage), "budget.png")
     }
 
+    func testTradePanel() throws {
+        let model = GameModel(useMetal: false)
+        let eco = model.world.economy
+        model.draftGood = eco.goods.id(forKey: "raw_silk")
+        model.draftFrom = eco.markets.id(named: "Tabriz")
+        model.draftTo = eco.markets.id(named: "Constantinople")
+        let renderer = ImageRenderer(content: TradePanel(scrolls: false).environment(model))
+        renderer.scale = 1
+        save(try XCTUnwrap(renderer.cgImage), "trade.png")
+    }
+
     func testMainScreen() async throws {
         let model = GameModel()
         if let metal = model.metal {

@@ -62,6 +62,9 @@ struct MapCanvasView: View {
                 }
 
                 if z > 0 {
+                    if model.mapMode == .markets {
+                        MapRoutesLayer(zoom: z, offset: o)
+                    }
                     MapIconsLayer(zoom: z, offset: o)
                     MapLabelsLayer(zoom: z, offset: o, viewSize: geo.size)
                 }
@@ -358,6 +361,68 @@ extension MapPalette {
 
 /// Towns, capitals, forts and ports drawn at each province's main town.
 /// Sizes stay readable at any zoom; small towns appear as you zoom in.
+/// Trade routes as lines between market towns (Markets map mode). Line
+/// width shows how much value moves along each link; the player's routes
+/// are drawn in gold on top.
+private struct MapRoutesLayer: View {
+    @Environment(GameModel.self) private var model
+    let zoom: CGFloat
+    let offset: CGPoint
+
+    var body: some View {
+        let _ = model.revision
+        let world = model.world
+        let eco = world.economy
+        let centres = model.marketCentrePoints
+        Canvas { context, size in
+            func pt(_ m: MarketID) -> CGPoint {
+                let p = centres[m.index]
+                return CGPoint(x: offset.x + p.x * zoom, y: offset.y + p.y * zoom)
+            }
+            func curve(_ a: CGPoint, _ b: CGPoint) -> Path {
+                var path = Path()
+                path.move(to: a)
+                let mid = CGPoint(x: (a.x + b.x) / 2, y: (a.y + b.y) / 2)
+                let dx = b.x - a.x, dy = b.y - a.y
+                path.addQuadCurve(to: b, control: CGPoint(x: mid.x - dy * 0.12, y: mid.y + dx * 0.12))
+                return path
+            }
+            var load: [Int: Double] = [:]
+            var mine: Set<Int> = []
+            let mc = eco.markets.count
+            for r in eco.routes where r.path.count > 1 {
+                let value = r.moved * 12 * eco.goods.basePrice[r.good.index]
+                for k in 1..<r.path.count {
+                    let a = r.path[k - 1].index, b = r.path[k].index
+                    let key = min(a, b) * mc + max(a, b)
+                    load[key, default: 0] += value
+                    if r.owner == model.playerCountry { mine.insert(key) }
+                }
+            }
+            for (key, value) in load.sorted(by: { $0.key < $1.key }) {
+                let a = pt(MarketID(key / mc)), b = pt(MarketID(key % mc))
+                let width = min(7, 1 + CGFloat(value).squareRoot() / 6) * min(1.4, max(0.7, zoom))
+                let path = curve(a, b)
+                context.stroke(path, with: .color(Color(red: 0.16, green: 0.12, blue: 0.08).opacity(0.75)),
+                               style: StrokeStyle(lineWidth: width + 2, lineCap: .round))
+                context.stroke(path, with: .color(mine.contains(key) ? Color(red: 0.96, green: 0.78, blue: 0.2)
+                                                                      : Color(red: 0.93, green: 0.88, blue: 0.76)),
+                               style: StrokeStyle(lineWidth: width, lineCap: .round, dash: [width * 2.5, width * 1.2]))
+            }
+            for m in eco.markets.ids {
+                let p = pt(m)
+                let dot = Path(ellipseIn: CGRect(x: p.x - 5, y: p.y - 5, width: 10, height: 10))
+                context.fill(dot, with: .color(Color(red: 0.96, green: 0.78, blue: 0.2)))
+                context.stroke(dot, with: .color(.black.opacity(0.7)), lineWidth: 1.2)
+                context.draw(Text(eco.markets.name[m.index]).font(.system(size: 11, weight: .bold, design: .serif))
+                                .foregroundColor(Color(red: 0.16, green: 0.12, blue: 0.08)),
+                             at: CGPoint(x: p.x, y: p.y + 14))
+            }
+        }
+        .allowsHitTesting(false)
+    }
+}
+
 private struct MapIconsLayer: View {
     @Environment(GameModel.self) private var model
     let zoom: CGFloat

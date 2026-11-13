@@ -75,17 +75,6 @@ public enum TradeModel {
 }
 
 extension World {
-    /// Markets next to each market, with whether the link is by sea.
-    func marketNeighbours() -> [[(MarketID, Bool)]] {
-        var out = Array(repeating: [(MarketID, Bool)](), count: economy.markets.count)
-        for (k, link) in economy.marketLinks.enumerated() {
-            let sea = k < economy.marketLinkIsSea.count && economy.marketLinkIsSea[k]
-            out[link.0.index].append((link.1, sea))
-            out[link.1.index].append((link.0, sea))
-        }
-        return out
-    }
-
     /// The country owning a market's centre.
     public func marketOwner(_ m: MarketID) -> CountryID? {
         provinces.owner[economy.markets.centre[m.index].index]
@@ -104,18 +93,33 @@ extension World {
     public func tradePath(for trader: CountryID, from: MarketID, to: MarketID) -> [MarketID]? {
         guard canTrade(trader, in: from), canTrade(trader, in: to) else { return nil }
         if from == to { return [from] }
+        let prev = tradeTree(for: trader, from: to, stopAt: from)
+        guard prev[from.index] >= 0 else { return nil }
+        // The tree grows from `to`, so walking back from `from` gives the path in order.
+        var path = [from.index]
+        while path.last! != to.index { path.append(prev[path.last!]) }
+        return path.map(MarketID.init)
+    }
+
+    /// Cheapest paths from one market to every other (Dijkstra). Returns,
+    /// for each market, the next market back toward `root` (-1 = unreachable).
+    /// Markets closed to the trader can be ends of a path but not passed through.
+    public func tradeTree(for trader: CountryID, from root: MarketID, stopAt: MarketID? = nil) -> [Int] {
         let n = economy.markets.count
-        let neighbours = marketNeighbours()
+        var open = Array(repeating: true, count: n)
+        for m in 0..<n { open[m] = canTrade(trader, in: MarketID(m)) }
         var dist = Array(repeating: Double.infinity, count: n)
         var prev = Array(repeating: -1, count: n)
         var heap = MinHeap()
-        dist[from.index] = 0
-        heap.push(0, from.index, 0)
+        dist[root.index] = 0
+        prev[root.index] = root.index
+        heap.push(0, root.index, 0)
         while let (d, u, _) = heap.pop() {
             if d > dist[u] { continue }
-            if u == to.index { break }
-            for (v, sea) in neighbours[u] {
-                guard v == to || canTrade(trader, in: v) else { continue }
+            if let s = stopAt, u == s.index { break }
+            // Only the root may be left by a trader barred from passing through.
+            if u != root.index && !open[u] { continue }
+            for (v, sea) in economy.marketAdjacency[u] {
                 let nd = d + (sea ? 0.6 : 1.0)
                 if nd < dist[v.index] {
                     dist[v.index] = nd
@@ -124,18 +128,12 @@ extension World {
                 }
             }
         }
-        guard dist[to.index].isFinite else { return nil }
-        var path = [to.index]
-        while path.last! != from.index { path.append(prev[path.last!]) }
-        return path.reversed().map(MarketID.init)
+        return prev
     }
 
     func isSeaStep(_ a: MarketID, _ b: MarketID) -> Bool {
-        for (k, link) in economy.marketLinks.enumerated()
-        where (link.0 == a && link.1 == b) || (link.0 == b && link.1 == a) {
-            return k < economy.marketLinkIsSea.count && economy.marketLinkIsSea[k]
-        }
-        return false
+        let k = economy.linkLookup.isEmpty ? -1 : economy.linkLookup[a.index * economy.markets.count + b.index]
+        return k >= 0 && economy.marketLinkIsSea[k]
     }
 
     /// How much trade a country's merchants can run.
@@ -163,9 +161,10 @@ extension World {
 
     /// Expected yearly profit of a route at today's prices (before link
     /// congestion), with its path; nil if there is no way.
-    public func routeEstimate(owner: CountryID, good: GoodID, from: MarketID, to: MarketID, volume: Double)
+    public func routeEstimate(owner: CountryID, good: GoodID, from: MarketID, to: MarketID, volume: Double,
+                              knownPath: [MarketID]? = nil)
         -> (profit: Double, path: [MarketID], capacity: Double)? {
-        guard from != to, let path = tradePath(for: owner, from: from, to: to) else { return nil }
+        guard from != to, let path = knownPath ?? tradePath(for: owner, from: from, to: to) else { return nil }
         let mk = economy.markets
         let buy = mk.price(from, good), sell = mk.price(to, good)
         var costShare = 0.0
@@ -256,12 +255,7 @@ public enum TradeSystem {
         let eco = world.economy
         let G = eco.goods.count
         guard !eco.routes.isEmpty else { return [] }
-        var linkIndex: [Int: Int] = [:]
         let mc = eco.markets.count
-        for (k, link) in eco.marketLinks.enumerated() {
-            linkIndex[link.0.index * mc + link.1.index] = k
-            linkIndex[link.1.index * mc + link.0.index] = k
-        }
         let capacity = linkCapacities(world)
         var load = Array(repeating: 0.0, count: eco.marketLinks.count)
         var routeLinks: [[Int]] = []
@@ -269,7 +263,8 @@ public enum TradeSystem {
             var links: [Int] = []
             if r.path.count > 1 {
                 for k in 1..<r.path.count {
-                    if let l = linkIndex[r.path[k - 1].index * mc + r.path[k].index] { links.append(l) }
+                    let l = eco.linkLookup[r.path[k - 1].index * mc + r.path[k].index]
+                    if l >= 0 { links.append(l) }
                 }
             }
             routeLinks.append(links)
@@ -335,7 +330,18 @@ public enum TradeSystem {
         for c in world.countries.ids where c.index % 12 == month % 12 && !world.humanCountries.contains(c) {
             guard let capital = world.countries.capital[c.index], let home = world.market(of: capital) else { continue }
             let free = world.tradeCapacity(c) - world.tradeCapacityUsed(c)
-            guard free > 10 else { continue }
+            guard free > 10, world.canTrade(c, in: home) else { continue }
+            let tree = world.tradeTree(for: c, from: home)
+            func path(from src: MarketID) -> [MarketID]? {
+                guard tree[src.index] >= 0, world.canTrade(c, in: src) else { return nil }
+                var p = [src.index]
+                while p.last! != home.index && p.count <= 6 { p.append(tree[p.last!]) }
+                return p.last! == home.index ? p.map(MarketID.init) : nil
+            }
+            var paths: [Int: [MarketID]] = [:]
+            for m in eco.markets.ids where m != home {
+                if let p = path(from: m), p.count <= 5 { paths[m.index] = p }
+            }
             var best: (profit: Double, good: GoodID, from: MarketID, volume: Double)?
             for g in eco.goods.ids {
                 let i = home.index * G + g.index
@@ -343,11 +349,12 @@ public enum TradeSystem {
                 let shortYearly = (eco.markets.demand[i] - eco.markets.supply[i]) * 12
                 let volume = min(25, max(5, shortYearly * 0.5))
                 for src in eco.markets.ids where src != home {
+                    guard let known = paths[src.index] else { continue }
                     let s = src.index * G + g.index
                     guard eco.markets.supply[s] > eco.markets.demand[s] * 1.1,
                           eco.markets.price[s] < eco.markets.price[i] * 0.75 else { continue }
-                    guard let est = world.routeEstimate(owner: c, good: g, from: src, to: home, volume: volume),
-                          est.path.count <= 5, est.capacity <= free, est.profit > 0 else { continue }
+                    guard let est = world.routeEstimate(owner: c, good: g, from: src, to: home, volume: volume, knownPath: known),
+                          est.capacity <= free, est.profit > 0 else { continue }
                     if best == nil || est.profit > best!.profit {
                         best = (est.profit, g, src, volume)
                     }

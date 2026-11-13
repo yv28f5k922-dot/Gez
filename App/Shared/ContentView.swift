@@ -23,6 +23,8 @@ struct ContentView: View {
             .overlay(alignment: .topLeading) {
                 if model.showBudget {
                     BudgetPanel().padding(12)
+                } else if model.showTrade {
+                    TradePanel().padding(12)
                 }
             }
             .overlay(alignment: .bottomTrailing) {
@@ -70,6 +72,13 @@ struct TopBar: View {
                 }
                 .buttonStyle(.plain)
                 .help("Budget, taxes and loans")
+                Button {
+                    model.showTrade.toggle()
+                } label: {
+                    Label("Trade", systemImage: "shippingbox")
+                }
+                .buttonStyle(.plain)
+                .help("Trade routes, tolls and embargoes")
                 if countries.inflation[player.index] >= 0.01 {
                     Text(String(format: "Inflation %.0f%%", countries.inflation[player.index] * 100))
                         .font(.caption)
