@@ -2,7 +2,7 @@ import GezCore
 import SwiftUI
 
 enum MapMode: String, CaseIterable, Identifiable {
-    case political, states, terrain, religion, culture, development
+    case political, states, terrain, religion, culture, development, goods, markets
 
     var id: String { rawValue }
 
@@ -14,6 +14,8 @@ enum MapMode: String, CaseIterable, Identifiable {
         case .religion: return "Religion"
         case .culture: return "Culture"
         case .development: return "Development"
+        case .goods: return "Goods"
+        case .markets: return "Markets"
         }
     }
 
@@ -25,6 +27,8 @@ enum MapMode: String, CaseIterable, Identifiable {
         case .religion: return "building.columns"
         case .culture: return "person.3"
         case .development: return "chart.bar"
+        case .goods: return "shippingbox"
+        case .markets: return "scalemass"
         }
     }
 
@@ -36,6 +40,8 @@ enum MapMode: String, CaseIterable, Identifiable {
         case .religion: return "r"
         case .culture: return "t"
         case .development: return "y"
+        case .goods: return "u"
+        case .markets: return "i"
         }
     }
 }
@@ -104,6 +110,14 @@ enum MapPalette {
                 UInt8(230 - 170 * t),
                 UInt8(170 - 130 * t)
             )
+        case .goods:
+            return pack(world.economy.goods.color[world.tradeGood(of: ProvinceID(i)).index])
+        case .markets:
+            guard i < world.economy.provinceMarket.count else { return unowned }
+            let m = world.economy.provinceMarket[i].index
+            let hue = (Double(m) * 0.618_034).truncatingRemainder(dividingBy: 1)
+            let isCentre = world.economy.markets.centre[m].index == i
+            return hsl(hue, isCentre ? 0.75 : 0.5, isCentre ? 0.45 : 0.62)
         }
     }
 

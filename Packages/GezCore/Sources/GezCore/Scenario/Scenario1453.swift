@@ -7,20 +7,24 @@ import Foundation
 public enum Scenario1453 {
     public static let startDate = GameDate(year: 1453, month: 5, day: 30)
     public static let defaultPlayerTag = "TUR"
+    /// Months the market runs before the start so prices are settled.
+    public static let warmUpMonths = 12
 
     public enum LoadError: Error {
         case missingResource
         case unknownValue(String)
     }
 
-    /// Loads the bundled 1453 scenario.
+    /// Loads the bundled 1453 scenario. The file is read once; every call
+    /// returns a fresh copy of the starting world.
     public static func makeWorld() -> World {
-        do {
-            return try loadBundled()
-        } catch {
-            preconditionFailure("Could not load scenario1453.json: \(error)")
+        switch cachedStart {
+        case .success(let world): return world
+        case .failure(let error): preconditionFailure("Could not load scenario1453.json: \(error)")
         }
     }
+
+    private static let cachedStart: Result<World, Error> = Result { try loadBundled() }
 
     public static func loadBundled() throws -> World {
         guard let url = Bundle.module.url(forResource: "scenario1453", withExtension: "json") else {
@@ -28,6 +32,7 @@ public enum Scenario1453 {
         }
         var world = try load(from: Data(contentsOf: url))
         try EconomyLoader.loadBundled(into: &world)
+        MarketSystem.warmUp(&world, months: warmUpMonths)
         return world
     }
 

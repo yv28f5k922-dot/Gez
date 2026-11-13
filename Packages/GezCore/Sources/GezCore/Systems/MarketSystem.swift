@@ -125,22 +125,44 @@ public enum MarketSystem {
         }
 
         // 2. What people want, split between substitutes by what is on offer.
-        let offered = S
-        func shares(_ need: NeedGroup, _ m: Int) -> [Double] {
-            let ws = need.goods.map { max(offered[m * G + $0.index], 0) }
-            let total = ws.reduce(0, +)
-            return total > 0 ? ws.map { $0 / total } : Array(repeating: 1 / Double(ws.count), count: ws.count)
+        // People are grouped by (market, class, religion family): everyone in
+        // a group has the same needs and faces the same prices.
+        let classes = SocialClass.allCases
+        let families = ReligionFamily.allCases
+        let C = classes.count, F = families.count
+        func groupIndex(_ m: Int, _ c: SocialClass, _ f: ReligionFamily) -> Int {
+            (m * C + classes.firstIndex(of: c)!) * F + families.firstIndex(of: f)!
         }
+        var groupSize = Array(repeating: 0.0, count: M * C * F)
+        var popGroup = Array(repeating: 0, count: world.pops.count)
         for i in 0..<world.pops.count {
-            let p = world.pops.province[i].index
-            let m = eco.provinceMarket[p].index
-            let cls = world.pops.socialClass[i]
-            let family = world.pops.religion[i].family
-            let size = world.pops.size[i] / 1000
-            for need in eco.needs where need.socialClass == cls && need.applies(to: family) {
-                let amount = need.amount * size / 12
-                for (g, s) in zip(need.goods, shares(need, m)) {
-                    D[m * G + g.index] += amount * s
+            let m = eco.provinceMarket[world.pops.province[i].index].index
+            let gi = groupIndex(m, world.pops.socialClass[i], world.pops.religion[i].family)
+            popGroup[i] = gi
+            groupSize[gi] += world.pops.size[i] / 1000
+        }
+        let offered = S
+        // shareTable[m][need] = split of the need between its goods.
+        var shareTable: [[[Double]]] = []
+        shareTable.reserveCapacity(M)
+        for m in 0..<M {
+            shareTable.append(eco.needs.map { need in
+                let ws = need.goods.map { max(offered[m * G + $0.index], 0) }
+                let total = ws.reduce(0, +)
+                return total > 0 ? ws.map { $0 / total } : Array(repeating: 1 / Double(ws.count), count: ws.count)
+            })
+        }
+        for m in 0..<M {
+            for c in classes {
+                for f in families {
+                    let size = groupSize[groupIndex(m, c, f)]
+                    guard size > 0 else { continue }
+                    for (n, need) in eco.needs.enumerated() where need.socialClass == c && need.applies(to: f) {
+                        let amount = need.amount * size / 12
+                        for (g, s) in zip(need.goods, shareTable[m][n]) {
+                            D[m * G + g.index] += amount * s
+                        }
+                    }
                 }
             }
         }
@@ -192,26 +214,32 @@ public enum MarketSystem {
         markets.demand = D
         markets.met = met
 
-        // 5. Satisfaction: value-weighted share of needs met.
+        // 5. Satisfaction: value-weighted share of needs met, per group.
+        var groupSatisfaction = Array(repeating: -1.0, count: M * C * F)
+        for m in 0..<M {
+            for c in classes {
+                for f in families {
+                    let gi = groupIndex(m, c, f)
+                    guard groupSize[gi] > 0 else { continue }
+                    var got = 0.0, wanted = 0.0
+                    for (n, need) in eco.needs.enumerated() where need.socialClass == c && need.applies(to: f) {
+                        var value = 0.0, fulfil = 0.0
+                        for (g, s) in zip(need.goods, shareTable[m][n]) {
+                            value += base[g.index] * s
+                            fulfil += met[m * G + g.index] * s
+                        }
+                        got += need.amount * value * fulfil
+                        wanted += need.amount * value
+                    }
+                    if wanted > 0 { groupSatisfaction[gi] = got / wanted }
+                }
+            }
+        }
         var pops = world.pops
         for i in 0..<pops.count {
-            let p = pops.province[i].index
-            let m = eco.provinceMarket[p].index
-            let cls = pops.socialClass[i]
-            let family = pops.religion[i].family
-            var got = 0.0, wanted = 0.0
-            for need in eco.needs where need.socialClass == cls && need.applies(to: family) {
-                let sh = shares(need, m)
-                var value = 0.0, fulfil = 0.0
-                for (g, s) in zip(need.goods, sh) {
-                    value += base[g.index] * s
-                    fulfil += met[m * G + g.index] * s
-                }
-                got += need.amount * value * fulfil
-                wanted += need.amount * value
-            }
-            if wanted > 0 {
-                pops.satisfaction[i] += MarketModel.satisfactionSpeed * (got / wanted - pops.satisfaction[i])
+            let target = groupSatisfaction[popGroup[i]]
+            if target >= 0 {
+                pops.satisfaction[i] += MarketModel.satisfactionSpeed * (target - pops.satisfaction[i])
             }
         }
 

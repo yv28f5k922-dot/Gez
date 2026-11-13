@@ -58,6 +58,8 @@ final class GameModel {
     var snapshotMapImage: CGImage?
     private(set) var selectedProvince: ProvinceID?
     private(set) var selectedSea: SeaZoneID?
+    /// Market whose prices are shown, if any.
+    var openMarket: MarketID?
     private(set) var seaLabels: [MapLabel] = []
     private(set) var selectionOverlay: (image: CGImage, box: CGRect)?
     private(set) var countryLabels: [MapLabel] = []

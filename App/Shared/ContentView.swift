@@ -20,6 +20,11 @@ struct ContentView: View {
             .overlay(alignment: .topTrailing) {
                 MapModeBar().padding(12)
             }
+            .overlay(alignment: .bottomTrailing) {
+                if let market = model.openMarket {
+                    MarketPanel(market: market).padding(12)
+                }
+            }
         }
         .background(MapPalette.waterColor)
     }
@@ -186,19 +191,16 @@ struct ProvincePanel: View {
                     .foregroundStyle(Palette.ink.opacity(0.65))
             }
             Divider()
-            row("Development", "\(p.development[i])")
-            row("Base tax", String(format: "%.1f / year", p.baseTax[i]))
-            row("Production", String(format: "%.1f / year", p.production[i]))
-            row("Fort level", "\(p.fortLevel[i])")
-            row("Terrain", p.terrain[i].rawValue.capitalized)
-            row("Area", "\(p.areaKm2[i].formatted(.number.precision(.fractionLength(0)))) km²")
-            row("Coast", p.isCoastal[i] ? "Yes" : "No")
-            PeopleSection(province: province)
-            row("Neighbours", "\(p.neighbors[i].count)")
+            row("Development", "\(p.development[i]) · fort \(p.fortLevel[i])")
+            row("Land", "\(p.terrain[i].rawValue.capitalized)\(p.isCoastal[i] ? ", coast" : "") · \(p.areaKm2[i].formatted(.number.precision(.fractionLength(0)))) km²")
             let riverSides = p.neighbors[i].filter { world.isRiverBorder(province, $0) }.count
             if riverSides > 0 {
-                row("River borders", "\(riverSides)")
+                row("River borders", "\(riverSides) of \(p.neighbors[i].count) sides")
             }
+            Divider()
+            EconomySection(province: province)
+            Divider()
+            PeopleSection(province: province)
         }
         .padding(14)
         .frame(width: 300)

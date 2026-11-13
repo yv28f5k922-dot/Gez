@@ -165,6 +165,8 @@ final class MetalMapRenderer {
         case .religion: modeIndex = 3
         case .culture: modeIndex = 4
         case .development: modeIndex = 5
+        case .goods: modeIndex = 6
+        case .markets: modeIndex = 7
         }
         return MapUniformsGPU(
             viewSize: SIMD2(Float(drawableSize.width), Float(drawableSize.height)),

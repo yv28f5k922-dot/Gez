@@ -55,7 +55,7 @@ final class SnapshotTests: XCTestCase {
         if let india = crop(image, model: model, lonMin: 60, latMax: 37, lonMax: 93, latMin: 5) {
             save(india, "map_political_india.png")
         }
-        for mode in [MapMode.states, .terrain, .religion, .culture, .development] {
+        for mode in [MapMode.states, .terrain, .religion, .culture, .development, .goods, .markets] {
             let previous = image
             model.mapMode = mode
             image = try await waitForMap(model, previous: previous)
@@ -95,7 +95,7 @@ final class SnapshotTests: XCTestCase {
         let zoom: CGFloat = 1.6
         metal.camera = MapCamera(zoom: zoom, offset: CGPoint(x: 700 - CGFloat(paris.x) * zoom, y: 406 - CGFloat(paris.y) * zoom))
         save(try XCTUnwrap(metal.renderImage(width: 1400, height: 812)), "metal_europe.png")
-        for mode in [MapMode.religion, .culture, .terrain] {
+        for mode in [MapMode.religion, .culture, .terrain, .goods, .markets] {
             metal.updateStyles(world: model.world, mode: mode)
             save(try XCTUnwrap(metal.renderImage(width: 1400, height: 812)), "metal_\(mode.rawValue).png")
         }
@@ -135,6 +135,7 @@ final class SnapshotTests: XCTestCase {
             _ = try await waitForMap(model)
         }
         model.select(province: model.world.provinces.id(named: "Konstantiniyye"))
+        model.openMarket = model.world.market(of: model.world.provinces.id(named: "Konstantiniyye")!)
         let view = ContentView()
             .environment(model)
             .frame(width: 1400, height: 860)
