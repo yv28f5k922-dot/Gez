@@ -72,6 +72,8 @@ public enum TradeModel {
         volume * basePrice * Double(max(steps, 1)) / 10
     }
     public static let losingMonthsBeforeAICancels = 6
+    /// Computer countries run at most this many routes.
+    public static let maxAIRoutes = 8
 }
 
 extension World {
@@ -330,7 +332,8 @@ public enum TradeSystem {
         for c in world.countries.ids where c.index % 12 == month % 12 && !world.humanCountries.contains(c) {
             guard let capital = world.countries.capital[c.index], let home = world.market(of: capital) else { continue }
             let free = world.tradeCapacity(c) - world.tradeCapacityUsed(c)
-            guard free > 10, world.canTrade(c, in: home) else { continue }
+            guard free > 10, world.canTrade(c, in: home),
+                  world.economy.routes.filter({ $0.owner == c }).count < TradeModel.maxAIRoutes else { continue }
             let tree = world.tradeTree(for: c, from: home)
             func path(from src: MarketID) -> [MarketID]? {
                 guard tree[src.index] >= 0, world.canTrade(c, in: src) else { return nil }

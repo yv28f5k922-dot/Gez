@@ -109,6 +109,34 @@ turned into game files by `tools/mapgen/mapgen.py`.
   and others (−0.2×); falls 0.15% a month when not debasing.
 - AI repays loans when it has a reserve; never debases.
 
+### Trade (Phase 3, owner's choices)
+- **Routes are drawn by players** (trade window, or tap a good in a market's
+  price list): a good, a source market, a destination market and an amount
+  (10–100 units a year). The path through linked markets is found
+  automatically (sea steps cheaper); it avoids markets closed to you.
+- The 1453 world starts with ~50 historical routes owned by the countries
+  that ran them (`data/economy/routes_1453.txt`): Venice's spices from
+  Cairo and silk from Aleppo, the Karimi Red Sea trade, Hormuz, Calicut,
+  Gujarati cloth, the Hansa's furs, wax, grain and salt, English and
+  Castilian wool to Bruges...
+- **Earning: merchants + tolls.** The route owner buys at the source price,
+  pays transport (2% a sea step, 4% a land step) and tolls, and sells at
+  the destination. Owners of market towns passed through collect tolls
+  (normal 4%, high 10% of the goods' value).
+- **Capacity**: each country has merchant capacity (40 + 30 per market town
+  owned + market halls, ports, caravanserais, roads); a route uses
+  units × base price × steps / 10. Each market link also carries a limited
+  value a year (land 1,500, sea 3,000, raised by ports, roads, market halls
+  and the new Caravanserai); overloaded links squeeze every route on them.
+  War and pirates will cut links later.
+- **Control**: embargo a country (its merchants can't trade in or pass
+  your market towns) or close your markets to all foreigners.
+- The old neighbour exchange stays as small-scale local trade.
+- **AI**: a twelfth of computer countries each month open the most
+  profitable route into their home market (≤ 5 markets long, ≤ 8 routes);
+  routes losing money 6 months running are dropped.
+- Markets map mode draws routes (gold = yours), widths by value.
+
 ### Diplomacy & war
 - Relations, alliances, royal marriages, vassals, guarantees.
 - Claims and casus belli, war goals, war score, peace deals.

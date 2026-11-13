@@ -55,7 +55,10 @@ pops". Code in `Packages/GezCore/Sources/GezCore/Economy/` and
 (a Python copy of the monthly model; keep constants in step).
 After changing `data/economy/`, run `python3 tools/economy/econgen.py`.
 
-Not started: trade routes, armies, diplomacy, war, sieges,
+Trade routes (Phase 3, session 4): see DESIGN.md "Trade";
+`Economy/Trade.swift`, `TradeView.swift`.
+
+Not started: characters, armies, diplomacy, war, sieges,
 battles, estates, government, AI, save/load, sound, menus, settings.
 
 ## How to work on it
@@ -137,11 +140,9 @@ docs/              DESIGN, HISTORY_NOTES, HANDOFF (this), CREDITS, previews
 ## What to do next
 
 **Follow `docs/ROADMAP.md`.** The owner chose every feature and the build
-order in session 2. **Phases 1 (session 3) and 2 (session 4) are done. Next: Phase 3, trade
-routes** (ask the owner first). It replaces the simple neighbour exchange
-in `MarketSystem` (step 3): merchants moving goods between markets along
-land and sea routes, route control earning money. Known gap it should fix:
-spices and silk don't reach Venice/Bruges yet.
+order in session 2. **Phases 1–3 are done (sessions 3–4). Next: Phase 4, characters and
+dynasties (CK-style, real people of 1453)** — ask the owner first, and
+record uncertain facts in HISTORY_NOTES.md.
 
 CI note: GitHub's arm64 Mac runners are sometimes unavailable for hours.
 Simulation tests also run on Linux (`swift:6.0` container) and the app

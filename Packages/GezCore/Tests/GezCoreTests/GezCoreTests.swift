@@ -443,11 +443,17 @@ final class SimulationTests: XCTestCase {
         XCTAssertEqual(a.world.provinces.population, b.world.provinces.population)
     }
 
-    func testTenYearsRunsQuickly() {
+    func testTenYearsStaysBounded() {
         let sim = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate)
-        measure {
-            sim.advance(days: 3650)
-        }
+        let routes = sim.world.economy.routes.count
+        sim.advance(days: 3650)
+        let w = sim.world
+        XCTAssertLessThanOrEqual(w.economy.routes.count, routes + w.countries.count * TradeModel.maxAIRoutes)
+        XCTAssertLessThan(w.economy.buildings.constructions.count, w.countries.count * 2)
+        for c in w.countries.ids { XCTAssertTrue(w.countries.treasury[c.index].isFinite) }
+        for p in w.economy.markets.price { XCTAssertTrue(p.isFinite && p > 0) }
+        let peasants = w.satisfaction(of: .peasants, in: w.provinces.ids)!
+        XCTAssertGreaterThan(peasants, 0.4)
     }
 }
 

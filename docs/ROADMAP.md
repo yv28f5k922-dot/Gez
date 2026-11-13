@@ -94,7 +94,9 @@ once and ongoing, tax sliders by class).
    docks, roads, forts, barracks); each changes production or capacity.
 5. **Budget screen**: income, expenses, loans.
 
-### Phase 3: Trade routes
+### Phase 3: Trade routes ✅ (session 4)
+Owner's choices: player-drawn routes (plus the historical 1453 routes),
+merchants + tolls, capacity per route/link, embargoes and closed markets.
 Merchants move goods between markets along land and sea routes (Silk Road,
 spice route through the Red Sea and the Gulf, Hanseatic Baltic,
 Mediterranean). Control of routes earns money. Needs sea zones (Phase 1).
