@@ -97,7 +97,7 @@ turned into game files by `tools/mapgen/mapgen.py`.
 |---|---|---|
 | Simulation (`Packages/GezCore`) | Pure Swift | No Apple-only frameworks. Fully unit-tested. Portable. |
 | App shell | SwiftUI | Menus, panels, top bar, input. One codebase for Mac and iPad. |
-| Map renderer | Metal | Province-ID texture + one shader for all map modes. |
+| Map renderer | Metal | Province-ID texture + baked terrain texture + one shader for all map modes (CPU fallback kept). |
 | Battle view | Metal or SpriteKit | Instanced 2D sprites for thousands of soldiers. |
 
 Principles:
@@ -108,10 +108,20 @@ Principles:
 
 ## Art direction
 
-"Parchment map and tabletop pieces": a painted-parchment map, clean UI,
-procedurally generated flags, and stylized unit blocks in battles. All of this
-is built in code. Portraits, event pictures and detailed sprites can be added
-later from asset packs, an artist, or an AI image pipeline.
+The owner found the first flat-colour look ugly, so looks are a priority.
+
+- **Map (now):** Metal renderer over a baked terrain picture made from real
+  elevation (hill shading, biomes, rock and snow, sea depth, rivers).
+  Country colours are a tint over the terrain, with soft coloured bands at
+  country borders, animated water and a light paper grain.
+- **Map (later):** the same shading on a 3D terrain mesh with a camera
+  that tilts as you zoom in, then 3D cities, forts and armies.
+- **Interface (next):** period fonts, parchment panels with frames, icons,
+  coats of arms, curved country names.
+- **Battles:** fight or auto-resolve. 2D sprites or 3D models (free CC0
+  medieval models exist); to be decided with the owner.
+- Art can come from code, free asset packs, an artist, or an AI image
+  pipeline (Gemini via a GitHub secret); see `docs/HANDOFF.md`.
 
 ## Milestones
 

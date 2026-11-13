@@ -3,7 +3,10 @@
 The owner does not write code; Claude writes everything. Explain changes in
 plain language, not jargon.
 
-- Read `docs/DESIGN.md` first. Keep it up to date when design decisions change.
+**Start with `docs/HANDOFF.md`**: current state, the owner's wishes, how to
+build and verify from the cloud workspace, and what to do next.
+
+- Read `docs/DESIGN.md` next. Keep it up to date when design decisions change.
 - `Packages/GezCore` must stay pure Swift: never import SwiftUI, Metal, UIKit,
   AppKit, or Combine there.
 - All simulation randomness goes through `GameRandom` (deterministic).
@@ -21,3 +24,8 @@ plain language, not jargon.
 - To see the app without a Mac: CI's snapshot job renders the map and main
   screen and force-pushes the PNGs to the `ci-snapshots` branch
   (`git clone -b ci-snapshots ...`). Artifact downloads are blocked here.
+- Terrain look: `tools/terrain/bake_terrain.py` makes `App/Resources/Terrain/terrain.jpg`
+  from `data/terrain/elevation.png` (fetched by the "Fetch elevation" CI job,
+  because the workspace has no internet). The Metal shader is
+  `App/Shared/Map/Metal/MapShaders.metal`.
+- Credit external data in `docs/CREDITS.md`.

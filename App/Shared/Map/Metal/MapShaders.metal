@@ -129,15 +129,18 @@ fragment float4 map_fragment(VertexOut in [[stage_in]],
             }
         }
         bool showOwners = (u.mode == 0) && s.owner >= 0;
+        float3 edgeColor = float3(0.12, 0.10, 0.08);
         if (showOwners) {
-            // Coloured band just inside the country edge, dark line at the edge.
-            float3 band = s.color.rgb * 0.75;
-            color = mix(color, band, smoothstep(0.1, 0.7, countryEdge) * 0.45);
+            // Coloured band just inside the country edge, and the edge line
+            // itself in a deep shade of the country's own colour.
+            float3 band = s.color.rgb * (0.55 + 0.5 * luminance(base));
+            color = mix(color, band, smoothstep(0.1, 0.7, countryEdge) * 0.5);
+            edgeColor = s.color.rgb * 0.35;
         }
-        color = mix(color, float3(0.10, 0.08, 0.06), step(0.99, countryEdge) * 0.85);
-        color = mix(color, color * 0.55, stateEdge * 0.8);
-        float provinceAlpha = clamp((u.zoom - 0.25) * 1.2, 0.0, 0.6);
-        color = mix(color, color * 0.72, provinceEdge * provinceAlpha);
+        color = mix(color, edgeColor, step(0.99, countryEdge) * 0.8);
+        color = mix(color, color * 0.62, stateEdge * 0.7);
+        float provinceAlpha = clamp((u.zoom - 0.25) * 1.0, 0.0, 0.4);
+        color = mix(color, color * 0.75, provinceEdge * provinceAlpha);
 
         if (id == u.selected && u.selected != 0) {
             float pulse = 0.5 + 0.5 * sin(u.time * 3.0);

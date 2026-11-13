@@ -134,7 +134,9 @@ final class MetalMapRenderer {
         let s = Float(contentScale)
         let tint: Float
         switch mode {
-        case .political: tint = Float(min(max(0.78 - 0.12 * camera.zoom, 0.5), 0.72))
+        // Strong colours zoomed out (to read countries), lighter zoomed in
+        // (to see the terrain).
+        case .political: tint = Float(min(max(0.72 - 0.2 * camera.zoom, 0.38), 0.66))
         case .terrain: tint = 0
         default: tint = 0.8
         }
