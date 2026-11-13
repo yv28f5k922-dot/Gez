@@ -180,7 +180,7 @@ final class ScenarioTests: XCTestCase {
         let paris = world.provinces.id(named: "Paris")!.index
         let lapland = world.provinces.id(named: "Lapland")!.index
         XCTAssertGreaterThan(world.provinces.population[paris], world.provinces.population[lapland] * 10)
-        XCTAssertNil(world.provinces.owner[lapland])
+        XCTAssertEqual(world.provinces.owner[lapland], world.countries.id(forTag: "SMI"))
         XCTAssertGreaterThanOrEqual(world.provinces.fortLevel[world.provinces.id(named: "Konstantiniyye")!.index], 4)
     }
 }
