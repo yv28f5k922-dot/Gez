@@ -26,7 +26,9 @@ public enum Scenario1453 {
         guard let url = Bundle.module.url(forResource: "scenario1453", withExtension: "json") else {
             throw LoadError.missingResource
         }
-        return try load(from: Data(contentsOf: url))
+        var world = try load(from: Data(contentsOf: url))
+        try EconomyLoader.loadBundled(into: &world)
+        return world
     }
 
     public static func load(from data: Data) throws -> World {

@@ -217,6 +217,8 @@ public struct World: Sendable {
     /// Neighbouring provinces whose shared border is mostly a river.
     /// Crossing these is slower and gives the defender an edge in battle.
     public var riverBorders: Set<ProvincePair> = []
+    /// Goods, markets, producers and prices.
+    public var economy = Economy()
 
     public init(map: MapInfo = MapInfo(width: 1, height: 1, pixelsPerDegree: 1, longitudeMin: 0, latitudeMax: 0)) {
         self.map = map

@@ -459,3 +459,73 @@ final class RandomTests: XCTestCase {
         }
     }
 }
+
+final class EconomyTests: XCTestCase {
+    func testEconomyLoads() {
+        let world = Scenario1453.makeWorld()
+        let eco = world.economy
+        XCTAssertEqual(eco.goods.count, 62)
+        XCTAssertEqual(eco.markets.count, 42)
+        XCTAssertEqual(eco.provinceMarket.count, world.provinces.count)
+        XCTAssertFalse(eco.marketLinks.isEmpty)
+        for p in world.provinces.ids {
+            let r = eco.producers.range(for: p)
+            XCTAssertFalse(r.isEmpty, world.provinces.name[p.index])
+            XCTAssertTrue(eco.producers.isStaple[r.lowerBound])
+            XCTAssertEqual(eco.producers.kind[r.lowerBound], .raw)
+        }
+        for k in 0..<eco.producers.count where eco.producers.kind[k] == .craft {
+            XCTAssertEqual(eco.recipes[eco.producers.recipe[k]].output, eco.producers.good[k])
+        }
+    }
+
+    func testMarketCentresBelongToTheirOwnMarket() {
+        let world = Scenario1453.makeWorld()
+        let eco = world.economy
+        for m in eco.markets.ids {
+            XCTAssertEqual(eco.provinceMarket[eco.markets.centre[m.index].index], m, eco.markets.name[m.index])
+        }
+        func market(of province: String) -> String {
+            eco.markets.name[eco.provinceMarket[world.provinces.id(named: province)!.index].index]
+        }
+        XCTAssertEqual(market(of: "Konstantiniyye"), "Constantinople")
+        XCTAssertEqual(market(of: "Calicut"), "Calicut")
+        XCTAssertEqual(market(of: "Padua"), "Venice")
+    }
+
+    func testScarceGoodsGetDearer() {
+        var world = Scenario1453.makeWorld()
+        let eco = world.economy
+        let london = eco.markets.id(named: "London")!
+        let spices = eco.goods.id(forKey: "fine_spices")!
+        let base = eco.goods.basePrice[spices.index]
+        for _ in 0..<6 { MarketSystem.runMonthly(&world) }
+        let i = world.economy.markets.slot(london, spices)
+        XCTAssertGreaterThan(world.economy.markets.demand[i], 0)
+        XCTAssertGreaterThan(world.economy.markets.price[i], base)
+    }
+
+    func testSatisfactionStaysInRangeAndPeasantsAreMostlyFed() {
+        var world = Scenario1453.makeWorld()
+        for _ in 0..<12 { MarketSystem.runMonthly(&world) }
+        var sum = 0.0, weight = 0.0
+        for i in 0..<world.pops.count {
+            let s = world.pops.satisfaction[i]
+            XCTAssertTrue((0...1).contains(s))
+            if world.pops.socialClass[i] == .peasants {
+                sum += s * world.pops.size[i]
+                weight += world.pops.size[i]
+            }
+        }
+        XCTAssertGreaterThan(sum / weight, 0.6)
+        for p in world.economy.markets.price { XCTAssertTrue(p.isFinite && p > 0) }
+    }
+
+    func testOttomanIncomeIsSensible() {
+        var world = Scenario1453.makeWorld()
+        for _ in 0..<3 { MarketSystem.runMonthly(&world) }
+        let tur = world.countries.id(forTag: "TUR")!.index
+        XCTAssertGreaterThan(world.countries.lastMonthlyIncome[tur], 5)
+        XCTAssertLessThan(world.countries.lastMonthlyIncome[tur], 80)
+    }
+}

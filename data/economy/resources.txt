@@ -1,0 +1,277 @@
+# What the land produces. Each province gets:
+#   a staple food (grain, rice or millet) grown by most peasants,
+#   one trade good picked from the most specific matching rule below,
+#   and fish if it is on the coast.
+# Rule: scope [@terrain] | good weight, good weight...
+# Scope is a province, state or region name, or "*" for everywhere.
+# The most specific scope wins (province > state > region > *);
+# at the same level a rule with a matching @terrain beats one without.
+# Picks are deterministic (by province name), weighted.
+
+## By-products: producing one good also yields another (per unit)
+byproduct livestock | hides 0.05
+byproduct camels | hides 0.05
+
+## Staple food
+staple * | grain
+staple Bengal | rice
+staple Northeast | rice
+staple Orissa | rice
+staple Andhra Coast | rice
+staple Chola Country | rice
+staple Pandya Country | rice
+staple Malabar | rice
+staple Konkan and Kanara | rice
+staple Lanka | rice
+staple Kashmir | rice
+staple Gilan and Mazandaran | rice
+staple Rajputana | millet
+staple Deccan | millet
+staple Rayalaseema | millet
+staple Mysore | millet
+staple Kongu | millet
+staple Gujarat | millet
+staple Central India | millet
+staple Nubia | millet
+staple Horn of Africa | millet
+staple Hadramawt | millet
+
+## Defaults by terrain
+* @farmland  | livestock 3, wool 2, flax 1, hides 1
+* @plains    | livestock 3, horses 1, hides 2, wool 1
+* @hills     | wool 3, wood 1, stone 1, iron 1, livestock 1
+* @mountains | iron 2, stone 2, wool 2, copper 1
+* @forest    | wood 4, furs 1, wax 1, tar 1
+* @marsh     | hides 2, wood 1, fish 2
+* @desert    | camels 2, dates 2, salt 1
+* @steppe    | horses 4, livestock 2, hides 2
+
+## Europe
+Iberia @farmland | wine 3, olives 3, wool 2
+Iberia @hills | wool 4, olives 2, wine 2
+Iberia @plains | wool 3, livestock 2
+Old Castile | wool 5, grain 1
+Leon and Asturias | wool 3, iron 1
+Basque Country | iron 4, naval_supplies 0, wood 2, fish 1
+Andalusia | olives 4, wine 2, wool 1
+Granada | silk_cloth 0, raw_silk 3, sugar 2, fruit 2
+Valencia | fruit 2, sugar 2, raw_silk 1, wine 1
+Portugal | wine 3, olives 2, salt 2, fish 1
+Portuguese Atlantic | sugar 3, wood 2, dyes 1
+Canary Islands | dyes 2, livestock 1
+Balearic Islands | salt 2, olives 1
+Catalonia | wine 2, wool 2, olives 1
+France @farmland | grain 3, wine 3, livestock 1, flax 1
+France @hills | wine 3, wool 2, livestock 1
+Ile-de-France | grain 3, wine 1
+Normandy | flax 2, livestock 2, grain 1
+Brittany | salt 2, flax 2, fish 2
+Guyenne | wine 6
+Burgundy | wine 6
+Champagne | wine 3, wool 2
+Poitou | salt 3, wine 2
+Languedoc | wine 2, dyes 2, wool 2
+Provence | olives 2, wine 2, salt 1
+Lyonnais and Dauphine | raw_silk 1, wine 2, iron 1
+Franche-Comte | salt 3, livestock 2
+Alsace | wine 3, grain 1
+Lorraine | salt 3, iron 1
+British Isles | wool 6, livestock 2, tin 0
+Wessex | wool 4, tin 2
+Northern England | wool 3, iron 1, stone 1
+Wales | wool 3, livestock 2, copper 1
+Highlands | livestock 3, wool 2, fish 1
+Leinster | livestock 3, hides 2, wool 1
+Munster | livestock 3, hides 2
+Connacht | livestock 2, hides 2, wool 1
+Ulster | livestock 2, flax 2, hides 1
+Low Countries | livestock 2, flax 2, fish 2, grain 1
+Holland and Zeeland | fish 4, livestock 2
+Germany @farmland | grain 4, flax 1, livestock 1
+Germany @hills | iron 2, silver 1, copper 1, wood 1
+Germany @mountains | iron 2, silver 2, copper 1, salt 1
+Saxony | silver 4, tin 1, grain 1
+Bohemia | silver 3, grain 2, tin 1
+Hesse and Thuringia | copper 2, dyes 2, grain 1
+Middle Rhine | wine 4, grain 1
+Lower Saxony | salt 2, grain 2
+Mecklenburg and Pomerania | grain 4
+Brandenburg | grain 3, wood 1
+Silesia | flax 3, grain 1
+Alps | livestock 3, salt 2, iron 2
+Tyrol | silver 3, copper 2, salt 1
+Inner Austria | iron 4, livestock 1
+Switzerland | livestock 4
+Italy @farmland | grain 2, wine 2, olives 2, raw_silk 1
+Italy @hills | olives 3, wine 3, wool 1
+Lombardy | raw_silk 2, grain 2, livestock 1
+Venetia | grain 2, wine 1, salt 1
+Tuscany | wine 2, olives 2, alum 1, iron 1
+Papal States | alum 2, grain 2, wool 1
+Naples | olives 3, wine 2, raw_silk 1, wool 1
+Sicily | grain 4, sugar 1, wine 1
+Sardinia | grain 2, livestock 2, salt 1, silver 1
+Liguria | olives 3, wine 1
+Scandinavia | wood 3, fish 3, furs 1
+Svealand | iron 3, copper 3
+Gotaland | iron 2, livestock 2
+Norrland | furs 3, wood 2, tar 1
+Northern Norway | fish 5
+Southern Norway | wood 3, fish 2
+Norwegian Isles | fish 3, wool 1
+Finland | tar 3, furs 2, wood 2
+Denmark | livestock 3, grain 2
+Scania | grain 2, fish 3
+Baltic | grain 3, wood 2, flax 2, amber 0
+Prussia | grain 3, amber 2, wood 1
+Livonia | flax 2, grain 2, wax 1
+Estonia | grain 2, flax 2
+Poland and Lithuania | grain 4, wood 2, wax 1, hemp 1
+Lesser Poland | salt 2, grain 2, silver 1
+Lithuania Proper | wax 2, furs 1, wood 2, flax 1
+Belarus | wood 2, wax 2, hemp 1
+Ukraine | grain 3, livestock 2, wax 1
+Wild Fields | horses 3, livestock 2
+Russia | furs 3, wax 3, wood 2, hemp 1, flax 1
+Russian North | furs 6, wood 1
+Novgorod | furs 3, wax 2, flax 1
+Volga | grain 2, furs 1, wax 1
+Carpathians and Danube | livestock 3, grain 2, wine 1
+Upper Hungary | silver 2, copper 3, gold 1
+Transylvania | gold 2, salt 3, silver 1
+Hungary | livestock 4, wine 2, grain 2
+Wallachia | livestock 3, grain 2, salt 1, wax 1
+Moldavia | livestock 3, wax 2, grain 1
+Croatia and Slavonia | wood 2, livestock 2
+Balkans @farmland | grain 2, livestock 2, wine 1
+Balkans @hills | livestock 2, wool 2, wine 1
+Balkans @mountains | silver 2, iron 1, livestock 2
+Bosnia | silver 3, iron 1, livestock 1
+Serbia | silver 3, livestock 2
+Macedonia | livestock 2, grain 2, iron 1
+Thrace | grain 3, livestock 1
+Greece | olives 3, wine 2, raw_silk 1
+Morea | olives 2, raw_silk 2, wine 1
+Ionian Islands | wine 2, fruit 2, olives 1
+Aegean Islands | wine 2, alum 1, olives 1
+Crete | wine 4, olives 2
+Cyprus | sugar 3, wine 2, cotton 1
+Dalmatia | salt 2, wine 1, olives 1
+Albania | livestock 2, olives 1, wood 1
+Herzegovina | livestock 3
+
+## Middle East and Africa
+Anatolia @farmland | grain 3, cotton 1, fruit 1
+Anatolia @hills | wool 3, livestock 2
+Anatolia @mountains | copper 2, iron 1, wool 2
+Western Anatolia | fruit 2, alum 2, cotton 1, raw_silk 1
+Bithynia | raw_silk 3, fruit 1
+Candar | copper 3, wood 2
+Central Anatolia | wool 3, livestock 2, salt 1
+Karaman | wool 3, livestock 2
+Cilicia | cotton 3, grain 1
+Trebizond | fruit 2, wood 2, copper 1
+Armenian Highlands | livestock 2, iron 1, horses 1
+Upper Mesopotamia | grain 3, cotton 1
+Georgia | wine 3, raw_silk 1, livestock 1
+Shirvan | raw_silk 4, livestock 1
+Arran and Armenia | livestock 2, dyes 1, raw_silk 1
+North Caucasus | horses 2, livestock 2, hides 1
+Levant | olives 2, cotton 2, grain 1, fruit 1
+Northern Syria | cotton 2, grain 2, olives 1
+Southern Syria | fruit 2, olives 2, grain 1
+Palestine | olives 3, cotton 1
+Lower Egypt | grain 3, sugar 2, flax 2, cotton 1
+Upper Egypt | grain 3, sugar 2, dates 1
+Western Desert | dates 3, camels 1
+Sinai | camels 2, salt 1
+Arabia | camels 3, dates 3, horses 1
+Hejaz | dates 2, camels 2
+Najd | horses 3, camels 2, dates 1
+Eastern Arabia | pearls 4, dates 2
+Oman | dates 2, fish 2, incense 0
+Yemen | coffee 3, dyes 1, livestock 1
+Hadramawt | incense 4, dates 1
+Al-Jazira | grain 2, wool 2
+Iraq | dates 3, grain 2
+Persia @mountains | wool 2, copper 1, iron 1
+Persia @desert | camels 2, salt 1, dates 1
+Persia @farmland | grain 2, cotton 1, fruit 1
+Azerbaijan | raw_silk 2, wool 2, horses 1
+Gilan and Mazandaran | raw_silk 5
+Persian Iraq | wool 2, grain 2, cotton 1
+Luristan and Khuzestan | sugar 2, livestock 2
+Fars | wine 1, fruit 2, saffron 1, cotton 1
+Kerman | wool 3, dyes 1
+Makran | dates 3, camels 1
+Khorasan | saffron 1, wool 2, fruit 2, raw_silk 1
+Sistan | grain 2, livestock 1
+Afghanistan | fruit 2, livestock 2, gems 0
+Tokharistan | gems 2, horses 2, fruit 1
+Maghreb @hills | wool 3, livestock 2, olives 1
+Maghreb @desert | dates 3, camels 2, salt 1
+Northern Morocco | wool 2, hides 2, grain 2
+Southern Morocco | sugar 2, hides 2, dates 1
+Tlemcen | wool 2, hides 1, grain 1
+Ifriqiya | olives 4, grain 2
+Tripolitania | olives 2, dates 2
+Cyrenaica | livestock 2, wool 1
+Nubia | dates 2, livestock 2, gold 1
+Beja Lands | camels 3, gold 1
+Horn of Africa | livestock 3, hides 2
+Tigray and Medri Bahri | livestock 2, salt 2
+Amhara | livestock 2, wax 1, horses 1
+Shewa | livestock 2, gold 1, coffee 0
+Adal | livestock 2, incense 1
+Somali Coast | incense 3, livestock 2, ivory 1, camels 1
+
+## Steppe and Central Asia
+Pontic Steppe | horses 3, livestock 3
+Crimea | salt 2, grain 2, fish 1
+Volga Steppe | horses 4, livestock 2, salt 1
+Kazakh Steppe | horses 4, livestock 3
+Transoxiana | cotton 3, fruit 2, raw_silk 1, grain 1
+Ferghana and Tashkent | raw_silk 2, cotton 2, horses 1
+Khwarazm | cotton 2, grain 2
+
+## India
+Northwest India | grain 2, cotton 2, livestock 1
+Punjab | grain 3, cotton 2
+Pothohar | salt 4, livestock 1
+Frontier | horses 2, fruit 2
+Multan | cotton 3, dyes 1
+Sindh | cotton 3, dyes 2
+Kashmir | wool 3, saffron 2, fruit 1
+Hindustan | grain 2, sugar 2, cotton 2, dyes 1
+Delhi | grain 3, dyes 1
+Doab and Awadh | sugar 3, grain 2, dyes 1
+Bihar | saltpeter 3, opium 2, grain 1
+Himalayan Foothills | wood 2, livestock 1, iron 1
+Bundelkhand | gems 1, livestock 2, wood 1
+Rajputana | livestock 2, camels 2, wool 1
+Mewar | gems 1, copper 2, livestock 1
+Marwar | camels 3, salt 2
+Dhundhar and Hadoti | dyes 2, copper 1
+Gujarat | cotton 4, dyes 3, opium 1
+Saurashtra | cotton 2, horses 1
+Malwa | opium 4, cotton 2
+Khandesh | cotton 3
+Gondwana | wood 3, elephants 1, wax 1
+Bengal | cotton 3, raw_silk 2, sugar 2
+Northeast | wood 2, raw_silk 2, elephants 1
+Orissa | cotton 2, salt 2, elephants 1
+Deccan | cotton 3, livestock 1
+Telangana | gems 2, iron 2, cotton 1
+Maharashtra | cotton 3, livestock 1
+Berar | cotton 4
+Vijayanagara | cotton 2, gems 1, livestock 1
+Rayalaseema | gems 3, cotton 1
+Andhra Coast | cotton 3, dyes 2
+Mysore | cinnamon 0, wood 2, gold 1, livestock 1
+Konkan and Kanara | pepper 2, fruit 1, salt 1
+Tondaimandalam | cotton 3, dyes 1
+Chola Country | cotton 3
+Kongu | cotton 2, livestock 1
+Pandya Country | pearls 3, cotton 1
+Malabar | pepper 6, fine_spices 0, fruit 1
+Lanka | cinnamon 6, gems 1, elephants 1

@@ -67,6 +67,8 @@ public struct PopTable: Sendable {
     public var sect: [Sect?] = []
     public var socialClass: [SocialClass] = []
     public var size: [Double] = []
+    /// How well the group's needs are met, 0 to 1 (moves slowly).
+    public var satisfaction: [Double] = []
     private var ranges: [Range<Int>] = []
 
     public init() {}
@@ -92,6 +94,7 @@ public struct PopTable: Sendable {
         self.sect.append(sect)
         self.socialClass.append(socialClass)
         self.size.append(size)
+        self.satisfaction.append(MarketModel.startingSatisfaction)
         let r = ranges[ranges.count - 1]
         ranges[ranges.count - 1] = r.lowerBound..<(r.upperBound + 1)
     }

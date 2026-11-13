@@ -1,0 +1,76 @@
+# Workshops at the start of 1453. Each province's burghers work the crafts
+# picked from the most specific matching rule (same scopes as resources.txt).
+# Up to two crafts per province (three in cities of development 8+).
+# Scope | craft weight, ...
+*                      | pottery 3, leather 3, tools 2, linen 2, wool_cloth 2
+Christian              | beer 3
+Muslim                 | cotton_cloth 3, leather 1
+Dharmic                | cotton_cloth 6, pottery 2
+## Famous crafts
+Flanders and Artois    | wool_cloth 8, linen 2, tools 1
+Brabant and Hainaut    | wool_cloth 6, linen 2
+Holland and Zeeland    | beer 3, linen 2, naval_supplies 2
+Bruges                 | wool_cloth 6, jewelry 1
+Home Counties          | wool_cloth 4, leather 2
+East Anglia            | wool_cloth 5
+Tuscany                | wool_cloth 5, silk_cloth 2, paper 1
+Florence               | wool_cloth 5, silk_cloth 3, jewelry 1
+Lombardy               | weapons 3, silk_cloth 1, wool_cloth 2
+Milan                  | weapons 5, silk_cloth 2
+Venetia                | glass 3, silk_cloth 2, naval_supplies 2
+Venice                 | glass 5, silk_cloth 3, books 2, naval_supplies 3
+Genoa                  | silk_cloth 3, naval_supplies 3, paper 1
+Emilia                 | paper 2, silk_cloth 1
+Naples                 | silk_cloth 1, linen 2
+Franconia              | tools 4, weapons 2
+Nuremberg              | tools 5, weapons 3, books 2
+Swabia                 | linen 5, wool_cloth 2
+Augsburg               | linen 4, jewelry 1
+Lower Rhine            | weapons 2, wool_cloth 2, tools 2
+Cologne                | wool_cloth 3, weapons 2, jewelry 1
+Inner Austria          | tools 3, weapons 3
+Bohemia                | glass 3, linen 2
+Silesia                | linen 5
+Old Castile            | wool_cloth 3
+New Castile            | weapons 4, wool_cloth 2
+Toledo                 | weapons 6
+Catalonia              | wool_cloth 3, naval_supplies 2
+Valencia               | silk_cloth 3, pottery 3
+Paris                  | books 2, jewelry 2, wool_cloth 2
+Konstantiniyye         | silk_cloth 3, weapons 2, jewelry 2, leather 1
+Bursa                  | silk_cloth 6
+Edirne                 | leather 3, wool_cloth 2
+Damascus               | weapons 5, silk_cloth 2, glass 2
+Aleppo                 | cotton_cloth 3, silk_cloth 2, carpets 1
+Cairo                  | linen 3, cotton_cloth 2, sugar 0, glass 1, books 1
+Lower Egypt            | linen 5, cotton_cloth 1
+Tabriz                 | carpets 4, silk_cloth 3
+Persian Iraq           | carpets 3, cotton_cloth 2
+Isfahan                | carpets 4, silk_cloth 2
+Fars                   | carpets 3, cotton_cloth 2
+Kerman                 | carpets 5
+Khorasan               | carpets 3, cotton_cloth 2
+Herat                  | carpets 3, books 2, silk_cloth 2
+Samarkand              | paper 5, silk_cloth 2, carpets 2
+Mawarannahr            | cotton_cloth 4, carpets 2
+Baghdad                | paper 2, cotton_cloth 2, books 1
+Fez                    | leather 5, books 1, wool_cloth 2
+Northern Morocco       | leather 4
+Tunis                  | wool_cloth 2, leather 2
+Gujarat                | cotton_cloth 6, jewelry 1
+Cambay                 | cotton_cloth 6, jewelry 2
+Bengal                 | cotton_cloth 6, silk_cloth 2
+Sonargaon              | cotton_cloth 8
+Andhra Coast           | cotton_cloth 6
+Chola Country          | cotton_cloth 5
+Kashmir                | wool_cloth 5
+Delhi                  | weapons 2, cotton_cloth 3, jewelry 1
+Bihar                  | gunpowder 3, cotton_cloth 2
+Vijayanagara           | jewelry 2, cotton_cloth 3
+Golconda               | jewelry 3, weapons 2
+Moscow                 | leather 3, tools 2
+Novgorod               | leather 3, wool_cloth 1
+Lubeck                 | beer 4, naval_supplies 3
+Danzig                 | beer 3, naval_supplies 4
+Hamburg                | beer 6
+Svealand               | tools 3, weapons 1

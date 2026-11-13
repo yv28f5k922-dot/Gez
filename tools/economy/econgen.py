@@ -1,0 +1,305 @@
+#!/usr/bin/env python3
+"""Build the economy part of the 1453 scenario.
+
+Reads data/economy/*.txt and the map scenario, writes
+Packages/GezCore/Sources/GezCore/Resources/economy1453.json:
+goods, recipes, class needs, markets, off-map imports and, for every
+province, its producers (staple, trade good, fish, workshops).
+
+Run after mapgen.py:  python3 tools/economy/econgen.py
+"""
+import hashlib
+from collections import defaultdict
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+DATA = ROOT / "data/economy"
+RES = ROOT / "Packages/GezCore/Sources/GezCore/Resources"
+
+# Share of a province's rural workers (peasants + slaves) on each producer.
+TRADE_SHARE = 0.15
+FISH_SHARE = 0.06
+# Share of burghers working in workshops (the rest trade and serve).
+CRAFT_SHARE = 0.6
+
+RELIGION_FAMILY = {
+    **{r: "Christian" for r in "catholic hussite orthodox bosnian coptic ethiopian armenian syriac nestorian".split()},
+    **{r: "Muslim" for r in "sunni twelver zaydi ismaili ibadi druze alawite yazidi".split()},
+    **{r: "Dharmic" for r in "hindu jain theravada tibetan".split()},
+    "zoroastrian": "Iranian", "jewish": "Jewish", "tengri": "Pagan", "folk": "Pagan",
+}
+
+
+def rows(name):
+    for line in (DATA / name).read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#"):
+            yield line
+
+
+def weights(text):
+    out = {}
+    for part in text.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        bits = part.split()
+        w = float(bits[1]) if len(bits) > 1 else 1.0
+        if w > 0:
+            out[bits[0]] = out.get(bits[0], 0) + w
+    return out
+
+
+def pick(options, salt, n=1):
+    """Deterministic weighted pick of up to n distinct keys."""
+    opts = dict(options)
+    chosen = []
+    for k in range(n):
+        if not opts:
+            break
+        total = sum(opts.values())
+        h = int(hashlib.sha1(f"{salt}/{k}".encode()).hexdigest()[:8], 16) / 0xFFFFFFFF
+        acc = 0.0
+        for key in sorted(opts):
+            acc += opts[key] / total
+            if h <= acc:
+                chosen.append(key)
+                del opts[key]
+                break
+        else:
+            key = sorted(opts)[-1]
+            chosen.append(key)
+            del opts[key]
+    return chosen
+
+
+STAPLE_YIELD = 1.5
+TERRAIN_FOOD = {"farmland": 1.2, "plains": 1.0, "hills": 0.85, "mountains": 0.6,
+                "forest": 0.75, "marsh": 0.75, "desert": 0.45, "steppe": 0.7}
+RAW_VALUE = 2.5
+TARGET = 1.15   # world supply / world demand at the start
+
+
+def approx_classes(p):
+    pop = p["population"] / 1000
+    burg = (0.02 + 0.016 * p["development"]) * pop
+    return {"burghers": burg, "nobles": 0.015 * pop, "clergy": 0.015 * pop,
+            "peasants": pop * (0.97) - burg, "slaves": 0.0}
+
+
+def calibrate(goods, recipes, needs, provinces, producers, imports):
+    """Set each trade good's yield and each recipe's output so that world
+    supply is TARGET times world demand at the start. Staple food keeps its
+    terrain yield. Goods nobody needs yet keep a default yield."""
+    G = len(goods)
+    unit = [0.0] * G          # supply at yield 1 (raw) or recipe output 1 (craft)
+    staple_supply = [0.0] * G
+    craft_workers = defaultdict(float)
+    for p, prods in zip(provinces, producers):
+        c = approx_classes(p)
+        rural = c["peasants"] + c["slaves"]
+        for k, pr in enumerate(prods):
+            if pr["kind"] == "raw":
+                if k == 0:
+                    staple_supply[pr["good"]] += rural * pr["share"] * STAPLE_YIELD * TERRAIN_FOOD[p["terrain"]]
+                else:
+                    unit[pr["good"]] += rural * pr["share"]
+            else:
+                unit[pr["good"]] += c["burghers"] * pr["share"]
+    imp = [0.0] * G
+    for im in imports:
+        imp[im["good"]] += im["amount"]
+    recipe_of = {r["output"]: r for r in recipes}
+    k = [RAW_VALUE / g["basePrice"] for g in goods]
+    for g in range(G):
+        if g in recipe_of:
+            k[g] = recipe_of[g]["perThousand"]
+    demand_needs = [0.0] * G
+    for it in range(8):
+        supply = [unit[g] * k[g] + staple_supply[g] + imp[g] for g in range(G)]
+        for g in range(G):
+            for bg, amt in goods[g].get("byproducts", []):
+                supply[bg] += (unit[g] * k[g] + staple_supply[g]) * amt
+        demand = [0.0] * G
+        for nd in needs:
+            size = sum(approx_classes(p)[nd["socialClass"]] for p in provinces) if it == 0 else None
+            if size is None:
+                size = nd["_size"]
+            nd["_size"] = size
+            ws = [supply[g] for g in nd["goods"]]
+            tot = sum(ws)
+            for g, w in zip(nd["goods"], ws):
+                demand[g] += nd["amount"] * size / len(ws)
+        for g, r in recipe_of.items():
+            for ig, amt in r["inputs"]:
+                demand[ig] += unit[g] * k[g] * amt
+        for g in range(G):
+            if unit[g] > 0 and demand[g] > 0:
+                extra = supply[g] - unit[g] * k[g]
+                k[g] = max(0.0, (TARGET * demand[g] - extra) / unit[g]) or k[g]
+        demand_needs = demand
+    for nd in needs:
+        nd.pop("_size", None)
+    for g in range(G):
+        if g in recipe_of:
+            recipe_of[g]["perThousand"] = round(k[g], 4)
+        else:
+            goods[g]["yield"] = round(k[g], 5)
+    worst = sorted(((demand_needs[g] / (unit[g] * k[g] + staple_supply[g] + imp[g]) if (unit[g] * k[g] + staple_supply[g] + imp[g]) else 99, goods[g]["key"]) for g in range(G) if demand_needs[g] > 0), reverse=True)[:6]
+    print("hardest to supply (demand/supply):", [(n, round(r, 2)) for r, n in worst])
+
+
+def main():
+    scen = json.loads((RES / "scenario1453.json").read_text())
+    provinces = scen["provinces"]
+    states = scen["states"]
+    regions = scen["regions"]
+
+    goods = []
+    for line in rows("goods.txt"):
+        key, name, cat, price, rgb = [x.strip() for x in line.split("|")]
+        goods.append({"key": key, "name": name, "category": cat, "basePrice": float(price),
+                      "color": [int(v) for v in rgb.split()]})
+    gindex = {g["key"]: i for i, g in enumerate(goods)}
+
+    def gid(key, where):
+        if key not in gindex:
+            sys.exit(f"{where}: unknown good '{key}'")
+        return gindex[key]
+
+    recipes = []
+    for line in rows("recipes.txt"):
+        out, per, inputs = [x.strip() for x in line.split("|")]
+        recipes.append({"output": gid(out, "recipes"), "perThousand": float(per),
+                        "inputs": [[gid(k, "recipes"), v] for k, v in weights(inputs).items()]})
+    recipe_for = {r["output"]: i for i, r in enumerate(recipes)}
+
+    needs = []
+    for line in rows("needs.txt"):
+        parts = [x.strip() for x in line.split("|")]
+        cls, group, amount, goods_list = parts[:4]
+        need = {"socialClass": cls, "name": group, "amount": float(amount),
+                "goods": [gid(k, "needs") for k in goods_list.split()]}
+        if len(parts) > 4:
+            kind, fam = parts[4].split(":")
+            need["only" if kind == "only" else "not"] = fam
+        needs.append(need)
+
+    names = [p["name"] for p in provinces]
+    markets = []
+    for line in rows("markets.txt"):
+        name, centre = [x.strip() for x in line.split("|")]
+        if centre not in names:
+            sys.exit(f"markets: unknown province '{centre}'")
+        markets.append({"name": name, "centre": names.index(centre)})
+    mindex = {m["name"]: i for i, m in enumerate(markets)}
+
+    imports = []
+    for line in rows("imports.txt"):
+        market, items = [x.strip() for x in line.split("|")]
+        for k, v in weights(items).items():
+            imports.append({"market": mindex[market], "good": gid(k, "imports"), "amount": v})
+
+    # Rule tables keyed by scope level.
+    state_names = [s["name"] for s in states]
+
+    def scope_level(scope):
+        if scope == "*":
+            return 0
+        if scope in ("Christian", "Muslim", "Dharmic", "Jewish", "Iranian", "Pagan"):
+            return 1
+        if scope in regions:
+            return 2
+        if scope in state_names:
+            return 3
+        if scope in names:
+            return 4
+        sys.exit(f"unknown scope '{scope}'")
+
+    staples, trade_rules, craft_rules = [], [], []
+    for line in rows("resources.txt"):
+        if line.startswith("byproduct "):
+            src, items = [x.strip() for x in line[10:].split("|")]
+            for k, v in weights(items).items():
+                goods[gid(src, "byproduct")].setdefault("byproducts", []).append([gid(k, "byproduct"), v])
+            continue
+        if line.startswith("staple "):
+            scope, good = [x.strip() for x in line[7:].split("|")]
+            staples.append((scope_level(scope), scope, gid(good, "staple")))
+            continue
+        scope, items = [x.strip() for x in line.split("|")]
+        terrain = None
+        if "@" in scope:
+            scope, terrain = [x.strip() for x in scope.split("@")]
+        for k in weights(items):
+            gid(k, "resources")
+        trade_rules.append((scope_level(scope), scope, terrain, weights(items)))
+    for line in rows("crafts.txt"):
+        scope, items = [x.strip() for x in line.split("|")]
+        for k in weights(items):
+            if gid(k, "crafts") not in recipe_for:
+                sys.exit(f"crafts: no recipe for '{k}'")
+        craft_rules.append((scope_level(scope), scope, weights(items)))
+
+    out_provinces = []
+    for i, p in enumerate(provinces):
+        st = states[p["state"]]
+        scopes = {0: "*", 2: regions[st["region"]], 3: st["name"], 4: p["name"]}
+        majority = max(p["pops"], key=lambda x: x[3])[1] if p["pops"] else "folk"
+        scopes[1] = RELIGION_FAMILY.get(majority, "Pagan")
+
+        def matches(level, scope):
+            return scopes.get(level) == scope
+
+        staple = max((s for s in staples if matches(s[0], s[1])), key=lambda s: s[0])[2]
+
+        best = None
+        for level, scope, terrain, w in trade_rules:
+            if not matches(level, scope):
+                continue
+            if terrain and terrain != p["terrain"]:
+                continue
+            rank = (level, 1 if terrain else 0)
+            if best is None or rank > best[0]:
+                best = (rank, w)
+        trade = gid(pick(best[1], p["name"])[0], "pick")
+
+        merged, specific = {}, None
+        for level, scope, w in craft_rules:
+            if not matches(level, scope):
+                continue
+            if level <= 1:
+                for k, v in w.items():
+                    merged[k] = merged.get(k, 0) + v
+            elif specific is None or level > specific[0]:
+                specific = (level, w)
+        craft_weights = specific[1] if specific else merged
+        n_crafts = 3 if p["development"] >= 8 else (2 if p["development"] >= 4 else 1)
+        crafts = [gid(k, "craft") for k in pick(craft_weights, p["name"] + "/craft", n_crafts)]
+
+        producers = []
+        rural_left = 1.0
+        if p.get("coastal"):
+            producers.append({"good": gindex["fish"], "kind": "raw", "share": FISH_SHARE})
+            rural_left -= FISH_SHARE
+        if trade != staple:
+            producers.append({"good": trade, "kind": "raw", "share": TRADE_SHARE})
+            rural_left -= TRADE_SHARE
+        producers.insert(0, {"good": staple, "kind": "raw", "share": round(rural_left, 4)})
+        for c in crafts:
+            producers.append({"good": c, "kind": "craft", "recipe": recipe_for[c],
+                              "share": round(CRAFT_SHARE / len(crafts), 4)})
+        out_provinces.append(producers)
+
+    calibrate(goods, recipes, needs, provinces, out_provinces, imports)
+    result = {"goods": goods, "recipes": recipes, "needs": needs, "markets": markets,
+              "imports": imports, "producers": out_provinces}
+    (RES / "economy1453.json").write_text(json.dumps(result, separators=(",", ":"), ensure_ascii=False))
+    print(f"{len(goods)} goods, {len(recipes)} recipes, {len(needs)} needs, "
+          f"{len(markets)} markets, {len(out_provinces)} provinces")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,17 +1,8 @@
-/// Monthly income. First pass: taxes plus production, no expenses yet.
-/// Army maintenance, buildings, trade and estates come in later milestones.
+/// Monthly income and spending. Income now comes from the market model
+/// (`MarketSystem`); expenses (armies, buildings, loans) come later.
 public enum EconomySystem {
     public static func runMonthly(_ world: inout World) {
-        var income = [Double](repeating: 0, count: world.countries.count)
-        let provinces = world.provinces
-        for i in 0..<provinces.count {
-            guard let owner = provinces.owner[i] else { continue }
-            income[owner.index] += (provinces.baseTax[i] + provinces.production[i]) / 12
-        }
-        for c in 0..<world.countries.count {
-            world.countries.treasury[c] += income[c]
-            world.countries.lastMonthlyIncome[c] = income[c]
-        }
+        MarketSystem.runMonthly(&world)
     }
 }
 

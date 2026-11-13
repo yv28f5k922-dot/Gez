@@ -1,0 +1,65 @@
+# Goods. key | Name | category | base price (ducats per unit) | R G B
+# One unit is roughly what 1,000 people use of a staple in a year.
+# Categories: food, luxury, material, animal, manufactured.
+grain       | Grain          | food         | 1.0  | 222 190 90
+rice        | Rice           | food         | 1.1  | 236 230 200
+millet      | Millet         | food         | 0.9  | 200 160 90
+fish        | Fish           | food         | 1.6  | 90 140 190
+livestock   | Livestock      | food         | 2.0  | 170 110 70
+olives      | Olive Oil      | food         | 3.0  | 140 150 60
+wine        | Wine           | food         | 3.5  | 130 30 60
+dates       | Dates          | food         | 2.5  | 150 90 40
+fruit       | Fruit          | food         | 2.2  | 230 120 60
+sugar       | Sugar          | food         | 8.0  | 245 245 245
+salt        | Salt           | food         | 3.0  | 230 230 220
+beer        | Beer           | manufactured | 2.5  | 200 150 50
+pepper      | Pepper         | luxury       | 12.0 | 60 50 40
+fine_spices | Cloves & Nutmeg| luxury       | 30.0 | 120 60 40
+cinnamon    | Cinnamon       | luxury       | 18.0 | 180 110 60
+saffron     | Saffron        | luxury       | 40.0 | 230 110 20
+coffee      | Coffee         | luxury       | 9.0  | 90 60 40
+incense     | Incense        | luxury       | 14.0 | 220 210 170
+opium       | Opium          | luxury       | 16.0 | 160 120 160
+ivory       | Ivory          | luxury       | 20.0 | 240 235 215
+pearls      | Pearls         | luxury       | 35.0 | 235 235 245
+gems        | Gems           | luxury       | 45.0 | 150 40 160
+amber       | Amber          | luxury       | 15.0 | 240 160 40
+wood        | Wood           | material     | 1.2  | 120 80 40
+stone       | Stone          | material     | 1.0  | 160 160 150
+iron        | Iron           | material     | 3.0  | 100 100 110
+copper      | Copper         | material     | 5.0  | 190 110 60
+tin         | Tin            | material     | 6.0  | 190 195 200
+silver      | Silver         | material     | 25.0 | 200 200 210
+gold        | Gold           | material     | 60.0 | 240 200 40
+alum        | Alum           | material     | 6.0  | 220 220 235
+saltpeter   | Saltpeter      | material     | 5.0  | 235 235 225
+sulphur     | Sulphur        | material     | 4.0  | 230 220 60
+wool        | Wool           | material     | 2.5  | 235 230 210
+cotton      | Cotton         | material     | 2.5  | 250 250 250
+flax        | Flax           | material     | 2.0  | 170 180 120
+hemp        | Hemp           | material     | 1.8  | 120 140 70
+raw_silk    | Raw Silk       | material     | 14.0 | 250 240 210
+furs        | Furs           | material     | 12.0 | 110 70 40
+hides       | Hides          | material     | 2.2  | 150 100 60
+wax         | Wax            | material     | 5.0  | 240 210 120
+dyes        | Dyes           | material     | 8.0  | 60 60 160
+tar         | Tar            | material     | 2.5  | 40 40 40
+horses      | Horses         | animal       | 10.0 | 120 80 50
+camels      | Camels         | animal       | 8.0  | 200 160 100
+elephants   | Elephants      | animal       | 60.0 | 140 140 140
+wool_cloth  | Woollen Cloth  | manufactured | 7.0  | 120 40 40
+linen       | Linen          | manufactured | 5.0  | 230 225 200
+cotton_cloth| Cotton Cloth   | manufactured | 6.0  | 245 240 230
+silk_cloth  | Silk Cloth     | manufactured | 35.0 | 200 40 90
+carpets     | Carpets        | manufactured | 18.0 | 160 40 30
+tools       | Tools          | manufactured | 8.0  | 90 90 90
+weapons     | Weapons        | manufactured | 12.0 | 70 70 80
+gunpowder   | Gunpowder      | manufactured | 14.0 | 50 50 50
+cannons     | Cannons        | manufactured | 40.0 | 60 50 40
+glass       | Glass          | manufactured | 12.0 | 150 210 220
+paper       | Paper          | manufactured | 9.0  | 245 240 225
+books       | Books          | manufactured | 30.0 | 110 60 30
+pottery     | Pottery        | manufactured | 4.0  | 190 120 80
+jewelry     | Jewellery      | manufactured | 80.0 | 230 190 60
+leather     | Leather Goods  | manufactured | 6.0  | 140 90 50
+naval_supplies | Naval Supplies | manufactured | 6.0 | 90 70 50

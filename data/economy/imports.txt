@@ -1,0 +1,15 @@
+# Goods arriving from beyond the map each year (Spice Islands, China,
+# the Sahara, East Africa, Siberia). Market | good amount (units/year), ...
+Calicut    | fine_spices 20, pepper 5
+Kotte      | fine_spices 8
+Aden       | fine_spices 6, ivory 2, pearls 1
+Hormuz     | fine_spices 4, pearls 2, horses 10
+Sonargaon  | fine_spices 3, silk_cloth 5
+Samarkand  | silk_cloth 10, raw_silk 15
+Herat      | raw_silk 5
+Fez        | gold 4, ivory 2
+Tunis      | gold 1.5
+Cairo      | gold 2, ivory 3
+Mogadishu  | ivory 5, gold 1.5
+Kazan      | furs 15
+Novgorod   | furs 10

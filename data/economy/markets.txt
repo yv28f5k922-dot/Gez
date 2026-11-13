@@ -1,0 +1,44 @@
+# Market centres in 1453. Every province joins the cheapest-to-reach centre.
+# Name | centre province
+Lisbon        | Lisbon
+Seville       | Seville
+Barcelona     | Barcelona
+Paris         | Paris
+Bruges        | Bruges
+London        | London
+Cologne       | Cologne
+Lübeck        | Lubeck
+Nuremberg     | Nuremberg
+Venice        | Venice
+Genoa         | Genoa
+Florence      | Florence
+Naples        | Naples
+Vienna        | Vienna
+Buda          | Buda
+Kraków        | Krakow
+Novgorod      | Novgorod
+Moscow        | Moscow
+Kaffa         | Kaffa
+Constantinople| Konstantiniyye
+Tabriz        | Tabriz
+Aleppo        | Aleppo
+Damascus      | Damascus
+Cairo         | Cairo
+Tunis         | Tunis
+Fez           | Fez
+Aden          | Aden
+Hormuz        | Hormuz
+Baghdad       | Baghdad
+Shiraz        | Shiraz
+Herat         | Herat
+Samarkand     | Samarkand
+Kazan         | Kazan
+Multan        | Multan
+Delhi         | Delhi
+Cambay        | Cambay
+Calicut       | Calicut
+Vijayanagara  | Vijayanagara
+Sonargaon     | Sonargaon
+Kotte         | Kotte
+Aksum         | Aksum
+Mogadishu     | Mogadishu

@@ -1,0 +1,47 @@
+# What each class buys every year, per 1,000 people.
+# class | group name | amount | goods that satisfy it (any mix) | optional: not:<religion family>
+# Groups whose goods are all missing from a market go unmet (unhappy pops).
+peasants | Staple food | 1.00 | grain rice millet
+peasants | Salt        | 0.04 | salt
+peasants | Meat & fish | 0.10 | fish livestock
+peasants | Clothing    | 0.06 | wool_cloth linen cotton_cloth
+peasants | Tools       | 0.010| tools
+peasants | Drink       | 0.06 | beer wine | not:muslim
+slaves   | Staple food | 0.90 | grain rice millet
+slaves   | Clothing    | 0.02 | linen cotton_cloth
+burghers | Staple food | 1.00 | grain rice millet
+burghers | Meat & fish | 0.35 | fish livestock
+burghers | Oil & fruit | 0.15 | olives fruit dates
+burghers | Salt        | 0.06 | salt
+burghers | Clothing    | 0.25 | wool_cloth linen cotton_cloth
+burghers | Tools       | 0.05 | tools
+burghers | Drink       | 0.20 | wine beer | not:muslim
+burghers | Coffee      | 0.03 | coffee | only:muslim
+burghers | Household   | 0.08 | pottery glass leather
+burghers | Sweets      | 0.03 | sugar dates
+burghers | Spice       | 0.015| pepper
+burghers | Paper       | 0.02 | paper
+clergy   | Staple food | 1.00 | grain rice millet
+clergy   | Meat & fish | 0.30 | fish livestock
+clergy   | Clothing    | 0.25 | wool_cloth linen cotton_cloth
+clergy   | Wine        | 0.15 | wine | only:christian
+clergy   | Candles & incense | 0.06 | wax incense
+clergy   | Books       | 0.04 | books paper
+nobles   | Staple food | 1.00 | grain rice millet
+nobles   | Meat & fish | 0.60 | livestock fish
+nobles   | Oil & fruit | 0.30 | olives fruit dates
+nobles   | Drink       | 0.50 | wine beer | not:muslim
+nobles   | Coffee      | 0.08 | coffee | only:muslim
+nobles   | Fine cloth  | 0.20 | silk_cloth wool_cloth
+nobles   | Clothing    | 0.20 | linen cotton_cloth
+nobles   | Spices      | 0.10 | pepper cinnamon
+nobles   | Fine spices | 0.03 | fine_spices saffron
+nobles   | Sugar       | 0.10 | sugar
+nobles   | Furs        | 0.04 | furs
+nobles   | Horses      | 0.06 | horses
+nobles   | Arms        | 0.04 | weapons
+nobles   | Luxuries    | 0.03 | jewelry pearls gems amber ivory
+nobles   | Carpets     | 0.03 | carpets
+nobles   | Glass       | 0.04 | glass pottery
+nobles   | Books       | 0.02 | books
+nobles   | Incense     | 0.02 | incense

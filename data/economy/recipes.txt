@@ -1,0 +1,19 @@
+# Workshops turn inputs into goods. Worked by burghers.
+# output | output per 1,000 workers per year | inputs (good amount, per unit of output)
+beer           | 6.0 | grain 1.0
+wool_cloth     | 2.0 | wool 1.5, dyes 0.1
+linen          | 2.2 | flax 1.5
+cotton_cloth   | 2.4 | cotton 1.5, dyes 0.05
+silk_cloth     | 0.6 | raw_silk 1.2, dyes 0.2
+carpets        | 0.6 | wool 2.0, dyes 0.4
+tools          | 1.6 | iron 1.2, wood 0.5
+weapons        | 1.0 | iron 1.5, wood 0.5
+gunpowder      | 1.0 | saltpeter 1.5, sulphur 0.5
+cannons        | 0.3 | copper 2.5, tin 0.5
+glass          | 1.0 | wood 2.0, stone 0.5
+paper          | 1.2 | flax 1.0
+books          | 0.4 | paper 2.0, leather 0.2
+pottery        | 3.0 | wood 0.3
+jewelry        | 0.15| gold 0.4, silver 0.6, gems 0.2
+leather        | 2.4 | hides 1.5
+naval_supplies | 2.5 | tar 0.5, hemp 0.8, wood 0.8
