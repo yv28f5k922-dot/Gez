@@ -149,9 +149,14 @@ struct MapModeBar: View {
 
 // MARK: - Province panel
 
+enum ProvinceTab: String, CaseIterable {
+    case overview = "Overview", economy = "Economy", people = "People"
+}
+
 struct ProvincePanel: View {
     @Environment(GameModel.self) private var model
     let province: ProvinceID
+    @State var tab: ProvinceTab = .overview
 
     var body: some View {
         let _ = model.revision
@@ -190,17 +195,37 @@ struct ProvincePanel: View {
                     .font(.caption)
                     .foregroundStyle(Palette.ink.opacity(0.65))
             }
-            Divider()
-            row("Development", "\(p.development[i]) · fort \(p.fortLevel[i])")
-            row("Land", "\(p.terrain[i].rawValue.capitalized)\(p.isCoastal[i] ? ", coast" : "") · \(p.areaKm2[i].formatted(.number.precision(.fractionLength(0)))) km²")
-            let riverSides = p.neighbors[i].filter { world.isRiverBorder(province, $0) }.count
-            if riverSides > 0 {
-                row("River borders", "\(riverSides) of \(p.neighbors[i].count) sides")
+            HStack(spacing: 0) {
+                ForEach(ProvinceTab.allCases, id: \.self) { t in
+                    Button {
+                        tab = t
+                    } label: {
+                        Text(t.rawValue)
+                            .font(.caption.bold())
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 4)
+                            .background(tab == t ? Palette.ink.opacity(0.85) : .clear, in: RoundedRectangle(cornerRadius: 6))
+                            .foregroundStyle(tab == t ? Palette.parchment : Palette.ink)
+                    }
+                    .buttonStyle(.plain)
+                }
             }
-            Divider()
-            EconomySection(province: province)
-            Divider()
-            PeopleSection(province: province)
+            .background(Palette.ink.opacity(0.08), in: RoundedRectangle(cornerRadius: 6))
+            switch tab {
+            case .overview:
+                row("Development", "\(p.development[i]) · fort \(p.fortLevel[i])")
+                row("Land", "\(p.terrain[i].rawValue.capitalized)\(p.isCoastal[i] ? ", coast" : "") · \(p.areaKm2[i].formatted(.number.precision(.fractionLength(0)))) km²")
+                let riverSides = p.neighbors[i].filter { world.isRiverBorder(province, $0) }.count
+                if riverSides > 0 {
+                    row("River borders", "\(riverSides) of \(p.neighbors[i].count) sides")
+                }
+                Divider()
+                BuildingsSection(province: province)
+            case .economy:
+                EconomySection(province: province)
+            case .people:
+                PeopleSection(province: province)
+            }
         }
         .padding(14)
         .frame(width: 300)

@@ -1,0 +1,54 @@
+# Buildings. Levels 1-5; every level takes one building slot.
+# Slots per province: 2 + development (+1 on the coast).
+# key | Name | category | cost (ducats, level 1) | months (level 1) | materials per level | effect | requires
+# Later levels cost +50% each and take +25% longer.
+# Effects:
+#   staple +x          staple food output +x per level
+#   trade +x           trade-good output +x per level (requires picks which goods)
+#   fish +x            fish output +x per level
+#   workshop <good>    1,500 burgher jobs per level making that good
+#   crafts +x          all workshop output +x per level
+#   tax +x             tax from the province +x per level
+#   mood +x            satisfaction of everyone +x per level
+#   learning +x        learning points per level per year (used by technology later)
+#   fort +1            fort level +1 per level
+#   manpower +x        thousand soldiers per level (used by armies later)
+#   ships +x           ships buildable at once (used by navies later)
+# requires: coastal | good:<g1>/<g2>... | terrain:<t1>/<t2> | religion:<family>
+## Production
+farm_estate  | Farm Estates   | production | 30 | 6  | wood 2, tools 0.5 | staple +0.1 |
+mine         | Mine           | production | 60 | 12 | wood 3, tools 1   | trade +0.2 | good:iron/copper/tin/silver/gold/stone/salt/alum/sulphur/saltpeter/gems
+plantation   | Plantation     | production | 45 | 9  | wood 2, tools 0.5 | trade +0.2 | good:sugar/cotton/pepper/cinnamon/fine_spices/coffee/dyes/opium/saffron/flax/hemp/raw_silk/incense
+pasture      | Pastures       | production | 35 | 6  | wood 1            | trade +0.2 | good:livestock/wool/horses/hides/camels/elephants
+vineyard     | Vineyards & Orchards | production | 40 | 12 | wood 2   | trade +0.2 | good:wine/olives/fruit/dates
+forestry     | Lumber & Trapping | production | 30 | 6 | tools 0.5     | trade +0.2 | good:wood/furs/tar/wax/amber/ivory/pearls
+fishery      | Fishing Fleet  | production | 30 | 6  | wood 3, naval_supplies 0.5 | fish +0.25 | coastal
+brewery      | Brewery        | production | 25 | 4  | wood 2            | workshop beer |
+weaver       | Cloth Weavers  | production | 40 | 6  | wood 2, tools 0.5 | workshop wool_cloth |
+linen_weaver | Linen Weavers  | production | 35 | 6  | wood 2, tools 0.5 | workshop linen |
+cotton_weaver| Cotton Weavers | production | 35 | 6  | wood 2, tools 0.5 | workshop cotton_cloth |
+silk_weaver  | Silk Weavers   | production | 70 | 9  | wood 2, tools 1   | workshop silk_cloth |
+carpet_maker | Carpet Makers  | production | 50 | 9  | wood 2, tools 0.5 | workshop carpets |
+smithy       | Smithies       | production | 40 | 6  | stone 2, iron 1   | workshop tools |
+armourer     | Armourers      | production | 60 | 9  | stone 2, iron 2, tools 1 | workshop weapons |
+powder_mill  | Powder Mill    | production | 70 | 9  | stone 3, wood 2   | workshop gunpowder |
+foundry      | Cannon Foundry | production | 120| 18 | stone 4, iron 2, tools 1 | workshop cannons |
+glassworks   | Glassworks     | production | 60 | 9  | stone 3, wood 2   | workshop glass |
+paper_mill   | Paper Mill     | production | 50 | 9  | wood 3, tools 0.5 | workshop paper |
+bookmakers   | Scriptorium & Press | production | 70 | 9 | wood 2, paper 1 | workshop books |
+potters      | Potteries      | production | 20 | 4  | wood 1, stone 1   | workshop pottery |
+goldsmiths   | Goldsmiths     | production | 90 | 9  | stone 2, tools 1  | workshop jewelry |
+tannery      | Tannery        | production | 25 | 4  | wood 2            | workshop leather |
+ropewalk     | Ropewalk & Tar Works | production | 35 | 6 | wood 3   | workshop naval_supplies |
+## Trade and towns
+market_hall  | Market Hall    | trade      | 50 | 6  | stone 3, wood 2   | tax +0.1 |
+guild_hall   | Guild Hall     | trade      | 60 | 9  | stone 3, wood 2   | crafts +0.1 |
+port         | Port           | trade      | 80 | 12 | stone 4, wood 4, naval_supplies 1 | tax +0.05 | coastal
+road         | Paved Roads    | trade      | 40 | 9  | stone 4           | tax +0.05 |
+## Religion and culture
+temple       | Temple         | religion   | 60 | 12 | stone 4, wood 2   | mood +0.03 |
+college      | College        | religion   | 100| 18 | stone 4, wood 2, books 1 | learning +1 |
+## Military
+fort         | Fortress       | military   | 100| 24 | stone 8, wood 3   | fort +1 |
+barracks     | Barracks       | military   | 50 | 9  | stone 3, wood 3   | manpower +1 |
+shipyard     | Shipyard       | military   | 80 | 12 | wood 6, naval_supplies 2 | ships +2 | coastal

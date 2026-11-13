@@ -61,6 +61,53 @@ enum EconomyLoader {
             }
         }
 
+        for b in file.buildings {
+            guard let category = BuildingCategory(rawValue: b.category) else {
+                throw Scenario1453.LoadError.unknownValue("building category \(b.category)")
+            }
+            let amount = b.amount ?? 0
+            let effect: BuildingEffect
+            switch b.effect {
+            case "staple": effect = .staple(amount)
+            case "trade": effect = .trade(amount)
+            case "fish": effect = .fish(amount)
+            case "workshop": effect = .workshop(recipe: b.recipe ?? 0)
+            case "crafts": effect = .crafts(amount)
+            case "tax": effect = .tax(amount)
+            case "mood": effect = .mood(amount)
+            case "learning": effect = .learning(amount)
+            case "fort": effect = .fort
+            case "manpower": effect = .manpower(amount)
+            case "ships": effect = .ships(amount)
+            default: throw Scenario1453.LoadError.unknownValue("building effect \(b.effect)")
+            }
+            eco.buildingTypes.append(BuildingType(
+                key: b.key, name: b.name, category: category, cost: b.cost, months: b.months,
+                materials: b.materials.map { (GoodID(Int($0[0])), $0[1]) },
+                effect: effect,
+                requiresCoast: b.requiresCoast ?? false,
+                requiresGoods: (b.requiresGoods ?? []).map(GoodID.init),
+                requiresTerrain: (b.requiresTerrain ?? []).compactMap(Terrain.init(rawValue:)),
+                requiresFamily: b.requiresFamily.flatMap(ReligionFamily.init(rawValue:))))
+        }
+        let typeCount = eco.buildingTypes.count
+        eco.buildings.setup(provinces: world.provinces.count, types: typeCount)
+        eco.workshopOutput = Array(repeating: 0, count: world.provinces.count * typeCount)
+        eco.workshopValue = eco.workshopOutput
+        for (p, list) in file.startBuildings.enumerated() where p < world.provinces.count {
+            for pair in list where pair.count == 2 {
+                eco.buildings.setLevel(ProvinceID(p), BuildingTypeID(pair[0]), min(pair[1], BuildingType.maxLevel))
+            }
+        }
+        // Forts: the stronger of the data file and the development-based start.
+        if let fort = eco.buildingTypes.firstIndex(where: { $0.effect == .fort }).map(BuildingTypeID.init) {
+            for p in world.provinces.ids {
+                let level = max(eco.buildings.level(p, fort), world.provinces.fortLevel[p.index])
+                eco.buildings.setLevel(p, fort, min(level, BuildingType.maxLevel))
+                world.provinces.fortLevel[p.index] = min(level, BuildingType.maxLevel)
+            }
+        }
+
         world.economy = eco
         world.assignMarkets()
     }
@@ -116,6 +163,24 @@ struct EconomyFile: Decodable {
     let recipes: [RecipeRow]
     let needs: [Need]
     let markets: [Market]
+    struct Building: Decodable {
+        let key: String
+        let name: String
+        let category: String
+        let cost: Double
+        let months: Int
+        let materials: [[Double]]
+        let effect: String
+        let amount: Double?
+        let recipe: Int?
+        let requiresCoast: Bool?
+        let requiresGoods: [Int]?
+        let requiresTerrain: [String]?
+        let requiresFamily: String?
+    }
+
     let imports: [Import]
     let producers: [[Producer]]
+    let buildings: [Building]
+    let startBuildings: [[[Int]]]
 }

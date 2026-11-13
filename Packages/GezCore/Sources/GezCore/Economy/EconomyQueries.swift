@@ -34,7 +34,9 @@ extension MarketSystem {
     /// before the game starts, without changing anyone's treasury.
     public static func warmUp(_ world: inout World, months: Int) {
         let treasury = world.countries.treasury
+        let learning = world.countries.learning
         for _ in 0..<months { runMonthly(&world) }
         world.countries.treasury = treasury
+        world.countries.learning = learning
     }
 }

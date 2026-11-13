@@ -474,9 +474,7 @@ final class EconomyTests: XCTestCase {
             XCTAssertTrue(eco.producers.isStaple[r.lowerBound])
             XCTAssertEqual(eco.producers.kind[r.lowerBound], .raw)
         }
-        for k in 0..<eco.producers.count where eco.producers.kind[k] == .craft {
-            XCTAssertEqual(eco.recipes[eco.producers.recipe[k]].output, eco.producers.good[k])
-        }
+        XCTAssertTrue((0..<eco.producers.count).allSatisfy { eco.producers.kind[$0] == .raw })
     }
 
     func testMarketCentresBelongToTheirOwnMarket() {
@@ -527,5 +525,97 @@ final class EconomyTests: XCTestCase {
         let tur = world.countries.id(forTag: "TUR")!.index
         XCTAssertGreaterThan(world.countries.lastMonthlyIncome[tur], 5)
         XCTAssertLessThan(world.countries.lastMonthlyIncome[tur], 80)
+    }
+}
+
+final class BuildingTests: XCTestCase {
+    func type(_ world: World, _ key: String) -> BuildingTypeID { world.economy.buildingType(key: key)! }
+    func province(_ world: World, _ name: String) -> ProvinceID { world.provinces.id(named: name)! }
+
+    func testStartingBuildings() {
+        let world = Scenario1453.makeWorld()
+        let b = world.economy.buildings
+        XCTAssertEqual(b.level(province(world, "Paris"), type(world, "college")), 3)
+        XCTAssertEqual(b.level(province(world, "Venice"), type(world, "shipyard")), 4)
+        XCTAssertEqual(b.level(province(world, "Konstantiniyye"), type(world, "market_hall")), 2)
+        let fort = type(world, "fort")
+        for p in world.provinces.ids {
+            XCTAssertEqual(b.level(p, fort), world.provinces.fortLevel[p.index])
+        }
+        // Every province with burghers has at least one workshop.
+        var withWorkshops = 0
+        for p in world.provinces.ids {
+            let has = world.economy.buildingTypes.indices.contains { t in
+                if case .workshop = world.economy.buildingTypes[t].effect { return b.level(p, BuildingTypeID(t)) > 0 }
+                return false
+            }
+            if has { withWorkshops += 1 }
+        }
+        XCTAssertEqual(withWorkshops, world.provinces.count)
+    }
+
+    func testBuildingTakesMoneyAndTime() {
+        var world = Scenario1453.makeWorld()
+        let tur = world.countries.id(forTag: "TUR")!
+        let edirne = province(world, "Edirne")
+        let hall = type(world, "market_hall")
+        world.countries.treasury[tur.index] = 1000
+        let before = world.economy.buildings.level(edirne, hall)
+        let cost = BuildingSystem.cost(world, edirne, hall)
+        XCTAssertNil(BuildingSystem.start(&world, tur, edirne, hall))
+        XCTAssertEqual(world.countries.treasury[tur.index], 1000 - cost, accuracy: 0.001)
+        XCTAssertEqual(BuildingSystem.refusal(world, tur, edirne, hall), .alreadyBuilding)
+        let months = world.economy.buildingTypes[hall.index].months(forLevel: before + 1)
+        for _ in 0..<(months - 1) { BuildingSystem.runMonthly(&world) }
+        XCTAssertEqual(world.economy.buildings.level(edirne, hall), before)
+        BuildingSystem.runMonthly(&world)
+        XCTAssertEqual(world.economy.buildings.level(edirne, hall), before + 1)
+    }
+
+    func testRefusals() {
+        var world = Scenario1453.makeWorld()
+        let tur = world.countries.id(forTag: "TUR")!
+        XCTAssertEqual(BuildingSystem.refusal(world, tur, province(world, "Paris"), type(world, "temple")), .notOwner)
+        let ankara = world.provinces.ids.first { world.provinces.owner[$0.index] == tur && !world.provinces.isCoastal[$0.index] }!
+        XCTAssertEqual(BuildingSystem.refusal(world, tur, ankara, type(world, "port"), checkMoney: false), .needsCoast)
+        world.countries.treasury[tur.index] = 0
+        let edirne = province(world, "Edirne")
+        XCTAssertEqual(BuildingSystem.refusal(world, tur, edirne, type(world, "temple")), .cannotAfford)
+    }
+
+    func testFortBuildingRaisesFortLevel() {
+        var world = Scenario1453.makeWorld()
+        let tur = world.countries.id(forTag: "TUR")!
+        let edirne = province(world, "Edirne")
+        let fort = type(world, "fort")
+        world.countries.treasury[tur.index] = 10_000
+        let before = world.provinces.fortLevel[edirne.index]
+        guard before < BuildingType.maxLevel else { return }
+        XCTAssertNil(BuildingSystem.start(&world, tur, edirne, fort))
+        for _ in 0..<60 { BuildingSystem.runMonthly(&world) }
+        XCTAssertEqual(world.provinces.fortLevel[edirne.index], before + 1)
+    }
+
+    func testMoreWorkshopLevelsMakeMoreGoods() {
+        var world = Scenario1453.makeWorld()
+        let p = province(world, "Florence")
+        let brewery = type(world, "brewery")
+        XCTAssertEqual(world.economy.buildings.level(p, brewery), 0)
+        MarketSystem.runMonthly(&world)
+        let slot = p.index * world.economy.buildings.typeCount + brewery.index
+        XCTAssertEqual(world.economy.workshopOutput[slot], 0)
+        world.economy.buildings.setLevel(p, brewery, 1)
+        MarketSystem.runMonthly(&world)
+        XCTAssertGreaterThan(world.economy.workshopOutput[slot], 0)
+    }
+
+    func testComputerCountriesBuild() {
+        let sim = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate)
+        sim.world.humanCountries = [sim.world.countries.id(forTag: "TUR")!]
+        let levels = sim.world.economy.buildings.level.reduce(0, +)
+        sim.advance(days: 730)
+        XCTAssertGreaterThan(sim.world.economy.buildings.level.reduce(0, +), levels)
+        let tur = sim.world.countries.id(forTag: "TUR")!
+        XCTAssertFalse(sim.world.economy.buildings.constructions.contains { sim.world.provinces.owner[$0.province.index] == tur })
     }
 }

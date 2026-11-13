@@ -21,6 +21,8 @@ public struct MarketTable: Sendable {
     public var met: [Double] = []
     /// Units arriving from beyond the map each year.
     public var imports: [Double] = []
+    /// One-off purchases (building materials) added to next month's demand.
+    public var pendingDemand: [Double] = []
 
     public init() {}
 
@@ -43,6 +45,7 @@ public struct MarketTable: Sendable {
         demand += Array(repeating: 0, count: goodCount)
         met += Array(repeating: 1, count: goodCount)
         imports += Array(repeating: 0, count: goodCount)
+        pendingDemand += Array(repeating: 0, count: goodCount)
         return id
     }
 
@@ -67,8 +70,22 @@ public struct Economy: Sendable {
     public var provinceMarket: [MarketID] = []
     /// Pairs of markets that touch by land or sea; surplus flows between them.
     public var marketLinks: [(MarketID, MarketID)] = []
+    public var buildingTypes: [BuildingType] = []
+    public var buildings = BuildingTable()
+    /// Units made last month by each workshop building, `[province * typeCount + type]`.
+    public var workshopOutput: [Double] = []
+    /// Ducats earned last month by each workshop building.
+    public var workshopValue: [Double] = []
+    /// Burgher jobs per workshop level, in thousands.
+    public static let jobsPerLevel = 2.5
+    /// Share of burghers who can work in workshops.
+    public static let workshopShare = 0.7
 
     public init() {}
+
+    public func buildingType(key: String) -> BuildingTypeID? {
+        buildingTypes.firstIndex { $0.key == key }.map(BuildingTypeID.init)
+    }
 
     public func provinces(in market: MarketID) -> [ProvinceID] {
         provinceMarket.indices.filter { provinceMarket[$0] == market }.map(ProvinceID.init)

@@ -23,6 +23,8 @@ TRADE_SHARE = 0.15
 FISH_SHARE = 0.06
 # Share of burghers working in workshops (the rest trade and serve).
 CRAFT_SHARE = 0.6
+# Burgher jobs per workshop level (thousands).
+JOBS_PER_LEVEL = 2.5
 
 RELIGION_FAMILY = {
     **{r: "Christian" for r in "catholic hussite orthodox bosnian coptic ethiopian armenian syriac nestorian".split()},
@@ -80,6 +82,7 @@ TERRAIN_FOOD = {"farmland": 1.2, "plains": 1.0, "hills": 0.85, "mountains": 0.6,
                 "forest": 0.75, "marsh": 0.75, "desert": 0.45, "steppe": 0.7}
 RAW_VALUE = 2.5
 TARGET = 1.15   # world supply / world demand at the start
+WORKSHOP_SHARE = 0.7   # share of burghers who can fill workshop jobs
 
 
 def approx_classes(p):
@@ -89,14 +92,14 @@ def approx_classes(p):
             "peasants": pop * (0.97) - burg, "slaves": 0.0}
 
 
-def calibrate(goods, recipes, needs, provinces, producers, imports):
+def calibrate(goods, recipes, needs, provinces, producers, start_buildings, buildings, imports):
     """Set each trade good's yield and each recipe's output so that world
     supply is TARGET times world demand at the start. Staple food keeps its
     terrain yield. Goods nobody needs yet keep a default yield."""
     G = len(goods)
     unit = [0.0] * G          # supply at yield 1 (raw) or recipe output 1 (craft)
     staple_supply = [0.0] * G
-    craft_workers = defaultdict(float)
+    craft_seen = []
     for p, prods in zip(provinces, producers):
         c = approx_classes(p)
         rural = c["peasants"] + c["slaves"]
@@ -106,8 +109,12 @@ def calibrate(goods, recipes, needs, provinces, producers, imports):
                     staple_supply[pr["good"]] += rural * pr["share"] * STAPLE_YIELD * TERRAIN_FOOD[p["terrain"]]
                 else:
                     unit[pr["good"]] += rural * pr["share"]
-            else:
-                unit[pr["good"]] += c["burghers"] * pr["share"]
+        jobs = {b: l * JOBS_PER_LEVEL for b, l in start_buildings[len(craft_seen)] if buildings[b]["effect"] == "workshop"}
+        craft_seen.append(1)
+        total = sum(jobs.values())
+        fill = min(1.0, c["burghers"] * WORKSHOP_SHARE / total) if total else 0
+        for b, j in jobs.items():
+            unit[recipes[buildings[b]["recipe"]]["output"]] += j * fill
     imp = [0.0] * G
     for im in imports:
         imp[im["good"]] += im["amount"]
@@ -176,6 +183,37 @@ def main():
                         "inputs": [[gid(k, "recipes"), v] for k, v in weights(inputs).items()]})
     recipe_for = {r["output"]: i for i, r in enumerate(recipes)}
 
+    buildings = []
+    for line in rows("buildings.txt"):
+        parts = [x.strip() for x in line.split("|")]
+        key, name, cat, cost, months, mats, effect = parts[:7]
+        req = parts[7] if len(parts) > 7 else ""
+        b = {"key": key, "name": name, "category": cat, "cost": float(cost), "months": int(months),
+             "materials": [[gid(k, "buildings"), v] for k, v in weights(mats).items()]}
+        e = effect.split()
+        if e[0] == "workshop":
+            g = gid(e[1], "buildings")
+            b["effect"] = "workshop"
+            b["recipe"] = next(i for i, r in enumerate(recipes) if r["output"] == g)
+            b["amount"] = 1.0
+        else:
+            b["effect"] = e[0]
+            b["amount"] = float(e[1])
+        if req:
+            if req == "coastal":
+                b["requiresCoast"] = True
+            elif req.startswith("good:"):
+                b["requiresGoods"] = [gid(k, "buildings") for k in req[5:].split("/")]
+            elif req.startswith("terrain:"):
+                b["requiresTerrain"] = req[8:].split("/")
+            elif req.startswith("religion:"):
+                b["requiresFamily"] = req[9:]
+            else:
+                sys.exit(f"buildings: unknown requirement '{req}'")
+        buildings.append(b)
+    bindex = {b["key"]: i for i, b in enumerate(buildings)}
+    workshop_of = {b["recipe"]: i for i, b in enumerate(buildings) if b["effect"] == "workshop"}
+
     needs = []
     for line in rows("needs.txt"):
         parts = [x.strip() for x in line.split("|")]
@@ -243,7 +281,20 @@ def main():
                 sys.exit(f"crafts: no recipe for '{k}'")
         craft_rules.append((scope_level(scope), scope, weights(items)))
 
-    out_provinces = []
+    market_centres = {m["centre"] for m in markets}
+    extra_start = {}
+    for line in rows("buildings_1453.txt"):
+        line = line.split("#")[0].strip()
+        if not line:
+            continue
+        name, items = [x.strip() for x in line.split("|")]
+        if name not in names:
+            sys.exit(f"buildings_1453: unknown province '{name}'")
+        for k in weights(items):
+            if k not in bindex:
+                sys.exit(f"buildings_1453: unknown building '{k}'")
+        extra_start.setdefault(name, {}).update(weights(items))
+    out_provinces, out_buildings = [], []
     for i, p in enumerate(provinces):
         st = states[p["state"]]
         scopes = {0: "*", 2: regions[st["region"]], 3: st["name"], 4: p["name"]}
@@ -288,14 +339,27 @@ def main():
             producers.append({"good": trade, "kind": "raw", "share": TRADE_SHARE})
             rural_left -= TRADE_SHARE
         producers.insert(0, {"good": staple, "kind": "raw", "share": round(rural_left, 4)})
+        start = {}
+        burghers = approx_classes(p)["burghers"]
         for c in crafts:
-            producers.append({"good": c, "kind": "craft", "recipe": recipe_for[c],
-                              "share": round(CRAFT_SHARE / len(crafts), 4)})
+            jobs = burghers * CRAFT_SHARE / len(crafts)
+            level = max(1, min(5, round(jobs / JOBS_PER_LEVEL)))
+            start[workshop_of[recipe_for[c]]] = level
+        if i in market_centres:
+            start[bindex["market_hall"]] = 2
+        if p.get("coastal") and p["development"] >= 6:
+            start[bindex["port"]] = 1
+        if p["development"] >= 5:
+            start[bindex["temple"]] = 1
+        for k, v in extra_start.get(p["name"], {}).items():
+            start[bindex[k]] = max(start.get(bindex[k], 0), int(v))
         out_provinces.append(producers)
+        out_buildings.append(sorted([b, l] for b, l in start.items()))
 
-    calibrate(goods, recipes, needs, provinces, out_provinces, imports)
+    calibrate(goods, recipes, needs, provinces, out_provinces, out_buildings, buildings, imports)
     result = {"goods": goods, "recipes": recipes, "needs": needs, "markets": markets,
-              "imports": imports, "producers": out_provinces}
+              "imports": imports, "producers": out_provinces, "buildings": buildings,
+              "startBuildings": out_buildings}
     (RES / "economy1453.json").write_text(json.dumps(result, separators=(",", ":"), ensure_ascii=False))
     print(f"{len(goods)} goods, {len(recipes)} recipes, {len(needs)} needs, "
           f"{len(markets)} markets, {len(out_provinces)} provinces")

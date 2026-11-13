@@ -138,6 +138,23 @@ final class SnapshotTests: XCTestCase {
         }
     }
 
+    func testProvincePanels() throws {
+        let model = GameModel(useMetal: false)
+        let edirne = model.world.provinces.id(named: "Edirne")!
+        model.select(province: edirne)
+        let views: [(String, AnyView)] = [
+            ("panel_economy", AnyView(ProvincePanel(province: edirne, tab: .economy))),
+            ("panel_people", AnyView(ProvincePanel(province: edirne, tab: .people))),
+            ("panel_build", AnyView(BuildingsSection(province: edirne, showBuild: true)
+                .padding(14).frame(width: 300).background(Palette.parchment))),
+        ]
+        for (name, view) in views {
+            let renderer = ImageRenderer(content: view.environment(model))
+            renderer.scale = 1
+            save(try XCTUnwrap(renderer.cgImage), "\(name).png")
+        }
+    }
+
     func testMainScreen() async throws {
         let model = GameModel()
         if let metal = model.metal {

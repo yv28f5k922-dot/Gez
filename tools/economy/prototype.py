@@ -28,6 +28,8 @@ PRICE_MIN, PRICE_MAX = 0.2, 5.0
 SAT_SPEED = 0.2
 TAX_RAW, TAX_CRAFT = 0.025, 0.03
 SECONDARY_FLOOR = 0.6
+JOBS_PER_LEVEL = 2.5
+WORKSHOP_SHARE = 0.7
 MIN_SOLD = 0.25
 EXCHANGE_PASSES = 3
 EXCHANGE_RATE = 0.5
@@ -197,15 +199,19 @@ def main(months):
                         S[m][bg] += out * amt
                         raw_out.append((i, bg, out * amt))
                     raw_out.append((i, g, out))
-                else:
-                    r = recipes[pr["recipe"]]
-                    potential = cls[i]["burghers"] * pr["share"] * r["perThousand"] / 12
+            jobs = [(b, l * JOBS_PER_LEVEL) for b, l in eco["startBuildings"][i] if eco["buildings"][b]["effect"] == "workshop"]
+            total = sum(j for _, j in jobs)
+            fill = min(1.0, cls[i]["burghers"] * WORKSHOP_SHARE / total) if total else 0
+            for b, j in jobs:
+                    r = recipes[eco["buildings"][b]["recipe"]]
+                    g = r["output"]
+                    potential = j * fill * r["perThousand"] / 12
                     f = craft_factor(r, avail[m])
                     out = potential * f
                     for ig, amt in r["inputs"]:
                         D[m][ig] += potential * amt
                     S[m][g] += out
-                    craft_out.append((i, pr["recipe"], out))
+                    craft_out.append((i, eco["buildings"][b]["recipe"], out))
         # Needs
         need_alloc = []  # per province: list of (need, [(g, share)], amount)
         for i, p in enumerate(prov):

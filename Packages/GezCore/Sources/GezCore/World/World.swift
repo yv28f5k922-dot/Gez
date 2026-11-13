@@ -156,6 +156,10 @@ public struct CountryTable: Sendable {
     public var treasury: [Double] = []
     /// Income from the most recent monthly update.
     public var lastMonthlyIncome: [Double] = []
+    /// Spending (building upkeep, later armies and loans) in the most recent month.
+    public var lastMonthlyExpenses: [Double] = []
+    /// Learning points gathered so far (spent on technology later).
+    public var learning: [Double] = []
 
     private var indexByTag: [String: CountryID] = [:]
 
@@ -195,6 +199,8 @@ public struct CountryTable: Sendable {
         self.subjectType.append(nil)
         self.treasury.append(treasury)
         self.lastMonthlyIncome.append(0)
+        self.lastMonthlyExpenses.append(0)
+        self.learning.append(0)
         indexByTag[tag] = id
         return id
     }
@@ -219,6 +225,8 @@ public struct World: Sendable {
     public var riverBorders: Set<ProvincePair> = []
     /// Goods, markets, producers and prices.
     public var economy = Economy()
+    /// Countries played by people; the AI leaves them alone.
+    public var humanCountries: Set<CountryID> = []
 
     public init(map: MapInfo = MapInfo(width: 1, height: 1, pixelsPerDegree: 1, longitudeMin: 0, latitudeMax: 0)) {
         self.map = map

@@ -36,10 +36,6 @@ struct EconomySection: View {
                         .frame(width: 10, height: 10)
                         .overlay(RoundedRectangle(cornerRadius: 2).stroke(Palette.ink.opacity(0.4), lineWidth: 0.5))
                     Text(eco.goods.name[g.index])
-                    if eco.producers.kind[k] == .craft {
-                        Image(systemName: "hammer").font(.caption2).foregroundStyle(Palette.ink.opacity(0.5))
-                            .help("Workshop")
-                    }
                     Spacer()
                     Text(Self.amount(eco.producers.output[k] * 12))
                         .foregroundStyle(Palette.ink.opacity(0.6))
@@ -47,6 +43,26 @@ struct EconomySection: View {
                         .frame(width: 44, alignment: .trailing)
                 }
                 .font(.caption.monospacedDigit())
+            }
+            let T = eco.buildings.typeCount
+            ForEach(eco.buildingTypes.indices.filter { eco.buildings.level(province, BuildingTypeID($0)) > 0 && eco.buildingTypes[$0].effect.workshopRecipe != nil }, id: \.self) { t in
+                let slot = province.index * T + t
+                if let r = eco.buildingTypes[t].effect.workshopRecipe {
+                    let g = eco.recipes[r].output
+                    HStack(spacing: 6) {
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(Palette.color(eco.goods.color[g.index]))
+                            .frame(width: 10, height: 10)
+                        Text(eco.goods.name[g.index])
+                        Image(systemName: "hammer").font(.caption2).foregroundStyle(Palette.ink.opacity(0.5))
+                        Spacer()
+                        Text(Self.amount(eco.workshopOutput[slot] * 12))
+                            .foregroundStyle(Palette.ink.opacity(0.6))
+                        Text(String(format: "%.1f", eco.workshopValue[slot] * 12))
+                            .frame(width: 44, alignment: .trailing)
+                    }
+                    .font(.caption.monospacedDigit())
+                }
             }
             HStack {
                 Text("Worth").foregroundStyle(Palette.ink.opacity(0.7))
@@ -175,5 +191,178 @@ struct MarketPanel: View {
                 .foregroundStyle(selected ? Palette.parchment : Palette.ink)
         }
         .buttonStyle(.plain)
+    }
+}
+
+// MARK: - Buildings
+
+extension World {
+    /// Building names that fit the local faith ("Mosque", "Madrasa"...).
+    func buildingName(_ t: BuildingTypeID, in p: ProvinceID) -> String {
+        let type = economy.buildingTypes[t.index]
+        let family = provinces.religion[p.index].family
+        switch type.key {
+        case "temple":
+            switch family {
+            case .christian: return "Church"
+            case .muslim: return "Mosque"
+            case .jewish: return "Synagogue"
+            case .dharmic: return "Temple"
+            default: return "Shrine"
+            }
+        case "college":
+            return family == .muslim ? "Madrasa" : (family == .christian ? "University" : "College")
+        default:
+            return type.name
+        }
+    }
+}
+
+/// What stands in the province, what is being built, and (for your own
+/// provinces) what you can build.
+struct BuildingsSection: View {
+    @Environment(GameModel.self) private var model
+    let province: ProvinceID
+    @State var showBuild = false
+    @State var category: BuildingCategory = .production
+
+    var body: some View {
+        let world = model.world
+        let eco = world.economy
+        let types = eco.buildingTypes.indices.map(BuildingTypeID.init)
+        let built = types.filter { eco.buildings.level(province, $0) > 0 }
+        let building = eco.buildings.constructions.filter { $0.province == province }
+        let isMine = world.provinces.owner[province.index] == model.playerCountry
+        VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                Text("Buildings").font(.callout.bold())
+                Spacer()
+                Text("\(eco.buildings.slotsUsed(province)) / \(BuildingSystem.slots(world, province)) slots")
+                    .font(.caption)
+                    .foregroundStyle(Palette.ink.opacity(0.6))
+            }
+            FlowRow(built.map { t in "\(world.buildingName(t, in: province)) \(eco.buildings.level(province, t))" })
+            ForEach(Array(building.enumerated()), id: \.offset) { _, c in
+                HStack(spacing: 6) {
+                    Image(systemName: "hammer.fill").font(.caption2)
+                    Text("\(world.buildingName(c.type, in: province)) \(c.level)").font(.caption)
+                    ProgressView(value: c.progress).frame(width: 70)
+                    Text("\(c.monthsLeft) mo").font(.caption2.monospacedDigit())
+                }
+            }
+            if isMine {
+                Button {
+                    showBuild.toggle()
+                } label: {
+                    Label(showBuild ? "Hide" : "Build…", systemImage: showBuild ? "chevron.up" : "plus.circle")
+                        .font(.caption.bold())
+                }
+                .buttonStyle(.plain)
+                if showBuild {
+                    HStack(spacing: 4) {
+                        ForEach(BuildingCategory.allCases, id: \.self) { c in
+                            Button {
+                                category = c
+                            } label: {
+                                Text(c.displayName)
+                                    .font(.caption2)
+                                    .padding(.horizontal, 6).padding(.vertical, 3)
+                                    .background(category == c ? Palette.ink.opacity(0.85) : Palette.ink.opacity(0.08), in: Capsule())
+                                    .foregroundStyle(category == c ? Palette.parchment : Palette.ink)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                    ForEach(types.filter { eco.buildingTypes[$0.index].category == category }, id: \.index) { t in
+                        buildRow(t, world: world)
+                    }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func buildRow(_ t: BuildingTypeID, world: World) -> some View {
+        let player = model.playerCountry!
+        // Hide what can never be built here (wrong coast, good, terrain...).
+        let placeRefusal = BuildingSystem.refusal(world, player, province, t, checkMoney: false)
+        let hidden: Set<BuildingSystem.Refusal> = [.needsCoast, .wrongGood, .wrongTerrain, .wrongReligion, .maxLevel, .notOwner]
+        if placeRefusal.map({ !hidden.contains($0) }) ?? true {
+            let refusal = BuildingSystem.refusal(world, player, province, t)
+            let level = BuildingSystem.nextLevel(world, province, t)
+            let type = world.economy.buildingTypes[t.index]
+            Button {
+                model.build(t, in: province)
+            } label: {
+                HStack(spacing: 6) {
+                    Text("\(world.buildingName(t, in: province)) \(level)")
+                    Spacer()
+                    Text(String(format: "%.0f", BuildingSystem.cost(world, province, t)))
+                        .monospacedDigit()
+                    Image(systemName: "dollarsign.circle").font(.caption2)
+                    Text("\(type.months(forLevel: level)) mo").monospacedDigit()
+                        .frame(width: 40, alignment: .trailing)
+                }
+                .font(.caption)
+                .padding(.vertical, 2)
+                .opacity(refusal == nil ? 1 : 0.45)
+            }
+            .buttonStyle(.plain)
+            .disabled(refusal != nil)
+            .help(refusal?.reason ?? Self.effectText(type.effect, world: world))
+        }
+    }
+
+    static func effectText(_ e: BuildingEffect, world: World) -> String {
+        func pct(_ x: Double) -> String { "+\(Int((x * 100).rounded()))%" }
+        switch e {
+        case .staple(let x): return "\(pct(x)) staple food per level"
+        case .trade(let x): return "\(pct(x)) trade good per level"
+        case .fish(let x): return "\(pct(x)) fish per level"
+        case .workshop(let r): return "Jobs for 2,500 burghers making \(world.economy.goods.name[world.economy.recipes[r].output.index])"
+        case .crafts(let x): return "\(pct(x)) workshop output per level"
+        case .tax(let x): return "\(pct(x)) tax per level"
+        case .mood(let x): return "\(pct(x)) satisfaction per level"
+        case .learning(let x): return "+\(x) learning a year per level"
+        case .fort: return "Fort level +1"
+        case .manpower(let x): return "+\(Int(x * 1000)) soldiers per level"
+        case .ships(let x): return "+\(Int(x)) ships at a time per level"
+        }
+    }
+}
+
+/// Small wrapped tags.
+struct FlowRow: View {
+    let items: [String]
+    init(_ items: [String]) { self.items = items }
+
+    var body: some View {
+        let lines = Self.chunk(items, maxChars: 40)
+        VStack(alignment: .leading, spacing: 3) {
+            ForEach(Array(lines.enumerated()), id: \.offset) { _, line in
+                HStack(spacing: 4) {
+                    ForEach(line, id: \.self) { item in
+                        Text(item)
+                            .font(.caption2)
+                            .padding(.horizontal, 5).padding(.vertical, 2)
+                            .background(Palette.ink.opacity(0.08), in: RoundedRectangle(cornerRadius: 4))
+                    }
+                }
+            }
+        }
+    }
+
+    static func chunk(_ items: [String], maxChars: Int) -> [[String]] {
+        var lines: [[String]] = [[]]
+        var width = 0
+        for item in items {
+            if width + item.count > maxChars && !lines[lines.count - 1].isEmpty {
+                lines.append([])
+                width = 0
+            }
+            lines[lines.count - 1].append(item)
+            width += item.count + 2
+        }
+        return lines.filter { !$0.isEmpty }
     }
 }

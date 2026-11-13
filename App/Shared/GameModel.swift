@@ -90,6 +90,9 @@ final class GameModel {
         metal = useMetal ? MetalMapRenderer.makeDevice().flatMap { MetalMapRenderer(device: $0, idMap: map, seaMap: seas) } : nil
         date = sim.date
         playerCountry = sim.world.countries.id(forTag: Scenario1453.defaultPlayerTag)
+        if let player = playerCountry {
+            sim.world.humanCountries = [player]
+        }
         rebuildLabels()
         renderMap()
         startLoop()
@@ -141,6 +144,15 @@ final class GameModel {
         selectedSea = sea
         metal?.selectedSeaValue = sea.map { UInt32($0.index + 1) } ?? 0
         if sea != nil { select(province: nil, keepSea: true) }
+    }
+
+    /// Orders a building for the player. Returns why not, if it can't.
+    @discardableResult
+    func build(_ type: BuildingTypeID, in province: ProvinceID) -> BuildingSystem.Refusal? {
+        guard let player = playerCountry else { return .notOwner }
+        let result = BuildingSystem.start(&simulation.world, player, province, type)
+        revision &+= 1
+        return result
     }
 
     func select(province: ProvinceID?, keepSea: Bool = false) {

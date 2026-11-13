@@ -1,0 +1,48 @@
+# Buildings standing in 1453 besides workshops (made from crafts.txt) and
+# forts (from development). Province | building level, ...
+# Every market centre also gets a Market Hall 2; coastal provinces of
+# development 6+ get a Port 1; provinces of development 5+ get a Temple 1.
+# Universities and great schools:
+Paris          | college 3
+Bologna        | college 3
+Padua          | college 2
+Oxford         | college 2
+Cambridge      | college 1
+Salamanca      | college 2
+Montpellier    | college 1
+Prague         | college 2
+Krakow         | college 2
+Vienna         | college 2
+Heidelberg     | college 1
+Cologne        | college 1
+Brussels       | college 1   # University of Leuven
+Erfurt         | college 1
+Leipzig        | college 1
+Florence       | college 1
+Cairo          | college 3
+Fez            | college 2
+Damascus       | college 2
+Samarkand      | college 2
+Herat          | college 2
+Bukhara        | college 1
+Tabriz         | college 1
+Baghdad        | college 1
+Konstantiniyye | college 1
+Edirne         | college 1
+Bursa          | college 1
+Tunis          | college 1
+Delhi          | college 1
+Jaunpur        | college 1
+Gulbarga       | college 1
+Vijayanagara   | college 1
+Benares        | college 1
+## Arsenals and shipyards
+Venice         | shipyard 4, fort 2
+Genoa          | shipyard 3
+Konstantiniyye | shipyard 2, armourer 2
+Gallipoli      | shipyard 2
+Barcelona      | shipyard 2
+Lisbon         | shipyard 2
+Lubeck         | shipyard 2
+Cairo          | armourer 1
+Edirne         | barracks 2

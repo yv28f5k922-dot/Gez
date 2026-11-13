@@ -93,25 +93,48 @@ public enum MarketSystem {
         var producers = eco.producers
 
         // 1. Production.
-        for k in 0..<producers.count {
+        let bonus = BuildingBonuses(eco, provinces: P)
+        let fishGood = eco.goods.id(forKey: "fish")
+        for k in 0..<producers.count where producers.kind[k] == .raw {
             let p = producers.province[k].index
             let m = eco.provinceMarket[p].index
             let g = producers.good[k].index
-            switch producers.kind[k] {
-            case .raw:
-                let workers = rural[p] * producers.share[k]
-                let y = producers.isStaple[k]
-                    ? MarketModel.stapleYield * MarketModel.terrainFood(world.provinces.terrain[p])
-                    : eco.goods.yield[g]
-                let out = workers * y / 12
-                producers.output[k] = out
-                S[m * G + g] += out
-                for (bg, amount) in eco.goods.byproducts[g] {
-                    S[m * G + bg.index] += out * amount
+            let workers = rural[p] * producers.share[k]
+            let y: Double
+            if producers.isStaple[k] {
+                y = MarketModel.stapleYield * MarketModel.terrainFood(world.provinces.terrain[p]) * (1 + bonus.staple[p])
+            } else if producers.good[k] == fishGood {
+                y = eco.goods.yield[g] * (1 + bonus.fish[p])
+            } else {
+                y = eco.goods.yield[g] * (1 + bonus.trade[p])
+            }
+            let out = workers * y / 12
+            producers.output[k] = out
+            S[m * G + g] += out
+            for (bg, amount) in eco.goods.byproducts[g] {
+                S[m * G + bg.index] += out * amount
+            }
+        }
+        // Workshops: buildings give burgher jobs; if there are fewer burghers
+        // than jobs, every workshop in the province runs short-handed.
+        let T = eco.buildings.typeCount
+        var workshopOutput = Array(repeating: 0.0, count: P * T)
+        for p in 0..<P {
+            var jobs = 0.0
+            for t in 0..<T {
+                if case .workshop = eco.buildingTypes[t].effect {
+                    jobs += Double(eco.buildings.level[p * T + t]) * Economy.jobsPerLevel
                 }
-            case .craft:
-                let recipe = eco.recipes[producers.recipe[k]]
-                let potential = burghers[p] * producers.share[k] * recipe.perThousand / 12
+            }
+            guard jobs > 0 else { continue }
+            let fill = min(1, burghers[p] * Economy.workshopShare / jobs)
+            let m = eco.provinceMarket[p].index
+            for t in 0..<T {
+                guard case .workshop(let r) = eco.buildingTypes[t].effect else { continue }
+                let level = eco.buildings.level[p * T + t]
+                guard level > 0 else { continue }
+                let recipe = eco.recipes[r]
+                let potential = Double(level) * Economy.jobsPerLevel * fill * recipe.perThousand * (1 + bonus.crafts[p]) / 12
                 var f = 1.0
                 for (n, input) in recipe.inputs.enumerated() {
                     let a = avail[m * G + input.0.index]
@@ -119,10 +142,12 @@ public enum MarketSystem {
                     D[m * G + input.0.index] += potential * input.1
                 }
                 let out = potential * f
-                producers.output[k] = out
-                S[m * G + g] += out
+                workshopOutput[p * T + t] = out
+                S[m * G + recipe.output.index] += out
             }
         }
+        // Building materials bought last month.
+        for i in 0..<(M * G) { D[i] += eco.markets.pendingDemand[i] }
 
         // 2. What people want, split between substitutes by what is on offer.
         // People are grouped by (market, class, religion family): everyone in
@@ -237,8 +262,9 @@ public enum MarketSystem {
         }
         var pops = world.pops
         for i in 0..<pops.count {
-            let target = groupSatisfaction[popGroup[i]]
-            if target >= 0 {
+            let needsMet = groupSatisfaction[popGroup[i]]
+            if needsMet >= 0 {
+                let target = min(1, needsMet + bonus.mood[pops.province[i].index])
                 pops.satisfaction[i] += MarketModel.satisfactionSpeed * (target - pops.satisfaction[i])
             }
         }
@@ -247,38 +273,48 @@ public enum MarketSystem {
         var income = Array(repeating: 0.0, count: world.countries.count)
         var provinceValue = Array(repeating: 0.0, count: P)
         var provinceTax = Array(repeating: 0.0, count: P)
-        for k in 0..<producers.count {
+        for k in 0..<producers.count where producers.kind[k] == .raw {
             let p = producers.province[k].index
             let m = eco.provinceMarket[p].index
             let g = producers.good[k].index
             let out = producers.output[k]
-            var value: Double
-            let rate: Double
-            switch producers.kind[k] {
-            case .raw:
-                value = out * markets.price[m * G + g] * sold[m * G + g]
-                for (bg, amount) in eco.goods.byproducts[g] {
-                    let j = m * G + bg.index
-                    value += out * amount * markets.price[j] * sold[j]
-                }
-                rate = MarketModel.taxRaw
-            case .craft:
-                let recipe = eco.recipes[producers.recipe[k]]
+            var value = out * markets.price[m * G + g] * sold[m * G + g]
+            for (bg, amount) in eco.goods.byproducts[g] {
+                let j = m * G + bg.index
+                value += out * amount * markets.price[j] * sold[j]
+            }
+            producers.value[k] = value
+            provinceValue[p] += value
+            provinceTax[p] += value * MarketModel.taxRaw
+        }
+        var workshopValue = Array(repeating: 0.0, count: P * T)
+        for p in 0..<P {
+            let m = eco.provinceMarket[p].index
+            for t in 0..<T where workshopOutput[p * T + t] > 0 {
+                guard case .workshop(let r) = eco.buildingTypes[t].effect else { continue }
+                let recipe = eco.recipes[r]
                 var cost = 0.0
                 for input in recipe.inputs {
                     cost += markets.price[m * G + input.0.index] * input.1
                 }
-                value = max(0, out * (markets.price[m * G + g] * sold[m * G + g] - cost))
-                rate = MarketModel.taxCraft
+                let g = recipe.output.index
+                let value = max(0, workshopOutput[p * T + t] * (markets.price[m * G + g] * sold[m * G + g] - cost))
+                workshopValue[p * T + t] = value
+                provinceValue[p] += value
+                provinceTax[p] += value * MarketModel.taxCraft
             }
-            producers.value[k] = value
-            provinceValue[p] += value
-            provinceTax[p] += value * rate
+        }
+        for p in 0..<P {
+            provinceTax[p] *= 1 + bonus.tax[p]
             if let owner = world.provinces.owner[p] {
-                income[owner.index] += value * rate
+                income[owner.index] += provinceTax[p]
+                world.countries.learning[owner.index] += bonus.learning[p] / 12
             }
         }
 
+        markets.pendingDemand = Array(repeating: 0, count: M * G)
+        world.economy.workshopOutput = workshopOutput
+        world.economy.workshopValue = workshopValue
         world.economy.markets = markets
         world.economy.producers = producers
         world.pops = pops
