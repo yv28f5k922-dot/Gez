@@ -121,6 +121,33 @@ final class ScenarioTests: XCTestCase {
         }
     }
 
+    func testRiversAndRiverBorders() {
+        let world = Scenario1453.makeWorld()
+        XCTAssertGreaterThan(world.rivers.count, 50)
+        XCTAssertTrue(world.rivers.contains { $0.name == "Danube" })
+        XCTAssertGreaterThan(world.riverBorders.count, 150)
+        for pair in world.riverBorders {
+            XCTAssertTrue(world.provinces.neighbors[pair.low].contains(ProvinceID(pair.high)),
+                          "\(world.provinces.name[pair.low]) / \(world.provinces.name[pair.high]) are not neighbours")
+        }
+    }
+
+    func testDanubeSeparatesWallachiaFromBulgaria() {
+        let world = Scenario1453.makeWorld()
+        let wal = world.countries.id(forTag: "WAL")!
+        let tur = world.countries.id(forTag: "TUR")!
+        var crossings = 0
+        var riverCrossings = 0
+        for a in world.provinces(ownedBy: wal) {
+            for b in world.provinces.neighbors[a.index] where world.provinces.owner[b.index] == tur {
+                crossings += 1
+                if world.isRiverBorder(a, b) { riverCrossings += 1 }
+            }
+        }
+        XCTAssertGreaterThan(crossings, 0)
+        XCTAssertGreaterThanOrEqual(Double(riverCrossings) / Double(crossings), 0.5)
+    }
+
     func testBosporusCrossing() {
         let world = Scenario1453.makeWorld()
         let constantinople = world.provinces.id(named: "Konstantiniyye")!

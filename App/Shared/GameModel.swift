@@ -134,7 +134,8 @@ final class GameModel {
             map: idMap,
             colors: MapPalette.colors(for: mapMode, world: world),
             ownerKey: keys.owner,
-            stateKey: keys.state
+            stateKey: keys.state,
+            rivers: world.rivers.map { river in river.points.map { CGPoint(x: $0.x, y: $0.y) } }
         )
         Task.detached(priority: .userInitiated) {
             let image = MapRenderer.render(input)

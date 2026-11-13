@@ -30,6 +30,16 @@ decide differently.
    Transylvania, Lebanon, Egypt's Copts, Armenia) show the majority or the
    ruler's religion.
 
+8. **Borders follow geography, not surveyed frontiers.** Province shapes stop
+   at 73 rivers, 20 mountain ridges and three hand-drawn frontier lines (the
+   Granada frontier, the 1422 Melno line between Prussia and Lithuania, and
+   the Prussia–Mazovia frontier). Elsewhere a border lies between
+   neighbouring towns. River and ridge lines are hand-drawn and accurate to
+   roughly 10–30 km.
+9. **1453 coastlines.** The Zuiderzee and the enlarged Dollart are open
+   water; the Aral Sea is at its full size. Smaller changes (deltas, lagoons)
+   are not modelled.
+
 ## Ownership calls I'm unsure about
 
 | # | Place | Map now | Why unsure |

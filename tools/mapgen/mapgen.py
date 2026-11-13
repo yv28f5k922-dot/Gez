@@ -16,11 +16,11 @@ Outputs
       Downscaled political map for quick visual checks.
 
 How provinces get their shape: every province has a seed point (its main
-town). Each land pixel belongs to the nearest seed on the same landmass,
-measured on the globe, with a smooth random warp so borders wiggle instead of
-being straight lines. Wasteland seeds claim deserts and off-map land. Pieces
-of a province that end up cut off from its seed are given to neighbours, so
-every province is one connected shape.
+town). Provinces grow outward over land from their towns; each land pixel
+joins the town it can reach most cheaply. Stepping onto a river, mountain
+ridge or hand-drawn frontier line (data/map/barriers.txt) costs a lot, so
+borders snap onto those lines. A little random variation in step cost makes
+borders wiggle. Wasteland seeds claim deserts and off-map land.
 
 Usage: python3 tools/mapgen/mapgen.py --land /path/to/land10m.geojson
 """
@@ -46,7 +46,6 @@ WIDTH = int(round((LON_MAX - LON_MIN) * PPD))
 HEIGHT = int(round((LAT_MAX - LAT_MIN) * PPD))
 
 EARTH_RADIUS_KM = 6371.0
-MAX_REACH_KM = 450.0  # land further than this from any seed becomes wasteland
 ISLAND_REACH_KM = 250.0  # seedless islands join the nearest province within this
 
 WATER, WASTE, UNSET = -1, -2, -3
@@ -209,7 +208,7 @@ def to_px(lat, lon):
     return (lon - LON_MIN) * PPD, (LAT_MAX - lat) * PPD
 
 
-def land_mask(geojson_path, lakes):
+def land_mask(geojson_path, lakes, coast=()):
     g = json.load(open(geojson_path))
     geom = g["geometry"] if g.get("type") == "Feature" else g["features"][0]["geometry"]
     polys = geom["coordinates"] if geom["type"] == "MultiPolygon" else [geom["coordinates"]]
@@ -245,6 +244,9 @@ def land_mask(geojson_path, lakes):
     for lake in lakes:
         pts = [to_px(lat, lon) for lat, lon in lake["points"]]
         draw.polygon(pts, fill=0)
+    for shape in coast:
+        pts = [to_px(lat, lon) for lat, lon in shape["points"]]
+        draw.polygon(pts, fill=0 if shape["kind"] == "sea" else 255)
     return np.array(img) > 0
 
 
@@ -274,6 +276,185 @@ def smooth_noise(rng, cell, amplitude):
 
 # --------------------------------------------------------------------------
 # Main build
+
+
+RIVER_COST = 14.0      # extra cost for stepping onto a river pixel
+RIDGE_COST = 45.0      # mountain ridge
+FRONTIER_COST = 90.0   # hand-drawn historical frontier
+GROW_LIMIT = 170.0     # land further than this (in ~3.5 km steps) becomes wasteland
+
+
+def parse_shapes(path):
+    """Coast edits: '= sea Name' / '= land Name' followed by lat lon points."""
+    shapes, current = [], None
+    if not os.path.exists(path):
+        return shapes
+    for raw in open(path, encoding="utf-8"):
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("="):
+            kind, name = line[1:].strip().split(" ", 1)
+            if kind not in ("sea", "land"):
+                sys.exit(f"coast_1453.txt: unknown kind {kind}")
+            current = {"kind": kind, "name": name, "points": []}
+            shapes.append(current)
+        else:
+            lat, lon = [float(v) for v in line.split()]
+            current["points"].append((lat, lon))
+    return shapes
+
+
+def parse_barriers(path):
+    kinds = {"~": "river", "^": "ridge", "=": "frontier"}
+    lines, current = [], None
+    for n, raw in enumerate(open(path, encoding="utf-8"), 1):
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line[0] in kinds:
+            current = {"kind": kinds[line[0]], "name": line[1:].strip(), "points": []}
+            lines.append(current)
+        else:
+            if current is None:
+                sys.exit(f"barriers.txt:{n}: point before any line")
+            lat, lon = [float(v) for v in line.split()]
+            current["points"].append((lat, lon))
+    for b in lines:
+        if len(b["points"]) < 2:
+            sys.exit(f"barriers.txt: {b['name']} needs at least two points")
+    return lines
+
+
+def barrier_masks(barriers):
+    masks = {}
+    for kind in ("river", "ridge", "frontier"):
+        img = Image.new("L", (WIDTH, HEIGHT), 0)
+        draw = ImageDraw.Draw(img)
+        for b in barriers:
+            if b["kind"] == kind:
+                draw.line([to_px(lat, lon) for lat, lon in b["points"]], fill=255, width=3 if kind != "river" else 2)
+        masks[kind] = np.array(img) > 0
+    return masks["river"], masks["ridge"], masks["frontier"]
+
+
+def move_off_rivers(seed_px, provinces, land, river_mask):
+    """Towns drawn on a river are moved onto the bank that faces the rest of
+    their own country, so the river stays an unbroken border."""
+    seed_px = seed_px.copy()
+    blocked = river_mask | ~land
+    owners = [p["owner"] for p in provinces]
+    by_owner = defaultdict(list)
+    for k, o in enumerate(owners):
+        if o:
+            by_owner[o].append(k)
+    moved = 0
+    for k in range(len(provinces)):
+        x, y = seed_px[k]
+        y0, y1, x0, x1 = max(y - 2, 0), min(y + 3, HEIGHT), max(x - 2, 0), min(x + 3, WIDTH)
+        if not river_mask[y0:y1, x0:x1].any():
+            continue
+        # Direction towards the owner's other towns (or away from the river if none).
+        friends = [j for j in by_owner.get(owners[k], []) if j != k]
+        if friends:
+            fx = np.mean([seed_px[j][0] for j in friends]) - x
+            fy = np.mean([seed_px[j][1] for j in friends]) - y
+        else:
+            fx, fy = 0.0, 1.0
+        norm = math.hypot(fx, fy) or 1.0
+        fx, fy = fx / norm, fy / norm
+        best, best_score = None, -1e9
+        for dy in range(-6, 7):
+            for dx in range(-6, 7):
+                nx, ny = x + dx, y + dy
+                if not (0 <= nx < WIDTH and 0 <= ny < HEIGHT) or blocked[ny, nx]:
+                    continue
+                # Stay clear of the river by a pixel so the town is firmly on one bank.
+                if river_mask[max(ny - 1, 0):ny + 2, max(nx - 1, 0):nx + 2].any():
+                    continue
+                score = dx * fx + dy * fy - 0.35 * math.hypot(dx, dy)
+                if score > best_score:
+                    best, best_score = (nx, ny), score
+        if best is not None:
+            seed_px[k] = best
+            moved += 1
+    print(f"{moved} riverside towns placed on their own bank")
+    return seed_px
+
+
+def grow_provinces(land, seed_px, seed_owner, river_mask, ridge_mask, frontier_mask):
+    """Each land pixel joins the seed it can reach most cheaply over land.
+
+    Steps cost their true ground distance, randomly varied a little so borders
+    wiggle, plus a large extra cost for stepping onto a river, ridge or
+    frontier line. So provinces stop at those lines unless there is no other
+    way to reach the land.
+    """
+    from scipy.sparse import coo_matrix
+    from scipy.sparse.csgraph import dijkstra
+
+    node = np.full(land.shape, -1, dtype=np.int64)
+    ys, xs = np.nonzero(land)
+    n = len(ys)
+    node[ys, xs] = np.arange(n)
+
+    rng = np.random.default_rng(1453)
+    wobble = np.clip(1.0 + smooth_noise(rng, 24, 0.45) + smooth_noise(rng, 7, 0.15), 0.3, 2.6)
+    cost = wobble.copy()
+    cost[river_mask] += RIVER_COST
+    cost[ridge_mask] += RIDGE_COST
+    cost[frontier_mask] += FRONTIER_COST
+    row_scale = np.cos(np.radians(LAT_MAX - (np.arange(HEIGHT) + 0.5) / PPD))
+
+    rows, cols, weights = [], [], []
+    # Horizontal neighbours.
+    a = node[:, :-1]
+    b = node[:, 1:]
+    ok = (a >= 0) & (b >= 0)
+    w = 0.5 * (cost[:, :-1] + cost[:, 1:]) * row_scale[:, None]
+    rows.append(a[ok]); cols.append(b[ok]); weights.append(w[ok])
+    # Vertical neighbours.
+    a = node[:-1, :]
+    b = node[1:, :]
+    ok = (a >= 0) & (b >= 0)
+    w = 0.5 * (cost[:-1, :] + cost[1:, :])
+    rows.append(a[ok]); cols.append(b[ok]); weights.append(w[ok])
+    graph = coo_matrix(
+        (np.concatenate(weights), (np.concatenate(rows), np.concatenate(cols))), shape=(n, n)
+    ).tocsr()
+
+    seed_nodes = node[seed_px[:, 1], seed_px[:, 0]]
+    unique_nodes, first = np.unique(seed_nodes, return_index=True)
+    if len(unique_nodes) < len(seed_nodes):
+        print(f"  note: {len(seed_nodes) - len(unique_nodes)} seeds share a pixel with another seed")
+    node_to_seed = {int(v): int(k) for v, k in zip(unique_nodes, first)}
+
+    _, _, sources = dijkstra(graph, directed=False, indices=unique_nodes, min_only=True,
+                             return_predecessors=True, limit=GROW_LIMIT)
+    labels = np.full(land.shape, WATER, dtype=np.int32)
+    reached = sources >= 0
+    seed_index = np.full(n, -1, dtype=np.int64)
+    src = sources[reached]
+    lookup = np.vectorize(lambda v: node_to_seed[int(v)], otypes=[np.int64])
+    uniq_src, inverse = np.unique(src, return_inverse=True)
+    seed_index[reached] = lookup(uniq_src)[inverse]
+    result = np.where(seed_index >= 0, seed_owner[np.maximum(seed_index, 0)], WASTE)
+
+    # Islands with no seed of their own join the nearest province if close.
+    unreached = ~reached
+    if unreached.any():
+        comp, _ = ndimage.label(land, structure=np.ones((3, 3)))
+        seeded = set(comp[seed_px[:, 1], seed_px[:, 0]].tolist())
+        pix_comp = comp[ys, xs]
+        island = unreached & ~np.isin(pix_comp, list(seeded))
+        if island.any():
+            seed_vec = unit_vectors(LAT_MAX - (seed_px[:, 1] + 0.5) / PPD, LON_MIN + (seed_px[:, 0] + 0.5) / PPD)
+            tree = cKDTree(seed_vec)
+            pvec = unit_vectors(LAT_MAX - (ys[island] + 0.5) / PPD, LON_MIN + (xs[island] + 0.5) / PPD)
+            d, j = tree.query(pvec)
+            result[island] = np.where(d > chord(ISLAND_REACH_KM), WASTE, seed_owner[j])
+    labels[ys, xs] = result
+    return labels
 
 
 def build(args):
@@ -307,8 +488,15 @@ def build(args):
           f"{len(provinces)} provinces, {len(wastes)} wasteland seeds")
     print(f"raster {WIDTH} x {HEIGHT}")
 
-    land = land_mask(args.land, lakes)
+    coast = parse_shapes(os.path.join(ROOT, "data/map/coast_1453.txt"))
+    land = land_mask(args.land, lakes, coast)
     print(f"land pixels: {land.sum():,}")
+
+    barriers = parse_barriers(os.path.join(ROOT, "data/map/barriers.txt"))
+    river_mask, ridge_mask, frontier_mask = barrier_masks(barriers)
+    print(f"{sum(1 for b in barriers if b['kind'] == 'river')} rivers, "
+          f"{sum(1 for b in barriers if b['kind'] == 'ridge')} ridges, "
+          f"{sum(1 for b in barriers if b['kind'] == 'frontier')} frontier lines")
 
     # Seeds: provinces first (index = province id), then wasteland.
     seeds = [(p["lat"], p["lon"]) for p in provinces] + [(w["lat"], w["lon"]) for w in wastes]
@@ -327,48 +515,13 @@ def build(args):
             xi, yi = nx, ny
         seed_px.append((xi, yi))
     seed_px = np.array(seed_px)
+    on_barrier = [provinces[k]["name"] for k in range(len(provinces))
+                  if (ridge_mask | frontier_mask)[seed_px[k][1], seed_px[k][0]]]
+    if on_barrier:
+        print(f"  note: towns sitting on a ridge or frontier line: {', '.join(on_barrier)}")
 
-    # Landmasses.
-    comp, ncomp = ndimage.label(land, structure=np.ones((3, 3)))
-    seed_comp = comp[seed_px[:, 1], seed_px[:, 0]]
-
-    rng = np.random.default_rng(1453)
-    warp_x = smooth_noise(rng, 48, 7.0) + smooth_noise(rng, 12, 2.0)
-    warp_y = smooth_noise(rng, 48, 7.0) + smooth_noise(rng, 12, 2.0)
-
-    lons, lats = lonlat_grid()
-    labels = np.full((HEIGHT, WIDTH), WATER, dtype=np.int32)
-    seed_vec = unit_vectors(np.array([s[0] for s in seeds]), np.array([s[1] for s in seeds]))
-    max_chord = chord(MAX_REACH_KM)
-
-    ys, xs = np.nonzero(land)
-    wx = np.clip(xs + warp_x[ys, xs], 0, WIDTH - 1)
-    wy = np.clip(ys + warp_y[ys, xs], 0, HEIGHT - 1)
-    pvec = unit_vectors(LAT_MAX - (wy + 0.5) / PPD, LON_MIN + (wx + 0.5) / PPD)
-    pcomp = comp[ys, xs]
-    result = np.full(len(ys), WASTE, dtype=np.int64)
-
-    order = np.argsort(pcomp, kind="stable")
-    bounds = np.searchsorted(pcomp[order], np.arange(1, ncomp + 2))
-    all_tree = cKDTree(seed_vec)
-    comps_with_seeds = set(seed_comp.tolist())
-    for c in range(1, ncomp + 1):
-        idx = order[bounds[c - 1]:bounds[c]]
-        if len(idx) == 0:
-            continue
-        if c in comps_with_seeds:
-            members = np.nonzero(seed_comp == c)[0]
-            tree = cKDTree(seed_vec[members])
-            d, j = tree.query(pvec[idx])
-            chosen = seed_owner[members[j]]
-            chosen = np.where(d > max_chord, WASTE, chosen)
-            result[idx] = chosen
-        else:
-            d, j = all_tree.query(pvec[idx])
-            chosen = seed_owner[j]
-            chosen = np.where(d > chord(ISLAND_REACH_KM), WASTE, chosen)
-            result[idx] = chosen
-    labels[ys, xs] = result
+    seed_px = move_off_rivers(seed_px, provinces, land, river_mask)
+    labels = grow_provinces(land, seed_px, seed_owner, river_mask, ridge_mask, frontier_mask)
 
     # Make each province one connected piece.
     for _ in range(3):
@@ -447,6 +600,22 @@ def build(args):
             adjacent[u].add(v)
             adjacent[v].add(u)
 
+    # Borders that mostly follow a river (matters for battles and movement).
+    near_river = ndimage.binary_dilation(river_mask, iterations=2)
+    pair_total = defaultdict(int)
+    pair_river = defaultdict(int)
+    for a, b, ra, rb in ((labels[:, :-1], labels[:, 1:], near_river[:, :-1], near_river[:, 1:]),
+                         (labels[:-1, :], labels[1:, :], near_river[:-1, :], near_river[1:, :])):
+        diff = (a != b) & (a >= 0) & (b >= 0)
+        pa, pb = np.minimum(a[diff], b[diff]), np.maximum(a[diff], b[diff])
+        riv = (ra | rb)[diff]
+        for u, v, r in zip(pa.tolist(), pb.tolist(), riv.tolist()):
+            pair_total[(u, v)] += 1
+            if r:
+                pair_river[(u, v)] += 1
+    river_borders = sorted([list(k) for k, t in pair_total.items() if pair_river[k] >= 0.35 * t and t >= 6])
+    print(f"{len(river_borders)} province borders follow a river")
+
     tiny = [provinces[i]["name"] for i in range(n) if counts[i] < 40]
     if tiny:
         print(f"  note: very small provinces (<40 px): {', '.join(tiny)}")
@@ -496,15 +665,21 @@ def build(args):
             for i, p in enumerate(provinces)
         ],
         "straits": straits,
+        "riverBorders": river_borders,
+        "rivers": [
+            {"name": b["name"], "points": [[round(x, 1), round(y, 1)] for x, y in (to_px(lat, lon) for lat, lon in b["points"])]}
+            for b in barriers if b["kind"] == "river"
+        ],
     }
     json_path = os.path.join(ROOT, "Packages/GezCore/Sources/GezCore/Resources/scenario1453.json")
     os.makedirs(os.path.dirname(json_path), exist_ok=True)
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(out, f, separators=(",", ":"), ensure_ascii=False)
 
-    preview(labels, provinces, states, countries, tags, os.path.join(ROOT, "docs/map_preview.png"))
+    preview(labels, provinces, states, countries, tags, os.path.join(ROOT, "docs/map_preview.png"), river_mask=river_mask)
     if args.full_preview:
-        preview(labels, provinces, states, countries, tags, args.full_preview, scale=1)
+        preview(labels, provinces, states, countries, tags, args.full_preview, scale=1, river_mask=river_mask,
+                ridge_mask=ridge_mask if args.show_ridges else None)
     print(f"wrote {idmap_path}\nwrote {json_path}")
 
 
@@ -543,7 +718,7 @@ def write_idmap(value, path):
         f.write(runs.tobytes())
 
 
-def preview(labels, provinces, states, countries, tags, path, scale=2):
+def preview(labels, provinces, states, countries, tags, path, scale=2, river_mask=None, ridge_mask=None):
     n = len(provinces)
     owner_color = np.zeros((n + 3, 3), dtype=np.uint8)
     for i, p in enumerate(provinces):
@@ -569,6 +744,10 @@ def preview(labels, provinces, states, countries, tags, path, scale=2):
     img[pe] *= 0.82
     img[se] *= 0.55
     img[oe] = (20, 20, 20)
+    if river_mask is not None:
+        img[river_mask & land] = (64, 110, 150)
+    if ridge_mask is not None:
+        img[ridge_mask & land] = (120, 80, 40)
     out = Image.fromarray(img.astype(np.uint8))
     if scale > 1:
         out = out.resize((WIDTH // scale, HEIGHT // scale), Image.LANCZOS)
@@ -580,4 +759,5 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--land", required=True, help="Natural Earth land GeoJSON")
     ap.add_argument("--full-preview", help="also write a full-size preview here")
+    ap.add_argument("--show-ridges", action="store_true", help="draw ridges in the full preview")
     build(ap.parse_args())

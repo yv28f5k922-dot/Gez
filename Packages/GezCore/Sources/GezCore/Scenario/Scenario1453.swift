@@ -166,6 +166,12 @@ public enum Scenario1453 {
         for (index, c) in file.countries.enumerated() {
             world.countries.capital[index] = ProvinceID(c.capital)
         }
+        for pair in file.riverBorders ?? [] where pair.count == 2 {
+            world.riverBorders.insert(ProvincePair(ProvinceID(pair[0]), ProvinceID(pair[1])))
+        }
+        world.rivers = (file.rivers ?? []).map { river in
+            MapPolyline(name: river.name, points: river.points.compactMap { $0.count == 2 ? SIMD2($0[0], $0[1]) : nil })
+        }
         return world
     }
 }
@@ -211,8 +217,15 @@ struct ScenarioFile: Decodable {
         let adjacent: [Int]
     }
 
+    struct River: Decodable {
+        let name: String
+        let points: [[Double]]
+    }
+
     let map: Map
     let regions: [String]
+    let riverBorders: [[Int]]?
+    let rivers: [River]?
     let states: [State]
     let countries: [Country]
     let provinces: [Province]

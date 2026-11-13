@@ -8,6 +8,15 @@ plus public-domain Natural Earth coastlines into the game's map files.
 - `countries.txt`: one country per line: `TAG | Name | R G B | government | religion`
 - `provinces/*.txt`: provinces grouped into regions and states.
 - `lakes.txt`: hand-drawn outlines of major lakes (as they were around 1453).
+- `barriers.txt`: rivers (`~`), mountain ridges (`^`) and historical frontier
+  lines (`=`). Provinces avoid growing across them, so borders follow real
+  geography. Rivers are also drawn on the map, and borders that follow a
+  river are recorded for battles and movement.
+- `coast_1453.txt`: places where the 1453 coast differs from today's
+  (the Zuiderzee and the Dollart were open water).
+
+Towns drawn exactly on a river are moved a few kilometres onto the bank that
+faces the rest of their own country, so the river stays a clean border.
 
 ## Province file format
 

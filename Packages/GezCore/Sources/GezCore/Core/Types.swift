@@ -52,6 +52,26 @@ public struct MapInfo: Hashable, Sendable {
     }
 }
 
+/// A line on the map image (rivers), in map pixels.
+public struct MapPolyline: Sendable {
+    public var name: String
+    public var points: [SIMD2<Double>]
+    public init(name: String, points: [SIMD2<Double>]) {
+        self.name = name
+        self.points = points
+    }
+}
+
+/// An unordered pair of provinces.
+public struct ProvincePair: Hashable, Sendable {
+    public let low: Int
+    public let high: Int
+    public init(_ a: ProvinceID, _ b: ProvinceID) {
+        low = min(a.index, b.index)
+        high = max(a.index, b.index)
+    }
+}
+
 public struct RGB: Hashable, Sendable {
     public var r: UInt8
     public var g: UInt8

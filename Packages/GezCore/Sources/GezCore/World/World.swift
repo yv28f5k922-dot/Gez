@@ -159,6 +159,11 @@ public struct World: Sendable {
     public var states = StateTable()
     public var provinces = ProvinceTable()
     public var countries = CountryTable()
+    /// Major rivers, for drawing.
+    public var rivers: [MapPolyline] = []
+    /// Neighbouring provinces whose shared border is mostly a river.
+    /// Crossing these is slower and gives the defender an edge in battle.
+    public var riverBorders: Set<ProvincePair> = []
 
     public init(map: MapInfo = MapInfo(width: 1, height: 1, pixelsPerDegree: 1, longitudeMin: 0, latitudeMax: 0)) {
         self.map = map
@@ -166,6 +171,10 @@ public struct World: Sendable {
 
     public func provinces(ownedBy country: CountryID) -> [ProvinceID] {
         provinces.ids.filter { provinces.owner[$0.index] == country }
+    }
+
+    public func isRiverBorder(_ a: ProvinceID, _ b: ProvinceID) -> Bool {
+        riverBorders.contains(ProvincePair(a, b))
     }
 
     public func stateName(of province: ProvinceID) -> String {

@@ -1,0 +1,23 @@
+# Places where the 1453 coastline differs from today's.
+# "= Name" then "lat lon" points. "sea" areas were open water in 1453
+# (later reclaimed); "land" areas were land then but are water today.
+
+= sea Zuiderzee
+52.95 4.95
+53.08 5.35
+52.95 5.45
+52.85 5.75
+52.60 5.85
+52.45 5.90
+52.33 5.62
+52.30 5.25
+52.38 5.05
+52.55 5.05
+52.70 5.10
+52.85 4.95
+
+= sea Dollart
+53.33 7.00
+53.28 7.25
+53.15 7.20
+53.17 7.00

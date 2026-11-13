@@ -190,6 +190,10 @@ struct ProvincePanel: View {
             row("Area", "\(p.areaKm2[i].formatted(.number.precision(.fractionLength(0)))) km²")
             row("Coast", p.isCoastal[i] ? "Yes" : "No")
             row("Neighbours", "\(p.neighbors[i].count)")
+            let riverSides = p.neighbors[i].filter { world.isRiverBorder(province, $0) }.count
+            if riverSides > 0 {
+                row("River borders", "\(riverSides)")
+            }
         }
         .padding(14)
         .frame(width: 290)

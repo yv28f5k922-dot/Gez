@@ -62,6 +62,8 @@ enum MapRenderer {
         let ownerKey: [Int32]
         /// State per ID-map value: state index, or negative for water/wasteland.
         let stateKey: [Int32]
+        /// River lines in map pixels, drawn on top.
+        var rivers: [[CGPoint]] = []
     }
 
     static func keys(world: World) -> (owner: [Int32], state: [Int32]) {
@@ -126,7 +128,33 @@ enum MapRenderer {
                 }
             }
         }
-        return makeImage(pixels: pixels, width: w, height: h)
+        if input.rivers.isEmpty {
+            return makeImage(pixels: pixels, width: w, height: h)
+        }
+        return pixels.withUnsafeMutableBytes { raw -> CGImage? in
+            guard let ctx = CGContext(
+                data: raw.baseAddress,
+                width: w,
+                height: h,
+                bitsPerComponent: 8,
+                bytesPerRow: w * 4,
+                space: CGColorSpace(name: CGColorSpace.sRGB) ?? CGColorSpaceCreateDeviceRGB(),
+                bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue
+            ) else { return nil }
+            // Map pixels count from the top; CoreGraphics counts from the bottom.
+            ctx.translateBy(x: 0, y: CGFloat(h))
+            ctx.scaleBy(x: 1, y: -1)
+            ctx.setLineCap(.round)
+            ctx.setLineJoin(.round)
+            ctx.setStrokeColor(red: 0.27, green: 0.43, blue: 0.58, alpha: 0.95)
+            ctx.setLineWidth(1.8)
+            for river in input.rivers where river.count >= 2 {
+                ctx.beginPath()
+                ctx.addLines(between: river)
+                ctx.strokePath()
+            }
+            return ctx.makeImage()
+        }
     }
 
     /// 0 none, 1 province, 2 state, 3 country or coast.

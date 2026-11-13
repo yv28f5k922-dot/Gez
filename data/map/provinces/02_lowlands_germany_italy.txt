@@ -197,7 +197,7 @@ Sarzana | 44.11 9.96 | GEN h 2
 Bastia | 42.70 9.45 | GEN m 2
 Ajaccio | 41.93 8.74 | GEN m 1
 @ Venetia
-Venice | 45.44 12.33 | VEN x 10
+Venice | 45.49 12.24 | VEN x 10
 Padua | 45.41 11.88 | VEN f 6
 Vicenza | 45.55 11.55 | VEN f 4
 Verona | 45.44 10.99 | VEN f 6

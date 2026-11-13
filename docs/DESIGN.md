@@ -25,7 +25,11 @@ or art from Paradox or Creative Assembly games may be used.
 ## Map structure
 
 Region (e.g. *Anatolia*) → State (e.g. *Karaman*) → Province (e.g. *Konya*).
-Provinces are the unit of ownership, sieges and movement. A state can be
+Provinces are the unit of ownership, sieges and movement. Province shapes
+grow from their towns and stop at 73 major rivers, 20 mountain ridges and a
+few hand-drawn frontier lines, so borders follow real geography. Borders
+that run along a river are marked (crossing them will be slower and favour
+the defender). A state can be
 split between several owners. The map data lives in `data/map/` and is
 turned into game files by `tools/mapgen/mapgen.py`.
 
