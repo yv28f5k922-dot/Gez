@@ -82,7 +82,7 @@ def main():
     out = np.clip(np.round(h + OFFSET), 0, 65535).astype(np.uint16)
     path = os.path.join(ROOT, "data/terrain/elevation.png")
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    Image.fromarray(out, "I;16").save(path, optimize=True)
+    Image.fromarray(out).save(path, optimize=True)
     print(f"wrote {path}: {WIDTH}x{HEIGHT}, {h.min():.0f} to {h.max():.0f} m")
 
 
