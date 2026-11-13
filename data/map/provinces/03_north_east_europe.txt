@@ -1,0 +1,207 @@
+# Scandinavia
+@ Denmark
+Copenhagen | 55.68 12.57 | DAN f 5
+Odense | 55.40 10.39 | DAN f 3
+Aarhus | 56.16 10.20 | DAN f 3
+Aalborg | 57.05 9.92 | DAN f 2
+Ribe | 55.33 8.76 | DAN x 3
+Viborg | 56.45 9.40 | DAN f 2
+Bornholm | 55.10 14.90 | DAN f 1
+@ Scania
+Lund | 55.70 13.19 | DAN f 4
+Halmstad | 56.67 12.86 | DAN w 2
+Solvesborg | 56.05 14.58 | DAN w 2
+Visby | 57.64 18.30 | DAN f 3
+@ Southern Norway
+Oslo | 59.91 10.75 | NOR w 3
+Skien | 59.21 9.61 | NOR m 2
+Kristiansand | 58.15 8.00 | NOR m 1
+Stavanger | 58.97 5.73 | NOR m 2
+Bergen | 60.39 5.32 | NOR m 4
+Hamar | 60.79 11.07 | NOR w 2
+Bahus | 57.87 11.97 | NOR h 2
+@ Northern Norway
+Trondheim | 63.43 10.40 | NOR m 3
+Molde | 62.74 7.16 | NOR m 1
+Jamtland | 63.18 14.64 | NOR w 1
+Bodo | 67.28 14.40 | NOR m 1
+Tromso | 69.65 18.96 | NOR m 1
+Vardo | 70.37 31.10 | NOR m 1
+@ Norwegian Isles
+Iceland | 64.14 -21.94 | NOR m 2
+North Iceland | 65.68 -18.09 | NOR m 1
+Faroe Islands | 62.01 -6.77 | NOR m 1
+Orkney | 58.98 -2.96 | NOR h 1
+Shetland | 60.15 -1.15 | NOR h 1
+@ Svealand
+Stockholm | 59.33 18.07 | SWE w 5
+Uppsala | 59.86 17.64 | SWE f 3
+Vasteras | 59.61 16.55 | SWE w 3
+Nykoping | 58.75 17.00 | SWE w 2
+Falun | 60.60 15.63 | SWE w 3
+Karlstad | 59.38 13.50 | SWE w 2
+@ Gotaland
+Linkoping | 58.41 15.62 | SWE f 3
+Kalmar | 56.66 16.36 | SWE w 3
+Jonkoping | 57.78 14.16 | SWE w 2
+Skara | 58.39 13.44 | SWE f 2
+Lodose | 57.70 11.97 | SWE w 2
+@ Norrland
+Gavle | 60.67 17.14 | SWE w 2
+Hudiksvall | 61.73 17.10 | SWE w 1
+Harnosand | 62.63 17.94 | SWE w 1
+Umea | 63.83 20.26 | SWE w 1
+Tornio | 65.84 24.15 | SWE w 1
+Lapland | 67.85 20.22 | - w 1
+@ Finland
+Turku | 60.45 22.27 | SWE w 3
+Hameenlinna | 61.00 24.46 | SWE w 2
+Viipuri | 60.71 28.75 | SWE w 2
+Savonlinna | 61.87 28.88 | SWE w 1
+Vaasa | 63.10 21.62 | SWE w 1
+Oulu | 65.01 25.47 | SWE w 1
+Kainuu | 64.22 27.73 | - w 1
+
+# Baltic
+@ Prussia
+Marienburg | 54.04 19.03 | TEU f 4
+Danzig | 54.35 18.65 | TEU f 7
+Elbing | 54.16 19.40 | TEU f 4
+Thorn | 53.01 18.60 | TEU f 5
+Konigsberg | 54.71 20.51 | TEU f 5
+Insterburg | 54.63 21.81 | TEU w 2
+Allenstein | 53.78 20.49 | TEU w 2
+Lyck | 53.82 22.36 | TEU w 1
+Memel | 55.71 21.13 | TEU w 2
+@ Livonia
+Riga | 56.95 24.11 | RIG f 5
+Wenden | 57.31 25.27 | LVO w 2
+Dunaburg | 55.87 26.54 | LVO w 2
+Goldingen | 56.97 21.97 | LVO w 2
+Mitau | 56.65 23.72 | LVO f 2
+@ Estonia
+Reval | 59.44 24.75 | LVO f 4
+Narva | 59.38 28.19 | LVO w 2
+Dorpat | 58.38 26.72 | DOR w 3
+Pernau | 58.39 24.50 | LVO w 2
+Osel | 58.25 22.48 | LVO w 1
+
+# Poland and Lithuania
+@ Lesser Poland
+Krakow | 50.06 19.94 | POL f 7
+Sandomierz | 50.68 21.75 | POL f 4
+Lublin | 51.25 22.57 | POL f 4
+@ Greater Poland
+Poznan | 52.41 16.93 | POL f 5
+Kalisz | 51.76 18.09 | POL f 3
+Sieradz | 51.60 18.73 | POL f 3
+Leczyca | 52.06 19.20 | POL f 3
+Bydgoszcz | 53.12 18.00 | POL f 3
+@ Mazovia
+Warsaw | 52.23 21.01 | MAZ f 4
+Plock | 52.55 19.70 | MAZ f 3
+Lomza | 53.18 22.06 | MAZ w 2
+@ Red Ruthenia
+Lwow | 49.84 24.03 | POL f 4
+Przemysl | 49.78 22.77 | POL h 3
+Halych | 49.12 24.72 | POL h 2
+Chelm | 51.14 23.47 | POL f 2
+Belz | 50.38 24.01 | POL f 2
+Kamianets | 48.68 26.58 | POL h 2
+@ Lithuania Proper
+Vilnius | 54.69 25.28 | LIT w 5
+Kaunas | 54.90 23.90 | LIT w 3
+Raseiniai | 55.38 23.12 | LIT w 2
+Grodno | 53.68 23.83 | LIT w 2
+Navahrudak | 53.60 25.83 | LIT w 2
+@ Belarus
+Minsk | 53.90 27.57 | LIT w 3
+Polotsk | 55.49 28.78 | LIT w 3
+Vitebsk | 55.19 30.20 | LIT w 2
+Mstislavl | 54.02 31.72 | LIT w 2
+Brest-Litovsk | 52.10 23.69 | LIT x 2
+Pinsk | 52.11 26.10 | LIT x 2
+Mozyr | 52.05 29.24 | LIT x 1
+Gomel | 52.43 31.00 | LIT w 2
+@ Smolensk
+Smolensk | 54.78 32.05 | LIT w 4
+Vyazma | 55.21 34.29 | LIT w 2
+Toropets | 56.50 31.63 | LIT w 1
+Velikiye Luki | 56.34 30.53 | LIT w 2
+Kozelsk | 54.03 35.79 | LIT w 2
+@ Severia
+Chernigov | 51.49 31.29 | LIT w 3
+Novgorod-Seversky | 52.00 33.27 | LIT w 2
+Bryansk | 53.24 34.36 | LIT w 2
+Putyvl | 51.34 33.87 | LIT w 2
+Kursk | 51.73 36.19 | LIT p 2
+@ Volhynia
+Lutsk | 50.75 25.33 | LIT f 3
+Volodymyr | 50.85 24.32 | LIT f 2
+Zhytomyr | 50.25 28.66 | LIT w 2
+@ Ukraine
+Kiev | 50.45 30.52 | LIT f 4
+Cherkasy | 49.44 32.06 | LIT p 2
+Bratslav | 48.82 28.94 | LIT p 2
+Ochakiv | 46.62 31.54 | LIT s 1
+@ Wild Fields
+Zaporizhia | 47.80 35.20 | - s 1
+Kharkiv | 49.99 36.23 | - s 1
+Azov Steppe | 47.10 37.55 | - s 1
+Voronezh | 51.66 39.20 | - s 1
+
+# Russia
+@ Moscow
+Moscow | 55.76 37.62 | MOS w 6
+Kolomna | 55.08 38.78 | MOS w 3
+Serpukhov | 54.92 37.41 | MOS w 2
+Mozhaysk | 55.50 36.03 | MOS w 2
+Pereslavl | 56.73 38.85 | MOS w 2
+@ Vladimir-Suzdal
+Vladimir | 56.13 40.40 | MOS w 4
+Nizhny Novgorod | 56.33 44.00 | MOS w 3
+Murom | 55.58 42.05 | MOS w 2
+Kostroma | 57.77 40.93 | MOS w 2
+Galich | 58.38 42.35 | MOS w 2
+Rostov | 57.18 39.41 | MOS w 3
+Yaroslavl | 57.63 39.87 | YAR w 3
+@ Northern Muscovy
+Vologda | 59.22 39.89 | MOS w 2
+Beloozero | 60.03 37.78 | MOS w 2
+Ustyug | 60.76 46.30 | MOS w 2
+@ Tver
+Tver | 56.86 35.90 | TVE w 4
+Kashin | 57.36 37.62 | TVE w 2
+Rzhev | 56.26 34.33 | TVE w 2
+@ Ryazan
+Ryazan | 54.63 39.74 | RYA w 3
+Tula | 54.19 37.62 | RYA w 2
+Yelets | 52.62 38.50 | RYA p 1
+Kasimov | 54.94 41.39 | KAS w 2
+@ Novgorod
+Novgorod | 58.52 31.27 | NOV w 7
+Staraya Russa | 57.99 31.36 | NOV w 3
+Torzhok | 57.04 34.96 | NOV w 2
+Ladoga | 60.00 32.30 | NOV w 2
+Korela | 61.03 30.12 | NOV w 1
+Olonets | 60.98 32.97 | NOV w 1
+Pskov | 57.82 28.33 | PSK w 4
+@ Russian North
+Kargopol | 61.50 38.95 | NOV w 1
+Kholmogory | 64.22 41.65 | NOV w 1
+Kem | 64.95 34.58 | NOV w 1
+Umba | 66.68 34.35 | NOV w 1
+Pechora | 65.15 57.20 | NOV w 1
+Mezen | 65.84 44.25 | NOV w 1
+Vyatka | 58.60 49.66 | VYA w 2
+Perm | 59.00 56.25 | PRM w 1
+Komi | 61.67 50.83 | - w 1
+@ Volga
+Kazan | 55.79 49.12 | KAZ w 4
+Bolghar | 54.97 49.04 | KAZ p 2
+Cheboksary | 56.13 47.25 | KAZ w 2
+Simbirsk | 54.32 48.40 | KAZ p 1
+Udmurtia | 56.85 53.20 | KAZ w 1
+Mordva | 53.20 45.00 | - w 1
+Tambov | 52.72 41.45 | - s 1
+Samara | 53.20 50.15 | - s 1

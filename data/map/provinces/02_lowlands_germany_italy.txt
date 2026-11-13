@@ -1,0 +1,251 @@
+# Low Countries
+@ Flanders and Artois
+Ghent | 51.05 3.72 | BUR f 8
+Bruges | 51.21 3.22 | BUR f 8
+Lille | 50.63 3.06 | BUR f 6
+Arras | 50.29 2.78 | BUR f 5
+Boulogne | 50.73 1.61 | BUR f 3
+@ Brabant and Hainaut
+Brussels | 50.85 4.35 | BUR f 7
+Antwerp | 51.22 4.40 | BUR f 7
+Mons | 50.45 3.95 | BUR f 4
+Namur | 50.47 4.87 | BUR h 3
+Luxembourg | 49.61 6.13 | BUR h 3
+@ Holland and Zeeland
+Amsterdam | 52.37 4.90 | BUR x 5
+Haarlem | 52.38 4.64 | BUR x 4
+The Hague | 52.08 4.30 | BUR x 4
+Dordrecht | 51.81 4.67 | BUR x 4
+Middelburg | 51.50 3.61 | BUR x 4
+@ Northern Netherlands
+Utrecht | 52.09 5.12 | UTR f 5
+Deventer | 52.25 6.16 | UTR f 3
+Nijmegen | 51.84 5.86 | GEL f 4
+Zutphen | 52.14 6.20 | GEL f 3
+Roermond | 51.19 5.99 | GEL f 3
+Leeuwarden | 53.20 5.80 | FRI x 3
+Groningen | 53.22 6.57 | FRI x 3
+Emden | 53.37 7.21 | FRI x 2
+Liege | 50.63 5.57 | LIE h 5
+
+# Germany
+@ Lower Rhine
+Cologne | 50.94 6.96 | CLN f 8
+Arnsberg | 51.40 8.06 | CLN h 3
+Julich | 50.92 6.36 | JUL f 4
+Dusseldorf | 51.23 6.78 | JUL f 3
+Kleve | 51.79 6.14 | KLE f 3
+Hamm | 51.68 7.82 | KLE f 3
+@ Westphalia
+Munster | 51.96 7.63 | MUN f 4
+Osnabruck | 52.28 8.05 | MUN f 3
+Paderborn | 51.72 8.75 | MUN h 3
+Oldenburg | 53.14 8.21 | OLD x 2
+Bremen | 53.08 8.80 | BRE f 5
+Stade | 53.60 9.48 | BRE x 2
+@ Middle Rhine
+Mainz | 50.00 8.27 | MAI f 5
+Aschaffenburg | 49.98 9.15 | MAI h 3
+Frankfurt | 50.11 8.68 | FFM f 5
+Trier | 49.75 6.64 | TRI h 4
+Koblenz | 50.36 7.59 | TRI h 3
+Heidelberg | 49.40 8.69 | PAL f 5
+Kaiserslautern | 49.44 7.77 | PAL w 3
+@ Hesse and Thuringia
+Kassel | 51.31 9.48 | HES h 3
+Marburg | 50.81 8.77 | HES h 3
+Fulda | 50.55 9.68 | HES h 2
+Erfurt | 50.98 11.03 | MAI f 5
+Weimar | 50.98 11.33 | SAX f 3
+@ Saxony
+Wittenberg | 51.87 12.65 | SAX f 3
+Leipzig | 51.34 12.37 | SAX f 5
+Dresden | 51.05 13.74 | SAX h 4
+Zwickau | 50.72 12.49 | SAX h 4
+Magdeburg | 52.13 11.63 | MAG f 5
+Halle | 51.48 11.97 | MAG f 4
+@ Lower Saxony
+Brunswick | 52.27 10.52 | BRU f 5
+Luneburg | 53.25 10.41 | BRU f 4
+Gottingen | 51.54 9.93 | BRU h 3
+Hanover | 52.37 9.73 | BRU f 3
+Hamburg | 53.55 9.99 | HAM f 6
+Lubeck | 53.87 10.69 | LUB f 7
+@ Holstein and Schleswig
+Kiel | 54.32 10.14 | HOL f 3
+Schleswig | 54.52 9.57 | HOL f 3
+Dithmarschen | 54.20 9.10 | DIT x 2
+@ Mecklenburg and Pomerania
+Schwerin | 53.63 11.41 | MKL f 3
+Rostock | 54.09 12.10 | MKL f 4
+Stralsund | 54.31 13.09 | POM f 4
+Stettin | 53.43 14.55 | POM f 4
+Wolgast | 54.05 13.77 | POM f 2
+Kolberg | 54.18 15.58 | POM f 2
+Stolp | 54.46 17.03 | POM w 2
+@ Brandenburg
+Berlin | 52.52 13.40 | BRA f 4
+Brandenburg | 52.41 12.53 | BRA f 3
+Stendal | 52.60 11.86 | BRA f 3
+Frankfurt an der Oder | 52.34 14.55 | BRA f 3
+Prenzlau | 53.32 13.86 | BRA f 2
+Cottbus | 51.76 14.33 | BRA w 2
+Landsberg | 52.73 15.24 | TEU w 2
+@ Franconia
+Nuremberg | 49.45 11.08 | NUR f 7
+Ansbach | 49.30 10.57 | ANS f 3
+Bayreuth | 49.95 11.58 | ANS h 3
+Wurzburg | 49.79 9.95 | WBZ f 4
+Bamberg | 49.89 10.89 | BAM f 3
+Amberg | 49.44 11.86 | PAL h 3
+@ Swabia
+Stuttgart | 48.78 9.18 | WUR f 4
+Urach | 48.49 9.40 | WUR h 3
+Montbeliard | 47.51 6.80 | WUR h 2
+Baden | 48.76 8.24 | BAD h 3
+Pforzheim | 48.89 8.70 | BAD h 2
+Ulm | 48.40 9.99 | ULM f 5
+Augsburg | 48.37 10.90 | AUG f 6
+Konstanz | 47.66 9.17 | ULM f 3
+Freiburg | 47.99 7.85 | TIR h 3
+@ Bavaria
+Munich | 48.14 11.58 | BAV f 5
+Straubing | 48.88 12.57 | BAV f 3
+Regensburg | 49.01 12.10 | BAV f 5
+Landshut | 48.54 12.15 | LAN f 4
+Ingolstadt | 48.76 11.43 | LAN f 3
+Burghausen | 48.17 12.83 | LAN h 3
+Salzburg | 47.80 13.04 | SAL m 4
+@ Bohemia
+Prague | 50.08 14.44 | BOH f 8
+Plzen | 49.75 13.38 | BOH h 4
+Budejovice | 48.97 14.47 | BOH h 3
+Hradec Kralove | 50.21 15.83 | BOH f 3
+Litomerice | 50.53 14.13 | BOH h 3
+@ Moravia
+Brno | 49.20 16.61 | BOH f 4
+Olomouc | 49.59 17.25 | BOH f 4
+Opava | 49.94 17.90 | BOH h 2
+@ Silesia
+Wroclaw | 51.11 17.03 | BOH f 6
+Legnica | 51.21 16.16 | BOH f 3
+Glogow | 51.66 16.08 | BOH f 3
+Swidnica | 50.84 16.49 | BOH h 3
+Opole | 50.67 17.93 | BOH f 3
+@ Lusatia
+Bautzen | 51.18 14.42 | BOH h 3
+
+# Alps
+@ Austria
+Vienna | 48.21 16.37 | AUS f 7
+Linz | 48.31 14.29 | AUS h 3
+Krems | 48.41 15.60 | AUS h 3
+Wiener Neustadt | 47.81 16.24 | HAB f 3
+@ Inner Austria
+Graz | 47.07 15.44 | HAB h 4
+Klagenfurt | 46.62 14.31 | HAB m 3
+Ljubljana | 46.05 14.51 | HAB h 3
+Trieste | 45.65 13.78 | HAB h 3
+Celje | 46.23 15.27 | CIL h 3
+Gorizia | 45.94 13.62 | GOR h 2
+Lienz | 46.83 12.77 | GOR m 1
+@ Tyrol
+Innsbruck | 47.27 11.39 | TIR m 4
+Bozen | 46.50 11.35 | TIR m 3
+Trento | 46.07 11.12 | TIR m 3
+Feldkirch | 47.24 9.60 | TIR m 2
+@ Switzerland
+Zurich | 47.37 8.54 | SWI h 4
+Bern | 46.95 7.45 | SWI h 4
+Lucerne | 47.05 8.31 | SWI m 3
+Altdorf | 46.88 8.64 | SWI m 2
+Basel | 47.56 7.59 | SWI f 4
+Sankt Gallen | 47.42 9.37 | SWI h 3
+Sion | 46.23 7.36 | SWI m 2
+Chur | 46.85 9.53 | GRI m 2
+
+# Italy
+@ Savoy
+Chambery | 45.57 5.92 | SAV m 3
+Bourg-en-Bresse | 46.21 5.23 | SAV f 3
+Geneva | 46.20 6.14 | SAV h 4
+Lausanne | 46.52 6.63 | SAV h 3
+Fribourg | 46.80 7.15 | SAV h 2
+Aosta | 45.74 7.32 | SAV m 2
+Nice | 43.70 7.27 | SAV h 3
+@ Piedmont
+Turin | 45.07 7.69 | SAV f 4
+Cuneo | 44.39 7.55 | SAV h 2
+Vercelli | 45.32 8.42 | SAV f 3
+Saluzzo | 44.64 7.49 | SLZ h 2
+Casale | 45.13 8.45 | MFA f 3
+@ Lombardy
+Milan | 45.46 9.19 | MLO f 10
+Pavia | 45.19 9.16 | MLO f 5
+Como | 45.81 9.08 | MLO h 4
+Bellinzona | 46.19 9.02 | MLO m 2
+Novara | 45.45 8.62 | MLO f 4
+Alessandria | 44.91 8.61 | MLO f 4
+Cremona | 45.13 10.02 | MLO f 5
+Parma | 44.80 10.33 | MLO f 5
+Piacenza | 45.05 9.69 | MLO f 4
+Mantua | 45.16 10.79 | MAN f 5
+@ Liguria
+Genoa | 44.41 8.93 | GEN h 8
+Savona | 44.31 8.48 | GEN h 3
+Sarzana | 44.11 9.96 | GEN h 2
+Bastia | 42.70 9.45 | GEN m 2
+Ajaccio | 41.93 8.74 | GEN m 1
+@ Venetia
+Venice | 45.44 12.33 | VEN x 10
+Padua | 45.41 11.88 | VEN f 6
+Vicenza | 45.55 11.55 | VEN f 4
+Verona | 45.44 10.99 | VEN f 6
+Treviso | 45.67 12.24 | VEN f 4
+Brescia | 45.54 10.21 | VEN f 5
+Bergamo | 45.70 9.67 | VEN h 4
+Udine | 46.06 13.24 | VEN f 3
+Capodistria | 45.55 13.73 | VEN h 2
+@ Emilia
+Ferrara | 44.84 11.62 | FER x 5
+Modena | 44.65 10.93 | FER f 4
+Bologna | 44.49 11.34 | PAP f 7
+Ravenna | 44.42 12.20 | VEN x 3
+Rimini | 44.06 12.57 | PAP f 3
+@ Tuscany
+Florence | 43.77 11.26 | FLO h 9
+Pisa | 43.72 10.40 | FLO f 5
+Arezzo | 43.46 11.88 | FLO h 3
+Lucca | 43.84 10.50 | LUC h 4
+Siena | 43.32 11.33 | SIE h 5
+Grosseto | 42.76 11.11 | SIE x 2
+@ Papal States
+Rome | 41.90 12.50 | PAP f 7
+Viterbo | 42.42 12.11 | PAP h 3
+Perugia | 43.11 12.39 | PAP h 4
+Ancona | 43.62 13.51 | PAP h 4
+Urbino | 43.73 12.64 | URB h 3
+Spoleto | 42.73 12.74 | PAP m 3
+@ Naples
+Naples | 40.85 14.27 | NAP f 10
+Salerno | 40.68 14.77 | NAP h 4
+L'Aquila | 42.35 13.40 | NAP m 3
+Campobasso | 41.56 14.66 | NAP m 2
+Foggia | 41.46 15.55 | NAP p 3
+Bari | 41.12 16.87 | NAP f 4
+Taranto | 40.47 17.24 | NAP f 3
+Lecce | 40.35 18.17 | NAP f 3
+Potenza | 40.64 15.80 | NAP m 2
+Cosenza | 39.30 16.25 | NAP m 3
+Reggio | 38.11 15.65 | NAP m 2
+@ Sicily
+Palermo | 38.12 13.36 | ARA h 7
+Trapani | 38.02 12.51 | ARA h 3
+Agrigento | 37.31 13.58 | ARA h 3
+Catania | 37.50 15.09 | ARA h 4
+Messina | 38.19 15.55 | ARA m 4
+Malta | 35.90 14.51 | ARA h 2
+@ Sardinia
+Cagliari | 39.22 9.12 | ARA h 3
+Sassari | 40.73 8.56 | ARA h 2
+Oristano | 39.90 8.59 | ARA f 2

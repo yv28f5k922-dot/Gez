@@ -2,16 +2,28 @@
 /// by `ProvinceID.index`. Systems that loop over thousands of provinces each
 /// tick only touch the arrays they need, which keeps memory access fast.
 public struct ProvinceTable: Sendable {
+    // Fixed geography (never changes during a game).
     public private(set) var name: [String] = []
     public private(set) var location: [GeoPoint] = []
+    public private(set) var state: [StateID] = []
+    public private(set) var terrain: [Terrain] = []
+    public private(set) var isCoastal: [Bool] = []
+    public private(set) var areaKm2: [Double] = []
+    /// Best spot on the map image to draw the province name.
+    public private(set) var labelPoint: [MapPoint] = []
+    /// Provinces an army can walk to directly (land borders plus straits).
+    public private(set) var neighbors: [[ProvinceID]] = []
+
+    // Changing state.
     public var owner: [CountryID?] = []
+    /// 1 (empty) to 10 (great city).
+    public var development: [Int] = []
     /// Number of people.
     public var population: [Double] = []
     /// Yearly tax value in ducats.
     public var baseTax: [Double] = []
     /// Yearly production value in ducats.
     public var production: [Double] = []
-    public var terrain: [Terrain] = []
     public var religion: [Religion] = []
     /// 0 = no fort. Higher levels take longer to siege.
     public var fortLevel: [Int] = []
@@ -25,25 +37,72 @@ public struct ProvinceTable: Sendable {
     public mutating func add(
         name: String,
         location: GeoPoint,
+        state: StateID,
+        terrain: Terrain,
+        isCoastal: Bool = false,
+        areaKm2: Double = 0,
+        labelPoint: MapPoint = MapPoint(x: 0, y: 0),
         owner: CountryID?,
+        development: Int,
         population: Double,
         baseTax: Double,
         production: Double,
-        terrain: Terrain,
         religion: Religion,
         fortLevel: Int
     ) -> ProvinceID {
         let id = ProvinceID(count)
         self.name.append(name)
         self.location.append(location)
+        self.state.append(state)
+        self.terrain.append(terrain)
+        self.isCoastal.append(isCoastal)
+        self.areaKm2.append(areaKm2)
+        self.labelPoint.append(labelPoint)
+        self.neighbors.append([])
         self.owner.append(owner)
+        self.development.append(development)
         self.population.append(population)
         self.baseTax.append(baseTax)
         self.production.append(production)
-        self.terrain.append(terrain)
         self.religion.append(religion)
         self.fortLevel.append(fortLevel)
         return id
+    }
+
+    /// Neighbours are set once all provinces exist. Links are made two-way.
+    public mutating func connect(_ a: ProvinceID, _ b: ProvinceID) {
+        guard a != b else { return }
+        if !neighbors[a.index].contains(b) { neighbors[a.index].append(b) }
+        if !neighbors[b.index].contains(a) { neighbors[b.index].append(a) }
+    }
+
+    public func id(named name: String) -> ProvinceID? {
+        self.name.firstIndex(of: name).map(ProvinceID.init)
+    }
+}
+
+/// A state is a named group of neighbouring provinces (e.g. "Thrace").
+/// A region groups states (e.g. "Balkans").
+public struct StateTable: Sendable {
+    public private(set) var name: [String] = []
+    public private(set) var region: [RegionID] = []
+    public private(set) var provinces: [[ProvinceID]] = []
+
+    public init() {}
+
+    public var count: Int { name.count }
+
+    @discardableResult
+    public mutating func add(name: String, region: RegionID) -> StateID {
+        let id = StateID(count)
+        self.name.append(name)
+        self.region.append(region)
+        self.provinces.append([])
+        return id
+    }
+
+    mutating func attach(_ province: ProvinceID, to state: StateID) {
+        provinces[state.index].append(province)
     }
 }
 
@@ -95,12 +154,54 @@ public struct CountryTable: Sendable {
 }
 
 public struct World: Sendable {
+    public var map: MapInfo
+    public var regions: [String] = []
+    public var states = StateTable()
     public var provinces = ProvinceTable()
     public var countries = CountryTable()
 
-    public init() {}
+    public init(map: MapInfo = MapInfo(width: 1, height: 1, pixelsPerDegree: 1, longitudeMin: 0, latitudeMax: 0)) {
+        self.map = map
+    }
 
     public func provinces(ownedBy country: CountryID) -> [ProvinceID] {
         provinces.ids.filter { provinces.owner[$0.index] == country }
+    }
+
+    public func stateName(of province: ProvinceID) -> String {
+        states.name[provinces.state[province.index].index]
+    }
+
+    public func regionName(of province: ProvinceID) -> String {
+        regions[states.region[provinces.state[province.index].index].index]
+    }
+
+    /// Adds a province and records it in its state's province list.
+    @discardableResult
+    public mutating func addProvince(
+        name: String,
+        location: GeoPoint,
+        state: StateID,
+        terrain: Terrain,
+        isCoastal: Bool = false,
+        areaKm2: Double = 0,
+        labelPoint: MapPoint = MapPoint(x: 0, y: 0),
+        owner: CountryID?,
+        development: Int,
+        population: Double,
+        baseTax: Double,
+        production: Double,
+        religion: Religion,
+        fortLevel: Int
+    ) -> ProvinceID {
+        let id = provinces.add(
+            name: name, location: location, state: state, terrain: terrain,
+            isCoastal: isCoastal, areaKm2: areaKm2, labelPoint: labelPoint,
+            owner: owner, development: development, population: population,
+            baseTax: baseTax, production: production, religion: religion,
+            fortLevel: fortLevel
+        )
+        states.attach(id, to: state)
+        return id
     }
 }

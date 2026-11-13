@@ -1,0 +1,230 @@
+# Carpathians and Danube
+@ Upper Hungary
+Pozsony | 48.14 17.11 | HUN f 4
+Nyitra | 48.31 18.09 | HUN f 3
+Besztercebanya | 48.74 19.15 | HUN m 3
+Kassa | 48.72 21.26 | HUN h 4
+Bartfa | 49.29 21.27 | HUN m 2
+Ungvar | 48.62 22.29 | HUN h 2
+@ Hungary
+Buda | 47.50 19.04 | HUN f 7
+Esztergom | 47.79 18.74 | HUN f 3
+Gyor | 47.69 17.63 | HUN f 3
+Szekesfehervar | 47.19 18.41 | HUN f 3
+Eger | 47.90 20.37 | HUN h 3
+Debrecen | 47.53 21.64 | HUN p 3
+Szeged | 46.25 20.15 | HUN p 3
+Pecs | 46.07 18.23 | HUN f 3
+Kanizsa | 46.46 16.99 | HUN f 2
+@ Transylvania
+Kolozsvar | 46.77 23.60 | HUN h 3
+Varad | 47.07 21.93 | HUN f 3
+Brasso | 45.65 25.60 | HUN m 3
+Szeben | 45.79 24.15 | HUN h 3
+Maramaros | 47.93 23.89 | HUN m 1
+@ Banat
+Temesvar | 45.75 21.23 | HUN p 3
+Szoreny | 44.63 22.66 | HUN m 2
+Belgrade | 44.82 20.46 | HUN h 4
+@ Croatia and Slavonia
+Zagreb | 45.81 15.98 | HUN h 3
+Pozega | 45.34 17.68 | HUN h 2
+Osijek | 45.55 18.69 | HUN f 2
+Senj | 44.99 14.90 | HUN m 2
+Bihac | 44.82 15.87 | HUN m 2
+Knin | 44.04 16.20 | HUN m 2
+@ Wallachia
+Targoviste | 44.93 25.46 | WAL p 3
+Bucharest | 44.43 26.10 | WAL p 2
+Craiova | 44.32 23.80 | WAL p 2
+Braila | 45.27 27.96 | WAL x 2
+@ Moldavia
+Suceava | 47.65 26.26 | MOL h 3
+Iasi | 47.16 27.59 | MOL h 2
+Roman | 46.92 26.92 | MOL h 2
+Barlad | 46.23 27.67 | MOL p 2
+Kilia | 45.43 29.27 | MOL x 2
+Akkerman | 46.20 30.35 | MOL s 3
+
+# Balkans
+@ Dalmatia
+Zadar | 44.12 15.23 | VEN h 3
+Split | 43.51 16.44 | VEN h 3
+Dubrovnik | 42.65 18.09 | RAG h 4
+Kotor | 42.42 18.77 | VEN m 2
+@ Bosnia
+Jajce | 44.34 17.27 | BOS m 2
+Bobovac | 44.10 18.24 | BOS m 2
+Srebrenica | 44.10 19.30 | BOS m 3
+Usora | 44.73 18.08 | BOS h 2
+Vrhbosna | 43.86 18.41 | TUR m 2
+@ Herzegovina
+Blagaj | 43.26 17.89 | HER m 2
+Trebinje | 42.71 18.34 | HER m 1
+Foca | 43.50 18.78 | HER m 1
+@ Serbia
+Smederevo | 44.66 20.93 | SER p 3
+Krusevac | 43.58 21.33 | SER h 2
+Novo Brdo | 42.62 21.43 | SER m 3
+Uzice | 43.86 19.84 | SER m 2
+Nis | 43.32 21.90 | TUR h 2
+@ Albania
+Scutari | 42.07 19.51 | VEN h 2
+Zabljak | 42.15 19.15 | ZET m 1
+Kruje | 41.51 19.79 | ALB m 2
+Dibra | 41.52 20.52 | ALB m 1
+Durazzo | 41.32 19.45 | VEN h 2
+Berat | 40.71 19.95 | TUR m 2
+Vlore | 40.47 19.49 | TUR h 2
+Gjirokaster | 40.08 20.14 | TUR m 1
+@ Macedonia
+Skopje | 41.99 21.43 | TUR h 3
+Ohrid | 41.12 20.80 | TUR m 2
+Bitola | 41.03 21.33 | TUR h 2
+Thessaloniki | 40.64 22.94 | TUR f 6
+Serres | 41.09 23.55 | TUR f 3
+Drama | 41.15 24.14 | TUR h 2
+@ Bulgaria
+Sofia | 42.70 23.32 | TUR h 3
+Kyustendil | 42.28 22.69 | TUR m 2
+Plovdiv | 42.15 24.75 | TUR f 4
+Tarnovo | 43.08 25.63 | TUR h 3
+Vidin | 43.99 22.88 | TUR p 2
+Nikopol | 43.70 24.90 | TUR p 2
+Varna | 43.21 27.92 | TUR h 3
+Silistra | 44.12 27.26 | TUR s 2
+@ Thrace
+Konstantiniyye | 41.01 28.98 | TUR f 9
+Edirne | 41.68 26.56 | TUR f 7
+Gallipoli | 40.41 26.67 | TUR h 3
+Komotini | 41.12 25.40 | TUR f 2
+Ainos | 40.73 26.08 | LES x 2
+@ Greece
+Larissa | 39.64 22.42 | TUR f 3
+Ioannina | 39.66 20.85 | TUR m 2
+Arta | 39.16 20.98 | TUR h 2
+Lamia | 38.90 22.43 | TUR h 2
+Athens | 37.98 23.73 | ATH h 3
+Thebes | 38.32 23.32 | ATH f 2
+Negroponte | 38.46 23.60 | VEN h 3
+@ Morea
+Mystras | 37.07 22.37 | MOE h 3
+Monemvasia | 36.69 23.05 | MOE h 2
+Corinth | 37.94 22.93 | MOE h 2
+Patras | 38.25 21.73 | MOE h 3
+Modon | 36.82 21.70 | VEN h 2
+Nauplia | 37.57 22.80 | VEN h 2
+@ Ionian Islands
+Corfu | 39.62 19.92 | VEN h 3
+Kefalonia | 38.18 20.49 | TOC m 1
+Zakynthos | 37.78 20.90 | TOC h 1
+@ Aegean Islands
+Naxos | 37.10 25.38 | NAX h 2
+Mytilene | 39.11 26.55 | LES h 3
+Lemnos | 39.92 25.24 | LES h 1
+Chios | 38.37 26.14 | GEN h 3
+Rhodes | 36.43 28.22 | KNI h 3
+@ Crete
+Candia | 35.34 25.13 | VEN h 4
+Chania | 35.51 24.02 | VEN m 2
+Rethymno | 35.37 24.47 | VEN m 2
+@ Cyprus
+Nicosia | 35.17 33.36 | CYP h 4
+Famagusta | 35.12 33.94 | GEN h 3
+Paphos | 34.77 32.42 | CYP h 2
+
+# Anatolia
+@ Bithynia
+Bursa | 40.19 29.06 | TUR h 7
+Izmit | 40.77 29.92 | TUR h 3
+Bolu | 40.74 31.61 | TUR m 2
+Eskisehir | 39.78 30.52 | TUR p 3
+@ Western Anatolia
+Balikesir | 39.65 27.88 | TUR h 3
+Biga | 40.15 26.41 | TUR h 2
+Manisa | 38.61 27.43 | TUR f 4
+Izmir | 38.42 27.14 | TUR h 4
+Aydin | 37.85 27.84 | TUR f 4
+Milas | 37.32 27.78 | TUR h 2
+Kutahya | 39.42 29.98 | TUR h 3
+Denizli | 37.78 29.09 | TUR h 2
+Afyon | 38.76 30.54 | TUR p 2
+@ Teke and Hamid
+Antalya | 36.90 30.70 | TUR h 3
+Isparta | 37.76 30.55 | TUR m 2
+@ Central Anatolia
+Ankara | 39.93 32.86 | TUR s 4
+Corum | 40.55 34.95 | TUR h 2
+Amasya | 40.65 35.83 | TUR h 3
+Tokat | 40.31 36.55 | TUR h 3
+Sivas | 39.75 37.02 | TUR s 3
+Samsun | 41.29 36.33 | TUR h 2
+@ Candar
+Kastamonu | 41.38 33.78 | CND m 3
+Sinop | 42.03 35.15 | CND h 3
+@ Karaman
+Konya | 37.87 32.48 | KAR s 5
+Larende | 37.18 33.22 | KAR s 3
+Beysehir | 37.68 31.72 | KAR h 2
+Aksaray | 38.37 34.03 | KAR s 2
+Nigde | 37.97 34.68 | KAR m 2
+Kayseri | 38.73 35.48 | KAR s 3
+Kirsehir | 39.15 34.16 | KAR s 2
+Alanya | 36.54 32.00 | KAR m 2
+Silifke | 36.38 33.93 | KAR m 2
+@ Cilicia
+Adana | 37.00 35.32 | RAM f 3
+Sis | 37.45 35.81 | MAM h 2
+Maras | 37.58 36.94 | DUL h 2
+Elbistan | 38.20 37.20 | DUL h 2
+Malatya | 38.35 38.31 | MAM h 3
+@ Trebizond
+Trebizond | 41.00 39.72 | TRE h 5
+Kerasous | 40.91 38.39 | TRE h 2
+Rize | 41.02 40.52 | TRE m 1
+@ Upper Mesopotamia
+Diyarbakir | 37.91 40.24 | AKK h 5
+Mardin | 37.31 40.74 | AKK h 3
+Urfa | 37.16 38.79 | AKK p 3
+Harput | 38.70 39.20 | AKK m 2
+Hasankeyf | 37.71 41.41 | AKK m 2
+Cizre | 37.33 42.19 | AKK m 1
+@ Armenian Highlands
+Erzincan | 39.75 39.49 | AKK m 2
+Bayburt | 40.26 40.22 | AKK m 1
+Erzurum | 39.90 41.27 | AKK m 2
+Kars | 40.60 43.10 | QAR m 2
+Bitlis | 38.40 42.11 | BIT m 2
+Van | 38.50 43.38 | QAR m 2
+Hakkari | 37.57 43.74 | - m 1
+
+# Caucasus
+@ Georgia
+Tbilisi | 41.72 44.79 | GEO h 4
+Kutaisi | 42.27 42.70 | GEO h 3
+Zugdidi | 42.51 41.87 | GEO h 2
+Sukhumi | 43.00 41.02 | GEO m 1
+Ozurgeti | 41.92 42.00 | GEO h 1
+Telavi | 41.92 45.47 | GEO h 2
+Akhaltsikhe | 41.64 42.98 | SAM m 2
+Ardahan | 41.11 42.70 | SAM m 1
+@ Shirvan
+Shamakhi | 40.63 48.64 | SHI h 3
+Baku | 40.41 49.87 | SHI d 2
+Derbent | 42.06 48.29 | SHI h 2
+Shaki | 41.19 47.17 | SHI m 2
+@ Arran and Armenia
+Ganja | 40.68 46.36 | QAR h 2
+Barda | 40.37 47.13 | QAR p 2
+Yerevan | 40.18 44.51 | QAR h 2
+Nakhchivan | 39.21 45.41 | QAR m 2
+@ North Caucasus
+Tarki | 42.98 47.50 | DAG m 2
+Khunzakh | 42.54 46.70 | DAG m 1
+Kabarda | 43.49 43.60 | CIR h 1
+Alania | 43.02 44.68 | CIR m 1
+Chechnya | 43.32 45.69 | - m 1
+Maykop | 44.61 40.10 | CIR h 1
+Kuban | 45.04 38.98 | CIR p 1
+Matrega | 45.21 36.72 | GEN p 1
+Stavropol | 45.04 41.97 | - s 1

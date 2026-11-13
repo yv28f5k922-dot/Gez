@@ -76,13 +76,103 @@ final class ScenarioTests: XCTestCase {
         }
     }
 
-    func testCoordinatesAreInsideGameArea() {
+    func testCoordinatesAreInsideMap() {
         let world = Scenario1453.makeWorld()
         for i in 0..<world.provinces.count {
-            let p = world.provinces.location[i]
-            XCTAssertTrue((-20...130).contains(p.longitude), world.provinces.name[i])
-            XCTAssertTrue((0...72).contains(p.latitude), world.provinces.name[i])
+            let point = world.provinces.labelPoint[i]
+            XCTAssertTrue((0..<world.map.width).contains(point.x), world.provinces.name[i])
+            XCTAssertTrue((0..<world.map.height).contains(point.y), world.provinces.name[i])
         }
+    }
+
+    func testMapIsLarge() {
+        let world = Scenario1453.makeWorld()
+        XCTAssertGreaterThan(world.provinces.count, 1000)
+        XCTAssertGreaterThan(world.states.count, 200)
+        XCTAssertGreaterThan(world.countries.count, 150)
+        XCTAssertGreaterThan(world.regions.count, 20)
+    }
+
+    func testEveryStateHasProvincesAndValidRegion() {
+        let world = Scenario1453.makeWorld()
+        for s in 0..<world.states.count {
+            XCTAssertFalse(world.states.provinces[s].isEmpty, world.states.name[s])
+            XCTAssertTrue(world.regions.indices.contains(world.states.region[s].index), world.states.name[s])
+        }
+    }
+
+    func testStateAndRegionLookups() {
+        let world = Scenario1453.makeWorld()
+        let paris = world.provinces.id(named: "Paris")!
+        XCTAssertEqual(world.stateName(of: paris), "Ile-de-France")
+        XCTAssertEqual(world.regionName(of: paris), "France")
+        let konya = world.provinces.id(named: "Konya")!
+        XCTAssertEqual(world.stateName(of: konya), "Karaman")
+        XCTAssertEqual(world.regionName(of: konya), "Anatolia")
+    }
+
+    func testNeighborsAreTwoWay() {
+        let world = Scenario1453.makeWorld()
+        for i in 0..<world.provinces.count {
+            for n in world.provinces.neighbors[i] {
+                XCTAssertTrue(world.provinces.neighbors[n.index].contains(ProvinceID(i)),
+                              "\(world.provinces.name[i]) -> \(world.provinces.name[n.index])")
+            }
+        }
+    }
+
+    func testBosporusCrossing() {
+        let world = Scenario1453.makeWorld()
+        let constantinople = world.provinces.id(named: "Konstantiniyye")!
+        let izmit = world.provinces.id(named: "Izmit")!
+        XCTAssertTrue(world.provinces.neighbors[constantinople.index].contains(izmit))
+    }
+
+    func testMostProvincesHaveNeighbors() {
+        let world = Scenario1453.makeWorld()
+        let isolated = world.provinces.ids.filter { world.provinces.neighbors[$0.index].isEmpty }
+        XCTAssertLessThan(isolated.count, 15)
+    }
+
+    func testStartingValuesScaleWithDevelopment() {
+        let world = Scenario1453.makeWorld()
+        let paris = world.provinces.id(named: "Paris")!.index
+        let lapland = world.provinces.id(named: "Lapland")!.index
+        XCTAssertGreaterThan(world.provinces.population[paris], world.provinces.population[lapland] * 10)
+        XCTAssertNil(world.provinces.owner[lapland])
+        XCTAssertGreaterThanOrEqual(world.provinces.fortLevel[world.provinces.id(named: "Konstantiniyye")!.index], 4)
+    }
+}
+
+final class ProvinceIDMapTests: XCTestCase {
+    func testMapMatchesScenario() throws {
+        let world = Scenario1453.makeWorld()
+        let map = try ProvinceIDMap.loadBundled()
+        XCTAssertEqual(map.width, world.map.width)
+        XCTAssertEqual(map.height, world.map.height)
+    }
+
+    func testEveryLabelPointIsInsideItsProvince() throws {
+        let world = Scenario1453.makeWorld()
+        let map = try ProvinceIDMap.loadBundled()
+        for i in 0..<world.provinces.count {
+            let p = world.provinces.labelPoint[i]
+            XCTAssertEqual(map.province(x: p.x, y: p.y), ProvinceID(i), world.provinces.name[i])
+        }
+    }
+
+    func testOpenSeaIsWater() throws {
+        let world = Scenario1453.makeWorld()
+        let map = try ProvinceIDMap.loadBundled()
+        // Middle of the Black Sea and the Arabian Sea.
+        for geo in [GeoPoint(latitude: 43.5, longitude: 34.0), GeoPoint(latitude: 15.0, longitude: 63.0)] {
+            let p = world.map.point(for: geo)
+            XCTAssertEqual(map.value(x: p.x, y: p.y), ProvinceIDMap.water)
+        }
+    }
+
+    func testRejectsGarbage() {
+        XCTAssertThrowsError(try ProvinceIDMap(data: Data([1, 2, 3])))
     }
 }
 

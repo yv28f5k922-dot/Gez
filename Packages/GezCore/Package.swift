@@ -12,7 +12,13 @@ let package = Package(
         .library(name: "GezCore", targets: ["GezCore"])
     ],
     targets: [
-        .target(name: "GezCore"),
+        .target(
+            name: "GezCore",
+            resources: [
+                .copy("Resources/scenario1453.json"),
+                .copy("Resources/provinces1453.idmap")
+            ]
+        ),
         .testTarget(name: "GezCoreTests", dependencies: ["GezCore"])
     ]
 )

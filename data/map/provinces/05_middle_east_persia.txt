@@ -1,0 +1,170 @@
+# Levant
+@ Northern Syria
+Aleppo | 36.20 37.16 | MAM p 7
+Antioch | 36.20 36.16 | MAM h 3
+Antep | 37.06 37.38 | MAM h 2
+Hama | 35.13 36.75 | MAM p 3
+Homs | 34.73 36.71 | MAM p 3
+Raqqa | 35.95 39.00 | MAM s 1
+Deir ez-Zor | 35.33 40.14 | MAM d 1
+Palmyra | 34.56 38.27 | MAM d 1
+@ Southern Syria
+Damascus | 33.51 36.29 | MAM f 8
+Tripoli of Syria | 34.44 35.83 | MAM h 4
+Beirut | 33.89 35.50 | MAM h 3
+Safed | 32.96 35.50 | MAM h 2
+Ajlun | 32.33 35.75 | MAM h 2
+@ Palestine
+Jerusalem | 31.77 35.21 | MAM h 4
+Gaza | 31.50 34.47 | MAM d 3
+Karak | 31.18 35.70 | MAM d 2
+Aqaba | 29.53 35.00 | MAM d 1
+
+# Egypt
+@ Lower Egypt
+Cairo | 30.04 31.24 | MAM f 10
+Alexandria | 31.20 29.92 | MAM f 7
+Damietta | 31.42 31.81 | MAM f 5
+Gharbiya | 30.79 31.00 | MAM f 6
+Sharqiya | 30.42 31.56 | MAM f 4
+Suez | 29.97 32.55 | MAM d 2
+@ Sinai
+Al-Arish | 31.13 33.80 | MAM d 1
+Tor | 28.24 33.62 | MAM d 1
+@ Upper Egypt
+Fayyum | 29.31 30.84 | MAM f 4
+Minya | 28.10 30.75 | MAM f 4
+Asyut | 27.18 31.18 | MAM f 4
+Girga | 26.34 31.89 | MAM f 3
+Qus | 25.92 32.76 | MAM f 3
+Qusayr | 26.10 34.28 | MAM d 1
+Aswan | 24.09 32.90 | MAM f 2
+@ Western Desert
+Kharga | 25.44 30.55 | MAM d 1
+Bahariya | 28.35 28.86 | MAM d 1
+Siwa | 29.20 25.52 | - d 1
+Marmarica | 31.35 27.24 | - d 1
+
+# Arabia
+@ Hejaz
+Mecca | 21.42 39.83 | HEJ d 5
+Jeddah | 21.49 39.19 | HEJ d 3
+Medina | 24.47 39.61 | HEJ d 3
+Yanbu | 24.09 38.06 | HEJ d 1
+Tabuk | 28.38 36.57 | - d 1
+Tayma | 27.63 38.55 | - d 1
+@ Najd
+Hajr | 24.71 46.68 | - d 1
+Hail | 27.52 41.69 | - d 1
+Qassim | 26.33 43.97 | - d 1
+Wadi Dawasir | 20.47 44.80 | - d 1
+@ Eastern Arabia
+Al-Hasa | 25.38 49.59 | JAB d 2
+Qatif | 26.56 50.00 | JAB d 2
+Bahrain | 26.20 50.58 | HOR d 2
+Qatar | 25.30 51.50 | - d 1
+@ Oman
+Nizwa | 22.93 57.53 | OMN m 2
+Muscat | 23.61 58.59 | HOR d 2
+Sohar | 24.35 56.71 | HOR d 2
+Sur | 22.57 59.53 | HOR d 1
+Julfar | 25.79 55.94 | HOR d 1
+@ Yemen
+Aden | 12.79 45.03 | YEM d 4
+Taizz | 13.58 44.02 | YEM m 3
+Zabid | 14.20 43.32 | YEM d 3
+Sanaa | 15.35 44.20 | ZAY m 3
+Sadah | 16.94 43.76 | ZAY m 2
+Jizan | 16.89 42.55 | - d 1
+Najran | 17.49 44.13 | - d 1
+Asir | 18.22 42.50 | - m 1
+Marib | 15.46 45.33 | - d 1
+@ Hadramawt
+Tarim | 16.05 49.00 | KTH d 2
+Shihr | 14.76 49.60 | KTH d 2
+Dhofar | 17.02 54.09 | KTH d 2
+
+# Mesopotamia
+@ Al-Jazira
+Mosul | 36.34 43.13 | QAR f 4
+Sinjar | 36.32 41.88 | QAR s 1
+Erbil | 36.19 44.01 | QAR h 2
+Kirkuk | 35.47 44.39 | QAR p 2
+@ Iraq
+Baghdad | 33.31 44.37 | QAR f 6
+Hillah | 32.48 44.43 | QAR f 3
+Kufa | 32.00 44.33 | QAR f 2
+Wasit | 32.50 45.82 | QAR f 2
+Hit | 33.63 42.83 | QAR d 1
+Basra | 30.51 47.81 | QAR x 4
+Amarah | 31.84 47.14 | QAR x 2
+
+# Persia
+@ Azerbaijan
+Tabriz | 38.08 46.29 | QAR h 7
+Maragheh | 37.39 46.24 | QAR h 3
+Urmia | 37.55 45.07 | QAR h 2
+Ardabil | 38.25 48.30 | QAR h 3
+Lankaran | 38.75 48.85 | QAR x 1
+Zanjan | 36.68 48.48 | QAR h 2
+@ Gilan and Mazandaran
+Lahijan | 37.20 50.00 | GIL x 3
+Rasht | 37.28 49.58 | GIL x 2
+Sari | 36.57 53.06 | MZD x 3
+Nur | 36.57 52.00 | MZD m 1
+Astarabad | 36.84 54.43 | HRT x 2
+@ Persian Iraq
+Qazvin | 36.27 50.00 | QAR p 3
+Ray | 35.59 51.44 | QAR p 3
+Hamadan | 34.80 48.51 | QAR h 3
+Kermanshah | 34.31 47.07 | QAR m 2
+Kashan | 33.98 51.44 | QAR d 3
+Isfahan | 32.65 51.67 | QAR f 6
+Damghan | 36.17 54.35 | HRT d 2
+@ Luristan and Khuzestan
+Khorramabad | 33.49 48.36 | LUR m 2
+Izeh | 31.83 49.87 | QAR m 1
+Hoveyzeh | 31.46 48.07 | MSH x 2
+Shushtar | 32.04 48.85 | QAR f 2
+@ Fars
+Shiraz | 29.60 52.53 | QAR h 6
+Kazerun | 29.62 51.65 | QAR h 2
+Bushehr | 28.97 50.84 | QAR d 1
+Darabgird | 28.75 54.54 | QAR h 2
+Yazd | 31.90 54.37 | QAR d 3
+Lar | 27.68 54.34 | LAR d 2
+@ Kerman
+Kerman | 30.28 57.08 | QAR d 3
+Bam | 29.10 58.36 | QAR d 2
+Hormuz | 27.10 56.45 | HOR d 4
+Minab | 27.15 57.08 | HOR d 1
+@ Makran
+Bampur | 27.20 60.45 | - d 1
+Kech | 26.00 63.05 | - d 1
+Las Bela | 26.23 66.31 | - d 1
+Kalat | 29.03 66.59 | - m 1
+Quetta | 30.18 67.00 | - m 1
+
+# Khorasan and Afghanistan
+@ Khorasan
+Herat | 34.35 62.20 | HRT f 7
+Mashhad | 36.30 59.60 | HRT h 3
+Nishapur | 36.21 58.80 | HRT h 4
+Sabzevar | 36.21 57.68 | HRT d 2
+Quhistan | 32.87 59.22 | HRT d 2
+Tabas | 33.60 56.92 | HRT d 1
+Abiward | 37.95 58.38 | HRT s 1
+Merv | 37.60 61.83 | HRT d 3
+Farah | 32.37 62.11 | HRT d 1
+@ Sistan
+Zaranj | 30.96 61.86 | SIS x 2
+@ Afghanistan
+Kandahar | 31.61 65.70 | HRT d 3
+Ghazni | 33.55 68.42 | HRT m 2
+Kabul | 34.53 69.17 | HRT m 3
+Ghor | 34.50 64.50 | - m 1
+Nangarhar | 34.43 70.45 | - m 1
+@ Tokharistan
+Balkh | 36.76 66.90 | HRT p 4
+Kunduz | 36.73 68.86 | HRT p 2
+Faizabad | 37.12 70.58 | BDK m 1

@@ -1,0 +1,110 @@
+# Wasteland
+@ Sahara
+! Western Sahara | 26.0 -12.0
+! Saguia el-Hamra | 27.5 -9.5
+! Erg Chech | 25.0 -3.0
+! Tanezrouft | 22.0 0.0
+! Grand Erg Occidental | 29.5 0.0
+! Grand Erg Oriental | 30.0 7.0
+! Tassili | 25.0 8.0
+! Hoggar | 22.5 5.0
+! Mauritania | 21.0 -10.0
+! Mali Desert | 19.0 -4.0
+! Air | 18.5 9.0
+! Tenere | 19.0 12.5
+! Tibesti | 21.0 17.0
+! Hamada al-Hamra | 29.0 12.0
+! Sirte Desert | 28.5 18.0
+! Libyan Sand Sea | 26.0 24.0
+! Kufra | 24.0 23.0
+! Great Sand Sea | 27.0 26.5
+! Gilf Kebir | 23.0 26.0
+! Selima | 21.5 29.5
+! Nubian Desert | 21.0 33.5
+! Eastern Desert | 24.5 34.0
+! Ennedi | 17.5 22.0
+@ Arabian Deserts
+! Rub al Khali | 20.0 50.0
+! Empty Quarter West | 19.0 47.0
+! Empty Quarter East | 21.0 53.5
+! Nafud | 28.5 40.5
+! Dahna | 23.5 47.5
+! Syrian Desert | 32.0 39.0
+! Hamad | 33.5 40.5
+! Western Arabia Desert | 25.0 42.5
+@ Iranian Deserts
+! Dasht-e Kavir | 34.5 54.5
+! Dasht-e Lut | 31.0 58.5
+! Registan | 30.5 64.5
+! Dasht-e Margo | 30.5 63.0
+@ Turan Deserts
+! Karakum | 39.0 60.0
+! Karakum West | 40.5 57.0
+! Kyzylkum | 42.0 63.0
+! Kyzylkum North | 43.5 61.0
+! Ustyurt | 43.5 56.0
+! Betpak-Dala | 45.5 70.0
+! Moyunkum | 44.5 72.5
+@ High Mountains
+! Pamir | 38.3 73.5
+! Hindu Kush | 35.5 71.5
+! Karakoram | 35.8 76.5
+! Zanskar | 33.5 76.8
+@ Horn Deserts
+! Danakil | 13.5 41.0
+! Chalbi | 3.0 37.5
+! Turkana | 3.5 35.5
+@ Beyond the Map
+! Tibet West | 32.0 81.5
+! Tibet | 31.0 86.0
+! Tibet East | 32.5 90.0
+! Kham | 30.0 95.0
+! Qinghai | 35.5 92.0
+! Kunlun | 35.5 82.0
+! Aksai Chin | 35.0 79.0
+! Tarim West | 39.0 77.0
+! Kashgar | 39.5 75.5
+! Tarim | 39.5 82.0
+! Taklamakan | 38.5 86.0
+! Lop Nur | 40.5 90.0
+! Turpan | 42.5 89.0
+! Dzungaria | 45.0 85.0
+! Ili | 43.9 81.3
+! Tarbagatai | 47.0 83.0
+! Altai | 48.5 88.0
+! Mongolia | 47.0 95.0
+! Tuva | 51.5 94.0
+! Sayan | 53.0 90.0
+! West Siberia | 55.5 80.0
+! Baraba | 55.5 76.0
+! Tobolsk | 59.0 70.0
+! Siberia | 61.0 76.0
+! Yugra | 62.5 66.0
+! Ob | 66.0 66.0
+! Yamal | 69.0 70.0
+! Taz | 66.5 80.0
+! Yenisei | 62.0 90.0
+! Polar Urals | 66.5 61.0
+! Northern Urals | 62.5 59.5
+! Bolshezemelskaya | 67.5 56.0
+! Burma | 21.0 95.5
+! Arakan | 20.0 93.5
+! Chin Hills | 23.0 93.5
+! Upper Burma | 25.5 96.5
+! Yunnan | 26.0 97.8
+! Arunachal | 28.0 94.0
+! Bhutan | 27.3 90.4
+! Sikkim | 27.6 88.4
+! Darfur | 13.5 24.0
+! Kordofan | 13.0 29.5
+! Sudd | 8.5 30.5
+! South Sudan | 5.5 31.0
+! Uganda | 2.0 32.5
+! Equatoria | 4.0 34.0
+! Kenya Highlands | 0.0 37.0
+! Lake Region | -2.0 34.0
+! Tanzania | -2.5 37.5
+! Chad | 14.5 18.0
+! Bornu | 12.0 13.0
+! Sahel West | 15.0 -5.0
+! Sahel Niger | 14.0 3.0

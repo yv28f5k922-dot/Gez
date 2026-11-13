@@ -8,6 +8,50 @@ public struct ProvinceID: Hashable, Sendable {
     public init(_ index: Int) { self.index = index }
 }
 
+public struct StateID: Hashable, Sendable {
+    public let index: Int
+    public init(_ index: Int) { self.index = index }
+}
+
+public struct RegionID: Hashable, Sendable {
+    public let index: Int
+    public init(_ index: Int) { self.index = index }
+}
+
+/// A pixel position on the province map image.
+public struct MapPoint: Hashable, Sendable {
+    public var x: Int
+    public var y: Int
+    public init(x: Int, y: Int) {
+        self.x = x
+        self.y = y
+    }
+}
+
+/// How the province map image relates to the globe.
+public struct MapInfo: Hashable, Sendable {
+    public var width: Int
+    public var height: Int
+    public var pixelsPerDegree: Double
+    public var longitudeMin: Double
+    public var latitudeMax: Double
+
+    public init(width: Int, height: Int, pixelsPerDegree: Double, longitudeMin: Double, latitudeMax: Double) {
+        self.width = width
+        self.height = height
+        self.pixelsPerDegree = pixelsPerDegree
+        self.longitudeMin = longitudeMin
+        self.latitudeMax = latitudeMax
+    }
+
+    public func point(for geo: GeoPoint) -> MapPoint {
+        MapPoint(
+            x: Int((geo.longitude - longitudeMin) * pixelsPerDegree),
+            y: Int((latitudeMax - geo.latitude) * pixelsPerDegree)
+        )
+    }
+}
+
 public struct RGB: Hashable, Sendable {
     public var r: UInt8
     public var g: UInt8
@@ -29,7 +73,7 @@ public struct GeoPoint: Hashable, Sendable {
 }
 
 public enum Religion: String, CaseIterable, Sendable {
-    case catholic, orthodox, miaphysite, sunni, shia, hindu
+    case catholic, orthodox, miaphysite, sunni, shia, hindu, buddhist
 }
 
 public enum GovernmentType: String, CaseIterable, Sendable {

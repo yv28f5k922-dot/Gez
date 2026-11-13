@@ -1,0 +1,278 @@
+# Iberia
+@ Portugal
+Lisbon | 38.72 -9.14 | POR h 8
+Santarem | 39.24 -8.69 | POR f 5
+Coimbra | 40.20 -8.41 | POR h 5
+Porto | 41.15 -8.61 | POR h 6
+Braga | 41.55 -8.42 | POR h 5
+Braganca | 41.81 -6.76 | POR m 3
+Viseu | 40.66 -7.91 | POR h 4
+Guarda | 40.54 -7.27 | POR m 3
+Evora | 38.57 -7.91 | POR p 4
+Beja | 38.02 -7.86 | POR p 3
+Faro | 37.02 -7.93 | POR h 4
+@ Portuguese Atlantic
+Madeira | 32.65 -16.91 | POR h 2
+Ceuta | 35.89 -5.32 | POR h 3
+@ Galicia
+Santiago | 42.88 -8.54 | CAS h 5
+A Coruna | 43.36 -8.41 | CAS h 4
+Lugo | 43.01 -7.56 | CAS h 3
+Ourense | 42.34 -7.86 | CAS h 3
+@ Leon and Asturias
+Oviedo | 43.36 -5.85 | CAS m 3
+Leon | 42.60 -5.57 | CAS p 4
+Zamora | 41.50 -5.75 | CAS p 4
+Salamanca | 40.97 -5.66 | CAS p 5
+@ Old Castile
+Valladolid | 41.65 -4.72 | CAS p 6
+Burgos | 42.34 -3.70 | CAS p 6
+Santander | 43.46 -3.80 | CAS h 3
+Logrono | 42.47 -2.45 | CAS f 4
+Soria | 41.76 -2.46 | CAS h 3
+Segovia | 40.95 -4.12 | CAS h 5
+Avila | 40.66 -4.70 | CAS h 3
+@ Basque Country
+Bilbao | 43.26 -2.93 | CAS h 4
+San Sebastian | 43.32 -1.98 | CAS h 3
+Vitoria | 42.85 -2.67 | CAS h 3
+@ New Castile
+Toledo | 39.86 -4.03 | CAS p 7
+Madrid | 40.42 -3.70 | CAS p 4
+Guadalajara | 40.63 -3.17 | CAS p 3
+Cuenca | 40.07 -2.14 | CAS h 3
+Ciudad Real | 38.99 -3.93 | CAS p 3
+Albacete | 38.99 -1.86 | CAS p 3
+@ Extremadura
+Caceres | 39.47 -6.37 | CAS p 3
+Plasencia | 40.03 -6.09 | CAS h 3
+Badajoz | 38.88 -6.97 | CAS p 4
+@ Andalusia
+Seville | 37.39 -5.98 | CAS f 8
+Niebla | 37.26 -6.95 | CAS p 3
+Jerez | 36.69 -6.13 | CAS f 5
+Cordoba | 37.88 -4.78 | CAS f 6
+Jaen | 37.77 -3.79 | CAS h 4
+@ Murcia
+Murcia | 37.99 -1.13 | CAS f 4
+@ Canary Islands
+Lanzarote | 29.05 -13.60 | CAS d 1
+Gran Canaria | 27.96 -15.59 | - h 1
+Tenerife | 28.29 -16.63 | - m 1
+@ Granada
+Granada | 37.18 -3.60 | GRA m 7
+Malaga | 36.72 -4.42 | GRA h 5
+Almeria | 36.84 -2.46 | GRA h 4
+Ronda | 36.74 -5.16 | GRA m 3
+Baza | 37.49 -2.77 | GRA m 3
+Gibraltar | 36.14 -5.35 | GRA h 2
+@ Navarre
+Pamplona | 42.81 -1.64 | NAV h 4
+Tudela | 42.06 -1.60 | NAV f 3
+@ Aragon
+Zaragoza | 41.65 -0.89 | ARA p 6
+Huesca | 42.14 -0.41 | ARA h 3
+Teruel | 40.35 -1.11 | ARA m 3
+Calatayud | 41.35 -1.64 | ARA h 3
+@ Catalonia
+Barcelona | 41.39 2.17 | ARA h 8
+Girona | 41.98 2.82 | ARA h 4
+Lleida | 41.62 0.62 | ARA p 4
+Tarragona | 41.12 1.25 | ARA h 4
+Tortosa | 40.81 0.52 | ARA h 3
+Perpignan | 42.69 2.90 | ARA h 4
+@ Valencia
+Valencia | 39.47 -0.38 | ARA f 8
+Castello | 39.99 -0.05 | ARA h 3
+Alicante | 38.35 -0.48 | ARA h 4
+@ Balearic Islands
+Mallorca | 39.57 2.65 | ARA h 5
+Menorca | 39.95 4.05 | ARA h 2
+Ibiza | 38.91 1.43 | ARA h 2
+
+# France
+@ Ile-de-France
+Paris | 48.86 2.35 | FRA f 10
+Chartres | 48.44 1.49 | FRA f 5
+Beauvais | 49.43 2.08 | FRA f 4
+Sens | 48.20 3.28 | FRA f 4
+@ Normandy
+Rouen | 49.44 1.10 | FRA f 7
+Caen | 49.18 -0.37 | FRA f 5
+Coutances | 49.05 -1.44 | FRA h 3
+Alencon | 48.43 0.09 | FRA f 3
+@ Picardy
+Amiens | 49.89 2.30 | BUR f 5
+Abbeville | 50.10 1.83 | BUR f 3
+Saint-Quentin | 49.85 3.29 | BUR f 4
+Laon | 49.56 3.62 | FRA f 4
+@ Champagne
+Reims | 49.26 4.03 | FRA f 5
+Troyes | 48.30 4.08 | FRA f 5
+Chalons | 48.96 4.36 | FRA f 4
+Langres | 47.86 5.33 | FRA h 3
+@ Brittany
+Rennes | 48.11 -1.68 | BRI f 5
+Nantes | 47.22 -1.55 | BRI f 6
+Brest | 48.39 -4.49 | BRI h 3
+Vannes | 47.66 -2.76 | BRI h 3
+Saint-Brieuc | 48.51 -2.76 | BRI h 3
+@ Loire
+Orleans | 47.90 1.90 | FRA f 6
+Blois | 47.59 1.33 | FRA f 4
+Tours | 47.39 0.69 | FRA f 6
+Angers | 47.47 -0.55 | FRA f 5
+Le Mans | 48.00 0.20 | FRA f 4
+@ Poitou
+Poitiers | 46.58 0.34 | FRA f 4
+La Rochelle | 46.16 -1.15 | FRA x 5
+Saintes | 45.75 -0.63 | FRA f 3
+Angouleme | 45.65 0.16 | FRA h 3
+@ Berry and Bourbonnais
+Bourges | 47.08 2.40 | FRA f 4
+Moulins | 46.57 3.33 | FRA f 3
+Gueret | 46.17 1.87 | FRA h 2
+@ Auvergne and Limousin
+Clermont | 45.78 3.08 | FRA m 4
+Le Puy | 45.04 3.88 | FRA m 3
+Aurillac | 44.93 2.44 | FRA m 2
+Limoges | 45.83 1.26 | FRA h 4
+@ Guyenne
+Bordeaux | 44.84 -0.58 | ENG f 7
+Perigueux | 45.18 0.72 | FRA h 3
+Agen | 44.20 0.62 | FRA f 3
+Cahors | 44.45 1.44 | FRA h 3
+Bayonne | 43.49 -1.47 | FRA h 3
+@ Gascony
+Auch | 43.65 0.59 | FRA h 3
+Tarbes | 43.23 0.08 | FRA m 2
+Pau | 43.30 -0.37 | FOI h 3
+Foix | 42.97 1.60 | FOI m 2
+@ Languedoc
+Toulouse | 43.60 1.44 | FRA f 7
+Carcassonne | 43.21 2.35 | FRA h 4
+Narbonne | 43.18 3.00 | FRA f 4
+Montpellier | 43.61 3.88 | FRA f 5
+Nimes | 43.84 4.36 | FRA f 4
+Albi | 43.93 2.15 | FRA h 3
+Rodez | 44.35 2.57 | FRA m 2
+Mende | 44.52 3.50 | FRA m 2
+@ Lyonnais and Dauphine
+Lyon | 45.76 4.84 | FRA f 7
+Grenoble | 45.19 5.72 | FRA m 4
+Valence | 44.93 4.89 | FRA f 3
+Embrun | 44.56 6.08 | FRA m 2
+@ Provence
+Aix | 43.53 5.45 | PRO h 4
+Marseille | 43.30 5.37 | PRO h 6
+Avignon | 43.95 4.81 | PAP f 5
+Digne | 44.09 6.24 | PRO m 2
+@ Burgundy
+Dijon | 47.32 5.04 | BUR f 6
+Chalon | 46.78 4.85 | BUR f 4
+Auxerre | 47.80 3.57 | BUR f 3
+Nevers | 46.99 3.16 | BUR f 3
+@ Franche-Comte
+Besancon | 47.24 6.02 | BUR h 4
+Salins | 46.94 5.88 | BUR h 3
+@ Lorraine
+Nancy | 48.69 6.18 | LOR f 4
+Metz | 49.12 6.18 | LOR f 5
+Bar-le-Duc | 48.77 5.16 | LOR f 3
+Epinal | 48.17 6.45 | LOR h 2
+@ Alsace
+Strasbourg | 48.58 7.75 | STB f 6
+Ensisheim | 47.86 7.35 | TIR f 4
+
+# British Isles
+@ Home Counties
+London | 51.51 -0.13 | ENG f 9
+Canterbury | 51.28 1.08 | ENG f 4
+Chichester | 50.84 -0.78 | ENG f 3
+Oxford | 51.75 -1.26 | ENG f 4
+Colchester | 51.89 0.90 | ENG f 4
+Calais | 50.95 1.86 | ENG f 4
+@ Wessex
+Winchester | 51.06 -1.31 | ENG f 4
+Salisbury | 51.07 -1.79 | ENG f 4
+Exeter | 50.72 -3.53 | ENG h 4
+Bodmin | 50.47 -4.72 | ENG h 2
+Bristol | 51.45 -2.59 | ENG f 6
+@ East Anglia
+Norwich | 52.63 1.30 | ENG f 6
+Ipswich | 52.06 1.16 | ENG f 3
+Cambridge | 52.20 0.12 | ENG f 4
+@ Midlands
+Lincoln | 53.23 -0.54 | ENG f 4
+Nottingham | 52.95 -1.15 | ENG f 3
+Leicester | 52.64 -1.13 | ENG f 3
+Northampton | 52.24 -0.90 | ENG f 3
+Coventry | 52.41 -1.51 | ENG f 4
+Gloucester | 51.86 -2.24 | ENG f 4
+Worcester | 52.19 -2.22 | ENG f 3
+@ Welsh Marches
+Hereford | 52.06 -2.72 | ENG h 3
+Shrewsbury | 52.71 -2.75 | ENG h 3
+Chester | 53.19 -2.89 | ENG f 3
+@ Northern England
+York | 53.96 -1.08 | ENG f 6
+Hull | 53.74 -0.33 | ENG f 3
+Lancaster | 54.05 -2.80 | ENG h 2
+Durham | 54.78 -1.58 | ENG h 3
+Newcastle | 54.98 -1.61 | ENG h 3
+Carlisle | 54.89 -2.93 | ENG h 2
+Berwick | 55.77 -2.00 | ENG h 2
+Roxburgh | 55.60 -2.43 | ENG h 2
+Isle of Man | 54.15 -4.48 | ENG h 1
+@ Wales
+Cardiff | 51.48 -3.18 | ENG h 3
+Pembroke | 51.67 -4.91 | ENG h 2
+Carmarthen | 51.86 -4.31 | ENG h 2
+Brecon | 51.95 -3.39 | ENG m 2
+Caernarfon | 53.14 -4.27 | ENG m 2
+Montgomery | 52.56 -3.15 | ENG m 2
+@ Lowlands
+Edinburgh | 55.95 -3.19 | SCO h 5
+Glasgow | 55.86 -4.25 | SCO h 3
+Ayr | 55.46 -4.63 | SCO h 2
+Dumfries | 55.07 -3.61 | SCO h 2
+Stirling | 56.12 -3.94 | SCO h 3
+@ Highlands
+Perth | 56.40 -3.43 | SCO h 3
+Dundee | 56.46 -2.97 | SCO h 3
+Aberdeen | 57.15 -2.09 | SCO h 3
+Elgin | 57.65 -3.32 | SCO h 2
+Inverness | 57.48 -4.22 | SCO m 2
+Wick | 58.44 -3.09 | SCO m 1
+Inveraray | 56.23 -5.07 | SCO m 1
+@ The Isles
+Islay | 55.80 -6.20 | LOI h 1
+Skye | 57.30 -6.20 | LOI m 1
+Lewis | 58.20 -6.40 | LOI m 1
+Dingwall | 57.60 -4.43 | LOI m 2
+@ Leinster
+Dublin | 53.35 -6.26 | ENG f 4
+Drogheda | 53.72 -6.35 | ENG f 3
+Kildare | 53.16 -6.91 | KID f 3
+Wexford | 52.34 -6.46 | LEI f 2
+Tullamore | 53.27 -7.49 | LEI x 2
+@ Munster
+Kilkenny | 52.65 -7.25 | ORM f 3
+Clonmel | 52.35 -7.70 | ORM f 2
+Waterford | 52.26 -7.11 | ENG f 3
+Cork | 51.90 -8.47 | DES h 3
+Tralee | 52.27 -9.70 | DES h 2
+Limerick | 52.66 -8.63 | DES f 3
+Ennis | 52.84 -8.98 | TMN h 2
+@ Connacht
+Galway | 53.27 -9.05 | CLA h 2
+Castlebar | 53.85 -9.30 | CLA h 1
+Roscommon | 53.63 -8.19 | CLA x 2
+@ Ulster
+Sligo | 54.27 -8.47 | TYC h 2
+Donegal | 54.65 -8.11 | TYC m 2
+Cavan | 53.99 -7.36 | TYC x 1
+Dungannon | 54.50 -6.77 | TYR h 2
+Armagh | 54.35 -6.65 | TYR h 2
+Carrickfergus | 54.72 -5.81 | ENG h 2
+Downpatrick | 54.33 -5.72 | ENG h 1

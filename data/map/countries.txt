@@ -1,0 +1,234 @@
+# TAG | Name | R G B | government | religion | capital (optional; default = most developed province)
+# government: monarchy, republic, theocracy, steppeHorde
+# religion: catholic, orthodox, miaphysite, sunni, shia, hindu, buddhist
+
+# Iberia and France
+POR | Portugal | 40 120 70 | monarchy | catholic
+CAS | Castile | 222 190 50 | monarchy | catholic | Toledo
+ARA | Aragon | 200 150 40 | monarchy | catholic | Zaragoza
+NAV | Navarre | 160 60 90 | monarchy | catholic
+GRA | Granada | 70 150 100 | monarchy | sunni
+FRA | France | 40 70 170 | monarchy | catholic
+BRI | Brittany | 230 230 225 | monarchy | catholic
+BUR | Burgundy | 195 120 50 | monarchy | catholic | Brussels
+PRO | Provence | 210 180 120 | monarchy | catholic
+FOI | Foix-Bearn | 230 210 60 | monarchy | catholic
+LOR | Lorraine | 220 200 90 | monarchy | catholic
+STB | Strasbourg | 180 120 150 | republic | catholic
+
+# British Isles
+ENG | England | 185 30 40 | monarchy | catholic
+SCO | Scotland | 80 120 205 | monarchy | catholic
+LOI | Lordship of the Isles | 90 160 160 | monarchy | catholic
+KID | Kildare | 150 180 110 | monarchy | catholic
+LEI | Leinster | 100 160 60 | monarchy | catholic
+ORM | Ormond | 230 170 90 | monarchy | catholic
+DES | Desmond | 170 120 80 | monarchy | catholic
+TMN | Thomond | 60 130 90 | monarchy | catholic
+CLA | Clanricarde | 160 100 140 | monarchy | catholic
+TYC | Tyrconnell | 90 150 70 | monarchy | catholic
+TYR | Tyrone | 180 200 100 | monarchy | catholic
+
+# Low Countries and Germany
+UTR | Utrecht | 230 220 180 | theocracy | catholic
+GEL | Guelders | 110 140 90 | monarchy | catholic
+FRI | Frisia | 60 110 160 | republic | catholic
+LIE | Liege | 200 60 70 | theocracy | catholic
+CLN | Cologne | 210 210 210 | theocracy | catholic
+JUL | Julich-Berg | 140 120 60 | monarchy | catholic
+KLE | Cleves | 220 120 120 | monarchy | catholic
+MUN | Munster | 90 140 120 | theocracy | catholic
+OLD | Oldenburg | 210 80 60 | monarchy | catholic
+BRE | Bremen | 150 170 200 | theocracy | catholic
+MAI | Mainz | 170 210 230 | theocracy | catholic
+FFM | Frankfurt | 190 170 140 | republic | catholic
+TRI | Trier | 230 140 160 | theocracy | catholic
+PAL | Palatinate | 120 140 200 | monarchy | catholic
+HES | Hesse | 100 120 80 | monarchy | catholic
+SAX | Saxony | 100 160 80 | monarchy | catholic
+MAG | Magdeburg | 210 180 200 | theocracy | catholic
+BRU | Brunswick-Luneburg | 220 180 80 | monarchy | catholic
+HAM | Hamburg | 230 100 100 | republic | catholic
+LUB | Lubeck | 220 90 120 | republic | catholic
+HOL | Holstein | 120 170 200 | monarchy | catholic
+DIT | Dithmarschen | 150 200 140 | republic | catholic
+MKL | Mecklenburg | 220 200 140 | monarchy | catholic
+POM | Pomerania | 100 190 190 | monarchy | catholic
+BRA | Brandenburg | 70 90 110 | monarchy | catholic
+TEU | Teutonic Order | 25 25 25 | theocracy | catholic | Marienburg
+NUR | Nuremberg | 240 160 120 | republic | catholic
+ANS | Ansbach | 200 210 150 | monarchy | catholic
+WBZ | Wurzburg | 160 90 90 | theocracy | catholic
+BAM | Bamberg | 140 170 140 | theocracy | catholic
+WUR | Wurttemberg | 170 140 60 | monarchy | catholic
+BAD | Baden | 240 200 120 | monarchy | catholic
+ULM | Ulm | 180 200 230 | republic | catholic
+AUG | Augsburg | 120 180 110 | republic | catholic
+BAV | Bavaria-Munich | 100 160 220 | monarchy | catholic
+LAN | Bavaria-Landshut | 60 120 200 | monarchy | catholic
+SAL | Salzburg | 230 180 200 | theocracy | catholic
+BOH | Bohemia | 225 175 100 | monarchy | catholic
+
+# Alps and Italy
+AUS | Austria | 245 245 245 | monarchy | catholic
+HAB | Inner Austria | 200 200 170 | monarchy | catholic
+CIL | Cilli | 150 110 180 | monarchy | catholic
+GOR | Gorizia | 120 160 140 | monarchy | catholic
+TIR | Tyrol | 200 130 100 | monarchy | catholic
+SWI | Swiss Confederation | 200 40 40 | republic | catholic
+GRI | Grisons | 80 100 140 | republic | catholic
+SAV | Savoy | 150 70 70 | monarchy | catholic | Chambery
+SLZ | Saluzzo | 220 160 160 | monarchy | catholic
+MFA | Montferrat | 200 120 160 | monarchy | catholic
+MLO | Milan | 140 180 225 | monarchy | catholic
+MAN | Mantua | 190 120 200 | monarchy | catholic
+GEN | Genoa | 205 90 90 | republic | catholic
+VEN | Venice | 55 150 140 | republic | catholic
+FER | Ferrara | 120 200 130 | monarchy | catholic
+FLO | Florence | 145 60 150 | republic | catholic
+LUC | Lucca | 230 150 100 | republic | catholic
+SIE | Siena | 100 70 50 | republic | catholic
+PAP | Papal States | 245 235 170 | theocracy | catholic | Rome
+URB | Urbino | 200 170 230 | monarchy | catholic
+NAP | Naples | 110 175 120 | monarchy | catholic
+
+# Scandinavia and Baltic
+DAN | Denmark | 175 45 70 | monarchy | catholic
+NOR | Norway | 215 100 90 | monarchy | catholic | Bergen
+SWE | Sweden | 40 100 175 | monarchy | catholic
+RIG | Riga | 160 220 200 | theocracy | catholic
+LVO | Livonian Order | 110 110 90 | theocracy | catholic | Wenden
+DOR | Dorpat | 200 160 220 | theocracy | catholic
+
+# Poland, Lithuania, Russia
+POL | Poland | 200 65 100 | monarchy | catholic
+MAZ | Mazovia | 230 130 160 | monarchy | catholic
+LIT | Lithuania | 185 220 155 | monarchy | catholic
+MOS | Muscovy | 110 145 65 | monarchy | orthodox
+YAR | Yaroslavl | 170 150 90 | monarchy | orthodox
+TVE | Tver | 230 140 60 | monarchy | orthodox
+RYA | Ryazan | 160 200 120 | monarchy | orthodox
+KAS | Kasimov | 150 140 100 | monarchy | sunni
+NOV | Novgorod | 140 70 50 | republic | orthodox
+PSK | Pskov | 100 140 160 | republic | orthodox
+VYA | Vyatka | 120 160 120 | republic | orthodox
+PRM | Perm | 160 130 160 | monarchy | orthodox
+KAZ | Kazan | 150 105 65 | steppeHorde | sunni
+
+# Balkans and Danube
+HUN | Hungary | 165 200 115 | monarchy | catholic
+WAL | Wallachia | 205 170 70 | monarchy | orthodox
+MOL | Moldavia | 235 205 90 | monarchy | orthodox
+RAG | Ragusa | 230 220 160 | republic | catholic
+BOS | Bosnia | 90 120 175 | monarchy | catholic
+HER | Herzegovina | 170 110 70 | monarchy | orthodox
+SER | Serbia | 150 40 60 | monarchy | orthodox
+ZET | Zeta | 180 80 50 | monarchy | orthodox
+ALB | Albania | 180 30 30 | monarchy | catholic
+ATH | Athens | 120 170 210 | monarchy | catholic
+MOE | Morea | 210 140 200 | monarchy | orthodox
+TOC | Tocco | 200 190 120 | monarchy | catholic
+NAX | Naxos | 230 180 140 | monarchy | catholic
+LES | Lesbos | 180 140 200 | monarchy | catholic
+KNI | Knights Hospitaller | 60 60 60 | theocracy | catholic
+CYP | Cyprus | 120 200 220 | monarchy | catholic
+
+# Anatolia and Caucasus
+TUR | Ottoman Empire | 185 45 45 | monarchy | sunni
+CND | Candar | 80 160 120 | monarchy | sunni
+KAR | Karaman | 120 165 110 | monarchy | sunni
+RAM | Ramadanids | 200 150 180 | monarchy | sunni
+DUL | Dulkadir | 150 180 90 | monarchy | sunni
+TRE | Trebizond | 150 70 140 | monarchy | orthodox
+AKK | Aq Qoyunlu | 225 225 200 | steppeHorde | sunni
+QAR | Qara Qoyunlu | 55 55 85 | steppeHorde | shia
+BIT | Bitlis | 160 120 80 | monarchy | sunni
+GEO | Georgia | 225 225 225 | monarchy | orthodox
+SAM | Samtskhe | 190 170 210 | monarchy | orthodox
+SHI | Shirvan | 110 190 180 | monarchy | sunni
+DAG | Dagestan | 130 110 90 | monarchy | sunni
+CIR | Circassia | 140 190 100 | steppeHorde | orthodox
+
+# Steppe and Central Asia
+CRI | Crimea | 110 175 70 | steppeHorde | sunni
+THE | Theodoro | 170 100 170 | monarchy | orthodox
+GRH | Great Horde | 175 145 80 | steppeHorde | sunni
+NOG | Nogai Horde | 200 170 110 | steppeHorde | sunni
+UZB | Uzbek Khanate | 70 150 170 | steppeHorde | sunni
+MGH | Moghulistan | 60 110 90 | steppeHorde | sunni
+TIM | Timurids of Samarkand | 145 75 165 | monarchy | sunni
+HRT | Timurids of Herat | 185 110 200 | monarchy | sunni
+BDK | Badakhshan | 120 150 200 | monarchy | sunni
+
+# Middle East
+MAM | Mamluk Sultanate | 220 200 110 | monarchy | sunni
+HEJ | Sharifate of Mecca | 110 190 150 | theocracy | sunni
+JAB | Jabrids | 200 180 140 | monarchy | sunni
+HOR | Hormuz | 100 130 200 | monarchy | sunni
+OMN | Oman | 200 70 70 | theocracy | sunni
+YEM | Yemen | 120 90 60 | monarchy | sunni
+ZAY | Zaydi Imamate | 60 120 70 | theocracy | shia
+KTH | Kathiri | 180 140 100 | monarchy | sunni
+GIL | Gilan | 90 170 90 | monarchy | shia
+MZD | Mazandaran | 150 200 160 | monarchy | shia
+LUR | Luristan | 170 130 90 | monarchy | shia
+MSH | Mushasha | 120 200 200 | theocracy | shia
+LAR | Lar | 220 160 120 | monarchy | sunni
+SIS | Sistan | 200 210 140 | monarchy | sunni
+
+# Africa
+MOR | Morocco | 170 80 60 | monarchy | sunni
+TLE | Tlemcen | 210 150 110 | monarchy | sunni
+TUN | Hafsid Tunis | 120 160 70 | monarchy | sunni
+ALO | Alodia | 150 100 160 | monarchy | miaphysite
+ETH | Ethiopia | 100 165 60 | monarchy | miaphysite
+KAF | Kaffa | 170 120 70 | monarchy | miaphysite
+ADA | Adal | 185 155 90 | monarchy | sunni
+MGD | Mogadishu | 90 170 160 | monarchy | sunni
+AJU | Ajuran | 200 120 60 | monarchy | sunni
+WAR | Warsangali | 140 110 160 | monarchy | sunni
+PTE | Pate | 100 140 110 | monarchy | sunni
+
+# India
+DEL | Delhi Sultanate | 205 120 50 | monarchy | sunni
+MUL | Multan | 160 180 90 | monarchy | sunni
+SND | Sindh | 210 190 110 | monarchy | sunni
+KSH | Kashmir | 150 200 230 | monarchy | sunni
+LDK | Ladakh | 230 210 170 | monarchy | buddhist
+SKD | Baltistan | 150 140 190 | monarchy | shia
+JNP | Jaunpur | 160 205 205 | monarchy | sunni
+MIT | Mithila | 220 140 170 | monarchy | hindu
+KUM | Kumaon | 210 170 210 | monarchy | hindu
+GAR | Garhwal | 170 210 130 | monarchy | hindu
+NEP | Nepal | 200 70 90 | monarchy | hindu
+GWA | Gwalior | 230 110 90 | monarchy | hindu
+MEW | Mewar | 230 140 60 | monarchy | hindu
+MAR | Marwar | 200 100 70 | monarchy | hindu
+NGR | Nagaur | 120 170 130 | monarchy | sunni
+JSL | Jaisalmer | 220 200 120 | monarchy | hindu
+AMB | Amber | 230 120 140 | monarchy | hindu
+BUN | Bundi | 140 120 200 | monarchy | hindu
+GUJ | Gujarat | 230 165 120 | monarchy | sunni
+CHP | Champaner | 170 90 120 | monarchy | hindu
+JUN | Junagadh | 200 180 70 | monarchy | hindu
+KUT | Kutch | 160 120 90 | monarchy | hindu
+MLW | Malwa | 120 100 60 | monarchy | sunni
+KHA | Khandesh | 110 180 160 | monarchy | sunni
+GON | Garha | 100 140 70 | monarchy | hindu
+CHD | Chanda | 140 160 80 | monarchy | hindu
+BST | Bastar | 80 120 100 | monarchy | hindu
+RAT | Ratanpur | 190 150 110 | monarchy | hindu
+BNG | Bengal | 60 145 120 | monarchy | sunni
+KAM | Kamata | 200 130 200 | monarchy | hindu
+AHO | Ahom | 160 210 110 | monarchy | hindu
+KAC | Kachari | 210 160 130 | monarchy | hindu
+TPR | Tripura | 140 200 170 | monarchy | hindu
+MNP | Manipur | 230 180 210 | monarchy | hindu
+ORI | Orissa | 220 220 120 | monarchy | hindu
+BAH | Bahmani Sultanate | 60 115 60 | monarchy | sunni
+VIJ | Vijayanagara | 230 120 160 | monarchy | hindu
+KLT | Kolathunadu | 120 200 120 | monarchy | hindu
+CLT | Calicut | 200 80 60 | monarchy | hindu
+COC | Cochin | 100 160 200 | monarchy | hindu
+TRV | Venad | 180 200 80 | monarchy | hindu
+KOT | Kotte | 180 120 40 | monarchy | buddhist
