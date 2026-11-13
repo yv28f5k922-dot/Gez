@@ -39,6 +39,14 @@
   "note": "Kastrioti family arms",
   "page": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_the_House_of_Kastrioti_(by_Giuseppe_Schir%C3%B2).svg"
  },
+ "ALN": {
+  "author": "Nardo Polo",
+  "file": "File:Flag of North Ossetia.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "later era (owner's pick)",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_North_Ossetia.svg"
+ },
  "ALO": {
   "author": "Dekodrak",
   "file": "File:Possible Flag of the Kingdom of Alodia (c. 1350).svg",
@@ -70,6 +78,14 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Royal_arms_of_Aragon_(Crowned).svg"
+ },
+ "ASR": {
+  "author": "Abo Yemen",
+  "file": "File:Flag of the Emirate of Asir.svg",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "Idrisid flag, 1900s (owner's pick)",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_the_Emirate_of_Asir.svg"
  },
  "ATH": {
   "author": "James2813",
@@ -334,6 +350,14 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Coat_of_Arms_of_the_House_of_Lusignan_(Kings_of_Armenia,_Cyprus_and_Jerusalem).svg"
+ },
+ "CYR": {
+  "author": "An Encore Performance From The Boys In The Band",
+  "file": "File:Flag of Cyrenaica.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "Senussi flag, 1840s+ (owner's pick)",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Cyrenaica.svg"
  },
  "DAG": {
   "author": "Kamil Aliev",
@@ -663,6 +687,14 @@
   "note": "Invented: no historical symbol is known",
   "page": ""
  },
+ "JAT": {
+  "author": "Orange Tuesday (talk)",
+  "file": "File:Flag of Bharatpur.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "Jat kingdom of Bharatpur, 1700s+ (owner's pick)",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Bharatpur.svg"
+ },
  "JIS": {
   "author": "Madboy74",
   "file": "File:Coa Czech Family Jiskra.svg",
@@ -719,6 +751,14 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Banner_of_Kazan.svg"
  },
+ "KBD": {
+  "author": "Liptink0",
+  "file": "File:Знамя Боташевых.svg",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "note": "banner of a Kabardian noble family, date uncertain",
+  "page": "https://commons.wikimedia.org/wiki/File:%D0%97%D0%BD%D0%B0%D0%BC%D1%8F_%D0%91%D0%BE%D1%82%D0%B0%D1%88%D0%B5%D0%B2%D1%8B%D1%85.svg"
+ },
  "KHK": {
   "author": "Designed for Gez",
   "file": "data/heraldry/designed/KHK.svg",
@@ -742,6 +782,14 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:FitzGerald_arms.svg"
+ },
+ "KIR": {
+  "author": "BIMAL SAMJUNG",
+  "file": "File:Kirat Flag Danesh Rai.svg",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "modern Kirat flag (owner's pick)",
+  "page": "https://commons.wikimedia.org/wiki/File:Kirat_Flag_Danesh_Rai.svg"
  },
  "KLE": {
   "author": "",
@@ -1071,6 +1119,14 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:DEU_N%C3%BCrnberg_COA_(klein).svg"
  },
+ "OIR": {
+  "author": "HorseBro the hemionus",
+  "file": "File:Banner of the Dzungar Khanate.png",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "note": "Dzungar banner, 1600s-1700s (owner's pick)",
+  "page": "https://commons.wikimedia.org/wiki/File:Banner_of_the_Dzungar_Khanate.png"
+ },
  "OLD": {
   "author": "",
   "file": "File:Arms of the County of Oldenburg.svg",
@@ -1158,6 +1214,14 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
   "note": "René of Anjou, 1453-1470",
   "page": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ren%C3%A9_of_Anjou_(1453-1470).svg"
+ },
+ "PSH": {
+  "author": "Swiãtopôłk",
+  "file": "File:1839 Pashtun banner captured at Ghazni.png",
+  "license": "CC0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "note": "1839 war banner (owner's pick)",
+  "page": "https://commons.wikimedia.org/wiki/File:1839_Pashtun_banner_captured_at_Ghazni.png"
  },
  "PSK": {
   "author": "Anonykitten",
@@ -1271,6 +1335,14 @@
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Shirvan_gerb.png"
  },
+ "SHM": {
+  "author": "Guilherme Paula",
+  "file": "File:Flag of the Emirate of Ha'il.svg",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "note": "later emirate flag (owner's pick)",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_the_Emirate_of_Ha%27il.svg"
+ },
  "SIE": {
   "author": "FDRMRZUSA",
   "file": "File:Stemma Repubblica di Siena.svg",
@@ -1286,6 +1358,14 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Arms_of_the_house_of_Del_Vasto.svg"
+ },
+ "SMI": {
+  "author": "Jeltz",
+  "file": "File:Sami flag.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "modern, 1986 (owner's pick)",
+  "page": "https://commons.wikimedia.org/wiki/File:Sami_flag.svg"
  },
  "SRH": {
   "author": "Robert Alfers",
@@ -1511,6 +1591,14 @@
   "note": "modern reconstruction (boar emblem)",
   "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Vijaynagara.svg"
  },
+ "VNK": {
+  "author": "Mysid",
+  "file": "File:Flag of Ingushetia.svg",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "note": "modern, with the old Vainakh sun sign (owner: later era)",
+  "page": "https://commons.wikimedia.org/wiki/File:Flag_of_Ingushetia.svg"
+ },
  "VYA": {
   "author": "Лобачев Владимир",
   "file": "File:Coat of arms of Vyatka Governorate 1856.svg",
@@ -1550,6 +1638,14 @@
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
   "note": "",
   "page": "https://commons.wikimedia.org/wiki/File:Armoiries_Wurtemberg.svg"
+ },
+ "YAM": {
+  "author": "Reiser115",
+  "file": "File:علم قبيلة يام في فترة حكم إمارة آل يزيد.jpg",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+  "note": "Yam banner under the Al Yazid emirate (owner's pick)",
+  "page": "https://commons.wikimedia.org/wiki/File:%D8%B9%D9%84%D9%85_%D9%82%D8%A8%D9%8A%D9%84%D8%A9_%D9%8A%D8%A7%D9%85_%D9%81%D9%8A_%D9%81%D8%AA%D8%B1%D8%A9_%D8%AD%D9%83%D9%85_%D8%A5%D9%85%D8%A7%D8%B1%D8%A9_%D8%A2%D9%84_%D9%8A%D8%B2%D9%8A%D8%AF.jpg"
  },
  "YAR": {
   "author": "Mouagip",
