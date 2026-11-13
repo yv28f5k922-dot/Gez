@@ -124,6 +124,20 @@ final class SnapshotTests: XCTestCase {
         save(try XCTUnwrap(renderer.cgImage), "heraldry.png")
     }
 
+    func testMarketPanel() throws {
+        let model = GameModel(useMetal: false)
+        let world = model.world
+        for name in ["Venice", "Calicut"] {
+            let m = world.economy.markets.id(named: name)!
+            let view = MarketPanel(market: m, scrolls: false)
+                .environment(model)
+                .frame(width: 380)
+            let renderer = ImageRenderer(content: view)
+            renderer.scale = 1
+            save(try XCTUnwrap(renderer.cgImage), "market_\(name.lowercased()).png")
+        }
+    }
+
     func testMainScreen() async throws {
         let model = GameModel()
         if let metal = model.metal {

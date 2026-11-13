@@ -84,6 +84,8 @@ struct EconomySection: View {
 struct MarketPanel: View {
     @Environment(GameModel.self) private var model
     let market: MarketID
+    /// Off for snapshots (the image renderer can't draw scroll views).
+    var scrolls = true
     @State private var category: GoodCategory? = nil
 
     var body: some View {
@@ -124,14 +126,16 @@ struct MarketPanel: View {
             }
             .font(.caption.bold())
             .foregroundStyle(Palette.ink.opacity(0.7))
-            ScrollView {
-                VStack(spacing: 3) {
-                    ForEach(goods, id: \.index) { g in
-                        row(g, eco: eco)
-                    }
+            let list = VStack(spacing: 3) {
+                ForEach(goods, id: \.index) { g in
+                    row(g, eco: eco)
                 }
             }
-            .frame(maxHeight: 360)
+            if scrolls {
+                ScrollView { list }.frame(maxHeight: 360)
+            } else {
+                list
+            }
         }
         .padding(14)
         .frame(width: 380)

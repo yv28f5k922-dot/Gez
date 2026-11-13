@@ -46,10 +46,31 @@ turned into game files by `tools/mapgen/mapgen.py`.
 
 ## Systems (first version)
 
-### Economy & pops
-- Provinces have population, base tax, production, terrain, religion.
-- Later: pop classes (peasants, burghers, nobles, clergy), goods, trade nodes
-  and routes, buildings, food, disease, war devastation.
+### Economy & pops (Phase 2, owner's choices)
+- **62 goods** (EU5-like): food, luxuries, materials, animals, manufactured.
+  Data in `data/economy/` → `tools/economy/econgen.py` → `economy1453.json`.
+- **42 markets** at the start (Venice, Bruges, Cairo, Calicut...). Every
+  province joins the market cheapest to reach (distance × terrain, sea is
+  cheaper). New markets can grow from big towns later.
+- **Supply and demand prices**: each month a price moves 25% toward
+  base × √(demand/supply), kept within 0.2×–5× base.
+- **Producers**: each province has a staple food (grain/rice/millet, yield by
+  terrain), one trade good, fish on coasts (peasants and slaves work these),
+  and 1–3 workshops worked by burghers (recipes with inputs; the first input
+  is essential, others only slow work).
+- **Needs by class** (`needs.txt`): peasants need staples, salt, meat,
+  clothing, tools, drink; burghers and nobles want much more (wine, spices,
+  silk, horses, jewellery...). Muslims don't buy wine/beer but buy coffee.
+  Pop **satisfaction** (0–1) is the value-weighted share of needs met.
+- Until trade routes (Phase 3), surplus flows to neighbouring markets in a
+  simple exchange step; off-map goods (Spice Islands, China, Sahara gold,
+  Siberian furs) arrive as imports at gateway markets.
+- **Taxes**: 2.5% of farm/mine value, 3% of workshop profit go to the owner.
+- Start-of-game yields are calibrated so world supply ≈ 1.15 × demand; the
+  market runs 12 months before the start so prices settle.
+- **You build, pops work** (buildings with time and cost: next step).
+- **Money**: ducats, loans from bankers, debasement causing inflation (next).
+- Building slots are limited by size and terrain (next).
 
 ### Diplomacy & war
 - Relations, alliances, royal marriages, vassals, guarantees.
