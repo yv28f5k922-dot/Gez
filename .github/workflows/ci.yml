@@ -39,6 +39,8 @@ jobs:
   snapshots:
     name: Render map snapshots
     runs-on: macos-15
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v5
       - name: Install XcodeGen
@@ -61,3 +63,12 @@ jobs:
           name: snapshots
           path: snapshots
           if-no-files-found: warn
+      - name: Publish snapshots to the ci-snapshots branch
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          cd snapshots
+          git init -q
+          git checkout -q -b ci-snapshots
+          git add -A
+          git -c user.name="CI" -c user.email="ci@users.noreply.github.com" commit -q -m "Snapshots for ${GITHUB_SHA}"
+          git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" ci-snapshots
