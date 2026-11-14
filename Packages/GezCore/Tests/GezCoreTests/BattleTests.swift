@@ -162,6 +162,8 @@ final class BattleTests: XCTestCase {
         let attRegs = (0..<12).map { _ in Regiment(type: inf.id, origin: .professional, men: 1_000, morale: 3.0) }
         let defRegs = (0..<5).map { _ in Regiment(type: inf.id, origin: .professional, men: 1_000, morale: 3.0) }
 
+        // Keep test isolated from DiplomacyAI marching third-party armies into targetProv during occupation
+        world.humanCountries = Set(world.countries.ids)
         world.military.armies.append(name: "Grand Armee", owner: fra, province: targetProv, regiments: attRegs)
         let engArmy = world.military.armies.append(name: "English Garrison", owner: eng, province: targetProv, regiments: defRegs)
 
@@ -187,8 +189,8 @@ final class BattleTests: XCTestCase {
         XCTAssertEqual(sim.world.provinces.occupiedBy[targetProv.index], fra, "Unfortified province should be occupied by France after 10 days")
         XCTAssertEqual(sim.world.provinces.controller(of: targetProv), fra)
 
-        // Now move an English army back onto the occupied unfortified province (move French out first)
-        for aid in sim.world.military.armies(in: targetProv) where sim.world.military.armies.owner[Int(aid.rawValue)] == fra {
+        // Now move an English army back onto the occupied unfortified province (clear hostile forces first)
+        for aid in sim.world.military.armies(in: targetProv) where sim.world.military.armies.owner[Int(aid.rawValue)] != eng {
             sim.world.military.armies.remove(aid)
         }
         let liberatorRegs = (0..<3).map { _ in Regiment(type: inf.id, origin: .professional, men: 1_000, morale: 3.0) }

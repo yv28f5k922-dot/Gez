@@ -91,7 +91,10 @@ public enum ArmySystem {
     }
 
     public static func calculateMaxManpower(_ world: World, _ country: CountryID) -> Double {
-        let owned = world.provinces(ownedBy: country)
+        calculateMaxManpower(world, country, owned: world.provinces(ownedBy: country))
+    }
+
+    static func calculateMaxManpower(_ world: World, _ country: CountryID, owned: [ProvinceID]) -> Double {
         guard !owned.isEmpty else { return 0 }
         var popSum = 0.0
         var barracksMen = 0.0
@@ -511,12 +514,22 @@ public enum ArmySystem {
 
     /// Characters in `country`'s court who can command an army (sorted by Martial skill descending).
     public static func commanderCandidates(_ world: World, _ country: CountryID, date: GameDate) -> [CharacterID] {
-        let ch = world.people.characters
-        let ruler = world.countries.ruler[country.index]
         let rebelLeaders: Set<CharacterID> = Set(
             world.military.rebelArmies(of: country).compactMap { world.military.armies.rebelLeader[Int($0.rawValue)] }
         )
-        return ch.ids.filter { cid in
+        return commanderCandidates(world, country, date: date, courtPool: world.people.characters.ids, rebelLeaders: rebelLeaders)
+    }
+
+    static func commanderCandidates(
+        _ world: World,
+        _ country: CountryID,
+        date: GameDate,
+        courtPool: [CharacterID],
+        rebelLeaders: Set<CharacterID>
+    ) -> [CharacterID] {
+        let ch = world.people.characters
+        let ruler = world.countries.ruler[country.index]
+        return courtPool.filter { cid in
             guard ch.court[cid.index] == country, ch.isAlive(cid), !rebelLeaders.contains(cid) else { return false }
             guard ch.age(cid, on: date) >= CharacterSystem.adultAge else { return false }
             if ch.female[cid.index] && cid != ruler { return false }
@@ -603,20 +616,12 @@ public enum ArmySystem {
     /// Days required for `army` (or a generic foot army if nil) to march between
     /// adjacent provinces `a` and `b`.
     public static func stepDays(_ world: World, from a: ProvinceID, to b: ProvinceID, army: ArmyID? = nil) -> Double {
-        let locA = world.provinces.location[a.index]
-        let locB = world.provinces.location[b.index]
-        let distKm = max(25.0, min(350.0, MarketModel.km(locA, locB)))
-        let terrainMult = MarketModel.terrainCost(world.provinces.terrain[b.index])
-        let riverMult = world.isRiverBorder(a, b) ? ArmyModel.riverCrossingMultiplier : 1.0
+        let roadType = world.economy.buildingType(key: "road")
+        let speedMult = effectiveArmySpeed(world, army: army)
+        return stepDaysFast(world, from: a, to: b, roadType: roadType, speedMult: speedMult)
+    }
 
-        var roadLevel = 0.0
-        if let roadType = world.economy.buildingType(key: "road") {
-            let la = Double(world.economy.buildings.level(a, roadType))
-            let lb = Double(world.economy.buildings.level(b, roadType))
-            roadLevel = (la + lb) * 0.5
-        }
-        let roadMult = max(0.55, 1.0 - ArmyModel.roadSpeedBonusPerLevel * roadLevel)
-
+    private static func effectiveArmySpeed(_ world: World, army: ArmyID?) -> Double {
         var speedMult = 1.0
         if let aid = army {
             speedMult = armySpeed(world, aid)
@@ -628,6 +633,29 @@ public enum ArmySystem {
                 speedMult *= (1.0 + Double(martial) * 0.015)
             }
         }
+        return speedMult
+    }
+
+    private static func stepDaysFast(
+        _ world: World,
+        from a: ProvinceID,
+        to b: ProvinceID,
+        roadType: BuildingTypeID?,
+        speedMult: Double
+    ) -> Double {
+        let locA = world.provinces.location[a.index]
+        let locB = world.provinces.location[b.index]
+        let distKm = max(25.0, min(350.0, MarketModel.km(locA, locB)))
+        let terrainMult = MarketModel.terrainCost(world.provinces.terrain[b.index])
+        let riverMult = world.isRiverBorder(a, b) ? ArmyModel.riverCrossingMultiplier : 1.0
+
+        var roadLevel = 0.0
+        if let roadType {
+            let la = Double(world.economy.buildings.level(a, roadType))
+            let lb = Double(world.economy.buildings.level(b, roadType))
+            roadLevel = (la + lb) * 0.5
+        }
+        let roadMult = max(0.55, 1.0 - ArmyModel.roadSpeedBonusPerLevel * roadLevel)
 
         let rawDays = (distKm / ArmyModel.baseMarchKmPerDay) * terrainMult * riverMult * roadMult / speedMult
         return max(1.0, (rawDays * 10.0).rounded() / 10.0)
@@ -643,13 +671,86 @@ public enum ArmySystem {
         army: ArmyID? = nil
     ) -> [ProvinceID] {
         guard start != goal else { return [] }
+        return findPath(world, from: start, pools: [[goal]], army: army)
+    }
+
+    /// Orders `army` to march to the nearest reachable province in the highest-priority
+    /// non-empty target pool using a single Dijkstra pass.
+    @discardableResult
+    public static func orderMoveToBestPool(
+        _ world: inout World,
+        army: ArmyID,
+        pools: [[ProvinceID]]
+    ) -> Bool {
+        var unused = Set<ProvinceID>()
+        return orderMoveToBestPool(&world, army: army, pools: pools, unreachableCache: &unused)
+    }
+
+    @discardableResult
+    static func orderMoveToBestPool(
+        _ world: inout World,
+        army: ArmyID,
+        pools: [[ProvinceID]],
+        unreachableCache: inout Set<ProvinceID>
+    ) -> Bool {
+        let i = Int(army.rawValue)
+        guard i >= 0 && i < world.military.armies.count && world.military.armies.alive[i] else { return false }
+        let start = world.military.armies.province[i]
+        for pool in pools where pool.contains(start) {
+            world.military.armies.path[i].removeAll()
+            world.military.armies.moveProgressDays[i] = 0
+            world.military.armies.moveStepDays[i] = 0
+            return true
+        }
+        if unreachableCache.contains(start) { return false }
+        let path = findPath(world, from: start, pools: pools, army: army, unreachableOut: &unreachableCache)
+        guard let firstHop = path.first else {
+            unreachableCache.insert(start)
+            return false
+        }
+        world.military.armies.path[i] = path
+        world.military.armies.moveProgressDays[i] = 0
+        world.military.armies.moveStepDays[i] = stepDays(world, from: start, to: firstHop, army: army)
+        return true
+    }
+
+    private static func findPath(
+        _ world: World,
+        from start: ProvinceID,
+        pools: [[ProvinceID]],
+        army: ArmyID?
+    ) -> [ProvinceID] {
+        var unused = Set<ProvinceID>()
+        return findPath(world, from: start, pools: pools, army: army, unreachableOut: &unused)
+    }
+
+    private static func findPath(
+        _ world: World,
+        from start: ProvinceID,
+        pools: [[ProvinceID]],
+        army: ArmyID?,
+        unreachableOut: inout Set<ProvinceID>
+    ) -> [ProvinceID] {
         let P = world.provinces.count
+        var targetTier = Array(repeating: -1, count: P)
+        var anyTarget = false
+        for (tier, pool) in pools.enumerated() {
+            for pid in pool {
+                let idx = pid.index
+                if idx != start.index && (targetTier[idx] == -1 || tier < targetTier[idx]) {
+                    targetTier[idx] = tier
+                    anyTarget = true
+                }
+            }
+        }
+        guard anyTarget else { return [] }
+        let topNonEmptyTier = pools.firstIndex { !$0.isEmpty } ?? 0
+
         var dist = Array(repeating: Double.infinity, count: P)
         var prev = Array(repeating: -1, count: P)
         var visited = Array(repeating: false, count: P)
         dist[start.index] = 0
 
-        // Simple binary heap by (cost, provinceIndex).
         var heap: [(Double, Int)] = [(0.0, start.index)]
 
         func push(_ item: (Double, Int)) {
@@ -697,19 +798,84 @@ public enum ArmySystem {
             return world.military.armies.owner[idx]
         }
 
+        let C = world.countries.count
+        var isAtWarArr = Array(repeating: false, count: C)
+        var isFriendOrAllyArr = Array(repeating: false, count: C)
+        if let mover = armyOwner, mover.index < C {
+            isFriendOrAllyArr[mover.index] = true
+            for war in world.diplomacy.wars {
+                if war.isAttacker(mover) {
+                    for d in war.defenders where d.index < C { isAtWarArr[d.index] = true }
+                } else if war.isDefender(mover) {
+                    for a in war.attackers where a.index < C { isAtWarArr[a.index] = true }
+                }
+            }
+            for treaty in world.diplomacy.treaties where treaty.type == .alliance {
+                if treaty.first == mover && treaty.second.index < C {
+                    isFriendOrAllyArr[treaty.second.index] = true
+                } else if treaty.second == mover && treaty.first.index < C {
+                    isFriendOrAllyArr[treaty.first.index] = true
+                }
+            }
+        }
+
+        let roadType = world.economy.buildingType(key: "road")
+        let speedMult = effectiveArmySpeed(world, army: army)
+
+        var bestForTier = Array(repeating: -1, count: pools.count)
+
         while let (d, u) = pop() {
             if visited[u] { continue }
             visited[u] = true
-            if u == goal.index { break }
+            let tier = targetTier[u]
+            if tier >= 0 && bestForTier[tier] == -1 {
+                bestForTier[tier] = u
+                if tier == topNonEmptyTier { break }
+            }
             let uPid = ProvinceID(u)
+            var uAllowsAllNeighbors = (armyOwner == nil)
+            var uHasEnemyFort = false
+            var fortsInU: [Int] = []
+            if !uAllowsAllNeighbors {
+                if let uCtrl = world.provinces.controller(of: uPid), isFriendOrAllyArr[uCtrl.index] {
+                    uAllowsAllNeighbors = true
+                } else {
+                    if world.provinces.fortLevel[u] > 0 && world.provinces.fortGarrison[u] > 0,
+                       let ctrl = world.provinces.controller(of: uPid), isAtWarArr[ctrl.index] {
+                        uHasEnemyFort = true
+                        fortsInU.append(u)
+                    }
+                    for nb in world.provinces.neighbors[u] {
+                        let ci = nb.index
+                        if world.provinces.fortLevel[ci] > 0,
+                           world.provinces.fortGarrison[ci] > 0,
+                           let ctrl = world.provinces.controller(of: nb),
+                           isAtWarArr[ctrl.index] {
+                            fortsInU.append(ci)
+                        }
+                    }
+                }
+            }
+
             for nb in world.provinces.neighbors[u] {
                 let v = nb.index
                 if visited[v] { continue }
-                if let mover = armyOwner,
-                   !SiegeSystem.canStep(world, for: mover, from: uPid, to: nb, pathStart: start) {
-                    continue
+                if !uAllowsAllNeighbors && v != start.index {
+                    let vFriend: Bool
+                    if let vCtrl = world.provinces.controller(of: nb), isFriendOrAllyArr[vCtrl.index] {
+                        vFriend = true
+                    } else {
+                        vFriend = false
+                    }
+                    if !vFriend && !fortsInU.isEmpty {
+                        if uHasEnemyFort {
+                            if !(fortsInU.contains(v) && v != u) { continue }
+                        } else if !fortsInU.contains(v) {
+                            continue
+                        }
+                    }
                 }
-                let nd = d + stepDays(world, from: uPid, to: nb, army: army)
+                let nd = d + stepDaysFast(world, from: uPid, to: nb, roadType: roadType, speedMult: speedMult)
                 if nd < dist[v] {
                     dist[v] = nd
                     prev[v] = u
@@ -718,9 +884,21 @@ public enum ArmySystem {
             }
         }
 
-        guard prev[goal.index] != -1 else { return [] }
+        guard let goalIdx = bestForTier.first(where: { $0 != -1 }), prev[goalIdx] != -1 else {
+            if armyOwner != nil,
+               let startCtrl = world.provinces.controller(of: start),
+               isFriendOrAllyArr[startCtrl.index] {
+                for u in 0..<P where visited[u] {
+                    let uPid = ProvinceID(u)
+                    if let uCtrl = world.provinces.controller(of: uPid), isFriendOrAllyArr[uCtrl.index] {
+                        unreachableOut.insert(uPid)
+                    }
+                }
+            }
+            return []
+        }
         var path: [ProvinceID] = []
-        var cur = goal.index
+        var cur = goalIdx
         while cur != start.index && cur != -1 {
             path.append(ProvinceID(cur))
             cur = prev[cur]
@@ -876,8 +1054,14 @@ public enum ArmySystem {
         }
 
         // 1. Manpower recovery & commander cleanup for dead characters.
+        var ownedByCountry = [[ProvinceID]](repeating: [], count: C)
+        for p in 0..<world.provinces.count {
+            if let owner = world.provinces.owner[p] {
+                ownedByCountry[owner.index].append(ProvinceID(p))
+            }
+        }
         for c in world.countries.ids {
-            let maxMP = calculateMaxManpower(world, c)
+            let maxMP = calculateMaxManpower(world, c, owned: ownedByCountry[c.index])
             world.military.maxManpower[c.index] = maxMP
             let gain = monthlyManpowerGain(world, c)
             world.military.manpower[c.index] = min(maxMP, world.military.manpower[c.index] + gain)
@@ -984,7 +1168,11 @@ public enum ArmySystem {
 
         // 4. Great vassal open revolts & clashes.
         checkVassalRevolts(&world, date: date, random: &random)
-        for p in world.provinces.ids {
+        var rebelProvs = Set<ProvinceID>()
+        for i in 0..<world.military.armies.count where world.military.armies.alive[i] && world.military.armies.isRebel[i] {
+            rebelProvs.insert(world.military.armies.province[i])
+        }
+        for p in rebelProvs.sorted(by: { $0.index < $1.index }) {
             resolveRebelClash(&world, in: p, date: date, random: &random)
         }
     }
@@ -1067,12 +1255,30 @@ public enum ArmySystem {
     }
 
     public static func checkVassalRevolts(_ world: inout World, date: GameDate, random: inout GameRandom) {
+        var vassalCountsByCountry: [[CharacterID: Int]] = Array(repeating: [:], count: world.countries.count)
+        for p in 0..<world.provinces.count {
+            if let c = world.provinces.owner[p], let h = world.provinces.holder[p] {
+                vassalCountsByCountry[c.index][h, default: 0] += 1
+            }
+        }
+        var revolting = Set<CharacterID>()
+        for i in 0..<world.military.armies.count where world.military.armies.alive[i] && world.military.armies.isRebel[i] {
+            if let l = world.military.armies.rebelLeader[i] {
+                revolting.insert(l)
+            }
+        }
         for c in world.countries.ids {
-            for v in VassalSystem.vassals(world, of: c) {
-                guard !isRevolting(world, v) else { continue }
+            let counts = vassalCountsByCountry[c.index]
+            guard !counts.isEmpty else { continue }
+            let countryVassals = counts.keys.sorted {
+                counts[$0]! != counts[$1]! ? counts[$0]! > counts[$1]! : $0.index < $1.index
+            }
+            for v in countryVassals {
+                guard !revolting.contains(v) else { continue }
                 let op = VassalSystem.opinionOfLiege(world, v, c)
                 if op < ArmyModel.revoltOpinionBelow && random.unit() < ArmyModel.monthlyRevoltChance {
                     triggerVassalRevolt(&world, vassal: v, against: c, date: date)
+                    revolting.insert(v)
                 }
             }
         }
@@ -1168,13 +1374,63 @@ public enum ArmySystem {
     /// 3. Disbands idle levies at peace and spreads over-stacked armies
     /// 4. Recruits affordable standing regiments when manpower and budget allow
     public static func runAI(_ world: inout World, month: Int, date: GameDate) {
+        let C = world.countries.count
+        let P = world.provinces.count
+        var crownArmiesByCountry = [[ArmyID]](repeating: [], count: C)
+        var rebelArmiesByCountry = [[ArmyID]](repeating: [], count: C)
+        var levyMenByCountry = [Int](repeating: 0, count: C)
+        var totalMenByCountry = [Int](repeating: 0, count: C)
+        var soldiersInProv = [Int](repeating: 0, count: P)
+
+        for idx in 0..<world.military.armies.count {
+            guard world.military.armies.alive[idx] else { continue }
+            let aid = ArmyID(Int32(idx))
+            let men = world.military.armies.totalMen(of: aid)
+            let prov = world.military.armies.province[idx]
+            if prov.index < P {
+                soldiersInProv[prov.index] += men
+            }
+            let owner = world.military.armies.owner[idx]
+            guard owner.index < C else { continue }
+            if world.military.armies.isRebel[idx] {
+                rebelArmiesByCountry[owner.index].append(aid)
+            } else {
+                crownArmiesByCountry[owner.index].append(aid)
+                totalMenByCountry[owner.index] += men
+                for r in world.military.armies.regiments[idx] where r.origin == .levy {
+                    levyMenByCountry[owner.index] += r.men
+                }
+            }
+        }
+
+        var aliveCharsByCourt = [[CharacterID]](repeating: [], count: C)
+        let ch = world.people.characters
+        for i in 0..<ch.count where ch.death[i] == nil {
+            if let court = ch.court[i], court.index < C {
+                aliveCharsByCourt[court.index].append(CharacterID(i))
+            }
+        }
+
+        var atWarCountries = Set<CountryID>()
+        for w in world.diplomacy.wars {
+            atWarCountries.formUnion(w.attackers)
+            atWarCountries.formUnion(w.defenders)
+        }
+
         for c in world.countries.ids where !world.humanCountries.contains(c) {
-            let crownArmies = world.military.armies(of: c)
-            let rebelArmies = world.military.rebelArmies(of: c)
+            var crownArmies = crownArmiesByCountry[c.index]
+            let rebelArmies = rebelArmiesByCountry[c.index]
 
             // 1. Assign commanders to un-commanded armies.
             if crownArmies.contains(where: { world.military.armies.commander[Int($0.rawValue)] == nil }) {
-                let candidates = commanderCandidates(world, c, date: date)
+                let rebelLeaders = Set(rebelArmies.compactMap { world.military.armies.rebelLeader[Int($0.rawValue)] })
+                let candidates = commanderCandidates(
+                    world,
+                    c,
+                    date: date,
+                    courtPool: aliveCharsByCourt[c.index],
+                    rebelLeaders: rebelLeaders
+                )
                 let used: Set<CharacterID> = Set(
                     crownArmies.compactMap { world.military.armies.commander[Int($0.rawValue)] }
                 )
@@ -1190,7 +1446,7 @@ public enum ArmySystem {
             if let firstRebel = rebelArmies.first {
                 let rebelProv = world.military.armies.province[Int(firstRebel.rawValue)]
                 let rebelMen = world.military.armies.totalMen(of: firstRebel)
-                if world.military.totalMen(of: c) < Int(Double(rebelMen) * 1.3) {
+                if totalMenByCountry[c.index] < Int(Double(rebelMen) * 1.3) {
                     raiseAllLevies(&world, c)
                 }
                 for aid in world.military.armies(of: c) {
@@ -1202,23 +1458,41 @@ public enum ArmySystem {
                 continue
             }
 
-            // 3. At peace with no revolts: disband raised levies so pops work the land.
-            if world.diplomacy.activeWars(for: c).isEmpty && world.military.totalMen(of: c, origin: .levy) > 0 {
+            // 3. At peace with no revolts: disband raised levies, merge co-located idle stacks, and spread if over supply.
+            if !atWarCountries.contains(c) && levyMenByCountry[c.index] > 0 {
                 disbandLevies(&world, of: c)
+                crownArmies = crownArmies.filter { world.military.armies.alive[Int($0.rawValue)] }
             }
 
-            // Avoid over-stacking in provinces beyond their supply limit.
-            for aid in world.military.armies(of: c) {
+            if !atWarCountries.contains(c) && crownArmies.count > 1 {
+                var firstIdleInProv: [ProvinceID: ArmyID] = [:]
+                for aid in crownArmies {
+                    let idx = Int(aid.rawValue)
+                    guard world.military.armies.alive[idx], world.military.armies.path[idx].isEmpty else { continue }
+                    let p = world.military.armies.province[idx]
+                    if let anchor = firstIdleInProv[p] {
+                        _ = mergeArmiesInProvince(&world, into: anchor)
+                    } else {
+                        firstIdleInProv[p] = aid
+                    }
+                }
+                crownArmies = crownArmies.filter { world.military.armies.alive[Int($0.rawValue)] }
+            }
+
+            for aid in crownArmies {
                 let idx = Int(aid.rawValue)
                 guard world.military.armies.alive[idx], world.military.armies.path[idx].isEmpty else { continue }
                 let prov = world.military.armies.province[idx]
-                if soldiersInProvince(world, prov) > supplyLimit(world, in: prov) {
+                if soldiersInProv[prov.index] > supplyLimit(world, in: prov) {
                     let myMen = world.military.armies.totalMen(of: aid)
                     if let nb = world.provinces.neighbors[prov.index].first(where: {
                         world.provinces.owner[$0.index] == c
-                            && soldiersInProvince(world, $0) + myMen <= supplyLimit(world, in: $0)
+                            && soldiersInProv[$0.index] + myMen <= supplyLimit(world, in: $0)
                     }) {
-                        orderMove(&world, army: aid, to: nb)
+                        if orderMove(&world, army: aid, to: nb) {
+                            soldiersInProv[prov.index] -= myMen
+                            soldiersInProv[nb.index] += myMen
+                        }
                     }
                 }
             }
@@ -1234,14 +1508,18 @@ public enum ArmySystem {
                   world.military.manpower[c.index] >= 2_000 else { continue }
 
             let targetStanding = Int((world.military.maxManpower[c.index] * 0.55).rounded())
-            guard world.military.totalMen(of: c) < targetStanding,
+            guard totalMenByCountry[c.index] < targetStanding,
                   let cap = world.countries.capital[c.index],
                   world.provinces.owner[cap.index] == c else { continue }
 
             let unlocked = availableUnits(world, for: c).filter { $0.category != .artillery }
             guard let chosen = unlocked.max(by: { ($0.attack + $0.defence) < ($1.attack + $1.defence) }) else { continue }
-            if soldiersInProvince(world, cap) + chosen.maxMen <= supplyLimit(world, in: cap) {
-                _ = recruitProfessional(&world, c, in: cap, unit: chosen.id)
+            if soldiersInProv[cap.index] + chosen.maxMen <= supplyLimit(world, in: cap) {
+                let existingCapArmy = crownArmies.first {
+                    world.military.armies.alive[Int($0.rawValue)]
+                        && world.military.armies.province[Int($0.rawValue)] == cap
+                }
+                _ = recruitProfessional(&world, c, in: cap, unit: chosen.id, intoArmy: existingCapArmy)
             }
         }
     }

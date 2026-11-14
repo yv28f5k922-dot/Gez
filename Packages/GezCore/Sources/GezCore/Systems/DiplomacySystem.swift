@@ -39,20 +39,20 @@ public enum DiplomacySystem {
 
         // 2. Aggressive expansion decay: decay ~2.0 per year (~0.17 per month)
         // Scaled by ruler diplomacy skill: +2% decay speed per point of diplomacy
-        for c in world.countries.ids {
-            var decayRate = 0.17
-            if let rulerID = world.countries.ruler[c.index] {
+        var decayByCountry = [Double](repeating: 0.17, count: n)
+        for cid in 0..<n {
+            if let rulerID = world.countries.ruler[cid] {
                 let dip = world.people.characters.skills[rulerID.index][Skill.diplomacy.rawValue]
-                decayRate *= (1.0 + Double(dip) * 0.02)
+                decayByCountry[cid] = 0.17 * (1.0 + Double(dip) * 0.02)
             }
-            for other in world.countries.ids where other != c {
-                let currentAE = world.diplomacy.aggressiveExpansion(of: c, by: other)
-                if currentAE > 0 {
-                    let newAE = max(0.0, currentAE - decayRate)
-                    let idx = other.index * n + c.index
-                    world.diplomacy.aggressiveExpansion[idx] = Float(newAE)
-                }
-            }
+        }
+        for idx in 0..<world.diplomacy.aggressiveExpansion.count {
+            let currentAE = world.diplomacy.aggressiveExpansion[idx]
+            guard currentAE > 0 else { continue }
+            let cIdx = idx % n
+            let otherIdx = idx / n
+            guard cIdx != otherIdx else { continue }
+            world.diplomacy.aggressiveExpansion[idx] = Float(max(0.0, Double(currentAE) - decayByCountry[cIdx]))
         }
 
         // 3. War reparations (10% monthly income for 10 years)
@@ -89,6 +89,13 @@ public enum DiplomacySystem {
     /// Recomputes every active war's `tickingWarScore` (±0.25 max), occupation score,
     /// and total `warScore` (-1.0 to +1.0 from attacker's point of view).
     public static func updateWarScores(_ world: inout World) {
+        guard !world.diplomacy.wars.isEmpty else { return }
+        var ownedCount = [Int](repeating: 0, count: world.countries.count)
+        for p in 0..<world.provinces.count {
+            if let owner = world.provinces.owner[p] {
+                ownedCount[owner.index] += 1
+            }
+        }
         for idx in world.diplomacy.wars.indices {
             var war = world.diplomacy.wars[idx]
 
@@ -152,8 +159,8 @@ public enum DiplomacySystem {
                 }
             }
 
-            let primaryDefOwnedCount = world.provinces(ownedBy: pDef).count
-            let primaryAttOwnedCount = world.provinces(ownedBy: pAtt).count
+            let primaryDefOwnedCount = ownedCount[pDef.index]
+            let primaryAttOwnedCount = ownedCount[pAtt.index]
 
             if primaryDefOwnedCount > 0 && primaryDefUnoccupiedProvs == 0 {
                 // Primary defender 100% occupied -> +100% attacker warscore

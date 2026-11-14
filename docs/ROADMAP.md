@@ -161,17 +161,17 @@ Owner's choices:
 4. **Auto-resolved battles** on the map using the same unit stats the
    battle view will use. ✅
 
-### Phase 8: Sieges and the first playable game
+### Phase 8: Sieges and the first playable game ✅
 Owner's choices:
 - **Sieges & forts**: Fort levels 1–5 project Zone of Control into adjacent friendly provinces (blocking hostile movement past the fort until besieged); 1,000 garrison per level and at least 1,000 besiegers required per level; monthly siege roll (-7 to +7+) modified by artillery/Bombards, commander Martial, naval blockade status, and wall breaches (supplies holding, food/water shortage, defender desertion, disease outbreak, wall breach, surrender); once breached, the besieger can order a high-casualty Storm Assault.
 - **Local save, load & autosave**: Versioned deterministic snapshots of all mutable `World` state (including `GameRandom` seed state), stored locally in Application Support/Documents with manual named saves, quick-save, and a **single-file autosave** (overwriting/deleting the old autosave each time) with player-selectable frequency: **Monthly, Every 3 Months, Every 6 Months, Every Year, or Never**.
 - **First playable milestone**: Full nation-picker & campaign loop (playable country selection on the map for any of the 266 countries + featured 1453 powers), tag-switching / New Game / Load Game menu, active alerts banner (at war, besieged provinces, disloyal estates/vassals, loans due, low stability, idle diplomats), and a 10-year headless balance test suite.
 1. **Sieges on the map**: forts block movement and need sieges; time
-   depends on fort level, artillery, supply and disease; starve or storm.
-2. **Local save and load**, autosave.
+   depends on fort level, artillery, supply and disease; starve or storm. ✅
+2. **Local save and load**, autosave. ✅
 3. **First playable milestone**: a complete game loop (economy, armies,
    war, peace, sieges) as any country. Play-test with the owner and fix
-   balance before going on.
+   balance before going on. ✅
 
 ### Phase 9: Battle view (2D, real-time with pause)
 Owner's choices:

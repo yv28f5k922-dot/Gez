@@ -72,6 +72,16 @@ public enum CharacterSystem {
 
     /// Who inherits if the ruler dies now (nil = nobody; a relative will be found or made).
     public static func heir(_ world: World, _ c: CountryID, date: GameDate) -> CharacterID? {
+        heir(world, c, date: date, charsByCourt: nil, charsByDynasty: nil)
+    }
+
+    static func heir(
+        _ world: World,
+        _ c: CountryID,
+        date: GameDate,
+        charsByCourt: [[CharacterID]]?,
+        charsByDynasty: [String: [CharacterID]]?
+    ) -> CharacterID? {
         guard let ruler = world.countries.ruler[c.index] else { return nil }
         let ch = world.people.characters
         let law = world.countries.succession[c.index]
@@ -87,14 +97,16 @@ public enum CharacterSystem {
         let dynasty = ch.dynasty[ruler.index]
         func dynastyMen() -> [CharacterID] {
             guard let d = dynasty, !d.hasPrefix("of ") else { return [] }
-            return ch.ids.filter { ch.dynasty[$0.index] == d && !ch.female[$0.index] && alive($0) }
+            let pool = charsByDynasty?[d] ?? ch.ids
+            return pool.filter { ch.dynasty[$0.index] == d && !ch.female[$0.index] && alive($0) }
         }
 
         switch law {
         case .elective:
             var candidates = Set<CharacterID>()
             for x in world.countries.council[c.index].compactMap({ $0 }) where alive(x) { candidates.insert(x) }
-            for x in ch.ids where ch.court[x.index] == c && alive(x) && !ch.female[x.index]
+            let courtPool = charsByCourt?[c.index] ?? ch.ids
+            for x in courtPool where ch.court[x.index] == c && alive(x) && !ch.female[x.index]
                 && ch.age(x, on: date) >= 25 { candidates.insert(x) }
             return candidates.max { a, b in
                 let sa = ch.skills[a.index].reduce(0, +), sb = ch.skills[b.index].reduce(0, +)
@@ -254,10 +266,43 @@ public enum CharacterSystem {
             }
         }
         // Heirs are kept current; computer countries fill empty seats.
+        let countryCount = world.countries.count
+        var charsByCourt = [[CharacterID]](repeating: [], count: countryCount)
+        var charsByDynasty: [String: [CharacterID]] = [:]
+        let allChars = world.people.characters
+        for i in 0..<allChars.count where allChars.death[i] == nil {
+            let id = CharacterID(i)
+            if let court = allChars.court[i], court.index < countryCount {
+                charsByCourt[court.index].append(id)
+            }
+            if let d = allChars.dynasty[i], !d.hasPrefix("of ") {
+                charsByDynasty[d, default: []].append(id)
+            }
+        }
+        var firstProvByCountry = [ProvinceID?](repeating: nil, count: countryCount)
+        for p in 0..<world.provinces.count {
+            if let o = world.provinces.owner[p], firstProvByCountry[o.index] == nil {
+                firstProvByCountry[o.index] = ProvinceID(p)
+            }
+        }
+
         for c in world.countries.ids {
-            world.countries.heir[c.index] = heir(world, c, date: date)
+            world.countries.heir[c.index] = heir(
+                world,
+                c,
+                date: date,
+                charsByCourt: charsByCourt,
+                charsByDynasty: charsByDynasty
+            )
             if !world.humanCountries.contains(c) {
-                fillCouncil(&world, c, date: date, random: &random)
+                fillCouncil(
+                    &world,
+                    c,
+                    date: date,
+                    random: &random,
+                    courtPool: charsByCourt[c.index],
+                    firstProvince: firstProvByCountry[c.index]
+                )
             }
         }
     }
@@ -313,14 +358,38 @@ public enum CharacterSystem {
 
     /// Fills empty seats with the ablest courtier, or a newcomer.
     public static func fillCouncil(_ world: inout World, _ c: CountryID, date: GameDate, random: inout GameRandom) {
+        fillCouncil(
+            &world,
+            c,
+            date: date,
+            random: &random,
+            courtPool: nil,
+            firstProvince: world.provinces(ownedBy: c).first
+        )
+    }
+
+    static func fillCouncil(
+        _ world: inout World,
+        _ c: CountryID,
+        date: GameDate,
+        random: inout GameRandom,
+        courtPool: [CharacterID]?,
+        firstProvince: ProvinceID?
+    ) {
         for seat in CouncilSeat.allCases where world.countries.council[c.index][seat.rawValue] == nil {
             let skill = seat.skill
-            let best = councilCandidates(world, c, date: date)
-                .max { world.people.characters.skill($0, skill) < world.people.characters.skill($1, skill) }
-            if let b = best, world.people.characters.skill(b, skill) >= 6 {
+            let ch = world.people.characters
+            let seated = Set(world.countries.council[c.index].compactMap { $0 })
+            let pool = courtPool ?? ch.ids
+            let best = pool.filter {
+                ch.court[$0.index] == c && ch.isAlive($0) && $0 != world.countries.ruler[c.index]
+                    && !seated.contains($0) && ch.age($0, on: date) >= adultAge
+            }
+            .max { ch.skill($0, skill) < ch.skill($1, skill) }
+            if let b = best, ch.skill(b, skill) >= 6 {
                 appoint(&world, c, seat, b)
             } else {
-                let home = world.provinces(ownedBy: c).first.map { "of \(world.provinces.name[$0.index])" }
+                let home = firstProvince.map { "of \(world.provinces.name[$0.index])" }
                 let newcomer = invent(&world, court: c, date: date, random: &random, dynasty: home)
                 appoint(&world, c, seat, newcomer)
             }
@@ -398,7 +467,19 @@ public enum CharacterSystem {
 
     /// Yearly: computer countries marry off their families, best match first.
     public static func runYearly(_ world: inout World, date: GameDate, random: inout GameRandom) {
+        let countryCount = world.countries.count
+        var devByCountry = Array(repeating: 0.0, count: countryCount)
+        var firstProvByCountry = Array<ProvinceID?>(repeating: nil, count: countryCount)
+        for p in 0..<world.provinces.count {
+            if let owner = world.provinces.owner[p], owner.index < countryCount {
+                devByCountry[owner.index] += Double(world.provinces.development[p])
+                if firstProvByCountry[owner.index] == nil {
+                    firstProvByCountry[owner.index] = ProvinceID(p)
+                }
+            }
+        }
         var pool: [CharacterID] = []
+        pool.reserveCapacity(countryCount * 2)
         for c in world.countries.ids { pool += marriageableFamily(world, c, date: date) }
         for c in world.countries.ids where !world.humanCountries.contains(c) {
             for x in marriageableFamily(world, c, date: date) {
@@ -409,13 +490,17 @@ public enum CharacterSystem {
                 let best = pool
                     .filter { ch.court[$0.index] != c && marriageRefusal(world, x, $0, date: date) == nil
                         && !(ch.court[$0.index].map { world.humanCountries.contains($0) } ?? false) }
-                    .max { power(world, ch.court[$0.index]!) < power(world, ch.court[$1.index]!) }
+                    .max {
+                        let p0 = max(1.0, devByCountry[ch.court[$0.index]!.index])
+                        let p1 = max(1.0, devByCountry[ch.court[$1.index]!.index])
+                        return p0 < p1
+                    }
                 if let match = best, random.unit() < 0.6 {
                     marry(&world, x, match)
                 } else if random.unit() < 0.3 {
                     // A local noble match.
                     let spouse = invent(&world, court: c, date: date, random: &random,
-                                        dynasty: world.provinces(ownedBy: c).first.map { "of \(world.provinces.name[$0.index])" },
+                                        dynasty: firstProvByCountry[c.index].map { "of \(world.provinces.name[$0.index])" },
                                         female: !ch.female[x.index], age: max(16, age - 3))
                     marry(&world, x, spouse)
                 }

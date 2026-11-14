@@ -88,19 +88,29 @@ public enum SiegeSystem {
             return !world.diplomacy.isAtWar(siege.besieger, ctrl)
         }
 
-        // 2. Scan fortified provinces for valid besiegers
-        for p in 0..<world.provinces.count {
-            let pid = ProvinceID(p)
+        // 2. Build army lookup once and scan fortified provinces with armies or existing sieges
+        var armiesByProvince: [ProvinceID: [ArmyID]] = [:]
+        for i in 0..<world.military.armies.count {
+            guard world.military.armies.alive[i],
+                  !world.military.armies.isRebel[i],
+                  !world.military.armies.isRetreating[i],
+                  world.military.armies.totalMen(of: ArmyID(Int32(i))) > 0 else { continue }
+            armiesByProvince[world.military.armies.province[i], default: []].append(ArmyID(Int32(i)))
+        }
+
+        var candidateProvs = Set(armiesByProvince.keys)
+        candidateProvs.formUnion(world.military.sieges.map(\.province))
+
+        for pid in candidateProvs.sorted(by: { $0.index < $1.index }) {
+            let p = pid.index
             let fortLvl = world.provinces.fortLevel[p]
             guard fortLvl > 0, world.provinces.fortGarrison[p] > 0 else { continue }
             guard !activeBattleProvs.contains(pid) else { continue }
             guard let ctrl = world.provinces.controller(of: pid) else { continue }
 
-            let armiesHere = world.military.armies(in: pid).filter { aid in
+            let armiesHere = (armiesByProvince[pid] ?? []).filter { aid in
                 let i = Int(aid.rawValue)
-                return !world.military.armies.isRebel[i]
-                    && !world.military.armies.isRetreating[i]
-                    && world.diplomacy.isAtWar(world.military.armies.owner[i], ctrl)
+                return world.diplomacy.isAtWar(world.military.armies.owner[i], ctrl)
             }.sorted { $0.rawValue < $1.rawValue }
 
             // Sum hostile men grouped by country

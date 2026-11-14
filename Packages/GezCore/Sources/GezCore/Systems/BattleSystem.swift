@@ -621,15 +621,25 @@ public enum BattleSystem {
     private static func advanceUnfortifiedOccupation(_ world: inout World) {
         let activeBattleProvs = Set(world.military.battles.map(\.province))
 
-        for p in 0..<world.provinces.count {
-            let pid = ProvinceID(p)
+        var armiesByProvince: [ProvinceID: [ArmyID]] = [:]
+        for i in 0..<world.military.armies.count {
+            guard world.military.armies.alive[i],
+                  !world.military.armies.isRebel[i],
+                  !world.military.armies.isRetreating[i],
+                  world.military.armies.totalMen(of: ArmyID(Int32(i))) > 0 else { continue }
+            armiesByProvince[world.military.armies.province[i], default: []].append(ArmyID(Int32(i)))
+        }
+
+        var candidateSet = Set(armiesByProvince.keys)
+        for p in 0..<world.provinces.count where world.provinces.occupationProgressDays[p] > 0 || world.provinces.occupationTarget[p] != nil {
+            candidateSet.insert(ProvinceID(p))
+        }
+
+        for pid in candidateSet.sorted(by: { $0.index < $1.index }) {
+            let p = pid.index
             if activeBattleProvs.contains(pid) { continue }
 
-            // Collect non-rebel, non-retreating armies standing in `pid`
-            let armiesHere = world.military.armies(in: pid).filter { aid in
-                let i = Int(aid.rawValue)
-                return !world.military.armies.isRebel[i] && !world.military.armies.isRetreating[i]
-            }.sorted { $0.rawValue < $1.rawValue }
+            let armiesHere = (armiesByProvince[pid] ?? []).sorted { $0.rawValue < $1.rawValue }
 
             if armiesHere.isEmpty || (world.provinces.fortLevel[p] > 0 && world.provinces.fortGarrison[p] > 0) {
                 world.provinces.occupationProgressDays[p] = 0
