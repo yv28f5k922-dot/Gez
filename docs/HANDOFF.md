@@ -159,6 +159,7 @@ of them are reproducible (same input, byte-identical output).
 | `data/characters/` | `python3 tools/characters/chargen.py` | `characters1453.json` |
 | `data/government/` | `python3 tools/government/govgen.py` | `government1453.json` |
 | `data/military/` | `python3 tools/military/milgen.py` | `military1453.json` |
+| `data/diplomacy/` | `python3 tools/diplomacy/dipgen.py` | `diplomacy1453.json` |
 | `data/heraldry/choices.txt` | push it; the Heraldry workflow downloads and converts | `App/Resources/Heraldry/arms_<TAG>.png`, `data/heraldry/credits.json` |
 | app icon (portolan chart, drawn from the province map) | `python3 tools/icon/make_icon.py` | `App/Resources/Assets.xcassets/AppIcon.appiconset/`, `docs/icon_preview.png` |
 
@@ -204,10 +205,11 @@ Packages/GezCore/Sources/GezCore/
   Characters/        CharacterTable, traits, names, chronicle
   Government/        Modifier, Effects, laws, estates, privileges, reforms
   Military/          UnitType, Regiment, ArmyTable, Military
+  Diplomacy/         Treaty, War, casus belli, opinions, trust, relation slots
   Systems/           MarketSystem (+ EconomySystem/PopulationSystem),
                      BuildingSystem, CharacterSystem, VassalSystem,
-                     GovernmentSystem, ArmySystem
-  Scenario/          Scenario1453 + Economy/Character/Government/Military loaders
+                     GovernmentSystem, ArmySystem, DiplomacySystem
+  Scenario/          Scenario1453 + Economy/Character/Government/Military/Diplomacy loaders
   Resources/         generated JSON and ID maps
 App/Shared/
   GameModel.swift    bridge between simulation and UI; game loop; player actions
