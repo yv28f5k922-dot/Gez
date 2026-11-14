@@ -208,7 +208,7 @@ Packages/GezCore/Sources/GezCore/
   Diplomacy/         Treaty, War, CasusBelli, WarDeclaration, PeaceTreaty, coalitions, war reparations, opinions, trust, relation slots
   Systems/           MarketSystem (+ EconomySystem/PopulationSystem),
                      BuildingSystem, CharacterSystem, VassalSystem,
-                     GovernmentSystem, ArmySystem, BattleSystem, DiplomacySystem
+                     GovernmentSystem, ArmySystem, BattleSystem, DiplomacySystem, DiplomacyAISystem
   Scenario/          Scenario1453 + Economy/Character/Government/Military/Diplomacy loaders
   Resources/         generated JSON and ID maps
 App/Shared/

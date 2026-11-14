@@ -159,6 +159,8 @@ public struct Diplomacy: Sendable {
 
     /// Active coalitions against aggressive expanders: target -> coalition member countries.
     public var coalitions: [CountryID: Set<CountryID>] = [:]
+    /// Pending peace offers sent to human-controlled countries awaiting acceptance/rejection.
+    public var pendingPeaceOffers: [PeaceOffer] = []
 
     public init() {}
 
