@@ -37,8 +37,15 @@ struct ContentView: View {
                     WarsOverviewPanel().padding(12)
                 }
             }
+            .overlay(alignment: .top) {
+                AlertsBanner().padding(.top, 8)
+            }
             .overlay(alignment: .center) {
-                if let warID = model.showPeaceForWarID {
+                if model.showNationPicker {
+                    NationPickerPanel()
+                } else if model.showGameMenu {
+                    GameMenuPanel()
+                } else if let warID = model.showPeaceForWarID {
                     PeaceNegotiationPanel(warID: warID)
                 }
             }
@@ -71,10 +78,19 @@ struct TopBar: View {
         HStack(spacing: 16) {
             if let player = model.playerCountry {
                 let countries = model.world.countries
-                CountryArmsView(world: model.world, country: player)
-                    .frame(height: 28)
-                Text(countries.name[player.index])
-                    .font(.headline)
+                Button {
+                    model.showNationPicker.toggle()
+                    model.showGameMenu = false
+                } label: {
+                    HStack(spacing: 8) {
+                        CountryArmsView(world: model.world, country: player)
+                            .frame(height: 28)
+                        Text(countries.name[player.index])
+                            .font(.headline)
+                    }
+                }
+                .buttonStyle(.plain)
+                .help("Choose or switch nation")
                 Button {
                     model.showBudget.toggle()
                 } label: {
@@ -149,6 +165,14 @@ struct TopBar: View {
                 }
             }
             Spacer()
+            Button {
+                model.showNationPicker = false
+                model.showGameMenu.toggle()
+            } label: {
+                Label("Menu", systemImage: "line.3.horizontal")
+            }
+            .buttonStyle(.plain)
+            .help("New game, save, load, and autosave settings")
             Text(model.date.description)
                 .font(.headline)
                 .monospacedDigit()
@@ -350,6 +374,7 @@ struct ProvincePanel: View {
                     }
                     .font(.callout)
                 }
+                ProvinceSiegeSection(province: province)
                 Divider()
                 BuildingsSection(province: province)
             case .economy:

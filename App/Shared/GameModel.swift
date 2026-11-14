@@ -29,7 +29,7 @@ struct MapLabel: Identifiable {
 @MainActor
 @Observable
 final class GameModel {
-    let simulation: Simulation
+    private(set) var simulation: Simulation
     let idMap: ProvinceIDMap
     let seaMap: ProvinceIDMap
     let geometry: MapGeometry
@@ -67,8 +67,25 @@ final class GameModel {
     var showArmies = false
     var showDiplomacy = false
     var showWars = false
+    var showGameMenu = false
+    var showNationPicker = false
+    var pickNationFromMap = false
     var selectedDiplomacyCountry: CountryID?
     var showPeaceForWarID: String?
+    var savedGames: [SaveEntry] = []
+    var lastSaveStatus: String?
+    var lastAssaultResult: (province: ProvinceID, result: AssaultResult)?
+    var autosaveFrequency: AutosaveFrequency = {
+        if let raw = UserDefaults.standard.string(forKey: "gez.autosaveFrequency"),
+           let parsed = AutosaveFrequency(rawValue: raw) {
+            return parsed
+        }
+        return .yearly
+    }() {
+        didSet {
+            UserDefaults.standard.set(autosaveFrequency.rawValue, forKey: "gez.autosaveFrequency")
+        }
+    }
     /// Selected army in the Armies panel or on the map.
     var selectedArmy: ArmyID?
     /// When set, tapping a province on the map orders this army to march there.
@@ -117,9 +134,14 @@ final class GameModel {
         if let player = playerCountry {
             sim.world.humanCountries = [player]
         }
+        refreshSavedGames()
         rebuildLabels()
         renderMap()
         startLoop()
+    }
+
+    var playerTag: String? {
+        playerCountry.map { world.countries.tag[$0.index] }
     }
 
     var world: World { simulation.world }
@@ -159,8 +181,20 @@ final class GameModel {
         guard days > 0 else { return }
         let prevMonth = simulation.date.month
         let prevWars = simulation.world.diplomacy.wars.count
-        simulation.advance(days: days)
+        var didAutosave = false
+        for _ in 0..<days {
+            simulation.tick()
+            if autosaveFrequency.shouldAutosave(on: simulation.date) {
+                if (try? SaveStorage.autosave(simulation, playerTag: playerTag)) != nil {
+                    didAutosave = true
+                }
+            }
+        }
         date = simulation.date
+        if didAutosave {
+            lastSaveStatus = "Autosaved (\(date))"
+            refreshSavedGames()
+        }
         if date.month != prevMonth || simulation.world.diplomacy.wars.count != prevWars {
             renderMap()
         }
@@ -584,6 +618,129 @@ final class GameModel {
         revision &+= 1
     }
 
+    // MARK: - Sieges, Saves & Nation Selection
+
+    @discardableResult
+    func assaultFort(in province: ProvinceID) -> AssaultResult {
+        guard let player = playerCountry else {
+            return AssaultResult(captured: false, attackerLosses: 0, garrisonLosses: 0, remainingGarrison: world.provinces.fortGarrison[province.index], refusalReason: "No player country")
+        }
+        let result = simulation.assaultFort(in: province, attacker: player)
+        lastAssaultResult = (province, result)
+        if result.captured {
+            renderMap()
+        }
+        revision &+= 1
+        return result
+    }
+
+    func switchPlayer(to country: CountryID) {
+        playerCountry = country
+        simulation.world.humanCountries = [country]
+        pickNationFromMap = false
+        showNationPicker = false
+        selectedArmy = nil
+        moveModeForArmy = nil
+        renderMap()
+        revision &+= 1
+    }
+
+    func startNewGame(tag: String, seed: UInt64 = 1453) {
+        speed = .paused
+        let freshWorld = Scenario1453.makeWorld()
+        let sim = Simulation(world: freshWorld, startDate: Scenario1453.startDate, seed: seed)
+        simulation = sim
+        date = sim.date
+        let picked = sim.world.countries.id(forTag: tag) ?? sim.world.countries.id(forTag: Scenario1453.defaultPlayerTag)
+        playerCountry = picked
+        if let picked {
+            simulation.world.humanCountries = [picked]
+        }
+        resetPanelsAndSelection()
+        lastSaveStatus = nil
+        rebuildLabels()
+        renderMap()
+        revision &+= 1
+    }
+
+    func refreshSavedGames() {
+        savedGames = SaveStorage.listSaves()
+    }
+
+    func saveGame(named name: String) {
+        do {
+            _ = try SaveStorage.save(simulation, name: name, playerTag: playerTag)
+            lastSaveStatus = "Saved '\(name)'"
+            refreshSavedGames()
+        } catch {
+            lastSaveStatus = "Save failed: \(error.localizedDescription)"
+        }
+        revision &+= 1
+    }
+
+    func quickSave() {
+        let tag = playerTag ?? "GEZ"
+        saveGame(named: "Quick Save - \(tag)")
+    }
+
+    func loadGame(_ entry: SaveEntry) {
+        speed = .paused
+        do {
+            let loaded = try SaveStorage.load(from: entry.url)
+            simulation = loaded.simulation
+            date = loaded.simulation.date
+            if let tag = loaded.metadata.playerTag,
+               let id = loaded.simulation.world.countries.id(forTag: tag) {
+                playerCountry = id
+            } else {
+                playerCountry = loaded.simulation.world.humanCountries.first
+                    ?? loaded.simulation.world.countries.id(forTag: Scenario1453.defaultPlayerTag)
+            }
+            if let player = playerCountry {
+                simulation.world.humanCountries = [player]
+            }
+            resetPanelsAndSelection()
+            lastSaveStatus = "Loaded '\(entry.metadata.name)'"
+            rebuildLabels()
+            renderMap()
+        } catch {
+            lastSaveStatus = "Load failed: \(error.localizedDescription)"
+        }
+        revision &+= 1
+    }
+
+    func deleteSave(_ entry: SaveEntry) {
+        do {
+            try SaveStorage.deleteSave(at: entry.url)
+            lastSaveStatus = "Deleted '\(entry.metadata.name)'"
+            refreshSavedGames()
+        } catch {
+            lastSaveStatus = "Delete failed: \(error.localizedDescription)"
+        }
+        revision &+= 1
+    }
+
+    private func resetPanelsAndSelection() {
+        showBudget = false
+        showTrade = false
+        showCourt = false
+        showGovernment = false
+        showArmies = false
+        showDiplomacy = false
+        showWars = false
+        showGameMenu = false
+        showNationPicker = false
+        pickNationFromMap = false
+        selectedDiplomacyCountry = nil
+        showPeaceForWarID = nil
+        openMarket = nil
+        selectedArmy = nil
+        moveModeForArmy = nil
+        viewedCharacter = nil
+        lastAssaultResult = nil
+        select(province: nil)
+    }
+
     func select(province: ProvinceID?, keepSea: Bool = false) {
         if !keepSea && selectedSea != nil {
             selectedSea = nil
@@ -601,6 +758,12 @@ final class GameModel {
 
     func select(mapX x: Int, y: Int) {
         if let hit = idMap.province(x: x, y: y) {
+            if pickNationFromMap {
+                if let owner = world.provinces.owner[hit.index] {
+                    switchPlayer(to: owner)
+                }
+                return
+            }
             if let moving = moveModeForArmy {
                 orderMove(army: moving, to: hit)
                 return

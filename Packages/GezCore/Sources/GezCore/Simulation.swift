@@ -31,6 +31,12 @@ public final class Simulation {
         }
     }
 
+    /// Launches a storm assault on a breached fort using the simulation's RNG stream.
+    @discardableResult
+    public func assaultFort(in province: ProvinceID, attacker: CountryID) -> AssaultResult {
+        SiegeSystem.assaultFort(&world, province: province, attacker: attacker, random: &random)
+    }
+
     public func tick() {
         date.advanceOneDay()
         ticksRun += 1
