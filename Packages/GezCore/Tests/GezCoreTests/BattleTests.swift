@@ -165,10 +165,10 @@ final class BattleTests: XCTestCase {
         world.military.armies.append(name: "Grand Armee", owner: fra, province: targetProv, regiments: attRegs)
         let engArmy = world.military.armies.append(name: "English Garrison", owner: eng, province: targetProv, regiments: defRegs)
 
-        // Both sides are player-controlled here, so the war AI does not march
-        // the armies away before they can occupy or liberate the province.
-        world.humanCountries.insert(fra)
-        world.humanCountries.insert(eng)
+        // This tests occupation rules, not the AI: every country counts as
+        // player-controlled, so no AI army (e.g. France's allies Brittany and
+        // Foix) marches in and changes the outcome.
+        world.humanCountries = Set(world.countries.ids)
         let sim = Simulation(world: world, startDate: Scenario1453.startDate, seed: 999)
 
         // Advance until battle finishes
