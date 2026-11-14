@@ -38,6 +38,12 @@ public struct ProvinceTable: Sendable {
     public var cores: [Set<CountryID>] = []
     /// Countries that have an active territorial claim on this province.
     public var claims: [Set<CountryID>] = []
+    /// Country currently occupying this province in a war (nil = controlled by legal owner).
+    public var occupiedBy: [CountryID?] = []
+    /// Hostile country currently advancing unfortified takeover or liberation in this province.
+    public var occupationTarget: [CountryID?] = []
+    /// Days accumulated toward unfortified occupation or liberation.
+    public var occupationProgressDays: [Int] = []
 
     public init() {}
 
@@ -82,7 +88,15 @@ public struct ProvinceTable: Sendable {
         self.holder.append(nil)
         self.cores.append(owner != nil ? [owner!] : [])
         self.claims.append([])
+        self.occupiedBy.append(nil)
+        self.occupationTarget.append(nil)
+        self.occupationProgressDays.append(0)
         return id
+    }
+
+    /// Current military/administrative controller of `province` (occupier if occupied, else legal owner).
+    public func controller(of province: ProvinceID) -> CountryID? {
+        occupiedBy[province.index] ?? owner[province.index]
     }
 
     /// Neighbours are set once all provinces exist. Links are made two-way.

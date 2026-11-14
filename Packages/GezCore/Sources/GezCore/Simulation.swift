@@ -29,6 +29,7 @@ public final class Simulation {
 
         // Daily systems go here.
         ArmySystem.runDaily(&world, date: date, random: &random)
+        BattleSystem.runDaily(&world, date: date, random: &random)
         DiplomacySystem.runDaily(&world, date: date)
 
         if date.isFirstOfMonth {

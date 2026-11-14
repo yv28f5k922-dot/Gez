@@ -63,6 +63,8 @@ public struct War: Sendable, Identifiable, Equatable {
     public var defenders: [CountryID]
     /// War score from attacker's point of view (-1.0 ... +1.0, representing -100% to +100%).
     public var warScore: Double
+    /// War score earned specifically from field battles (-0.40 ... +0.40).
+    public var battleWarScore: Double
     public var note: String
 
     public init(
@@ -74,6 +76,7 @@ public struct War: Sendable, Identifiable, Equatable {
         attackers: [CountryID],
         defenders: [CountryID],
         warScore: Double = 0.0,
+        battleWarScore: Double = 0.0,
         note: String = ""
     ) {
         self.id = id
@@ -84,6 +87,7 @@ public struct War: Sendable, Identifiable, Equatable {
         self.attackers = attackers
         self.defenders = defenders
         self.warScore = warScore
+        self.battleWarScore = battleWarScore
         self.note = note
     }
 

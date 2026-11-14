@@ -204,11 +204,11 @@ Packages/GezCore/Sources/GezCore/
   Economy/           Goods, Markets, Buildings, Finance, Trade, queries
   Characters/        CharacterTable, traits, names, chronicle
   Government/        Modifier, Effects, laws, estates, privileges, reforms
-  Military/          UnitType, Regiment, ArmyTable, Military
+  Military/          UnitType, Regiment, ArmyTable, Military, Battle
   Diplomacy/         Treaty, War, CasusBelli, WarDeclaration, call to arms, opinions, trust, relation slots
   Systems/           MarketSystem (+ EconomySystem/PopulationSystem),
                      BuildingSystem, CharacterSystem, VassalSystem,
-                     GovernmentSystem, ArmySystem, DiplomacySystem
+                     GovernmentSystem, ArmySystem, BattleSystem, DiplomacySystem
   Scenario/          Scenario1453 + Economy/Character/Government/Military/Diplomacy loaders
   Resources/         generated JSON and ID maps
 App/Shared/
