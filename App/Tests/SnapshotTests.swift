@@ -190,6 +190,13 @@ final class SnapshotTests: XCTestCase {
         save(try XCTUnwrap(renderer.cgImage), "government.png")
     }
 
+    func testArmyPanel() throws {
+        let model = GameModel(useMetal: false)
+        let renderer = ImageRenderer(content: ArmyPanel(scrolls: false).environment(model))
+        renderer.scale = 1
+        save(try XCTUnwrap(renderer.cgImage), "armies.png")
+    }
+
     func testMainScreen() async throws {
         let model = GameModel()
         if let metal = model.metal {

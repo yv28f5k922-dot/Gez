@@ -66,6 +66,7 @@ struct MapCanvasView: View {
                         MapRoutesLayer(zoom: z, offset: o)
                     }
                     MapIconsLayer(zoom: z, offset: o)
+                    MapArmiesLayer(zoom: z, offset: o)
                     MapLabelsLayer(zoom: z, offset: o, viewSize: geo.size)
                 }
 
@@ -489,6 +490,109 @@ private struct MapIconsLayer: View {
                     a.shading = .color(Color(red: 0.12, green: 0.25, blue: 0.4))
                     context.draw(a, in: CGRect(x: p.x - r - 11, y: p.y - 5, width: 9, height: 10))
                 }
+            }
+        }
+        .allowsHitTesting(false)
+    }
+}
+
+/// 2D army banners/counters (showing troop count in thousands) and marching
+/// arrows along active movement paths.
+private struct MapArmiesLayer: View {
+    @Environment(GameModel.self) private var model
+    let zoom: CGFloat
+    let offset: CGPoint
+
+    var body: some View {
+        let _ = model.revision
+        let world = model.world
+        let armies = world.military.armies
+        let positions = model.provincePositions
+        Canvas { context, size in
+            guard zoom >= 0.65, !positions.isEmpty else { return }
+            let bounds = CGRect(origin: .zero, size: size).insetBy(dx: -40, dy: -40)
+            let gold = Color(red: 0.96, green: 0.78, blue: 0.20)
+            let rebelRed = Color(red: 0.68, green: 0.14, blue: 0.14)
+            let ink = Color(red: 0.14, green: 0.10, blue: 0.07)
+
+            func screenPt(_ p: ProvinceID) -> CGPoint {
+                let mp = positions[p.index]
+                return CGPoint(x: offset.x + mp.x * zoom, y: offset.y + mp.y * zoom)
+            }
+
+            // 1. Draw marching arrows for moving armies.
+            for i in 0..<armies.count where armies.alive[i] && !armies.path[i].isEmpty {
+                let start = armies.province[i]
+                let hops = [start] + armies.path[i]
+                var line = Path()
+                let p0 = screenPt(hops[0])
+                line.move(to: p0)
+                for h in hops.dropFirst() {
+                    line.addLine(to: screenPt(h))
+                }
+                let isPlayer = armies.owner[i] == model.playerCountry
+                let color = armies.isRebel[i] ? rebelRed : (isPlayer ? gold : Color(red: 0.92, green: 0.87, blue: 0.75))
+                context.stroke(line, with: .color(ink.opacity(0.75)), style: StrokeStyle(lineWidth: 3.5, lineCap: .round, lineJoin: .round))
+                context.stroke(line, with: .color(color), style: StrokeStyle(lineWidth: 2.0, lineCap: .round, lineJoin: .round, dash: [5, 3]))
+
+                // Arrowhead at destination.
+                if hops.count >= 2 {
+                    let a = screenPt(hops[hops.count - 2])
+                    let b = screenPt(hops[hops.count - 1])
+                    let angle = atan2(b.y - a.y, b.x - a.x)
+                    let headLen: CGFloat = 7
+                    var head = Path()
+                    head.move(to: b)
+                    head.addLine(to: CGPoint(x: b.x - headLen * cos(angle - 0.45), y: b.y - headLen * sin(angle - 0.45)))
+                    head.addLine(to: CGPoint(x: b.x - headLen * cos(angle + 0.45), y: b.y - headLen * sin(angle + 0.45)))
+                    head.closeSubpath()
+                    context.fill(head, with: .color(color))
+                    context.stroke(head, with: .color(ink), lineWidth: 0.8)
+                }
+            }
+
+            // 2. Group armies by (province, owner, isRebel) so stacked armies draw cleanly.
+            struct StackKey: Hashable {
+                let province: Int
+                let owner: Int
+                let isRebel: Bool
+            }
+            var stacks: [StackKey: Int] = [:]
+            for i in 0..<armies.count where armies.alive[i] {
+                let key = StackKey(
+                    province: armies.province[i].index,
+                    owner: armies.owner[i].index,
+                    isRebel: armies.isRebel[i]
+                )
+                stacks[key, default: 0] += armies.totalMen(of: ArmyID(Int32(i)))
+            }
+
+            for (key, men) in stacks.sorted(by: { $0.key.province < $1.key.province }) where men > 0 {
+                let base = screenPt(ProvinceID(key.province))
+                // Offset slightly below the town icon so both town and army banner are visible.
+                let p = CGPoint(x: base.x, y: base.y + 11)
+                guard bounds.contains(p) else { continue }
+                let kText = men >= 1_000 ? "\((men + 500) / 1_000)k" : "\(men)"
+                let w: CGFloat = max(22, CGFloat(kText.count) * 6.5 + 10)
+                let h: CGFloat = 14
+                let rect = CGRect(x: p.x - w / 2, y: p.y - h / 2, width: w, height: h)
+                let badge = Path(roundedRect: rect, cornerRadius: 4)
+
+                let cRGB = world.countries.color[key.owner]
+                let fill = key.isRebel ? rebelRed : Color(
+                    red: Double(cRGB.r) / 255 * 0.75 + 0.08,
+                    green: Double(cRGB.g) / 255 * 0.75 + 0.08,
+                    blue: Double(cRGB.b) / 255 * 0.75 + 0.08
+                )
+                let isPlayer = CountryID(key.owner) == model.playerCountry
+                context.fill(badge, with: .color(fill))
+                context.stroke(badge, with: .color(isPlayer ? gold : ink), lineWidth: isPlayer ? 1.6 : 1.0)
+                context.draw(
+                    Text(kText)
+                        .font(.system(size: 9.5, weight: .bold, design: .rounded).monospacedDigit())
+                        .foregroundColor(.white),
+                    at: p
+                )
             }
         }
         .allowsHitTesting(false)
