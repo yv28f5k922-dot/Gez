@@ -1,0 +1,43 @@
+# Historical treaties active on 30 May 1453 (Phase 7, owner's choice).
+#
+# Format:
+#   first_tag | second_tag | type | expiry (YYYY-MM-DD or -) | note
+#
+# Types:
+#   alliance        mutual offensive/defensive alliance
+#   guarantee       first_tag guarantees second_tag's independence
+#   non_aggression  mutual non-aggression agreement
+#   military_access first_tag grants military transit access to second_tag
+#   truce           mutual truce until expiry date
+
+## Alliances
+FRA | SCO | alliance | - | Auld Alliance (Franco-Scottish mutual defence)
+FRA | CAS | alliance | - | Franco-Castilian Alliance against England
+ENG | POR | alliance | - | Anglo-Portuguese Alliance (Treaty of Windsor)
+MLO | FLO | alliance | - | Sforza-Medici Alliance in the Lombardy War
+VEN | NAP | alliance | - | Venetian-Neapolitan Alliance against Milan
+VEN | MFA | alliance | - | Venetian Alliance with Montferrat
+POL | LIT | alliance | - | Dynastic union and mutual defence under Casimir IV
+TEU | LVO | alliance | - | Confederation of Prussian and Livonian Teutonic Orders
+
+## Truces
+TUR | HUN | truce | 1454-06-01 | Truce of Adrianople (1451, 3-year truce expiring 1454)
+TUR | VEN | truce | 1454-04-18 | Peace of 1451 renewed after the fall of Constantinople
+TUR | GEN | truce | 1455-01-01 | Commercial treaty and truce after the capitulation of Galata
+POL | TEU | truce | 1454-02-04 | Treaty of Melno (broken Feb 1454 by Prussian Confederation revolt)
+CAS | POR | truce | 1455-01-01 | Truce of Medina del Campo
+HUN | JIS | truce | 1454-01-01 | Truce of Kassa between John Hunyadi and Jan Jiskra
+
+## Guarantees
+TUR | SER | guarantee | - | Ottoman protection over vassal Despotate of Serbia
+MAM | HEJ | guarantee | - | Mamluk protection over Sharifate of Mecca
+FRA | BRI | guarantee | - | Crown protection over Duchy of Brittany
+FRA | FOI | guarantee | - | Crown protection over County of Foix
+
+## Non-Aggression Pacts
+MEW | MAR | non_aggression | - | Treaty of 1453 between Rana Kumbha and Rao Jodha settling border
+HAB | HUN | non_aggression | - | Habsburg family dynastic peace under Ladislaus the Posthumous
+
+## Military Access
+TUR | RAG | military_access | - | Ottoman transit access through Ragusa
+HAB | BOH | military_access | - | Dynastic transit access between Habsburg lands
