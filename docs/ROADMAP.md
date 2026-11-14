@@ -234,8 +234,8 @@ else is done. Until then, keep panels functional and don't style them.
 Reference: the owner's concept canvas on claude.ai ("Gez interface
 concept": today vs. after, main screen and court panel). Its art pieces
 were made in code (height maps lit as metal, leather and enamel) by a
-script kept out of the repo; rebuild that as `tools/uiart/` when this
-phase starts. Never use Paradox art.
+script saved in the claude.ai Project as `claude/ui-art-concept.py`; move
+it to `tools/uiart/` when this phase starts. Never use Paradox art.
 1. **Style kit**: tooled leather top bar between gold mouldings, gold
    frames with rope moulding and corner rosettes (nine-slice), parchment
    panels, red cloth title banners, bevelled gold buttons, domed gold
