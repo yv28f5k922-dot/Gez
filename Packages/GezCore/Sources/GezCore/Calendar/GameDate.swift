@@ -3,7 +3,7 @@
 /// Like Paradox games, the calendar has a fixed 365 days per year with no
 /// leap years, so every year ticks the same number of days and dates are
 /// trivially comparable.
-public struct GameDate: Hashable, Comparable, CustomStringConvertible, Sendable {
+public struct GameDate: Hashable, Comparable, CustomStringConvertible, Sendable, Codable {
     public static let daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     public static let monthNames = [
         "January", "February", "March", "April", "May", "June",

@@ -1,0 +1,15 @@
+# Historical wars active on 30 May 1453 (Phase 7, owner's choice).
+#
+# Format:
+#   war_id | War Name | start_date | casus_belli | war_goal_type:war_goal_target | attackers (primary first) | defenders (primary first) | note
+#
+# Casus belli types:
+#   reconquest, claim, holyWar, subjugation, tribute, succession, coalition, noCB
+#
+# War goal types:
+#   conquer_province:<ProvinceName>
+#   superiority:-
+#   defend_capital:<ProvinceName>
+
+hundred_years_war | Hundred Years' War | 1337-05-24 | reconquest | conquer_province:Bordeaux | FRA,BRI,FOI,SCO | ENG | Final campaign in Gascony leading to Castillon (July 1453)
+lombardy_war | War of the Lombardy Succession | 1452-06-01 | claim | superiority:- | VEN,NAP,MFA | MLO,FLO | Venetian-Neapolitan alliance against Francesco Sforza until Peace of Lodi (1454)

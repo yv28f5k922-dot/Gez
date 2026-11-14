@@ -5,7 +5,7 @@ Read this first, then `docs/ROADMAP.md` (the agreed plan), `docs/DESIGN.md`
 judgment calls) and `CLAUDE.md` (rules). This file says where the project
 stands, how to work on it, and what to do next.
 
-Last updated: session 6 (13 November 2026). Phases 0–6 are done. Gemini now writes the code; Claude tests and reviews it (see "Working with Gemini").
+Last updated: session 8 (14 November 2026). Phases 0–8 are done (First Playable Milestone); next is Phase 9.
 
 ## The owner
 
@@ -53,8 +53,10 @@ Everything below is built, tested on CI and visible in the app.
 | Great vassals | Real lords hold 75 provinces (Hunyadi, Rožmberk, Olelko of Kiev, Ottoman march lords, Georgian princes...). They keep 40% of the tax, inherit by family law, can be granted or stripped of land, refuse taxes when unhappy and may plot to poison the ruler. Court chronicle logs it all |
 | Government (Phase 5) | Stability −3…+3; 11 law areas with trade-offs (6 months to change); estates tied to pops (core four plus Janissaries, Mamluks, Rajputs, Tribes, Dhimmi) with power, loyalty and 23 privileges; a 4-tier reform tree per government type that can change the government |
 | Armies & logistics (Phase 6) | 15 unit types (5 core + 10 regional 1453 units), 39 starting standing armies (235 regiments, 225,000 men), three origins (levies from pops, standing professionals from manpower + market goods, mercenaries for gold), daily province-to-province movement (distance, terrain, rivers, roads, unit speed, commander Martial), supply limit & monthly attrition/reinforcement, great vassal open revolts, military AI |
-| App windows | Top bar: treasury (Budget), Trade, Court, Stability (Government), Armies (manpower, field armies, commanders, levies, recruitment). Province panel tabs: Overview (holder, supply, levy, buildings), Economy, People. Market panel. Map modes Q–I; 2D army counters and marching arrows |
-| Tests | 109 simulation tests (GezCore) and 11 snapshot tests (App); all green |
+| Diplomacy & war (Phase 7) | Historical 1453 treaties/truces/wars (Hundred Years' War in Gascony, Venice–Milan, Prussian Confederation), opinion/trust (-100…+100), relation slots, 7 casus belli types, ticking war score, call to arms, multi-day Fire/Shock auto-resolved battles, shattered retreat, occupation, peace treaties (provinces, cores, gold, war reps, subjects, annul treaties, release nations), Aggressive Expansion & coalitions, AI war/peace/military loop |
+| Sieges, save/load & playable loop (Phase 8) | Forts levels 1–5 with Zone of Control, 30-day siege phases with artillery/Martial/breach rolls, Storm Assaults, versioned deterministic `SaveArchive` / `SaveStorage` (manual saves, quick-save, single-file configurable autosave), nation picker for all 266 countries, Game Menu, Alerts banner, 10-year headless balance suite |
+| App windows | Top bar: treasury (Budget), Trade, Court, Stability (Government), Armies (manpower, field armies, commanders, levies, recruitment), Diplomacy (treaties, wars, peace screen), Menu (New Game / Nation Picker, Save/Load, Autosave, Switch Country), Alerts banner. Province panel tabs: Overview (holder, supply, levy, buildings, siege/assault), Economy, People. Market panel. Map modes Q–I; 2D army counters and marching arrows |
+| Tests | GezCore Swift Testing suites (Phases 0–8 including deterministic SaveLoadTests and 10-year headless balance) + App SnapshotTests |
 
 Not started (later phases): diplomacy, war and peace, sieges, save/load,
 battles, navies, religion and culture change, plague, rebels, technology,
@@ -62,8 +64,8 @@ events, sound, menus, settings, multiplayer.
 
 ## What to do next
 
-**Phase 7: diplomacy, war and peace** (`docs/ROADMAP.md`). Ask the owner the
-design questions first, as multiple choice.
+**Phase 9: battle view (2D, real-time with pause)** (`docs/ROADMAP.md`).
+First play-test Phase 8 with the owner and address any feedback, then start Phase 9's tactical 2D battlefield and siege assault view.
 
 ## Working with Gemini (from session 6)
 
@@ -159,6 +161,7 @@ of them are reproducible (same input, byte-identical output).
 | `data/characters/` | `python3 tools/characters/chargen.py` | `characters1453.json` |
 | `data/government/` | `python3 tools/government/govgen.py` | `government1453.json` |
 | `data/military/` | `python3 tools/military/milgen.py` | `military1453.json` |
+| `data/diplomacy/` | `python3 tools/diplomacy/dipgen.py` | `diplomacy1453.json` |
 | `data/heraldry/choices.txt` | push it; the Heraldry workflow downloads and converts | `App/Resources/Heraldry/arms_<TAG>.png`, `data/heraldry/credits.json` |
 | app icon (portolan chart, drawn from the province map) | `python3 tools/icon/make_icon.py` | `App/Resources/Assets.xcassets/AppIcon.appiconset/`, `docs/icon_preview.png` |
 
@@ -203,17 +206,18 @@ Packages/GezCore/Sources/GezCore/
   Economy/           Goods, Markets, Buildings, Finance, Trade, queries
   Characters/        CharacterTable, traits, names, chronicle
   Government/        Modifier, Effects, laws, estates, privileges, reforms
-  Military/          UnitType, Regiment, ArmyTable, Military
+  Military/          UnitType, Regiment, ArmyTable, Military, Battle
+  Diplomacy/         Treaty, War, CasusBelli, WarDeclaration, PeaceTreaty, coalitions, war reparations, opinions, trust, relation slots
   Systems/           MarketSystem (+ EconomySystem/PopulationSystem),
                      BuildingSystem, CharacterSystem, VassalSystem,
-                     GovernmentSystem, ArmySystem
-  Scenario/          Scenario1453 + Economy/Character/Government/Military loaders
+                     GovernmentSystem, ArmySystem, BattleSystem, DiplomacySystem, DiplomacyAISystem
+  Scenario/          Scenario1453 + Economy/Character/Government/Military/Diplomacy loaders
   Resources/         generated JSON and ID maps
 App/Shared/
   GameModel.swift    bridge between simulation and UI; game loop; player actions
   ContentView.swift  top bar, speeds, map-mode bar, province panel, overlays
   EconomyViews.swift, BudgetView.swift, TradeView.swift, CourtView.swift,
-  GovernmentView.swift, ArmyView.swift, CountryArmsView.swift
+  GovernmentView.swift, ArmyView.swift, DiplomacyView.swift, CountryArmsView.swift
   Map/               MapCanvasView (camera, gestures, labels, icons, routes, armies),
                      Metal/ (MapShaders.metal, renderer), MapRenderer (CPU fallback)
 App/Tests/SnapshotTests.swift   renders PNGs on CI

@@ -137,17 +137,50 @@ turned into game files by `tools/mapgen/mapgen.py`.
   routes losing money 6 months running are dropped.
 - Markets map mode draws routes (gold = yours), widths by value.
 
-### Diplomacy & war (planned, Phase 7)
-- Relations, alliances, royal marriages, vassals, guarantees.
-- Claims and casus belli, war goals, war score, peace deals.
-- Armies move province to province along a graph; movement takes days.
+### Diplomacy & war
+- Opinions (-100 to +100), trust (0 to 100), relation slots (scaled by
+  Diplomacy skill & Chancellery), Aggressive Expansion decay and punitive
+  coalitions (forming at 50+ AE across 4+ outraged independent realms).
+- Treaties: alliances, guarantees, non-aggression pacts, military access,
+  truces (5–15 years scaled by peace cost), royal marriages and subjects.
+- Casus belli (Reconquest, Claim, Holy War, Subjugation, Tribute, Coalition,
+  Succession, No-CB), call-to-arms evaluations, war score (-100% to +100%
+  from battles up to ±40%, province/capital occupation, ±25% ticking war
+  goal), and multi-demand peace treaties (province cession, core return,
+  war reparations, indemnities, vassalization, annul treaties, release
+  nations).
+- Multi-day alternating Fire & Shock battles with commander Martial rolls
+  (`GameRandom`), terrain/river penalties, cavalry flanking, shattered
+  retreat/stackwipe, unfortified province occupation, and wartime/diplomatic AI.
 
-### Sieges & forts (planned, Phases 8–9)
-- Fort levels; forts exert zone of control and block movement.
-- Daily siege progress affected by artillery, fort level, terrain, supply,
-  disease and a random siege roll.
-- Player can **assault** (casualties, fast) or **starve** (slow).
-- Assaults can be fought in the battle view.
+### Sieges & forts (Phase 8)
+- **Forts & Zone of Control** (`Siege/Siege.swift`, `Systems/SiegeSystem.swift`):
+  fort levels 1–5 hold 1,000 garrison per level, recover garrison monthly
+  when unbesieged, and project hostile Zone of Control into adjacent
+  controlled provinces so enemy armies cannot bypass a fort without
+  besieging or capturing it.
+- **Sieges & storm assaults**: a siege requires at least 1,000 besiegers per
+  fort level and advances through 30-day siege phases rolling `GameRandom`
+  modified by artillery/bombard ratio, commander Martial, fort level,
+  and breaches (Supplies Holding, Food/Water Shortage, Defender Desertion,
+  Disease Outbreak, Wall Breach, Surrender). Once walls are breached, the
+  besieger may order a high-casualty **Storm Assault** via the province
+  panel; Phase 9 adds interactive 2D battlefield assaults.
+
+### Save, load & first playable game (Phase 8)
+- **Deterministic saves** (`Core/SaveGame.swift`): versioned JSON snapshots
+  (`SaveSnapshot`, `SaveArchive`) capture full mutable `World`, `GameDate`,
+  `ticksRun`, and exact `GameRandom` state for byte-exact replay after
+  reloading.
+- **Local storage & autosave**: named saves, Quick Save, and a single
+  rotating autosave file stored locally in Application Support, with
+  player-configurable autosave frequency (`monthly`, `quarterly`,
+  `biannual`, `yearly`, or `never`).
+- **First playable UI** (`App/Shared/GameMenuView.swift`): nation picker
+  across all 266 countries (plus featured 1453 powers), New Game / Load
+  Game / Save / Switch Country menu, active Alerts banner (wars, active
+  sieges, disloyal estates/vassals, loans due, low stability), and a
+  10-year headless stability/balance test.
 
 ### Battles (planned, Phase 9)
 - Triggered when hostile armies end up in the same province.

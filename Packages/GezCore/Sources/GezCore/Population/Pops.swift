@@ -1,4 +1,4 @@
-public struct CultureID: Hashable, Sendable {
+public struct CultureID: Hashable, Sendable, Codable {
     public let index: Int
     public init(_ index: Int) { self.index = index }
 }
@@ -33,7 +33,7 @@ public struct CultureTable: Sendable {
     }
 }
 
-public enum SocialClass: String, CaseIterable, Sendable {
+public enum SocialClass: String, CaseIterable, Sendable, Codable {
     case nobles, clergy, burghers, peasants, slaves
 
     public var displayName: String {
@@ -48,7 +48,7 @@ public enum SocialClass: String, CaseIterable, Sendable {
 }
 
 /// A Sufi brotherhood's presence in a province, strength 0 to 1.
-public struct SufiPresence: Hashable, Sendable {
+public struct SufiPresence: Hashable, Sendable, Codable {
     public var order: SufiOrder
     public var strength: Double
     public init(order: SufiOrder, strength: Double) {

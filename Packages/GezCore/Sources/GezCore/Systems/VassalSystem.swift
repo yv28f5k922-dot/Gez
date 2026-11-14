@@ -201,9 +201,20 @@ public enum VassalSystem {
             world.people.characters.favour[i] += world.people.characters.favour[i] > 0 ? -1 : 1
         }
         // Moods: who refuses taxes, who plots.
+        var vassalCountsByCountry: [[CharacterID: Int]] = Array(repeating: [:], count: world.countries.count)
+        for p in 0..<world.provinces.count {
+            if let c = world.provinces.owner[p], let h = world.provinces.holder[p] {
+                vassalCountsByCountry[c.index][h, default: 0] += 1
+            }
+        }
         var refusing = Set<CharacterID>()
         for c in world.countries.ids {
-            for v in vassals(world, of: c) {
+            let counts = vassalCountsByCountry[c.index]
+            guard !counts.isEmpty else { continue }
+            let countryVassals = counts.keys.sorted {
+                counts[$0]! != counts[$1]! ? counts[$0]! > counts[$1]! : $0.index < $1.index
+            }
+            for v in countryVassals {
                 let s = stance(world, v, c)
                 if s == .refusing || s == .plotting {
                     refusing.insert(v)
