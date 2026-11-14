@@ -1,0 +1,13 @@
+Copyright (c) 2026 the author of Gez. All rights reserved.
+
+Gez, including its source code, game data, map, text, art and design, is
+proprietary. The source is visible on GitHub only so that its development
+can be followed. No licence is granted: you may not copy, modify, publish,
+distribute, sublicense or sell any part of it, in whole or in part, without
+the prior written permission of the author.
+
+Third-party material inside this repository stays under its own licence
+and is credited in docs/CREDITS.md. In particular, the coats of arms in
+App/Resources/Heraldry/ come from Wikimedia Commons under the licences
+listed in data/heraldry/credits.json (public domain, CC0, CC BY or
+CC BY-SA), and those licences, not this notice, apply to those images.

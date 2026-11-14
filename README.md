@@ -81,3 +81,10 @@ apps and renders snapshots on every push.
 - [docs/DESIGN.md](docs/DESIGN.md): how each system works
 - [docs/HISTORY_NOTES.md](docs/HISTORY_NOTES.md): historical judgment calls
 - [docs/CREDITS.md](docs/CREDITS.md): outside data and art
+
+## Copyright
+
+© 2026 the author of Gez. All rights reserved. This repository is public
+so its development can be followed, but no licence is granted to copy,
+modify or redistribute it. See [LICENSE](LICENSE); third-party material
+is credited in [docs/CREDITS.md](docs/CREDITS.md).
