@@ -1,0 +1,226 @@
+{
+  "treaties": [
+    {
+      "firstTag": "FRA",
+      "secondTag": "SCO",
+      "type": "alliance",
+      "expiry": null,
+      "note": "Auld Alliance (Franco-Scottish mutual defence)"
+    },
+    {
+      "firstTag": "FRA",
+      "secondTag": "CAS",
+      "type": "alliance",
+      "expiry": null,
+      "note": "Franco-Castilian Alliance against England"
+    },
+    {
+      "firstTag": "ENG",
+      "secondTag": "POR",
+      "type": "alliance",
+      "expiry": null,
+      "note": "Anglo-Portuguese Alliance (Treaty of Windsor)"
+    },
+    {
+      "firstTag": "MLO",
+      "secondTag": "FLO",
+      "type": "alliance",
+      "expiry": null,
+      "note": "Sforza-Medici Alliance in the Lombardy War"
+    },
+    {
+      "firstTag": "VEN",
+      "secondTag": "NAP",
+      "type": "alliance",
+      "expiry": null,
+      "note": "Venetian-Neapolitan Alliance against Milan"
+    },
+    {
+      "firstTag": "VEN",
+      "secondTag": "MFA",
+      "type": "alliance",
+      "expiry": null,
+      "note": "Venetian Alliance with Montferrat"
+    },
+    {
+      "firstTag": "POL",
+      "secondTag": "LIT",
+      "type": "alliance",
+      "expiry": null,
+      "note": "Dynastic union and mutual defence under Casimir IV"
+    },
+    {
+      "firstTag": "TEU",
+      "secondTag": "LVO",
+      "type": "alliance",
+      "expiry": null,
+      "note": "Confederation of Prussian and Livonian Teutonic Orders"
+    },
+    {
+      "firstTag": "TUR",
+      "secondTag": "HUN",
+      "type": "truce",
+      "expiry": "1454-06-01",
+      "note": "Truce of Adrianople (1451, 3-year truce expiring 1454)"
+    },
+    {
+      "firstTag": "TUR",
+      "secondTag": "VEN",
+      "type": "truce",
+      "expiry": "1454-04-18",
+      "note": "Peace of 1451 renewed after the fall of Constantinople"
+    },
+    {
+      "firstTag": "TUR",
+      "secondTag": "GEN",
+      "type": "truce",
+      "expiry": "1455-01-01",
+      "note": "Commercial treaty and truce after the capitulation of Galata"
+    },
+    {
+      "firstTag": "POL",
+      "secondTag": "TEU",
+      "type": "truce",
+      "expiry": "1454-02-04",
+      "note": "Treaty of Melno (broken Feb 1454 by Prussian Confederation revolt)"
+    },
+    {
+      "firstTag": "CAS",
+      "secondTag": "POR",
+      "type": "truce",
+      "expiry": "1455-01-01",
+      "note": "Truce of Medina del Campo"
+    },
+    {
+      "firstTag": "HUN",
+      "secondTag": "JIS",
+      "type": "truce",
+      "expiry": "1454-01-01",
+      "note": "Truce of Kassa between John Hunyadi and Jan Jiskra"
+    },
+    {
+      "firstTag": "TUR",
+      "secondTag": "SER",
+      "type": "guarantee",
+      "expiry": null,
+      "note": "Ottoman protection over vassal Despotate of Serbia"
+    },
+    {
+      "firstTag": "MAM",
+      "secondTag": "HEJ",
+      "type": "guarantee",
+      "expiry": null,
+      "note": "Mamluk protection over Sharifate of Mecca"
+    },
+    {
+      "firstTag": "FRA",
+      "secondTag": "BRI",
+      "type": "guarantee",
+      "expiry": null,
+      "note": "Crown protection over Duchy of Brittany"
+    },
+    {
+      "firstTag": "FRA",
+      "secondTag": "FOI",
+      "type": "guarantee",
+      "expiry": null,
+      "note": "Crown protection over County of Foix"
+    },
+    {
+      "firstTag": "MEW",
+      "secondTag": "MAR",
+      "type": "non_aggression",
+      "expiry": null,
+      "note": "Treaty of 1453 between Rana Kumbha and Rao Jodha settling border"
+    },
+    {
+      "firstTag": "HAB",
+      "secondTag": "HUN",
+      "type": "non_aggression",
+      "expiry": null,
+      "note": "Habsburg family dynastic peace under Ladislaus the Posthumous"
+    },
+    {
+      "firstTag": "TUR",
+      "secondTag": "RAG",
+      "type": "military_access",
+      "expiry": null,
+      "note": "Ottoman transit access through Ragusa"
+    },
+    {
+      "firstTag": "HAB",
+      "secondTag": "BOH",
+      "type": "military_access",
+      "expiry": null,
+      "note": "Dynastic transit access between Habsburg lands"
+    }
+  ],
+  "wars": [
+    {
+      "id": "hundred_years_war",
+      "name": "Hundred Years' War",
+      "startDate": "1337-05-24",
+      "casusBelli": "reconquest",
+      "warGoalType": "conquer_province",
+      "warGoalTarget": "Bordeaux",
+      "attackers": [
+        "FRA",
+        "BRI",
+        "FOI",
+        "SCO"
+      ],
+      "defenders": [
+        "ENG"
+      ],
+      "note": "Final campaign in Gascony leading to Castillon (July 1453)"
+    },
+    {
+      "id": "lombardy_war",
+      "name": "War of the Lombardy Succession",
+      "startDate": "1452-06-01",
+      "casusBelli": "claim",
+      "warGoalType": "superiority",
+      "warGoalTarget": null,
+      "attackers": [
+        "VEN",
+        "NAP",
+        "MFA"
+      ],
+      "defenders": [
+        "MLO",
+        "FLO"
+      ],
+      "note": "Venetian-Neapolitan alliance against Francesco Sforza until Peace of Lodi (1454)"
+    },
+    {
+      "id": "albanian_ottoman_war",
+      "name": "Albanian-Ottoman War",
+      "startDate": "1443-11-28",
+      "casusBelli": "subjugation",
+      "warGoalType": "conquer_province",
+      "warGoalTarget": "Kruje",
+      "attackers": [
+        "TUR"
+      ],
+      "defenders": [
+        "ALB"
+      ],
+      "note": "Skanderbeg's revolt; he defeated Ibrahim Pasha at Polog in April 1453"
+    },
+    {
+      "id": "delhi_jaunpur_war",
+      "name": "Delhi-Jaunpur War",
+      "startDate": "1452-01-01",
+      "casusBelli": "claim",
+      "warGoalType": "defend_capital",
+      "warGoalTarget": "Delhi",
+      "attackers": [
+        "JNP"
+      ],
+      "defenders": [
+        "DEL"
+      ],
+      "note": "Mahmud Shah Sharqi of Jaunpur besieged Delhi in 1452; the wars with Bahlul Lodi ran until 1479. Start date approximate?"
+    }
+  ]
+}

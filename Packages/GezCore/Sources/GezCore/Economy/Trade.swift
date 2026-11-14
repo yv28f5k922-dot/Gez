@@ -2,7 +2,7 @@
 /// in another, along a path of linked markets. Routes are drawn by players
 /// (and the AI); the 1453 routes come from `data/economy/routes_1453.txt`.
 
-public struct TradeRoute: Sendable, Equatable {
+public struct TradeRoute: Sendable, Equatable, Codable {
     public var owner: CountryID
     public var good: GoodID
     public var from: MarketID
@@ -28,7 +28,7 @@ public struct TradeRoute: Sendable, Equatable {
 }
 
 /// What a market's owner does with traffic passing through it.
-public enum TollPolicy: String, CaseIterable, Sendable {
+public enum TollPolicy: String, CaseIterable, Sendable, Codable {
     case open, high, closed
 
     public var displayName: String {

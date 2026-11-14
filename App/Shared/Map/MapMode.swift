@@ -2,13 +2,14 @@ import GezCore
 import SwiftUI
 
 enum MapMode: String, CaseIterable, Identifiable {
-    case political, states, terrain, religion, culture, development, goods, markets
+    case political, diplomatic, states, terrain, religion, culture, development, goods, markets
 
     var id: String { rawValue }
 
     var title: String {
         switch self {
         case .political: return "Political"
+        case .diplomatic: return "Diplomatic"
         case .states: return "States"
         case .terrain: return "Terrain"
         case .religion: return "Religion"
@@ -22,6 +23,7 @@ enum MapMode: String, CaseIterable, Identifiable {
     var systemImage: String {
         switch self {
         case .political: return "flag"
+        case .diplomatic: return "globe.europe.africa"
         case .states: return "square.grid.3x3"
         case .terrain: return "mountain.2"
         case .religion: return "building.columns"
@@ -35,6 +37,7 @@ enum MapMode: String, CaseIterable, Identifiable {
     var shortcut: KeyEquivalent {
         switch self {
         case .political: return "q"
+        case .diplomatic: return "o"
         case .states: return "w"
         case .terrain: return "e"
         case .religion: return "r"
@@ -63,23 +66,51 @@ enum MapPalette {
         pack(rgb.r, rgb.g, rgb.b)
     }
 
-    static func colors(for mode: MapMode, world: World) -> [UInt32] {
+    static func colors(for mode: MapMode, world: World, player: CountryID? = nil) -> [UInt32] {
         let p = world.provinces
         var out = [UInt32](repeating: unowned, count: p.count + 2)
         out[0] = water
         out[1] = wasteland
         for i in 0..<p.count {
-            out[i + 2] = provinceColor(i, mode: mode, world: world)
+            out[i + 2] = provinceColor(i, mode: mode, world: world, player: player)
         }
         return out
     }
 
-    private static func provinceColor(_ i: Int, mode: MapMode, world: World) -> UInt32 {
+    private static func provinceColor(_ i: Int, mode: MapMode, world: World, player: CountryID?) -> UInt32 {
         let p = world.provinces
         switch mode {
         case .political:
             guard let owner = p.owner[i] else { return unowned }
             return pack(world.countries.color[owner.index])
+        case .diplomatic:
+            guard let owner = p.owner[i] else { return unowned }
+            let ref = player ?? world.humanCountries.first ?? world.countries.ids.first
+            guard let ref else { return pack(world.countries.color[owner.index]) }
+            if owner == ref {
+                if let occ = p.occupiedBy[i], world.diplomacy.isAtWar(ref, occ) {
+                    return pack(220, 95, 75) // occupied player province
+                }
+                return pack(58, 168, 86) // player green
+            }
+            if world.diplomacy.isAtWar(ref, owner) {
+                if p.occupiedBy[i] == ref {
+                    return pack(150, 210, 120) // occupied by player
+                }
+                return pack(205, 56, 56) // enemy red
+            }
+            if world.diplomacy.areAllies(ref, owner)
+                || world.countries.overlord[owner.index] == ref
+                || world.countries.overlord[ref.index] == owner {
+                return pack(72, 130, 205) // ally or subject blue
+            }
+            if world.diplomacy.hasTruce(ref, owner) {
+                return pack(98, 192, 206) // truce cyan
+            }
+            if p.cores[i].contains(ref) || p.claims[i].contains(ref) {
+                return pack(222, 188, 66) // core or claim amber
+            }
+            return pack(182, 174, 154) // neutral beige
         case .states:
             let s = p.state[i].index
             let region = world.states.region[s].index

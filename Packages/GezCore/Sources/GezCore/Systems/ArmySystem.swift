@@ -633,6 +633,28 @@ public enum ArmySystem {
         return max(1.0, (rawDays * 10.0).rounded() / 10.0)
     }
 
+    /// Labels each province with the id of the land mass it belongs to
+    /// (provinces connected through `neighbors`). Two provinces with different
+    /// labels cannot be reached from each other by marching, so callers can
+    /// skip the full-map `findPath` search that would fail anyway.
+    public static func landComponents(_ world: World) -> [Int] {
+        let P = world.provinces.count
+        var label = Array(repeating: -1, count: P)
+        var next = 0
+        for start in 0..<P where label[start] == -1 {
+            label[start] = next
+            var stack = [start]
+            while let u = stack.popLast() {
+                for nb in world.provinces.neighbors[u] where label[nb.index] == -1 {
+                    label[nb.index] = next
+                    stack.append(nb.index)
+                }
+            }
+            next += 1
+        }
+        return label
+    }
+
     /// Finds the fastest path of adjacent provinces from `start` to `goal`.
     /// Returns the sequence of hops after `start` (ending with `goal`), or
     /// empty if `start == goal` or unreachable.
@@ -688,6 +710,15 @@ public enum ArmySystem {
             return top
         }
 
+        let armyOwner: CountryID? = army.flatMap { aid in
+            let idx = Int(aid.rawValue)
+            guard idx >= 0, idx < world.military.armies.count,
+                  world.military.armies.alive[idx],
+                  !world.military.armies.isRebel[idx],
+                  !world.military.armies.isRetreating[idx] else { return nil }
+            return world.military.armies.owner[idx]
+        }
+
         while let (d, u) = pop() {
             if visited[u] { continue }
             visited[u] = true
@@ -696,6 +727,10 @@ public enum ArmySystem {
             for nb in world.provinces.neighbors[u] {
                 let v = nb.index
                 if visited[v] { continue }
+                if let mover = armyOwner,
+                   !SiegeSystem.canStep(world, for: mover, from: uPid, to: nb, pathStart: start) {
+                    continue
+                }
                 let nd = d + stepDays(world, from: uPid, to: nb, army: army)
                 if nd < dist[v] {
                     dist[v] = nd
@@ -740,21 +775,42 @@ public enum ArmySystem {
     public static func runDaily(_ world: inout World, date: GameDate, random: inout GameRandom) {
         var arrivedProvinces = Set<ProvinceID>()
         for i in 0..<world.military.armies.count where world.military.armies.alive[i] {
-            guard let nextHop = world.military.armies.path[i].first else { continue }
             let aid = ArmyID(Int32(i))
+            if world.military.isInBattle(aid) { continue }
+            guard let nextHop = world.military.armies.path[i].first else { continue }
             if world.military.armies.moveStepDays[i] <= 0 {
                 let cur = world.military.armies.province[i]
                 world.military.armies.moveStepDays[i] = stepDays(world, from: cur, to: nextHop, army: aid)
             }
-            world.military.armies.moveProgressDays[i] += 1.0
+            let pace = world.military.armies.isRetreating[i] ? 1.5 : 1.0
+            world.military.armies.moveProgressDays[i] += pace
             if world.military.armies.moveProgressDays[i] >= world.military.armies.moveStepDays[i] {
+                let cur = world.military.armies.province[i]
+                world.military.armies.previousProvince[i] = cur
                 world.military.armies.province[i] = nextHop
                 world.military.armies.path[i].removeFirst()
                 world.military.armies.moveProgressDays[i] = 0
-                if let following = world.military.armies.path[i].first {
+
+                // Check if hostile forces block further advance in `nextHop`.
+                let owner = world.military.armies.owner[i]
+                let hitHostile = !world.military.armies.isRetreating[i]
+                    && !world.military.armies.isRebel[i]
+                    && world.military.armies(in: nextHop).contains { other in
+                        let j = Int(other.rawValue)
+                        return !world.military.armies.isRebel[j]
+                            && !world.military.armies.isRetreating[j]
+                            && world.diplomacy.isAtWar(owner, world.military.armies.owner[j])
+                    }
+                if hitHostile {
+                    world.military.armies.path[i].removeAll()
+                    world.military.armies.moveStepDays[i] = 0
+                } else if let following = world.military.armies.path[i].first {
                     world.military.armies.moveStepDays[i] = stepDays(world, from: nextHop, to: following, army: aid)
                 } else {
                     world.military.armies.moveStepDays[i] = 0
+                    if world.military.armies.isRetreating[i] {
+                        world.military.armies.isRetreating[i] = false
+                    }
                 }
                 arrivedProvinces.insert(nextHop)
             }
@@ -897,11 +953,13 @@ public enum ArmySystem {
             } else {
                 // Within supply limit: reinforce depleted regiments in friendly territory & recover morale.
                 let provOwner = world.provinces.owner[pid.index]
+                let isOccupied = world.provinces.occupiedBy[pid.index] != nil
                 for aid in aids {
                     let i = Int(aid.rawValue)
                     guard world.military.armies.alive[i] else { continue }
+                    if world.military.isInBattle(aid) { continue }
                     let owner = world.military.armies.owner[i]
-                    let isFriendly = (provOwner == owner) && !world.military.armies.isRebel[i]
+                    let isFriendly = (provOwner == owner && !isOccupied) && !world.military.armies.isRebel[i]
                     for rIdx in world.military.armies.regiments[i].indices {
                         var reg = world.military.armies.regiments[i][rIdx]
                         let u = world.military.unit(reg.type)
@@ -948,7 +1006,8 @@ public enum ArmySystem {
 
         // 4. Great vassal open revolts & clashes.
         checkVassalRevolts(&world, date: date, random: &random)
-        for p in world.provinces.ids {
+        let armyIndex = world.military.armyIndexByProvince(provinceCount: world.provinces.count)
+        for p in world.provinces.ids where armyIndex[p.index].count >= 2 {
             resolveRebelClash(&world, in: p, date: date, random: &random)
         }
     }
@@ -1167,7 +1226,7 @@ public enum ArmySystem {
             }
 
             // 3. At peace with no revolts: disband raised levies so pops work the land.
-            if world.military.totalMen(of: c, origin: .levy) > 0 {
+            if world.diplomacy.activeWars(for: c).isEmpty && world.military.totalMen(of: c, origin: .levy) > 0 {
                 disbandLevies(&world, of: c)
             }
 

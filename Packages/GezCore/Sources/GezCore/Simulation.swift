@@ -17,10 +17,24 @@ public final class Simulation {
         self.random = GameRandom(seed: seed)
     }
 
+    /// Restores a previously saved simulation with its exact RNG stream and tick counter.
+    public init(restoringWorld world: World, date: GameDate, random: GameRandom, ticksRun: Int) {
+        self.world = world
+        self.date = date
+        self.random = random
+        self.ticksRun = ticksRun
+    }
+
     public func advance(days: Int) {
         for _ in 0..<max(0, days) {
             tick()
         }
+    }
+
+    /// Launches a storm assault on a breached fort using the simulation's RNG stream.
+    @discardableResult
+    public func assaultFort(in province: ProvinceID, attacker: CountryID) -> AssaultResult {
+        SiegeSystem.assaultFort(&world, province: province, attacker: attacker, random: &random)
     }
 
     public func tick() {
@@ -29,12 +43,19 @@ public final class Simulation {
 
         // Daily systems go here.
         ArmySystem.runDaily(&world, date: date, random: &random)
+        BattleSystem.runDaily(&world, date: date, random: &random)
+        SiegeSystem.runDaily(&world, date: date, random: &random)
+        DiplomacySystem.runDaily(&world, date: date)
+        if date.day % 7 == 1 {
+            DiplomacyAISystem.runWeeklyMilitary(&world, date: date)
+        }
 
         if date.isFirstOfMonth {
             TradeSystem.refreshPaths(&world)
             EconomySystem.runMonthly(&world)
             BuildingSystem.runMonthly(&world)
             ArmySystem.runMonthly(&world, date: date, random: &random)
+            SiegeSystem.runMonthly(&world)
             FinanceSystem.runMonthly(&world)
             FinanceSystem.runAI(&world)
             TradeSystem.runAI(&world, month: date.month)
@@ -44,6 +65,8 @@ public final class Simulation {
             CharacterSystem.runMonthly(&world, date: date, random: &random)
             VassalSystem.runMonthly(&world, date: date, random: &random)
             GovernmentSystem.runMonthly(&world, date: date, random: &random)
+            DiplomacySystem.runMonthly(&world, date: date)
+            DiplomacyAISystem.runMonthly(&world, date: date, random: &random)
         }
 
         if date.isFirstOfYear {

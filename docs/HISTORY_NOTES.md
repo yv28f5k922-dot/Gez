@@ -418,3 +418,16 @@ Review fixes (Claude, session 6), and points still open for the owner:
   Rouen, though by spring 1453 he was preparing the Guyenne campaign.
 - Open: army sizes are game-scaled; Mehmed's host at Constantinople was
   far larger than 16,500 historically.
+
+## Treaties and wars on 30 May 1453 (Phase 7 review)
+
+- Added by Claude's review: the **Albanian–Ottoman war** (Skanderbeg beat
+  Ibrahim Pasha at Polog in April 1453) and the **Delhi–Jaunpur war**
+  (Mahmud Shah Sharqi besieged Delhi in 1452; start date approximate?).
+- Scotland as an active co-belligerent of France in the Hundred Years' War
+  in May 1453? The Auld Alliance stood, but Anglo-Scottish truces were in
+  force at times.
+- Ottoman–Genoese truce: Galata surrendered on 1 June 1453, two days after
+  the game starts?
+- Possibly missing: Malwa–Mewar and Bahmani–Vijayanagara hostilities in the
+  early 1450s?

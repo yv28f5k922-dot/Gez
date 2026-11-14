@@ -2,13 +2,24 @@ name: CI
 
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      only:
+        description: "Run only one job (profile = time each system of the daily tick)"
+        type: choice
+        options: [all, profile]
+        default: all
+  schedule:
+    - cron: '17 11 * * *'
 
 jobs:
   core-tests:
     name: Simulation tests
+    if: github.event_name != 'schedule' && inputs.only != 'profile'
     runs-on: macos-15
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v5
       - name: Swift version
@@ -20,17 +31,35 @@ jobs:
     # Same tests on Linux: runs even when Mac runners are scarce, and proves
     # the simulation has no Apple-only code (a Windows port depends on it).
     name: Simulation tests (Linux)
+    if: github.event_name != 'schedule' && inputs.only != 'profile'
     runs-on: ubuntu-latest
     container: swift:6.0
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v5
       - name: Test GezCore
         run: swift test --package-path Packages/GezCore
 
+  long-tests-linux:
+    # The decade-long simulations (skipped in the jobs above). Runs daily, on
+    # every push to main, and by hand, so pull requests stay fast.
+    name: Long simulation tests (Linux)
+    if: github.event_name != 'pull_request' && inputs.only != 'profile'
+    runs-on: ubuntu-latest
+    container: swift:6.0
+    timeout-minutes: 150
+    env:
+      GEZ_LONG_TESTS: "1"
+    steps:
+      - uses: actions/checkout@v5
+      - name: Long simulations
+        run: swift test --package-path Packages/GezCore --filter 'testTenYearsStaysBounded|testLifeGoesOn|testVassalLinesGoOn|testTwentyYearsStayInBounds'
+
   app-build:
     name: Build Mac and iPad apps
     # Intel Mac runners: arm64 ones are often queued for a long time. The
     # snapshot job below still needs arm64 for Metal.
+    if: github.event_name != 'schedule' && inputs.only != 'profile'
     runs-on: macos-15-intel
     steps:
       - uses: actions/checkout@v5
@@ -51,6 +80,7 @@ jobs:
 
   snapshots:
     name: Render map snapshots
+    if: github.event_name != 'schedule' && inputs.only != 'profile'
     runs-on: macos-15
     permissions:
       contents: write
@@ -85,3 +115,20 @@ jobs:
           git add -A
           git -c user.name="github-actions[bot]" -c user.email="41898283+github-actions[bot]@users.noreply.github.com" commit -q -m "Snapshots for ${GITHUB_SHA}"
           git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" ci-snapshots
+
+  profile:
+    # Times each system of the daily tick (ProfileTests). By hand only:
+    # gh workflow run ci.yml --ref <branch> -f only=profile
+    name: Profile the daily tick (Linux)
+    if: github.event_name == 'workflow_dispatch' && inputs.only == 'profile'
+    runs-on: ubuntu-latest
+    container: swift:6.0
+    timeout-minutes: 60
+    env:
+      GEZ_PROFILE: "1"
+      GEZ_PROFILE_DAYS: "400"
+      GEZ_PROFILE_SEED: "7"
+    steps:
+      - uses: actions/checkout@v5
+      - name: Profile
+        run: swift test --package-path Packages/GezCore --filter testSystemTimings 2>&1 | grep -E "PROFILE|passed|failed|error"
