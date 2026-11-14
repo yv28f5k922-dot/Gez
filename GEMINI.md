@@ -12,6 +12,10 @@ make before it reaches `main`.
 
 ## How to work
 
+- **Always start from the latest `main`.** Before each new branch run
+  `git fetch origin && git checkout -b gemini/<topic> origin/main`, so
+  changes made since your last session (docs, roadmap decisions) are
+  kept. Never revert lines you did not mean to change.
 - **Never push to `main`.** Make a branch named `gemini/<short-topic>`
   (for example `gemini/phase6-armies`), commit there, push it and open a
   pull request into `main`. Claude reviews and merges it.
