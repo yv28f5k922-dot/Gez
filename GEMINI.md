@@ -16,6 +16,12 @@ make before it reaches `main`.
   `git fetch origin && git checkout -b gemini/<topic> origin/main`, so
   changes made since your last session (docs, roadmap decisions) are
   kept. Never revert lines you did not mean to change.
+- **Testing while you work (saves the owner's usage limit).** Locally run
+  only the tests for what you changed, e.g. `swift test --filter Diplomacy`.
+  Do not run the full suite locally (it includes 10-30 year simulations
+  and takes 15-20 minutes). Push the branch and let GitHub Actions run
+  everything once. Never poll a running test or CI job repeatedly: wait
+  in one step, or stop and report.
 - **Never push to `main`.** Make a branch named `gemini/<short-topic>`
   (for example `gemini/phase6-armies`), commit there, push it and open a
   pull request into `main`. Claude reviews and merges it.
