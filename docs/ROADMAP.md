@@ -41,7 +41,7 @@ via the `ci-snapshots` branch, and ask the owner multiple-choice questions
 | 26 | Saves | **Local saves only** (no iCloud) |
 | 27 | Map size | **Split India first** (about 95 to about 250 provinces), then other thin areas if needed |
 | 28 | Audio | **Sound effects and ambience only, no music or instruments** |
-| 29 | Multiplayer | **Game Center first; our own relay server only if Windows happens.** Host chooses per game what happens when someone fights a battle manually |
+| 29 | Multiplayer | **Epic Online Services (EOS) with join codes** (changed session 6, replacing Game Center); own free server as backup. Host chooses per game what happens when someone fights a battle manually |
 | 30 | Windows | **Decide later**; keep the simulation portable |
 | + | Help | **Tooltips only** (no guided tutorial) |
 | + | Chronicle | **History book, graphs and timelapse near the end** |
@@ -222,11 +222,25 @@ History book of the game (wars, rulers, borders), graphs, and a
 world-history timelapse.
 
 ### Phase 19: Multiplayer
-Game Center: invites, host, lockstep sync of player orders (the
-simulation is deterministic). Host picks per game what happens when a
-player fights a battle manually (pause with a time limit, auto-resolve
-only, or watch). Add our own relay server only if a Windows version
-happens.
+Owner's choice (session 6): **Epic Online Services (EOS)**, not Game
+Center. Game Center only works for App Store apps and needs Apple's
+$99/year account; EOS is free, works with the free website download, and
+covers Mac, iPad and a possible Windows version.
+1. **EOS peer-to-peer**: players sign in anonymously per device (EOS
+   Connect device ID, no Epic account); EOS does NAT punching and falls
+   back to Epic's relays. Lockstep sync of player orders (the simulation
+   is deterministic).
+2. **Join codes** instead of friend lists: the host opens an EOS lobby,
+   Gez shows a short code (like `KZ7-QM4`), friends type it to join.
+3. Host picks per game what happens when a player fights a battle
+   manually (pause with a time limit, auto-resolve only, or watch).
+4. Owner's one-time setup: free Epic developer account, a "Gez" product,
+   download the EOS SDK, store the product IDs as GitHub secrets (never in
+   chat). The website needs a short privacy policy mentioning Epic.
+5. **Backups**: if Epic's terms change, our own small relay on a free host
+   (Cloudflare Durable Objects first; Oracle or Google Cloud free VMs);
+   free local Wi-Fi play between nearby devices as a bonus.
+Note: the iPad version still needs Apple's paid account to install at all.
 
 ### Phase 20: Interface and art (the EU look)
 Decided by the owner in session 6: the very last phase, once everything
