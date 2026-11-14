@@ -1,30 +1,30 @@
-public struct CountryID: Hashable, Sendable {
+public struct CountryID: Hashable, Sendable, Codable {
     public let index: Int
     public init(_ index: Int) { self.index = index }
 }
 
-public struct ProvinceID: Hashable, Sendable {
+public struct ProvinceID: Hashable, Sendable, Codable {
     public let index: Int
     public init(_ index: Int) { self.index = index }
 }
 
-public struct SeaZoneID: Hashable, Sendable {
+public struct SeaZoneID: Hashable, Sendable, Codable {
     public let index: Int
     public init(_ index: Int) { self.index = index }
 }
 
-public struct StateID: Hashable, Sendable {
+public struct StateID: Hashable, Sendable, Codable {
     public let index: Int
     public init(_ index: Int) { self.index = index }
 }
 
-public struct RegionID: Hashable, Sendable {
+public struct RegionID: Hashable, Sendable, Codable {
     public let index: Int
     public init(_ index: Int) { self.index = index }
 }
 
 /// A pixel position on the province map image.
-public struct MapPoint: Hashable, Sendable {
+public struct MapPoint: Hashable, Sendable, Codable {
     public var x: Int
     public var y: Int
     public init(x: Int, y: Int) {
@@ -34,7 +34,7 @@ public struct MapPoint: Hashable, Sendable {
 }
 
 /// How the province map image relates to the globe.
-public struct MapInfo: Hashable, Sendable {
+public struct MapInfo: Hashable, Sendable, Codable {
     public var width: Int
     public var height: Int
     public var pixelsPerDegree: Double
@@ -68,7 +68,7 @@ public struct MapPolyline: Sendable {
 }
 
 /// An unordered pair of provinces.
-public struct ProvincePair: Hashable, Sendable {
+public struct ProvincePair: Hashable, Sendable, Codable {
     public let low: Int
     public let high: Int
     public init(_ a: ProvinceID, _ b: ProvinceID) {
@@ -77,7 +77,7 @@ public struct ProvincePair: Hashable, Sendable {
     }
 }
 
-public struct RGB: Hashable, Sendable {
+public struct RGB: Hashable, Sendable, Codable {
     public var r: UInt8
     public var g: UInt8
     public var b: UInt8
@@ -88,7 +88,7 @@ public struct RGB: Hashable, Sendable {
     }
 }
 
-public struct GeoPoint: Hashable, Sendable {
+public struct GeoPoint: Hashable, Sendable, Codable {
     public var latitude: Double
     public var longitude: Double
     public init(latitude: Double, longitude: Double) {
@@ -98,7 +98,7 @@ public struct GeoPoint: Hashable, Sendable {
 }
 
 
-public enum GovernmentType: String, CaseIterable, Sendable {
+public enum GovernmentType: String, CaseIterable, Sendable, Codable {
     case monarchy, republic, theocracy, steppeHorde
     /// Loose tribal confederations with no single state (Baloch, Najdi,
     /// Pashtun tribes...). Weak central control.
@@ -116,7 +116,7 @@ public enum GovernmentType: String, CaseIterable, Sendable {
 }
 
 /// How a subject country is bound to its overlord.
-public enum SubjectType: String, CaseIterable, Sendable {
+public enum SubjectType: String, CaseIterable, Sendable, Codable {
     /// Ruled from above but keeps its own ruler.
     case vassal
     /// Pays tribute, otherwise runs its own affairs.
@@ -133,6 +133,6 @@ public enum SubjectType: String, CaseIterable, Sendable {
     }
 }
 
-public enum Terrain: String, CaseIterable, Sendable {
+public enum Terrain: String, CaseIterable, Sendable, Codable {
     case farmland, plains, hills, mountains, forest, marsh, desert, steppe
 }

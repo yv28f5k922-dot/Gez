@@ -1,6 +1,6 @@
 /// Broad groups of related religions. Religions in the same family tolerate
 /// each other more easily and can convert more easily.
-public enum ReligionFamily: String, CaseIterable, Sendable {
+public enum ReligionFamily: String, CaseIterable, Sendable, Codable {
     case christian, muslim, dharmic, iranian, jewish, pagan
 
     public var displayName: String {
@@ -15,7 +15,7 @@ public enum ReligionFamily: String, CaseIterable, Sendable {
     }
 }
 
-public enum Religion: String, CaseIterable, Sendable {
+public enum Religion: String, CaseIterable, Sendable, Codable {
     // Christian
     case catholic, hussite, orthodox, bosnian, coptic, ethiopian, armenian, syriac, nestorian
     // Muslim
@@ -106,7 +106,7 @@ public enum Religion: String, CaseIterable, Sendable {
 
 /// A school or tradition inside one religion: Sunni schools of law, Hindu
 /// traditions. Optional on each group of people.
-public enum Sect: String, CaseIterable, Sendable {
+public enum Sect: String, CaseIterable, Sendable, Codable {
     case hanafi, maliki, shafii, hanbali
     case vaishnava, shaiva, shakta, lingayat
 
@@ -133,7 +133,7 @@ public enum Sect: String, CaseIterable, Sendable {
 
 /// Sufi brotherhoods. They are present in provinces with a strength from
 /// 0 to 1 and can carry political weight (the Safaviyya will turn militant).
-public enum SufiOrder: String, CaseIterable, Sendable {
+public enum SufiOrder: String, CaseIterable, Sendable, Codable {
     case safaviyya, naqshbandi, bektashi, hurufi, mevlevi, qadiri, chishti, kubrawi, shadhili
 
     public var displayName: String {

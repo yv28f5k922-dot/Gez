@@ -14,7 +14,7 @@ public enum BattlePhase: String, Sendable, Codable, CaseIterable {
 }
 
 /// An ongoing multi-day field battle taking place in a province.
-public struct Battle: Sendable, Identifiable, Equatable {
+public struct Battle: Sendable, Identifiable, Equatable, Codable {
     public var id: String
     public var province: ProvinceID
     public var startDate: GameDate
@@ -78,7 +78,7 @@ public struct Battle: Sendable, Identifiable, Equatable {
 }
 
 /// Archived summary of a completed field battle.
-public struct BattleReport: Sendable, Identifiable, Equatable {
+public struct BattleReport: Sendable, Identifiable, Equatable, Codable {
     public var id: String
     public var province: ProvinceID
     public var startDate: GameDate

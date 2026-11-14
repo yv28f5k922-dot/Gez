@@ -17,6 +17,14 @@ public final class Simulation {
         self.random = GameRandom(seed: seed)
     }
 
+    /// Restores a previously saved simulation with its exact RNG stream and tick counter.
+    public init(restoringWorld world: World, date: GameDate, random: GameRandom, ticksRun: Int) {
+        self.world = world
+        self.date = date
+        self.random = random
+        self.ticksRun = ticksRun
+    }
+
     public func advance(days: Int) {
         for _ in 0..<max(0, days) {
             tick()

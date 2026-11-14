@@ -12,7 +12,7 @@ public enum SiegeOutcome: String, Sendable, Equatable, Codable {
 }
 
 /// Active siege against a fortified province (`fortLevel > 0`).
-public struct Siege: Sendable, Identifiable, Equatable {
+public struct Siege: Sendable, Identifiable, Equatable, Codable {
     public var id: String
     public var province: ProvinceID
     public var besieger: CountryID

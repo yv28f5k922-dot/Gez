@@ -1,7 +1,7 @@
 import Foundation
 
 /// A single demand included in a peace treaty offer.
-public enum PeaceDemand: Sendable, Equatable, Hashable {
+public enum PeaceDemand: Sendable, Equatable, Hashable, Codable {
     /// Transfer province ownership from the losing side to `to`.
     case cedeProvince(province: ProvinceID, to: CountryID)
     /// Return a lawful core province from the losing side to `to`.
@@ -21,7 +21,7 @@ public enum PeaceDemand: Sendable, Equatable, Hashable {
 }
 
 /// Proposed or enacted peace deal ending (or exiting) a war.
-public struct PeaceOffer: Sendable, Equatable {
+public struct PeaceOffer: Sendable, Equatable, Codable {
     public var warID: String
     public var winner: CountryID
     public var loser: CountryID

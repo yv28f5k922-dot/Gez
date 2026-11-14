@@ -115,7 +115,7 @@ public struct UnitType: Sendable {
 }
 
 /// One regiment inside an army.
-public struct Regiment: Sendable, Equatable {
+public struct Regiment: Sendable, Equatable, Codable {
     public var type: UnitTypeID
     public var origin: RegimentOrigin
     public var men: Int
@@ -142,7 +142,7 @@ public struct Regiment: Sendable, Equatable {
 /// Struct-of-arrays table of all armies on the map.
 /// Slots are recycled via `alive` when an army is disbanded or destroyed so
 /// `ArmyID` indices stay stable while an army lives.
-public struct ArmyTable: Sendable {
+public struct ArmyTable: Sendable, Codable {
     public var name: [String] = []
     public var owner: [CountryID] = []
     public var province: [ProvinceID] = []

@@ -2,12 +2,12 @@
 /// `Resources/characters1453.json` (built by `tools/characters/chargen.py`
 /// from `data/characters/`).
 
-public struct CharacterID: Hashable, Sendable {
+public struct CharacterID: Hashable, Sendable, Codable {
     public let index: Int
     public init(_ index: Int) { self.index = index }
 }
 
-public struct TraitID: Hashable, Sendable {
+public struct TraitID: Hashable, Sendable, Codable {
     public let index: Int
     public init(_ index: Int) { self.index = index }
 }
@@ -60,7 +60,7 @@ public enum CouncilSeat: Int, CaseIterable, Sendable {
     }
 }
 
-public enum SuccessionLaw: String, CaseIterable, Sendable {
+public enum SuccessionLaw: String, CaseIterable, Sendable, Codable {
     /// Eldest son, then brothers, nephews, daughters, then the nearest of the dynasty.
     case primogeniture
     /// As primogeniture, but never women.
@@ -107,7 +107,7 @@ public struct TraitTable: Sendable {
     }
 }
 
-public struct CharacterTable: Sendable {
+public struct CharacterTable: Sendable, Codable {
     public private(set) var key: [String] = []
     public var name: [String] = []
     /// Family name or house; "of <town>" for lesser people; nil for none.
@@ -235,7 +235,7 @@ public struct People: Sendable {
 }
 
 /// One line in the court chronicle ("Ladislaus Garai refuses to pay taxes").
-public struct ChronicleEntry: Sendable, Equatable {
+public struct ChronicleEntry: Sendable, Equatable, Codable {
     public let date: GameDate
     public let country: CountryID?
     public let text: String

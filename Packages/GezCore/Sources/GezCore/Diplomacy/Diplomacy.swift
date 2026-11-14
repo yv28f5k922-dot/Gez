@@ -10,7 +10,7 @@ public enum TreatyType: String, Codable, Sendable, CaseIterable {
 }
 
 /// A formal diplomatic treaty between two sovereign countries.
-public struct Treaty: Sendable, Equatable {
+public struct Treaty: Sendable, Equatable, Codable {
     public var first: CountryID
     public var second: CountryID
     public var type: TreatyType
@@ -44,14 +44,14 @@ public enum CasusBelli: String, Codable, Sendable, CaseIterable {
 }
 
 /// War goal specifying what must be held or achieved to earn ticking war score.
-public enum WarGoal: Sendable, Equatable {
+public enum WarGoal: Sendable, Equatable, Codable {
     case conquerProvince(ProvinceID)
     case superiority
     case defendCapital(ProvinceID)
 }
 
 /// An active war between two hostile coalitions.
-public struct War: Sendable, Identifiable, Equatable {
+public struct War: Sendable, Identifiable, Equatable, Codable {
     public var id: String
     public var name: String
     public var startDate: GameDate
@@ -120,7 +120,7 @@ public struct War: Sendable, Identifiable, Equatable {
 }
 
 /// Active war reparations agreement: payer pays 10% of monthly income to receiver until `until`.
-public struct WarReparation: Sendable, Equatable {
+public struct WarReparation: Sendable, Equatable, Codable {
     public var payer: CountryID
     public var receiver: CountryID
     public var until: GameDate
@@ -136,7 +136,7 @@ public struct WarReparation: Sendable, Equatable {
 ///
 /// Matrix values (opinion, trust, aggressive expansion) are stored as flat 1D arrays
 /// indexed by `observer.index * countryCount + target.index` for cache-friendly access.
-public struct Diplomacy: Sendable {
+public struct Diplomacy: Sendable, Codable {
     public var countryCount: Int = 0
 
     /// Bilateral opinion (-100 ... +100). Indexed by observer * countryCount + target.
