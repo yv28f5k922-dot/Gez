@@ -123,9 +123,9 @@ final class MetalMapRenderer {
     }
 
     /// Per-province colours and border keys for the current map mode.
-    func updateStyles(world: World, mode: MapMode) {
+    func updateStyles(world: World, mode: MapMode, player: CountryID? = nil) {
         self.mode = mode
-        let colors = MapPalette.colors(for: mode, world: world)
+        let colors = MapPalette.colors(for: mode, world: world, player: player)
         let keys = MapRenderer.keys(world: world)
         var styles = [ProvinceStyleGPU]()
         styles.reserveCapacity(colors.count)
@@ -153,13 +153,13 @@ final class MetalMapRenderer {
         switch mode {
         // Strong colours zoomed out (to read countries), lighter zoomed in
         // (to see the terrain).
-        case .political: tint = Float(min(max(0.72 - 0.2 * camera.zoom, 0.38), 0.66))
+        case .political, .diplomatic: tint = Float(min(max(0.72 - 0.2 * camera.zoom, 0.38), 0.66))
         case .terrain: tint = 0
         default: tint = 0.8
         }
         let modeIndex: UInt32
         switch mode {
-        case .political: modeIndex = 0
+        case .political, .diplomatic: modeIndex = 0
         case .states: modeIndex = 1
         case .terrain: modeIndex = 2
         case .religion: modeIndex = 3

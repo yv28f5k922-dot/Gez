@@ -87,13 +87,13 @@ public enum Modifier: Int, CaseIterable, Sendable {
     public var lowerIsBetter: Bool { [.buildCost, .interest, .stabilityCost, .vassalKeep].contains(self) }
 }
 
-public struct EstateID: Hashable, Sendable {
+public struct EstateID: Hashable, Sendable, Codable {
     public let index: Int
     public init(_ index: Int) { self.index = index }
 }
 
 /// A bundle of changes: modifiers plus estate loyalty and power.
-public struct Effects: Sendable, Equatable {
+public struct Effects: Sendable, Equatable, Codable {
     public var values: [Double]
     public var loyalty: [Double]
     public var power: [Double]
@@ -211,7 +211,7 @@ public struct GovernmentRules: Sendable {
 }
 
 /// A law being changed: it takes effect when `monthsLeft` reaches 0.
-public struct PendingLaw: Equatable, Sendable {
+public struct PendingLaw: Equatable, Sendable, Codable {
     public let area: Int
     public let option: Int
     public var monthsLeft: Int

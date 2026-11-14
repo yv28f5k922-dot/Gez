@@ -1,6 +1,6 @@
 /// Taxes by class, banks and loans, debasement and inflation, bankruptcy.
 
-public struct BankID: Hashable, Sendable {
+public struct BankID: Hashable, Sendable, Codable {
     public let index: Int
     public init(_ index: Int) { self.index = index }
 }
@@ -34,7 +34,7 @@ public struct BankTable: Sendable {
     }
 }
 
-public struct Loan: Sendable, Equatable {
+public struct Loan: Sendable, Equatable, Codable {
     public var country: CountryID
     public var bank: BankID
     public var principal: Double

@@ -9,6 +9,16 @@ deterministic (multiplayer depends on it), test every system, check visuals
 via the `ci-snapshots` branch, and ask the owner multiple-choice questions
 (recommended option first) when a design or history choice comes up.
 
+## Build names
+
+Decided by the owner on 13 November 2026 (session 6, on claude.ai).
+- **Alpha** (the build once all 20 phases are done): **"Kayser"**, after
+  *Kayser-i Rûm* ("Caesar of Rome"), the title Mehmed II took in 1453.
+- **Beta builds**: each iteration gets its own name; theme not chosen yet
+  (ideas offered: years after 1453 such as Belgrade 1456, Granada 1492,
+  Calicut 1498; market cities; rivers). Ask the owner when a beta comes.
+- These are build names, not the store title. The game is still called Gez.
+
 ## Feature decisions (owner's picks)
 
 | # | Feature | Decision |
@@ -145,7 +155,7 @@ Owner's choices: three regiment origins tied to pops and markets (levies from po
 4. **Basic AI** for raising and moving armies. AI grows with every phase
    from here on. ✅
 
-### Phase 7: Diplomacy, war and peace
+### Phase 7: Diplomacy, war and peace ✅
 Owner's choices:
 - **Diplomacy**: Full 1453 treaties (alliances, guarantees, non-aggression pacts, military access, truces), opinion & trust (-100 to +100), diplomatic relation slots (scaled by Diplomacy skill & Chancellery), Aggressive Expansion & coalitions (at 50+ AE with 4+ outraged countries), plus starting historical 1453 alliances and truces.
 - **Casus belli & wars**: Full CBs (Province Claim, Reconquest, Holy War, Subjugation/Tribute, Throne Claim from royal marriage, Coalition punitive war, or No-CB with -2 stability & high AE), ticking war score up to ±25% for holding the war goal, ally/subject call-ins based on trust/opinion/debt/truces, plus active 30 May 1453 wars (e.g., final phase of the Hundred Years' War in Gascony, Thirteen Years' War / Prussian Confederation tension).
@@ -153,15 +163,15 @@ Owner's choices:
 - **Auto-resolved battles & occupation**: Multi-day alternating Fire (artillery, handgunners, archers) and Shock (infantry, cavalry, elephants) phases using real regiment stats, commander Martial rolls (`GameRandom`), terrain/river crossing penalties, cavalry flanking, morale & discipline; levy casualties permanently reduce home-province peasant/tribal pops; shattered retreat; short takeover for unfortified enemy provinces.
 1. **Diplomacy**: alliances, royal marriages (linked to characters),
    guarantees, vassals and tributaries (already in data), embargoes,
-   opinion and trust, coalitions against aggressive expanders.
+   opinion and trust, coalitions against aggressive expanders. ✅
 2. **Casus belli and war goals**: claims, holy wars, succession claims,
-   rebellion support.
+   rebellion support. ✅
 3. **War score** from battles, sieges and occupation; **peace treaties**
-   (provinces, money, subjects, release of nations).
+   (provinces, money, subjects, release of nations). ✅
 4. **Auto-resolved battles** on the map using the same unit stats the
-   battle view will use.
+   battle view will use. ✅
 
-### Phase 8: Sieges and the first playable game
+### Phase 8: Sieges and the first playable game ✅ (session 6; play-test with the owner next)
 Owner's choices:
 - **Sieges & forts**: Fort levels 1–5 project Zone of Control into adjacent friendly provinces (blocking hostile movement past the fort until besieged); 1,000 garrison per level and at least 1,000 besiegers required per level; monthly siege roll (-7 to +7+) modified by artillery/Bombards, commander Martial, naval blockade status, and wall breaches (supplies holding, food/water shortage, defender desertion, disease outbreak, wall breach, surrender); once breached, the besieger can order a high-casualty Storm Assault.
 - **Local save, load & autosave**: Versioned deterministic snapshots of all mutable `World` state (including `GameRandom` seed state), stored locally in Application Support/Documents with manual named saves, quick-save, and a **single-file autosave** (overwriting/deleting the old autosave each time) with player-selectable frequency: **Monthly, Every 3 Months, Every 6 Months, Every Year, or Never**.
@@ -301,6 +311,8 @@ it to `tools/uiart/` when this phase starts. Never use Paradox art.
    forests, towns and animated water where Phase 17 has not already done it.
 9. **Main menu and loading screen** with a painted Constantinople, 1453,
    and paintings for the event pop-ups from Phase 14.
+
+After Phase 20: the **alpha build "Kayser"** (see "Build names" above).
 
 ### Backlog (decide later)
 - **Windows** version: decide later; the simulation stays portable.
