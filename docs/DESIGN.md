@@ -314,12 +314,15 @@ Data in `data/military/` → `tools/military/milgen.py` →
   plough until raised.
 - **Commanders**: rulers, heirs, marshals, great vassals and courtiers can
   lead an army; their Martial skill speeds marches and strengthens combat.
-- **Movement, supply & vassal revolts** (Step 2): daily province-to-province
-  marches scaled by real distance, terrain, river crossings, Paved Roads
-  and slowest unit speed; province supply limit from population, staple
-  food, terrain, ports and forts with monthly starvation/disease attrition
-  and reinforcement; deeply disloyal or revoked great vassals raise their
-  domain levies in open revolt.
+- **Movement, supply & vassal revolts** (`Systems/ArmySystem.swift`):
+  daily province-to-province marches scaled by real distance, terrain,
+  river crossings (+35%), Paved Roads (−8% per level), commander Martial
+  skill (+1.5% per point) and slowest unit speed; province supply limit
+  from population, staple food output, terrain, ports and forts with
+  monthly starvation/disease attrition (2–15%) and 10% monthly
+  reinforcement in supplied friendly land; deeply disloyal (`opinion < −60`)
+  or defiantly revoked great vassals raise their domain levies in open
+  revolt.
 
 ## Architecture
 

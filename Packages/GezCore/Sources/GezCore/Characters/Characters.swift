@@ -52,7 +52,7 @@ public enum CouncilSeat: Int, CaseIterable, Sendable {
     public var effectText: String {
         switch self {
         case .chancellor: return "Diplomacy (relations, marriages; more with diplomacy in Phase 7)"
-        case .marshal: return "Martial (armies from Phase 6)"
+        case .marshal: return "Martial: +1.5% manpower & +1% army quality per point above 5"
         case .steward: return "Stewardship: +1% tax per point above 5"
         case .spymaster: return "Intrigue (plots, later)"
         case .chaplain: return "Learning: learning points each year"

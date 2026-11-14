@@ -37,6 +37,7 @@ public enum Scenario1453 {
         try MilitaryLoader.loadBundled(into: &world)
         MarketSystem.warmUp(&world, months: warmUpMonths)
         GovernmentSystem.settle(&world)
+        ArmySystem.settle(&world, seedPool: true)
         return world
     }
 
