@@ -1,7 +1,7 @@
 /// Buildings: levels 1–5 in a province, built over months for ducats plus
 /// goods bought from the market. Data in `data/economy/buildings.txt`.
 
-public struct BuildingTypeID: Hashable, Sendable {
+public struct BuildingTypeID: Hashable, Sendable, Codable {
     public let index: Int
     public init(_ index: Int) { self.index = index }
 }
@@ -92,7 +92,7 @@ public struct BuildingType: Sendable {
 }
 
 /// Something being built.
-public struct Construction: Sendable, Equatable {
+public struct Construction: Sendable, Equatable, Codable {
     public var province: ProvinceID
     public var type: BuildingTypeID
     /// The level it will have when finished.

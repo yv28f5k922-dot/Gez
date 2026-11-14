@@ -1,6 +1,6 @@
 import Foundation
 
-public struct MarketID: Hashable, Sendable {
+public struct MarketID: Hashable, Sendable, Codable {
     public let index: Int
     public init(_ index: Int) { self.index = index }
 }

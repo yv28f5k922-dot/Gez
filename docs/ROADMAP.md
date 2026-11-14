@@ -145,7 +145,7 @@ Owner's choices: three regiment origins tied to pops and markets (levies from po
 4. **Basic AI** for raising and moving armies. AI grows with every phase
    from here on. ✅
 
-### Phase 7: Diplomacy, war and peace
+### Phase 7: Diplomacy, war and peace ✅
 Owner's choices:
 - **Diplomacy**: Full 1453 treaties (alliances, guarantees, non-aggression pacts, military access, truces), opinion & trust (-100 to +100), diplomatic relation slots (scaled by Diplomacy skill & Chancellery), Aggressive Expansion & coalitions (at 50+ AE with 4+ outraged countries), plus starting historical 1453 alliances and truces.
 - **Casus belli & wars**: Full CBs (Province Claim, Reconquest, Holy War, Subjugation/Tribute, Throne Claim from royal marriage, Coalition punitive war, or No-CB with -2 stability & high AE), ticking war score up to ±25% for holding the war goal, ally/subject call-ins based on trust/opinion/debt/truces, plus active 30 May 1453 wars (e.g., final phase of the Hundred Years' War in Gascony, Thirteen Years' War / Prussian Confederation tension).
@@ -153,13 +153,13 @@ Owner's choices:
 - **Auto-resolved battles & occupation**: Multi-day alternating Fire (artillery, handgunners, archers) and Shock (infantry, cavalry, elephants) phases using real regiment stats, commander Martial rolls (`GameRandom`), terrain/river crossing penalties, cavalry flanking, morale & discipline; levy casualties permanently reduce home-province peasant/tribal pops; shattered retreat; short takeover for unfortified enemy provinces.
 1. **Diplomacy**: alliances, royal marriages (linked to characters),
    guarantees, vassals and tributaries (already in data), embargoes,
-   opinion and trust, coalitions against aggressive expanders.
+   opinion and trust, coalitions against aggressive expanders. ✅
 2. **Casus belli and war goals**: claims, holy wars, succession claims,
-   rebellion support.
+   rebellion support. ✅
 3. **War score** from battles, sieges and occupation; **peace treaties**
-   (provinces, money, subjects, release of nations).
+   (provinces, money, subjects, release of nations). ✅
 4. **Auto-resolved battles** on the map using the same unit stats the
-   battle view will use.
+   battle view will use. ✅
 
 ### Phase 8: Sieges and the first playable game
 Owner's choices:

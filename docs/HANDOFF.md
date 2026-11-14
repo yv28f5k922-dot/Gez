@@ -5,7 +5,7 @@ Read this first, then `docs/ROADMAP.md` (the agreed plan), `docs/DESIGN.md`
 judgment calls) and `CLAUDE.md` (rules). This file says where the project
 stands, how to work on it, and what to do next.
 
-Last updated: session 6 (13 November 2026). Phases 0–6 are done. Gemini now writes the code; Claude tests and reviews it (see "Working with Gemini").
+Last updated: session 7 (13 November 2026). Phases 0–7 are done; moving to Phase 8.
 
 ## The owner
 
@@ -159,6 +159,7 @@ of them are reproducible (same input, byte-identical output).
 | `data/characters/` | `python3 tools/characters/chargen.py` | `characters1453.json` |
 | `data/government/` | `python3 tools/government/govgen.py` | `government1453.json` |
 | `data/military/` | `python3 tools/military/milgen.py` | `military1453.json` |
+| `data/diplomacy/` | `python3 tools/diplomacy/dipgen.py` | `diplomacy1453.json` |
 | `data/heraldry/choices.txt` | push it; the Heraldry workflow downloads and converts | `App/Resources/Heraldry/arms_<TAG>.png`, `data/heraldry/credits.json` |
 | app icon (portolan chart, drawn from the province map) | `python3 tools/icon/make_icon.py` | `App/Resources/Assets.xcassets/AppIcon.appiconset/`, `docs/icon_preview.png` |
 
@@ -203,17 +204,18 @@ Packages/GezCore/Sources/GezCore/
   Economy/           Goods, Markets, Buildings, Finance, Trade, queries
   Characters/        CharacterTable, traits, names, chronicle
   Government/        Modifier, Effects, laws, estates, privileges, reforms
-  Military/          UnitType, Regiment, ArmyTable, Military
+  Military/          UnitType, Regiment, ArmyTable, Military, Battle
+  Diplomacy/         Treaty, War, CasusBelli, WarDeclaration, PeaceTreaty, coalitions, war reparations, opinions, trust, relation slots
   Systems/           MarketSystem (+ EconomySystem/PopulationSystem),
                      BuildingSystem, CharacterSystem, VassalSystem,
-                     GovernmentSystem, ArmySystem
-  Scenario/          Scenario1453 + Economy/Character/Government/Military loaders
+                     GovernmentSystem, ArmySystem, BattleSystem, DiplomacySystem, DiplomacyAISystem
+  Scenario/          Scenario1453 + Economy/Character/Government/Military/Diplomacy loaders
   Resources/         generated JSON and ID maps
 App/Shared/
   GameModel.swift    bridge between simulation and UI; game loop; player actions
   ContentView.swift  top bar, speeds, map-mode bar, province panel, overlays
   EconomyViews.swift, BudgetView.swift, TradeView.swift, CourtView.swift,
-  GovernmentView.swift, ArmyView.swift, CountryArmsView.swift
+  GovernmentView.swift, ArmyView.swift, DiplomacyView.swift, CountryArmsView.swift
   Map/               MapCanvasView (camera, gestures, labels, icons, routes, armies),
                      Metal/ (MapShaders.metal, renderer), MapRenderer (CPU fallback)
 App/Tests/SnapshotTests.swift   renders PNGs on CI

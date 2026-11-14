@@ -2,7 +2,7 @@
 /// Data comes from `Resources/economy1453.json` (built by
 /// `tools/economy/econgen.py` from `data/economy/`).
 
-public struct GoodID: Hashable, Sendable {
+public struct GoodID: Hashable, Sendable, Codable {
     public let index: Int
     public init(_ index: Int) { self.index = index }
 }
