@@ -146,6 +146,11 @@ Owner's choices: three regiment origins tied to pops and markets (levies from po
    from here on. ✅
 
 ### Phase 7: Diplomacy, war and peace
+Owner's choices:
+- **Diplomacy**: Full 1453 treaties (alliances, guarantees, non-aggression pacts, military access, truces), opinion & trust (-100 to +100), diplomatic relation slots (scaled by Diplomacy skill & Chancellery), Aggressive Expansion & coalitions (at 50+ AE with 4+ outraged countries), plus starting historical 1453 alliances and truces.
+- **Casus belli & wars**: Full CBs (Province Claim, Reconquest, Holy War, Subjugation/Tribute, Throne Claim from royal marriage, Coalition punitive war, or No-CB with -2 stability & high AE), ticking war score up to ±25% for holding the war goal, ally/subject call-ins based on trust/opinion/debt/truces, plus active 30 May 1453 wars (e.g., final phase of the Hundred Years' War in Gascony, Thirteen Years' War / Prussian Confederation tension).
+- **War score & peace treaties**: War score (-100% to +100% from battles up to ±40%, province/capital occupation, and ±25% ticking war goal) + multi-demand peace treaties up to 100% cost (cede provinces, return cores, ducat indemnity, war reparations of 10% income for 10 years, make vassal/tributary, annul treaties, or release nations), scaling truce length (5–15 years) and AE by peace cost.
+- **Auto-resolved battles & occupation**: Multi-day alternating Fire (artillery, handgunners, archers) and Shock (infantry, cavalry, elephants) phases using real regiment stats, commander Martial rolls (`GameRandom`), terrain/river crossing penalties, cavalry flanking, morale & discipline; levy casualties permanently reduce home-province peasant/tribal pops; shattered retreat; short takeover for unfortified enemy provinces.
 1. **Diplomacy**: alliances, royal marriages (linked to characters),
    guarantees, vassals and tributaries (already in data), embargoes,
    opinion and trust, coalitions against aggressive expanders.
@@ -157,6 +162,10 @@ Owner's choices: three regiment origins tied to pops and markets (levies from po
    battle view will use.
 
 ### Phase 8: Sieges and the first playable game
+Owner's choices:
+- **Sieges & forts**: Fort levels 1–5 project Zone of Control into adjacent friendly provinces (blocking hostile movement past the fort until besieged); 1,000 garrison per level and at least 1,000 besiegers required per level; monthly siege roll (-7 to +7+) modified by artillery/Bombards, commander Martial, naval blockade status, and wall breaches (supplies holding, food/water shortage, defender desertion, disease outbreak, wall breach, surrender); once breached, the besieger can order a high-casualty Storm Assault.
+- **Local save, load & autosave**: Versioned deterministic snapshots of all mutable `World` state (including `GameRandom` seed state), stored locally in Application Support/Documents with manual named saves, quick-save, and a **single-file autosave** (overwriting/deleting the old autosave each time) with player-selectable frequency: **Monthly, Every 3 Months, Every 6 Months, Every Year, or Never**.
+- **First playable milestone**: Full nation-picker & campaign loop (playable country selection on the map for any of the 247 countries + featured 1453 powers), tag-switching / New Game / Load Game menu, active alerts banner (at war, besieged provinces, disloyal estates/vassals, loans due, low stability, idle diplomats), and a 10-year headless balance test suite.
 1. **Sieges on the map**: forts block movement and need sieges; time
    depends on fort level, artillery, supply and disease; starve or storm.
 2. **Local save and load**, autosave.
@@ -165,6 +174,10 @@ Owner's choices: three regiment origins tied to pops and markets (levies from po
    balance before going on.
 
 ### Phase 9: Battle view (2D, real-time with pause)
+Owner's choices:
+- **Battlefield & deployment**: "Lead Battle in Person" vs "Auto-Resolve" modal when the player's army fights or storms a breached fort; 2D battlefield generates elevation contours, woods, hills, and river crossings from the province's real terrain and border data, with a pre-battle Deployment Phase in each side's deployment zone (skipped if ambushed during a river crossing).
+- **Tactical controls & formations**: Real-time with pause & speed controls (0.5x/1x/2x), drag-box or tap selection, draw-path / drag-frontline orders (touch, Apple Pencil, mouse & keyboard), formations (Line, Column, Wedge, Square/Wagon-Laager, Skirmish), tactical stances (Hold, Advance, Charge, Volley/Hold Fire, Retreat), plus directional flanking/rear morale penalties, fatigue, and ammunition tracking.
+- **Playable siege assaults & write-back**: Fort assaults render walls, towers, gates, and pre-existing artillery breaches from the map siege; attackers can bombard walls/gates with artillery, send infantry with scaling ladders or battering rams, or storm through breaches to capture the inner keep; exact regiment survivors, morale, breaches, and levy pop losses feed directly back into the campaign `World`.
 1. "Fight or auto-resolve" choice when armies meet.
 2. Battlefield from the real location's terrain (elevation, forest,
    river); deployment phase.
@@ -174,10 +187,16 @@ Owner's choices: three regiment origins tied to pops and markets (levies from po
 5. Results feed back to the campaign map.
 
 ### Phase 10: Navies
+Owner's choices:
+- **Ships, docks & 1453 fleets**: 4 core ship classes (Cogs for transport, Galleys for inland-sea oar combat in Med/Black Sea/Baltic/Red Sea, Carracks as heavy ocean warships, Light Ships/Caravels/Dhows for trade protection & scouting) + regional ships (Venetian Great Galleys, Ming Junks, Korean Panokseon/Turtle ships via tech); built in coastal provinces with Docks using `timber`, `naval_supplies`, `cloth`, and `cannons`, drawing Sailors from coastal peasant/burgher pops, plus historical 30 May 1453 starting fleets.
+- **Naval operations**: Multi-day auto-resolved naval battles (cannon fire & boarding phases, galley bonus in inland seas, admiral Martial rolls, ship capture chance), port blockades (removing the -2 coastal fort siege penalty, cutting sea trade capacity, and adding war score), strait blocking (hostile fleets block enemy armies from crossing a strait unless they control both shores), and amphibious army transport (1 Cog/transport per 1,000 troops, with amphibious landing penalties in combat).
 Fleets (galleys, cogs, carracks, dhows), naval battles auto-resolved on the
 map, blockades of ports, transporting armies across sea zones.
 
 ### Phase 11: Religion and culture in motion
+Owner's choices:
+- **Religion**: Pop-level missionary conversion over time (scaled by Clergy loyalty, temples, and Religious Tolerance laws; blocked by Dhimmi/Millet or Hussite Compacts privileges); Holy Sites (Rome, Constantinople, Jerusalem, Mecca, Medina, Najaf, Karbala, Varanasi, Bodh Gaya, Axum, etc.) granting prestige & clergy loyalty; dynamic historical movements (Hussite Utraquist/Taborite question in 1453 Bohemia, Sufi orders & Safaviyya Qizilbash rise in Ardabil/Persia, and the Protestant & Reformed Reformation from ~1517 with Centres of Reformation).
+- **Culture**: Primary Culture plus Accepted Culture slots (scaled by government rank & laws; non-accepted cultures suffer tax, manpower, and satisfaction penalties); gradual pop assimilation when same-religion, well-satisfied, and adjacent to same-culture provinces; dynamic pop migration along neighbor provinces and trade routes driven by war devastation, religious persecution, famine, and plague.
 1. **Religion**: conversion of pops over time, missionaries, holy sites,
    tolerance, religious unrest, heresies; the Reformation (1517), the
    Safaviyya's rise, the Hussite question; Sufi orders gaining influence.
@@ -185,26 +204,33 @@ map, blockades of ports, transporting armies across sea zones.
    famine and plague.
 
 ### Phase 12: Plague, famine and rebellion
+Owner's choices:
+- **Plague, famine & earthquakes**: Plagues (bubonic plague, typhus/camp fever, smallpox) ignite in crowded hubs or besieged camps and spread along active Trade Routes, Ports, and marching Armies, killing pops by class with local immunity recovery and Port Quarantine / Cordon responses; Famine triggers when staple food supply falls below pop need (from bad harvest rolls, war devastation, siege looting, or peasant levies kept raised during harvest); occasional Earthquakes strike historical fault zones (Anatolia, Aegean, Italy, Persia, Lisbon, Japan/Himalayas), damaging buildings and forts.
+- **Rebellions**: Cause-driven rebel factions tied to real pops & estates (Peasant Rebels, Religious Zealots, Cultural Separatists, Noble/Estate Rebels, Dynasty Pretenders); at 100% progress they raise a real army on the map from those pops and enforce their political demands if victorious.
 1. **Plague** spreading along trade routes and with armies; **famine**
    after bad harvests and war; occasional earthquakes.
 2. **Unrest and rebels** from real causes (taxes, religion, culture,
    estates, succession, pretenders).
 
 ### Phase 13: Technology
+Owner's choices: 3 EU4-style tech tracks (Administrative, Diplomatic, Military, levels 1–20 starting at level 3–4 in 1453); monthly research from Ruler skills + Council advisors + Paper/Books supply in the capital market + University/Library buildings; unlocks advanced units, higher fort & building tiers, trade range, and administrative efficiency; -5% per level Neighbor Bonus plus historical Institutions (Renaissance, Printing Press, Global Trade, Manufactories) spreading along trade routes and literate burgher pops.
 EU4-style tech levels (administrative, diplomatic, military), unlocking
 units, buildings, forts and ship types; neighbours ahead make it cheaper.
 
 ### Phase 14: Events and missions
+Owner's choices: Condition-triggered historical events with multi-choice outcomes (firing when historical conditions & date windows are met) plus dedicated branching Mission Trees for major 1453 powers (Ottomans, France, England, Castile, Portugal, Austria, Hungary, Venice, Mamluks, Aq Qoyunlu/Persia, Timurids/Mughals, Delhi/Vijayanagara, Ming) and regional mission trees for all other nations.
 Historical events with choices (Fall of Granada, Columbus, Vasco da Gama
 at Calicut, Babur, the Reformation, the Safavid rise...) and mission trees
 for major countries.
 
 ### Phase 15: AI behaviour setting
+Owner's choices: Weighted AI goal & mission evaluation (never hard-scripted railroading): in **Historical AI** mode, AI countries prioritize their historical mission tree targets, traditional rivals/allies, and historically plausible event choices while still checking real army strength, treasury, and truces; in **Free AI** mode, AI countries evaluate all opportunities purely by strategic value, border weakness, trade wealth, and ruler personality traits.
 Game-setup option: **historical** AI (pursues real goals, like the Ottomans
 in the Balkans or Castile at Granada) or **free** AI. Builds on the AI
 grown since Phase 6.
 
 ### Phase 16: Sound effects and tooltips
+Owner's choices: Strictly zero music or musical instruments: procedural/recorded non-musical sound effects and environmental ambience only (UI parchment/wood clicks, coin clinks, marching boots, hoofbeats, hammer/construction, siege cannon thuds, sword/musket battle sounds, and camera-zoomed ocean/wind/city ambience) plus rich math-breakdown tooltips everywhere (hover on Mac, long-press on iPad).
 1. **Sound effects only**: interface clicks, map sounds (marching,
    building, sieges), battle sounds, ambience (sea, city, wind). **No
    music or instruments.**
@@ -212,6 +238,7 @@ grown since Phase 6.
    tutorial.
 
 ### Phase 17: Going 3D
+Owner's choices: Vertex-displaced 3D Metal terrain mesh from the heightmap with smooth camera pitch tilt as you zoom in (reusing existing map mode shaders); 3D instanced Metal models on the map for growing towns, tiered forts, ports/ships, and marching army figures in regional styles (European, Islamic, Indian, East Asian, Steppe); and upgrading the Phase 9 battle view to 3D instanced soldier formations, walls, and siege engines using CC0 low-poly meshes.
 1. **3D map**: terrain mesh from the elevation data, camera tilts as you
    zoom in; the current shader shading is reused.
 2. **3D cities, forts, ports and army figures** replacing the 2D icons.
@@ -219,10 +246,11 @@ grown since Phase 6.
    Quaternius), keeping the battle rules from Phase 9.
 
 ### Phase 18: Chronicle and stats
+Owner's choices: Full regnal Chronicle book recording wars, major battles, peace treaties, laws, plagues, and dynastic events in period prose; a Ledger & Graphs screen comparing nations over time (population, GDP/income, army & navy size, technology, religion/culture pie charts); and an interactive Map Timelapse player recording yearly province-owner & religion snapshots from 1453 onward.
 History book of the game (wars, rulers, borders), graphs, and a
 world-history timelapse.
 
-### Phase 19: Multiplayer
+### Phase 19: Multiplayer (ignored for now per owner)
 Game Center: invites, host, lockstep sync of player orders (the
 simulation is deterministic). Host picks per game what happens when a
 player fights a battle manually (pause with a time limit, auto-resolve
