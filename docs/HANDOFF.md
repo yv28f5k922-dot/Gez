@@ -5,7 +5,7 @@ Read this first, then `docs/ROADMAP.md` (the agreed plan), `docs/DESIGN.md`
 judgment calls) and `CLAUDE.md` (rules). This file says where the project
 stands, how to work on it, and what to do next.
 
-Last updated: session 6 (13 November 2026). Phases 0–6 are done. Gemini now writes the code; Claude tests and reviews it (see "Working with Gemini").
+Last updated: session 7 (13 November 2026). Phases 0–7 are done; moving to Phase 8.
 
 ## The owner
 
@@ -215,7 +215,7 @@ App/Shared/
   GameModel.swift    bridge between simulation and UI; game loop; player actions
   ContentView.swift  top bar, speeds, map-mode bar, province panel, overlays
   EconomyViews.swift, BudgetView.swift, TradeView.swift, CourtView.swift,
-  GovernmentView.swift, ArmyView.swift, CountryArmsView.swift
+  GovernmentView.swift, ArmyView.swift, DiplomacyView.swift, CountryArmsView.swift
   Map/               MapCanvasView (camera, gestures, labels, icons, routes, armies),
                      Metal/ (MapShaders.metal, renderer), MapRenderer (CPU fallback)
 App/Tests/SnapshotTests.swift   renders PNGs on CI

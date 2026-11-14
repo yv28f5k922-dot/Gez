@@ -137,10 +137,21 @@ turned into game files by `tools/mapgen/mapgen.py`.
   routes losing money 6 months running are dropped.
 - Markets map mode draws routes (gold = yours), widths by value.
 
-### Diplomacy & war (planned, Phase 7)
-- Relations, alliances, royal marriages, vassals, guarantees.
-- Claims and casus belli, war goals, war score, peace deals.
-- Armies move province to province along a graph; movement takes days.
+### Diplomacy & war
+- Opinions (-100 to +100), trust (0 to 100), relation slots (scaled by
+  Diplomacy skill & Chancellery), Aggressive Expansion decay and punitive
+  coalitions (forming at 50+ AE across 4+ outraged independent realms).
+- Treaties: alliances, guarantees, non-aggression pacts, military access,
+  truces (5–15 years scaled by peace cost), royal marriages and subjects.
+- Casus belli (Reconquest, Claim, Holy War, Subjugation, Tribute, Coalition,
+  Succession, No-CB), call-to-arms evaluations, war score (-100% to +100%
+  from battles up to ±40%, province/capital occupation, ±25% ticking war
+  goal), and multi-demand peace treaties (province cession, core return,
+  war reparations, indemnities, vassalization, annul treaties, release
+  nations).
+- Multi-day alternating Fire & Shock battles with commander Martial rolls
+  (`GameRandom`), terrain/river penalties, cavalry flanking, shattered
+  retreat/stackwipe, unfortified province occupation, and wartime/diplomatic AI.
 
 ### Sieges & forts (planned, Phases 8–9)
 - Fort levels; forts exert zone of control and block movement.
