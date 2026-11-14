@@ -378,3 +378,43 @@ are judgment calls, change them freely:
 | KSH, VIJ | Open tolerance | Zain-ul-Abidin's and Vijayanagara's tolerance |
 | Stability | TUR +2, FRA +2, VEN +2, KSH +2; MOE, MOL, NAV −2; WAL, MOR −1; ENG, CAS, TRE, HUN, BOH, MOS 0; others +1 | Morea: Albanian revolt of 1453; Moldavia and Navarre: civil wars |
 | Cossacks | Not an estate | They appear decades after 1453 |
+
+## Standing armies on 30 May 1453 (Phase 6)
+
+Starting standing armies live in `data/military/armies_1453.txt` (built into
+`military1453.json` by `tools/military/milgen.py`). Seasonal feudal and
+tribal levies stay unraised in their home provinces at game start; only
+standing professional forces, household guards, and active campaign hosts of
+May 1453 start on the map:
+
+| Country | Army & Location | Commander | Notes / judgment calls |
+|---|---|---|---|
+| TUR | Imperial Army of Constantinople (`Konstantiniyye`), Army of Rumelia (`Edirne`) | Mehmed II, Zağanos Pasha | Day after the fall of Constantinople (29 May 1453); Janissaries, sipahi cavalry, azab infantry, handgunners and Urban's bombards |
+| FRA | Compagnies d'Ordonnance (`Paris`), Army of Normandy (`Rouen`) | Jean de Dunois, Jean Bureau | Charles VII's standing *Compagnies d'Ordonnance* (1445) and Bureau's artillery train preparing for the final Castillon campaign |
+| ENG | Army of Aquitaine (`Bordeaux`), Royal Retinue (`London`) | John Talbot, Edmund Beaufort | Talbot's Gascon expedition (fought at Castillon in July 1453) and the royal household retinue |
+| MAM | Royal Mamluks of Cairo (`Cairo`), Army of Damascus (`Damascus`) | Sultan Inal, Khushqadam | Purchased *julban* and veteran *qarani* Mamluk household cavalry |
+| HUN, BOH, JIS | Royal Banderium (`Buda`), Landfrieden Host (`Prague`), Black Brethren (`Kassa`) | John Hunyadi, George of Poděbrady, Jan Jiskra | Hunyadi's banderium, Hussite *vozová hradba* war wagons, and Jiskra's Czech mercenaries in Upper Hungary |
+| ALB | League of Lezhë (`Kruje`) | Skanderbeg | Standing mountain retinue of the League of Lezhë |
+| QAR, AKK, TIM, HRT | Tabriz, Diyarbakir, Samarkand, Herat | Jahan Shah, Uzun Hasan, Abu Sa'id Mirza, Abul-Qasim Babur | Turkmen and Timurid standing household *nöker* horse-archer hosts |
+| DEL, VIJ, ORI, MEW, BAH, BNG, GUJ | Delhi, Vijayanagara, Cuttack, Chittor, Bidar, Gaur, Ahmedabad | Bahlul Lodi, Saluva Narasimha, Kapilendra Deva, Rana Kumbha, Humayun Shah, Nasiruddin Mahmud, Qutb-ud-din Ahmad | Standing sultanate, Rajput and Gajapati hosts with war elephants (`pil-khana`) |
+| ETH | Chewa Regiments (`Debre Berhan`) | Zara Yaqob | Zara Yaqob's royal *chewa* military colonies |
+
+Review fixes (Claude, session 6), and points still open for the owner:
+- **Fixed:** Castile's army was led by Álvaro de Luna, but he was arrested
+  in April 1453 and executed on 2 June; Juan Pacheco leads it instead.
+- **Fixed:** Burgundy's "Ducal Ordonnance" with gendarmes: Burgundy's
+  ordonnance companies date from 1471. In May 1453 Philip the Good was
+  fighting the Ghent revolt (Gavere, July 1453), so it is now Philip's
+  "Ducal Host" of ordinary cavalry and infantry.
+- **Fixed:** the Papal Guard was led by Cardinal Alfonso de Borja (later
+  Callixtus III), a churchman, not a commander; it now starts without one.
+- **Fixed:** the "Army of Damascus" stood in Aleppo; moved to Damascus.
+- Open: Venice, Herat and Morocco use invented marshals although real
+  figures are known (Venetian condottieri such as Gentile da Leonessa;
+  Abul-Qasim Babur ruled Herat; Fez was run by Wattasid viziers). Replace
+  them with real people when those characters are added.
+- Open: Albert VI is placed at Graz, but in 1453 he held Further Austria
+  (Freiburg); Graz was Frederick III's. Jean Bureau's artillery stands at
+  Rouen, though by spring 1453 he was preparing the Guyenne campaign.
+- Open: army sizes are game-scaled; Mehmed's host at Constantinople was
+  far larger than 16,500 historically.

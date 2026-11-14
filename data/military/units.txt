@@ -1,0 +1,37 @@
+# Regiment unit types (Phase 6, owner's choice: 5 core unit types everywhere
+# plus historical 1453 special units tied to estates, cultures, and local goods).
+#
+# key | Name | category | men | speed | attack | defence | morale | siege | cost (ducats) | upkeep (ducats/month) | goods | requires
+#
+# Categories: infantry, cavalry, ranged, artillery.
+# Speed: 1.0 = normal foot pace (~30 km/day on plains); an army marches at the
+#   pace of its slowest regiment.
+# Goods: bought from the province's market when a professional regiment is
+#   recruited (raising next month's demand there). Levies and mercenaries do
+#   not buy market goods on recruitment.
+# Requires (blank = every country):
+#   estate:<key>              country has this estate (janissaries, mamluks, rajputs, tribes)
+#   government:<g1>,<g2>      country has one of these governments
+#   culture:<c1>,<c2>         country's capital or ruler has one of these cultures
+#   region:<r1>,<r2>          country's capital lies in one of these regions
+#   tags:<T1>,<T2>            country is one of these tags
+# Multiple rules separated by ";" are OR-ed (any matching rule unlocks the unit).
+
+## Core unit types
+infantry        | Footmen              | infantry  | 1000 | 1.00 | 4  | 5 | 3.0 | 0 | 12 | 0.25 | weapons 1.0             |
+cavalry         | Horsemen             | cavalry   | 1000 | 1.40 | 7  | 5 | 3.5 | 0 | 24 | 0.50 | weapons 1.0, horses 1.0 |
+archers         | Archers              | ranged    | 1000 | 1.00 | 5  | 3 | 2.8 | 0 | 14 | 0.28 | weapons 0.8, wood 0.5   |
+handgunners     | Handgunners          | ranged    | 1000 | 1.00 | 7  | 4 | 3.0 | 0 | 20 | 0.40 | weapons 1.0, gunpowder 0.8 |
+artillery       | Bombards             | artillery | 500  | 0.70 | 9  | 2 | 2.5 | 2 | 45 | 0.90 | cannons 1.0, gunpowder 1.2 |
+
+## Special regional units of 1453
+janissaries     | Janissaries          | infantry  | 1000 | 1.00 | 7  | 7 | 4.2 | 0 | 24 | 0.45 | weapons 1.2, gunpowder 0.6 | estate:janissaries
+mamluk_cavalry  | Mamluk Royal Cavalry | cavalry   | 1000 | 1.40 | 9  | 7 | 4.0 | 0 | 30 | 0.60 | weapons 1.2, horses 1.2    | estate:mamluks
+rajput_cavalry  | Rajput Lancers       | cavalry   | 1000 | 1.40 | 8  | 6 | 4.2 | 0 | 26 | 0.50 | weapons 1.0, horses 1.0    | estate:rajputs
+war_elephants   | War Elephants        | cavalry   | 500  | 0.80 | 11 | 8 | 3.8 | 1 | 48 | 0.95 | elephants 1.0, weapons 1.0 | region:Northwest India,Hindustan,Rajputana,Gujarat,Central India,Bengal,Deccan,South India
+horse_archers   | Steppe Horse Archers | cavalry   | 1000 | 1.50 | 7  | 5 | 3.4 | 0 | 18 | 0.35 | horses 1.0, wood 0.4       | government:steppeHorde;estate:tribes
+camel_riders    | Camel Riders         | cavalry   | 1000 | 1.35 | 6  | 5 | 3.3 | 0 | 18 | 0.35 | camels 1.0, weapons 0.8    | culture:bedouin,najdi,hejazi,yemeni,hadrami,omani,gulf_arab,berber,tuareg,moroccan,algerian,tunisian,libyan,egyptian,sudanese,beja,somali,afar
+gendarmes       | Ordonnance Gendarmes | cavalry   | 1000 | 1.35 | 9  | 7 | 4.0 | 0 | 30 | 0.60 | weapons 1.5, horses 1.2    | tags:FRA,BUR,PRO,LOR,BRI;culture:french,occitan,gascon,breton,walloon,arpitan,lorrainer
+longbowmen      | Yeoman Longbowmen    | ranged    | 1000 | 1.00 | 7  | 5 | 3.5 | 0 | 16 | 0.32 | weapons 0.8, wood 0.8      | tags:ENG;culture:english,welsh
+swiss_pikemen   | Swiss Pikemen        | infantry  | 1000 | 1.00 | 7  | 8 | 4.2 | 0 | 20 | 0.40 | weapons 1.2, wood 0.5      | tags:SWI;culture:swiss
+war_wagons      | Hussite War Wagons   | ranged    | 1000 | 0.85 | 6  | 9 | 4.0 | 0 | 24 | 0.45 | weapons 1.0, gunpowder 0.6, wood 1.0 | tags:BOH,JIS;culture:czech

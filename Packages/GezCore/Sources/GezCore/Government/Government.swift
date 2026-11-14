@@ -70,10 +70,10 @@ public enum Modifier: Int, CaseIterable, Sendable {
         case .taxPeasants: return "Tax on peasants"
         case .inflationDecay: return "Inflation falls / month"
         case .noDebase: return "Debasement forbidden"
-        case .manpower: return "Manpower (Phase 6)"
-        case .levySize: return "Levy size (Phase 6)"
-        case .armyQuality: return "Army quality (Phase 6)"
-        case .fortDefence: return "Fort defence (Phase 6)"
+        case .manpower: return "Manpower"
+        case .levySize: return "Levy size"
+        case .armyQuality: return "Army quality"
+        case .fortDefence: return "Fort defence"
         }
     }
 

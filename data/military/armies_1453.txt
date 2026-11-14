@@ -1,0 +1,70 @@
+# Historical standing armies on the map on 30 May 1453 (Phase 6, owner's choice).
+#
+# Most medieval and early modern troops were seasonal levies raised from the
+# land when war broke out and sent back to the plough at peace; only standing
+# professional forces, royal household retinues, and active campaign hosts start
+# on the map on 30 May 1453.
+#
+# Format:
+#   tag | Army Name | province | commander_id (or -) | unit_key:count[@origin], ...
+#
+# Origin suffix (optional, defaults to "professional"):
+#   @professional   standing regiment maintained from national manpower & treasury
+#   @mercenary      contracted mercenary company paid in coin
+
+## Ottoman Empire — Mehmed II's victorious host the day after Constantinople fell
+TUR | Imperial Army of Constantinople | Konstantiniyye | mehmed2 | janissaries:5, cavalry:4, infantry:4, handgunners:2, artillery:3
+TUR | Army of Rumelia                 | Edirne         | zaganos | janissaries:2, cavalry:3, infantry:2
+
+## Kingdom of France — Charles VII's Compagnies d'Ordonnance & Francs-Archers
+FRA | Compagnies d'Ordonnance | Paris | dunois | gendarmes:4, archers:3, infantry:2, artillery:2
+FRA | Army of Normandy        | Rouen | bureau | gendarmes:2, archers:2, handgunners:1, artillery:2
+
+## Kingdom of England — Talbot's expedition in Gascony & Royal Retinue at London
+ENG | Army of Aquitaine | Bordeaux | talbot   | longbowmen:3, infantry:2, cavalry:1
+ENG | Royal Retinue     | London   | somerset | longbowmen:2, infantry:2, cavalry:1
+
+## Mamluk Sultanate — Sultan Inal's Royal Mamluks at Cairo & Syrian Garrison
+MAM | Royal Mamluks of Cairo | Cairo   | inal       | mamluk_cavalry:5, infantry:2, archers:2
+MAM | Army of Damascus       | Damascus | khushqadam | mamluk_cavalry:2, camel_riders:2, infantry:2
+
+## Central & Eastern Europe
+HUN | Royal Banderium       | Buda    | hunyadi   | cavalry:3, infantry:3, handgunners:1, artillery:1
+BOH | Landfrieden Host      | Prague  | podebrady | war_wagons:2, infantry:2, handgunners:1, artillery:1
+JIS | Black Brethren        | Kassa   | jiskra    | war_wagons:1, infantry:1@mercenary
+POL | Royal Guard           | Krakow  | casimir4  | cavalry:2, infantry:2, archers:1
+LIT | Grand Ducal Retinue   | Vilnius | gostautas | cavalry:2, infantry:2, archers:1
+MOS | Grand Princely Druzhina | Moscow | vasily_serpukhov | cavalry:3, infantry:2, archers:1
+ALB | League of Lezhë       | Kruje   | skanderbeg | infantry:2, archers:1
+HAB | Archducal Guard       | Graz    | albert6   | infantry:2, cavalry:1, handgunners:1
+SWI | Confederate Eidgenossen | Zurich | inv_swi_marshal | swiss_pikemen:2, handgunners:1
+
+## Western Europe & Italy
+BUR | Ducal Host            | Brussels | philip_good  | cavalry:3, infantry:2, archers:2, artillery:1
+VEN | Condotta of Saint Mark | Venice  | inv_ven_marshal | infantry:2@mercenary, cavalry:1@mercenary, archers:1
+MLO | Sforza Condotta       | Milan    | f_sforza     | cavalry:2, infantry:2, handgunners:1
+PAP | Papal Guard           | Rome     | -            | infantry:2@mercenary, cavalry:1
+NAP | Royal Army of Naples  | Naples   | ferrante     | cavalry:2, infantry:2, archers:1
+CAS | Royal Hermandad       | Toledo   | pacheco      | cavalry:2, infantry:3, archers:1
+ARA | Royal Host of Aragon  | Zaragoza | john2_a      | infantry:2, archers:2, cavalry:1
+POR | Casa Real Guard       | Lisbon   | afonso5_p    | infantry:2, archers:1, cavalry:1
+
+## Islamic East, Iran & Central Asia
+QAR | Black Sheep Host      | Tabriz     | jahan_shah | horse_archers:4, cavalry:2, infantry:2
+AKK | White Sheep Host      | Diyarbakir | uzun_hasan | horse_archers:3, cavalry:2
+TIM | Gurkani Host          | Samarkand  | abu_said   | horse_archers:3, cavalry:2, infantry:1
+HRT | Khorasan Host         | Herat      | inv_hrt_marshal | horse_archers:2, cavalry:2, infantry:1
+
+## Maghreb & Horn of Africa
+MOR | Marinid Guard         | Fez          | inv_mor_marshal | camel_riders:2, infantry:2
+TUN | Hafsid Guard          | Tunis        | uthman_h        | camel_riders:2, infantry:2
+ETH | Chewa Regiments       | Debre Berhan | zara_yaqob      | infantry:3, archers:2
+
+## India
+DEL | Lodi Afghan Host      | Delhi        | bahlul       | cavalry:3, war_elephants:1, infantry:2
+VIJ | Raya's Standing Host  | Vijayanagara | saluva_n     | infantry:4, cavalry:2, war_elephants:2, archers:2
+ORI | Gajapati Elephant Host | Cuttack     | kapilendra   | war_elephants:2, infantry:3, archers:2
+MEW | Sisodia Rajput Host   | Chittor      | kumbha       | rajput_cavalry:3, infantry:2, war_elephants:1
+BAH | Deccani Royal Host    | Bidar        | humayun_b    | cavalry:3, war_elephants:1, infantry:2, artillery:1
+BNG | Shah's Paik Host      | Gaur         | nasiruddin   | infantry:3, war_elephants:1, archers:2
+GUJ | Sultanate Guard       | Ahmedabad    | qutb_ahmad   | cavalry:2, war_elephants:1, infantry:2

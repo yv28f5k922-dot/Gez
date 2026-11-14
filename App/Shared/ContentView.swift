@@ -29,6 +29,8 @@ struct ContentView: View {
                     CourtPanel().padding(12)
                 } else if model.showGovernment {
                     GovernmentPanel().padding(12)
+                } else if model.showArmies {
+                    ArmyPanel().padding(12)
                 }
             }
             .overlay(alignment: .bottomTrailing) {
@@ -98,6 +100,16 @@ struct TopBar: View {
                 }
                 .buttonStyle(.plain)
                 .help("Government: stability, estates, laws and reforms")
+                Button {
+                    model.showArmies.toggle()
+                } label: {
+                    let menK = (model.world.military.totalMen(of: player) + 500) / 1000
+                    let mpK = Int((model.world.military.manpower[player.index] / 1000).rounded())
+                    Label("Armies \(menK)k · MP \(mpK)k", systemImage: "shield.lefthalf.filled")
+                        .monospacedDigit()
+                }
+                .buttonStyle(.plain)
+                .help("Armies, manpower, levies and commanders")
                 if countries.inflation[player.index] >= 0.01 {
                     Text(String(format: "Inflation %.0f%%", countries.inflation[player.index] * 100))
                         .font(.caption)
@@ -264,6 +276,32 @@ struct ProvincePanel: View {
                 let riverSides = p.neighbors[i].filter { world.isRiverBorder(province, $0) }.count
                 if riverSides > 0 {
                     row("River borders", "\(riverSides) of \(p.neighbors[i].count) sides")
+                }
+                let inProv = ArmySystem.soldiersInProvince(world, province)
+                let limit = ArmySystem.supplyLimit(world, in: province)
+                row("Supply limit", "\(inProv.formatted()) / \(limit.formatted()) men")
+                if p.owner[i] == model.playerCountry {
+                    let availLevy = ArmySystem.availableLevyMen(world, in: province)
+                    HStack {
+                        Text("Province levy").foregroundStyle(Palette.ink.opacity(0.7))
+                        Spacer()
+                        if ArmySystem.hasRaisedLevies(world, in: province) {
+                            Text("Raised").font(.caption.bold())
+                        } else if availLevy >= ArmyModel.minLevyMen {
+                            Button {
+                                _ = model.raiseLevies(in: province)
+                            } label: {
+                                Text("Raise \(availLevy) men")
+                                    .font(.caption.bold())
+                                    .padding(.horizontal, 7).padding(.vertical, 2)
+                                    .background(Palette.ink.opacity(0.12), in: Capsule())
+                            }
+                            .buttonStyle(.plain)
+                        } else {
+                            Text("\(availLevy) men").monospacedDigit()
+                        }
+                    }
+                    .font(.callout)
                 }
                 Divider()
                 BuildingsSection(province: province)

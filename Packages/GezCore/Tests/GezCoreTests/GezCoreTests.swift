@@ -1145,3 +1145,302 @@ final class GovernmentTests: XCTestCase {
         XCTAssertTrue(sim.world.countries.ids.contains { g.reforms[$0.index].count > 1 }, "some AI countries should reform")
     }
 }
+
+final class MilitaryDataTests: XCTestCase {
+    func testUnitTypesAndSpecialRegionalUnitsLoad() {
+        let w = Scenario1453.makeWorld()
+        XCTAssertEqual(w.military.unitTypes.count, 15)
+
+        let coreKeys = ["infantry", "cavalry", "archers", "handgunners", "artillery"]
+        for key in coreKeys {
+            guard let u = w.military.unit(key) else {
+                return XCTFail("Missing core unit \(key)")
+            }
+            XCTAssertTrue(u.requires.isEmpty, "Core unit \(key) should have no unlock restriction")
+            XCTAssertFalse(u.goods.isEmpty, "Core unit \(key) should consume market goods when recruited")
+        }
+
+        let specialKeys = [
+            "janissaries", "mamluk_cavalry", "rajput_cavalry", "war_elephants",
+            "horse_archers", "camel_riders", "gendarmes", "longbowmen",
+            "swiss_pikemen", "war_wagons",
+        ]
+        for key in specialKeys {
+            guard let u = w.military.unit(key) else {
+                return XCTFail("Missing special unit \(key)")
+            }
+            XCTAssertFalse(u.requires.isEmpty, "Special unit \(key) should have unlock requirements")
+        }
+
+        let artillery = w.military.unit("artillery")!
+        let horseArchers = w.military.unit("horse_archers")!
+        XCTAssertLessThan(artillery.speed, 1.0)
+        XCTAssertGreaterThan(horseArchers.speed, 1.0)
+    }
+
+    func testStartingStandingArmiesOf1453() {
+        let w = Scenario1453.makeWorld()
+        XCTAssertEqual(w.military.armies.count, 39)
+
+        let tur = w.countries.id(forTag: "TUR")!
+        let konst = w.provinces.id(named: "Konstantiniyye")!
+        let mehmed = w.people.characters.id(forKey: "mehmed2")!
+        let turArmies = w.military.armies(of: tur)
+        XCTAssertEqual(turArmies.count, 2)
+
+        let imperial = turArmies.first { w.military.armies.province[Int($0.rawValue)] == konst }
+        XCTAssertNotNil(imperial)
+        if let aid = imperial {
+            let i = Int(aid.rawValue)
+            XCTAssertEqual(w.military.armies.commander[i], mehmed)
+            let jan = w.military.unit("janissaries")!.id
+            let art = w.military.unit("artillery")!.id
+            XCTAssertTrue(w.military.armies.regiments[i].contains { $0.type == jan })
+            XCTAssertTrue(w.military.armies.regiments[i].contains { $0.type == art })
+            XCTAssertGreaterThan(w.military.armies.totalMen(of: aid), 10_000)
+        }
+
+        // Every starting army sits in an owned province with a living commander of that realm.
+        for i in 0..<w.military.armies.count where w.military.armies.alive[i] {
+            let owner = w.military.armies.owner[i]
+            let prov = w.military.armies.province[i]
+            XCTAssertEqual(w.provinces.owner[prov.index], owner)
+            if let cmd = w.military.armies.commander[i] {
+                XCTAssertTrue(w.people.characters.isAlive(cmd))
+                XCTAssertEqual(w.people.characters.court[cmd.index], owner)
+            }
+            XCTAssertFalse(w.military.armies.regiments[i].isEmpty)
+        }
+
+        // Starting manpower pools are seeded and positive.
+        XCTAssertGreaterThan(w.military.maxManpower[tur.index], 10_000)
+        XCTAssertGreaterThan(w.military.manpower[tur.index], 5_000)
+    }
+
+    func testSulphurSourcesSupportGunpowder() {
+        let w = Scenario1453.makeWorld()
+        let sulphur = w.economy.goods.id(forKey: "sulphur")!
+        let sulphurProducers = w.economy.producers.good.filter { $0 == sulphur }
+        XCTAssertGreaterThanOrEqual(sulphurProducers.count, 5)
+    }
+}
+
+final class ArmySimulationTests: XCTestCase {
+    func country(_ w: World, _ tag: String) -> CountryID { w.countries.id(forTag: tag)! }
+    func province(_ w: World, _ name: String) -> ProvinceID { w.provinces.id(named: name)! }
+    func unit(_ w: World, _ key: String) -> UnitTypeID { w.military.unit(key)!.id }
+
+    func testUnitUnlocksByEstateCultureAndRegion() {
+        let w = Scenario1453.makeWorld()
+        let tur = country(w, "TUR")
+        let mam = country(w, "MAM")
+        let fra = country(w, "FRA")
+        let eng = country(w, "ENG")
+        let mew = country(w, "MEW")
+        let swi = country(w, "SWI")
+        let boh = country(w, "BOH")
+        let qar = country(w, "QAR")
+
+        XCTAssertTrue(ArmySystem.canRecruit(w, tur, unit(w, "janissaries")))
+        XCTAssertFalse(ArmySystem.canRecruit(w, tur, unit(w, "mamluk_cavalry")))
+        XCTAssertFalse(ArmySystem.canRecruit(w, tur, unit(w, "gendarmes")))
+
+        XCTAssertTrue(ArmySystem.canRecruit(w, mam, unit(w, "mamluk_cavalry")))
+        XCTAssertTrue(ArmySystem.canRecruit(w, mam, unit(w, "camel_riders")))
+        XCTAssertTrue(ArmySystem.canRecruit(w, fra, unit(w, "gendarmes")))
+        XCTAssertTrue(ArmySystem.canRecruit(w, eng, unit(w, "longbowmen")))
+        XCTAssertTrue(ArmySystem.canRecruit(w, mew, unit(w, "rajput_cavalry")))
+        XCTAssertTrue(ArmySystem.canRecruit(w, mew, unit(w, "war_elephants")))
+        XCTAssertTrue(ArmySystem.canRecruit(w, swi, unit(w, "swiss_pikemen")))
+        XCTAssertTrue(ArmySystem.canRecruit(w, boh, unit(w, "war_wagons")))
+        XCTAssertTrue(ArmySystem.canRecruit(w, qar, unit(w, "horse_archers")))
+    }
+
+    func testRecruitingProfessionalUsesManpowerDucatsAndMarketGoods() {
+        var w = Scenario1453.makeWorld()
+        let tur = country(w, "TUR")
+        let konst = province(w, "Konstantiniyye")
+        let jan = unit(w, "janissaries")
+        w.countries.treasury[tur.index] = 1_000
+        let mpBefore = w.military.manpower[tur.index]
+        let treasuryBefore = w.countries.treasury[tur.index]
+        let m = w.market(of: konst)!
+        let weapons = w.economy.goods.id(forKey: "weapons")!
+        let gunpowder = w.economy.goods.id(forKey: "gunpowder")!
+        let wepBefore = w.economy.markets.pendingDemand[w.economy.markets.slot(m, weapons)]
+        let gpBefore = w.economy.markets.pendingDemand[w.economy.markets.slot(m, gunpowder)]
+
+        let res = ArmySystem.recruitProfessional(&w, tur, in: konst, unit: jan)
+        guard case .success = res else {
+            return XCTFail("Expected professional recruitment to succeed, got \(res)")
+        }
+        XCTAssertEqual(w.military.manpower[tur.index], mpBefore - 1_000, accuracy: 0.1)
+        XCTAssertLessThan(w.countries.treasury[tur.index], treasuryBefore)
+        XCTAssertGreaterThan(w.economy.markets.pendingDemand[w.economy.markets.slot(m, weapons)], wepBefore)
+        XCTAssertGreaterThan(w.economy.markets.pendingDemand[w.economy.markets.slot(m, gunpowder)], gpBefore)
+    }
+
+    func testLeviesShrinkPopAndReturnSurvivorsOnDisband() {
+        var w = Scenario1453.makeWorld()
+        let tur = country(w, "TUR")
+        let edirne = province(w, "Edirne")
+        let popBefore = w.provinces.population[edirne.index]
+        let expectedLevy = ArmySystem.availableLevyMen(w, in: edirne)
+        XCTAssertGreaterThan(expectedLevy, 500)
+
+        let res = ArmySystem.raiseLevies(&w, tur, in: edirne)
+        guard case .success(let aid) = res else {
+            return XCTFail("Expected raising levies to succeed, got \(res)")
+        }
+        let popWhileRaised = w.provinces.population[edirne.index]
+        XCTAssertEqual(popBefore - popWhileRaised, Double(expectedLevy), accuracy: 5.0)
+        XCTAssertEqual(ArmySystem.availableLevyMen(w, in: edirne), 0)
+
+        // Inflict 300 casualties on one of Edirne's levy regiments before disbanding.
+        let i = Int(aid.rawValue)
+        if let rIdx = w.military.armies.regiments[i].firstIndex(where: { $0.origin == .levy && $0.homeProvince == edirne }) {
+            w.military.armies.regiments[i][rIdx].men = max(1, w.military.armies.regiments[i][rIdx].men - 300)
+        }
+        ArmySystem.disbandLevies(&w, of: tur)
+        let popAfterDisband = w.provinces.population[edirne.index]
+        XCTAssertEqual(popBefore - popAfterDisband, 300.0, accuracy: 5.0)
+    }
+
+    func testMercenariesCostGoldOnlyAndRespectCap() {
+        var w = Scenario1453.makeWorld()
+        let ven = country(w, "VEN")
+        let venice = province(w, "Venice")
+        let inf = unit(w, "infantry")
+        w.countries.treasury[ven.index] = 50_000
+        let mpBefore = w.military.manpower[ven.index]
+        let popBefore = w.provinces.population[venice.index]
+
+        let res = ArmySystem.hireMercenary(&w, ven, in: venice, unit: inf)
+        guard case .success = res else {
+            return XCTFail("Expected mercenary hire to succeed, got \(res)")
+        }
+        XCTAssertEqual(w.military.manpower[ven.index], mpBefore, accuracy: 0.1)
+        XCTAssertEqual(w.provinces.population[venice.index], popBefore, accuracy: 0.1)
+
+        // Hiring past the mercenary limit should refuse with .mercenaryCapReached.
+        var hitCap = false
+        for _ in 0..<50 {
+            if case .failure(.mercenaryCapReached) = ArmySystem.hireMercenary(&w, ven, in: venice, unit: inf) {
+                hitCap = true
+                break
+            }
+        }
+        XCTAssertTrue(hitCap)
+    }
+
+    func testMovementSpeedTerrainRiverRoadsAndUnitPace() {
+        var w = Scenario1453.makeWorld()
+        let tur = country(w, "TUR")
+        let konst = province(w, "Konstantiniyye")
+        let edirne = province(w, "Edirne")
+        let cav = w.military.unit("cavalry")!
+        let art = w.military.unit("artillery")!
+
+        let cavArmy = w.military.armies.append(
+            name: "Riders",
+            owner: tur,
+            province: konst,
+            commander: nil,
+            regiments: [Regiment(type: cav.id, origin: .professional, men: cav.maxMen, morale: cav.morale)]
+        )
+        let artArmy = w.military.armies.append(
+            name: "Siege Train",
+            owner: tur,
+            province: konst,
+            commander: nil,
+            regiments: [Regiment(type: art.id, origin: .professional, men: art.maxMen, morale: art.morale)]
+        )
+
+        let cavDays = ArmySystem.stepDays(w, from: konst, to: edirne, army: cavArmy)
+        let artDays = ArmySystem.stepDays(w, from: konst, to: edirne, army: artArmy)
+        XCTAssertLessThan(cavDays, artDays, "Cavalry should march faster than bombards")
+
+        // Paved roads speed up marches.
+        let roadType = w.economy.buildingType(key: "road")!
+        w.economy.buildings.setLevel(konst, roadType, 3)
+        w.economy.buildings.setLevel(edirne, roadType, 3)
+        let cavDaysWithRoad = ArmySystem.stepDays(w, from: konst, to: edirne, army: cavArmy)
+        XCTAssertLessThan(cavDaysWithRoad, cavDays)
+
+        // Order a move and advance days until arrival.
+        let skopje = province(w, "Skopje")
+        XCTAssertTrue(ArmySystem.orderMove(&w, army: cavArmy, to: skopje))
+        XCTAssertFalse(w.military.armies.path[Int(cavArmy.rawValue)].isEmpty)
+        var rng = GameRandom(seed: 42)
+        var date = Scenario1453.startDate
+        for _ in 0..<60 {
+            date.advanceOneDay()
+            ArmySystem.runDaily(&w, date: date, random: &rng)
+            if w.military.armies.province[Int(cavArmy.rawValue)] == skopje { break }
+        }
+        XCTAssertEqual(w.military.armies.province[Int(cavArmy.rawValue)], skopje)
+        XCTAssertTrue(w.military.armies.path[Int(cavArmy.rawValue)].isEmpty)
+    }
+
+    func testSupplyLimitAttritionAndReinforcement() {
+        var w = Scenario1453.makeWorld()
+        let tur = country(w, "TUR")
+        let konst = province(w, "Konstantiniyye")
+        let inf = w.military.unit("infantry")!
+        var rng = GameRandom(seed: 99)
+
+        // Deplete one regiment in Konstantiniyye while within supply limit and verify monthly reinforcement.
+        let imperial = w.military.armies(of: tur).first { w.military.armies.province[Int($0.rawValue)] == konst }!
+        let impIdx = Int(imperial.rawValue)
+        w.military.armies.regiments[impIdx][0].men = 500
+        ArmySystem.runMonthly(&w, date: Scenario1453.startDate, random: &rng)
+        XCTAssertGreaterThan(w.military.armies.regiments[impIdx][0].men, 500)
+
+        // Now over-stack a small province past its supply limit and verify monthly attrition.
+        let kruje = province(w, "Kruje")
+        let alb = country(w, "ALB")
+        let limit = ArmySystem.supplyLimit(w, in: kruje)
+        var hugeRegs: [Regiment] = []
+        for _ in 0..<(limit / 1_000 + 15) {
+            hugeRegs.append(Regiment(type: inf.id, origin: .professional, men: 1_000, morale: inf.morale))
+        }
+        let overArmy = w.military.armies.append(name: "Overcrowded Host", owner: alb, province: kruje, regiments: hugeRegs)
+        let menBefore = w.military.armies.totalMen(of: overArmy)
+        ArmySystem.runMonthly(&w, date: Scenario1453.startDate, random: &rng)
+        XCTAssertLessThan(w.military.armies.totalMen(of: overArmy), menBefore)
+        XCTAssertGreaterThan(w.military.lastAttritionLosses[alb.index], 0)
+    }
+
+    func testGreatVassalOpenRevoltAndCrushing() {
+        var w = Scenario1453.makeWorld()
+        let hun = country(w, "HUN")
+        let garai = w.people.characters.id(forKey: "garai")!
+        let held = VassalSystem.holdings(w, of: garai)
+        XCTAssertFalse(held.isEmpty)
+
+        // Make Garai deeply disloyal and revoke a province without justification -> triggers open revolt.
+        w.people.characters.favour[garai.index] = -90
+        XCTAssertLessThan(VassalSystem.opinionOfLiege(w, garai, hun), VassalModel.refuseBelow)
+        VassalSystem.revoke(&w, held[0], date: Scenario1453.startDate, justified: false)
+        XCTAssertTrue(ArmySystem.isRevolting(w, garai))
+        XCTAssertEqual(VassalSystem.stance(w, garai, hun), .revolting)
+
+        let rebelId = w.military.rebelArmies(of: hun).first!
+        let rebelProv = w.military.armies.province[Int(rebelId.rawValue)]
+
+        // Move Hungary's royal army to the rebel province and reinforce it so it crushes the revolt.
+        let royal = w.military.armies(of: hun).first!
+        let cav = w.military.unit("cavalry")!
+        for _ in 0..<8 {
+            w.military.armies.regiments[Int(royal.rawValue)].append(
+                Regiment(type: cav.id, origin: .professional, men: 1_000, morale: cav.morale)
+            )
+        }
+        w.military.armies.province[Int(royal.rawValue)] = rebelProv
+        var rng = GameRandom(seed: 7)
+        ArmySystem.resolveRebelClash(&w, in: rebelProv, date: Scenario1453.startDate, random: &rng)
+
+        XCTAssertFalse(ArmySystem.isRevolting(w, garai))
+        XCTAssertTrue(VassalSystem.holdings(w, of: garai).isEmpty, "Crushed rebel vassal should forfeit all holdings")
+    }
+}
