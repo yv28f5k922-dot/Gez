@@ -1,4 +1,12 @@
 import XCTest
+
+/// Decade-long simulations take most of CI's time. They run only when
+/// GEZ_LONG_TESTS=1 (the "Long simulation tests" CI job: daily, on main, and
+/// by hand), so pull requests get a fast answer.
+func skipUnlessLongTests() throws {
+    try XCTSkipUnless(ProcessInfo.processInfo.environment["GEZ_LONG_TESTS"] == "1",
+                      "long simulation: runs in the Long simulation tests job")
+}
 @testable import GezCore
 
 final class GameDateTests: XCTestCase {
@@ -443,7 +451,8 @@ final class SimulationTests: XCTestCase {
         XCTAssertEqual(a.world.provinces.population, b.world.provinces.population)
     }
 
-    func testTenYearsStaysBounded() {
+    func testTenYearsStaysBounded() throws {
+        try skipUnlessLongTests()
         let sim = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate)
         let routes = sim.world.economy.routes.count
         sim.advance(days: 3650)
@@ -868,7 +877,8 @@ final class CharacterTests: XCTestCase {
         XCTAssertGreaterThan(CharacterSystem.taxBonus(w, tur), before)
     }
 
-    func testLifeGoesOn() {
+    func testLifeGoesOn() throws {
+        try skipUnlessLongTests()
         let sim = Simulation(world: Scenario1453.makeWorld(), startDate: start)
         let people = sim.world.people.characters.count
         sim.advance(days: 3650)
@@ -963,7 +973,8 @@ final class VassalTests: XCTestCase {
         XCTAssertTrue(w.people.refusing.contains(garai) || !w.people.characters.isAlive(w.countries.ruler[hun.index]!))
     }
 
-    func testVassalLinesGoOn() {
+    func testVassalLinesGoOn() throws {
+        try skipUnlessLongTests()
         let sim = Simulation(world: Scenario1453.makeWorld(), startDate: start)
         sim.advance(days: 365 * 30)
         let w = sim.world
@@ -1129,7 +1140,8 @@ final class GovernmentTests: XCTestCase {
         XCTAssertTrue(w.government.rules.lawAreas[a].options[w.government.laws[theocracy.index][a]].allowed(for: .monarchy))
     }
 
-    func testTwentyYearsStayInBounds() {
+    func testTwentyYearsStayInBounds() throws {
+        try skipUnlessLongTests()
         let sim = Simulation(world: Scenario1453.makeWorld(), startDate: start)
         sim.advance(days: 365 * 20)
         let g = sim.world.government

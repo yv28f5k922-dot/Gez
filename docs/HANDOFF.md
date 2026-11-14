@@ -132,6 +132,10 @@ unidentified developer" steps to the page.
 - **Verify everything through GitHub Actions** (`.github/workflows/ci.yml`),
   which runs on every push to `main`:
   - *Simulation tests (Linux)*: `swift:6.0` container. Fastest signal.
+  - *Long simulation tests (Linux)*: the four decade-long simulations
+    (`skipUnlessLongTests()`, env `GEZ_LONG_TESTS=1`); daily, on pushes to
+    `main` and by hand, never on pull requests. Branch pushes no longer run
+    CI by themselves (only pull requests and `main`).
   - *Simulation tests*: macOS arm64.
   - *Build Mac and iPad apps*: `macos-15-intel`.
   - *Render map snapshots*: macOS arm64 (needs Metal); force-pushes PNGs
