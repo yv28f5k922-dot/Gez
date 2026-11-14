@@ -64,10 +64,17 @@ final class GameModel {
     var showTrade = false
     var showCourt = false
     var showGovernment = false
+    var showArmies = false
+    /// Selected army in the Armies panel or on the map.
+    var selectedArmy: ArmyID?
+    /// When set, tapping a province on the map orders this army to march there.
+    var moveModeForArmy: ArmyID?
     /// Person shown in the court window (nil = your ruler).
     var viewedCharacter: CharacterID?
     /// Map positions of market towns, for drawing trade routes.
     private(set) var marketCentrePoints: [CGPoint] = []
+    /// Map positions of each province's main town, indexed by `ProvinceID.index`.
+    private(set) var provincePositions: [CGPoint] = []
     /// A route being planned in the trade window.
     var draftGood: GoodID?
     var draftFrom: MarketID?
@@ -289,6 +296,108 @@ final class GameModel {
         revision &+= 1
     }
 
+    // MARK: Military actions (player only)
+
+    @discardableResult
+    func recruitProfessional(_ unit: UnitTypeID, in province: ProvinceID, into army: ArmyID? = nil) -> ArmyRefusal? {
+        guard let p = playerCountry else { return .notOwner }
+        let res = ArmySystem.recruitProfessional(&simulation.world, p, in: province, unit: unit, intoArmy: army)
+        revision &+= 1
+        switch res {
+        case .success(let aid):
+            selectedArmy = aid
+            return nil
+        case .failure(let err):
+            return err
+        }
+    }
+
+    @discardableResult
+    func hireMercenary(_ unit: UnitTypeID, in province: ProvinceID, into army: ArmyID? = nil) -> ArmyRefusal? {
+        guard let p = playerCountry else { return .notOwner }
+        let res = ArmySystem.hireMercenary(&simulation.world, p, in: province, unit: unit, intoArmy: army)
+        revision &+= 1
+        switch res {
+        case .success(let aid):
+            selectedArmy = aid
+            return nil
+        case .failure(let err):
+            return err
+        }
+    }
+
+    @discardableResult
+    func raiseLevies(in province: ProvinceID) -> ArmyRefusal? {
+        guard let p = playerCountry else { return .notOwner }
+        let res = ArmySystem.raiseLevies(&simulation.world, p, in: province)
+        revision &+= 1
+        switch res {
+        case .success(let aid):
+            selectedArmy = aid
+            return nil
+        case .failure(let err):
+            return err
+        }
+    }
+
+    func raiseAllLevies() {
+        guard let p = playerCountry else { return }
+        ArmySystem.raiseAllLevies(&simulation.world, p)
+        revision &+= 1
+    }
+
+    func disbandLevies() {
+        guard let p = playerCountry else { return }
+        ArmySystem.disbandLevies(&simulation.world, of: p)
+        revision &+= 1
+    }
+
+    func disband(army: ArmyID) {
+        guard let p = playerCountry else { return }
+        let i = Int(army.rawValue)
+        guard i >= 0 && i < world.military.armies.count && world.military.armies.owner[i] == p else { return }
+        ArmySystem.disband(&simulation.world, army: army)
+        if selectedArmy == army { selectedArmy = nil }
+        if moveModeForArmy == army { moveModeForArmy = nil }
+        revision &+= 1
+    }
+
+    func assignCommander(_ commander: CharacterID?, to army: ArmyID) {
+        guard let p = playerCountry else { return }
+        let i = Int(army.rawValue)
+        guard i >= 0 && i < world.military.armies.count && world.military.armies.owner[i] == p else { return }
+        ArmySystem.assignCommander(&simulation.world, army: army, commander: commander)
+        revision &+= 1
+    }
+
+    func mergeArmies(into army: ArmyID) {
+        guard let p = playerCountry else { return }
+        let i = Int(army.rawValue)
+        guard i >= 0 && i < world.military.armies.count && world.military.armies.owner[i] == p else { return }
+        ArmySystem.mergeArmiesInProvince(&simulation.world, into: army)
+        revision &+= 1
+    }
+
+    func split(army: ArmyID) {
+        guard let p = playerCountry else { return }
+        let i = Int(army.rawValue)
+        guard i >= 0 && i < world.military.armies.count && world.military.armies.owner[i] == p else { return }
+        if let created = ArmySystem.splitArmy(&simulation.world, army: army) {
+            selectedArmy = created
+        }
+        revision &+= 1
+    }
+
+    func orderMove(army: ArmyID, to destination: ProvinceID) {
+        guard let p = playerCountry else { return }
+        let i = Int(army.rawValue)
+        guard i >= 0 && i < world.military.armies.count && world.military.armies.owner[i] == p
+            && !world.military.armies.isRebel[i] else { return }
+        ArmySystem.orderMove(&simulation.world, army: army, to: destination)
+        moveModeForArmy = nil
+        revision &+= 1
+    }
+
     // MARK: Trade actions (player only)
 
     @discardableResult
@@ -347,6 +456,10 @@ final class GameModel {
 
     func select(mapX x: Int, y: Int) {
         if let hit = idMap.province(x: x, y: y) {
+            if let moving = moveModeForArmy {
+                orderMove(army: moving, to: hit)
+                return
+            }
             select(province: hit == selectedProvince ? nil : hit)
         } else if let sea = seaMap.seaZone(x: x, y: y) {
             select(sea: sea == selectedSea ? nil : sea)
@@ -401,6 +514,7 @@ final class GameModel {
             ))
         }
         // Big towns last so they draw on top.
+        provincePositions = icons.map(\.position)
         marketCentrePoints = world.economy.markets.centre.map { icons[$0.index].position }
         townIcons = icons.sorted { $0.development < $1.development }
     }

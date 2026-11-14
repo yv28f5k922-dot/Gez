@@ -108,8 +108,8 @@ Lombardy | raw_silk 2, grain 2, livestock 1
 Venetia | grain 2, wine 1, salt 1
 Tuscany | wine 2, olives 2, alum 1, iron 1
 Papal States | alum 2, grain 2, wool 1
-Naples | olives 3, wine 2, raw_silk 1, wool 1
-Sicily | grain 4, sugar 1, wine 1
+Naples | olives 3, wine 2, raw_silk 1, wool 1, sulphur 1
+Sicily | grain 4, sugar 1, wine 1, sulphur 2
 Sardinia | grain 2, livestock 2, salt 1, silver 1
 Liguria | olives 3, wine 1
 Scandinavia | wood 3, fish 3, furs 1
@@ -153,7 +153,7 @@ Thrace | grain 3, livestock 1
 Greece | olives 3, wine 2, raw_silk 1
 Morea | olives 2, raw_silk 2, wine 1
 Ionian Islands | wine 2, fruit 2, olives 1
-Aegean Islands | wine 2, alum 1, olives 1
+Aegean Islands | wine 2, alum 1, olives 1, sulphur 1
 Crete | wine 4, olives 2
 Cyprus | sugar 3, wine 2, cotton 1
 Dalmatia | salt 2, wine 1, olives 1
@@ -190,11 +190,11 @@ Hejaz | dates 2, camels 2
 Najd | horses 3, camels 2, dates 1
 Eastern Arabia | pearls 4, dates 2
 Oman | dates 2, fish 2, incense 0
-Yemen | coffee 3, dyes 1, livestock 1
+Yemen | coffee 3, dyes 1, livestock 1, sulphur 1
 Hadramawt | incense 4, dates 1
 Al-Jazira | grain 2, wool 2
 Iraq | dates 3, grain 2
-Persia @mountains | wool 2, copper 1, iron 1
+Persia @mountains | wool 2, copper 1, iron 1, sulphur 1
 Persia @desert | camels 2, salt 1, dates 1
 Persia @farmland | grain 2, cotton 1, fruit 1
 Azerbaijan | raw_silk 2, wool 2, horses 1
@@ -245,7 +245,7 @@ Kashmir | wool 3, saffron 2, fruit 1
 Hindustan | grain 2, sugar 2, cotton 2, dyes 1
 Delhi | grain 3, dyes 1
 Doab and Awadh | sugar 3, grain 2, dyes 1
-Bihar | saltpeter 3, opium 2, grain 1
+Bihar | saltpeter 3, opium 2, grain 1, sulphur 1
 Himalayan Foothills | wood 2, livestock 1, iron 1
 Bundelkhand | gems 1, livestock 2, wood 1
 Rajputana | livestock 2, camels 2, wool 1

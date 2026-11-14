@@ -5,7 +5,7 @@ Read this first, then `docs/ROADMAP.md` (the agreed plan), `docs/DESIGN.md`
 judgment calls) and `CLAUDE.md` (rules). This file says where the project
 stands, how to work on it, and what to do next.
 
-Last updated: session 6 (13 November 2026). Phases 0–5 are done. Gemini now writes the code; Claude tests and reviews it (see "Working with Gemini").
+Last updated: session 6 (13 November 2026). Phases 0–6 are done. Gemini now writes the code; Claude tests and reviews it (see "Working with Gemini").
 
 ## The owner
 
@@ -52,25 +52,18 @@ Everything below is built, tested on CI and visible in the app.
 | Characters (Phase 4) | 2,244 people: 560 real living people of 1453 and 79 dead ancestors with their real families (parents, siblings, children, bastards); invented only where history is silent. CK-style traits and skills, councils, succession laws, births, deaths, marriages |
 | Great vassals | Real lords hold 75 provinces (Hunyadi, Rožmberk, Olelko of Kiev, Ottoman march lords, Georgian princes...). They keep 40% of the tax, inherit by family law, can be granted or stripped of land, refuse taxes when unhappy and may plot to poison the ruler. Court chronicle logs it all |
 | Government (Phase 5) | Stability −3…+3; 11 law areas with trade-offs (6 months to change); estates tied to pops (core four plus Janissaries, Mamluks, Rajputs, Tribes, Dhimmi) with power, loyalty and 23 privileges; a 4-tier reform tree per government type that can change the government |
-| App windows | Top bar: treasury (Budget), Trade, Court, Stability (Government). Province panel tabs: Overview (holder, buildings), Economy, People. Market panel. Map modes Q–I |
-| Tests | 99 simulation tests (GezCore) and 10 snapshot tests (App); all green |
+| Armies & logistics (Phase 6) | 15 unit types (5 core + 10 regional 1453 units), 39 starting standing armies (235 regiments, 225,000 men), three origins (levies from pops, standing professionals from manpower + market goods, mercenaries for gold), daily province-to-province movement (distance, terrain, rivers, roads, unit speed, commander Martial), supply limit & monthly attrition/reinforcement, great vassal open revolts, military AI |
+| App windows | Top bar: treasury (Budget), Trade, Court, Stability (Government), Armies (manpower, field armies, commanders, levies, recruitment). Province panel tabs: Overview (holder, supply, levy, buildings), Economy, People. Market panel. Map modes Q–I; 2D army counters and marching arrows |
+| Tests | 109 simulation tests (GezCore) and 11 snapshot tests (App); all green |
 
-Not started (later phases): armies, movement, supply, diplomacy, war and
-peace, sieges, save/load, battles, navies, religion and culture change,
-plague, rebels, technology, events, sound, menus, settings, multiplayer.
+Not started (later phases): diplomacy, war and peace, sieges, save/load,
+battles, navies, religion and culture change, plague, rebels, technology,
+events, sound, menus, settings, multiplayer.
 
 ## What to do next
 
-**Phase 6: armies and logistics** (`docs/ROADMAP.md`). Ask the owner the
-design questions first, as multiple choice. Hooks already waiting:
-- `world.government.effects[c][.manpower / .levySize / .armyQuality /
-  .fortDefence]` from laws, privileges, reforms and loyal estates.
-- `BuildingEffect.manpower`, `.fort`, `.ships` exist on buildings but do
-  nothing yet.
-- Council marshal (martial skill) and vassal revolts ("open revolt with
-  armies comes with Phase 6" in DESIGN.md).
-- Sulphur (for gunpowder) is barely supplied (econgen prints it as the
-  hardest good); revisit when guns need it.
+**Phase 7: diplomacy, war and peace** (`docs/ROADMAP.md`). Ask the owner the
+design questions first, as multiple choice.
 
 ## Working with Gemini (from session 6)
 
@@ -165,6 +158,7 @@ of them are reproducible (same input, byte-identical output).
 | `data/economy/` | `python3 tools/economy/econgen.py` (balance with `tools/economy/prototype.py`, a Python copy of the monthly market; keep constants in step) | `economy1453.json` |
 | `data/characters/` | `python3 tools/characters/chargen.py` | `characters1453.json` |
 | `data/government/` | `python3 tools/government/govgen.py` | `government1453.json` |
+| `data/military/` | `python3 tools/military/milgen.py` | `military1453.json` |
 | `data/heraldry/choices.txt` | push it; the Heraldry workflow downloads and converts | `App/Resources/Heraldry/arms_<TAG>.png`, `data/heraldry/credits.json` |
 | app icon (portolan chart, drawn from the province map) | `python3 tools/icon/make_icon.py` | `App/Resources/Assets.xcassets/AppIcon.appiconset/`, `docs/icon_preview.png` |
 
@@ -209,16 +203,18 @@ Packages/GezCore/Sources/GezCore/
   Economy/           Goods, Markets, Buildings, Finance, Trade, queries
   Characters/        CharacterTable, traits, names, chronicle
   Government/        Modifier, Effects, laws, estates, privileges, reforms
+  Military/          UnitType, Regiment, ArmyTable, Military
   Systems/           MarketSystem (+ EconomySystem/PopulationSystem),
-                     BuildingSystem, CharacterSystem, VassalSystem, GovernmentSystem
-  Scenario/          Scenario1453 + Economy/Character/Government loaders
+                     BuildingSystem, CharacterSystem, VassalSystem,
+                     GovernmentSystem, ArmySystem
+  Scenario/          Scenario1453 + Economy/Character/Government/Military loaders
   Resources/         generated JSON and ID maps
 App/Shared/
   GameModel.swift    bridge between simulation and UI; game loop; player actions
   ContentView.swift  top bar, speeds, map-mode bar, province panel, overlays
   EconomyViews.swift, BudgetView.swift, TradeView.swift, CourtView.swift,
-  GovernmentView.swift, CountryArmsView.swift
-  Map/               MapCanvasView (camera, gestures, labels, icons, routes),
+  GovernmentView.swift, ArmyView.swift, CountryArmsView.swift
+  Map/               MapCanvasView (camera, gestures, labels, icons, routes, armies),
                      Metal/ (MapShaders.metal, renderer), MapRenderer (CPU fallback)
 App/Tests/SnapshotTests.swift   renders PNGs on CI
 data/              hand-written source data (see table above)

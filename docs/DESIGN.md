@@ -277,6 +277,53 @@ Data in `data/government/` → `tools/government/govgen.py` →
   strong estate below 35 loyalty. AI does not change laws yet.
 - Religions: see `Packages/GezCore/Sources/GezCore/Faith/Religion.swift`.
 
+### Armies and logistics (Phase 6, owner's choices)
+Data in `data/military/` → `tools/military/milgen.py` →
+`military1453.json`; models in `Military/Military.swift`.
+- **Three regiment origins**:
+  - **Levies**: raised fast from a province's peasant, noble and tribal
+    pops, shrinking the province's workforce while under arms and returning
+    surviving soldiers to the pops when disbanded; casualties permanently
+    reduce the pop.
+  - **Standing professionals**: recruited from the national manpower pool
+    (fed by population, barracks and government modifiers) for ducats plus
+    market goods (`weapons`, `horses`, `gunpowder`, `cannons`, `camels`,
+    `elephants`, `wood`) demanded from the recruiting province's market.
+  - **Mercenaries**: hired for coin alone without using national manpower
+    or local pops (higher recruitment cost and monthly upkeep).
+- **15 unit types** (`data/military/units.txt`):
+  - **5 core units** available everywhere: Footmen (`infantry`), Horsemen
+    (`cavalry`), Archers (`archers`), Handgunners (`handgunners`) and
+    Bombards (`artillery`, 500 men, slow pace 0.70, siege +2).
+  - **10 historical 1453 regional units** unlocked by estate, government,
+    culture, region or tag: `janissaries` (Janissaries estate),
+    `mamluk_cavalry` (Mamluks estate), `rajput_cavalry` (Rajputs estate),
+    `war_elephants` (Indian regions), `horse_archers` (steppe hordes and
+    Tribes estate), `camel_riders` (Arab, Berber, Egyptian and Horn of
+    Africa cultures), `gendarmes` (France, Burgundy, Provence, Lorraine,
+    Brittany), `longbowmen` (England and Wales), `swiss_pikemen` (Swiss)
+    and `war_wagons` (Hussite Bohemia and Jan Jiskra).
+- **Starting armies on 30 May 1453** (`data/military/armies_1453.txt`):
+  only historical standing forces and active campaign hosts start on the
+  map (39 armies, 235 regiments, 225,000 troops — Mehmed II's victorious
+  host at Constantinople with Janissaries and bombards, France's Compagnies
+  d'Ordonnance under Dunois and Jean Bureau, Talbot in Gascony, Cairo's
+  Royal Mamluks, Hunyadi's Banderium, Poděbrady's war wagons, Skanderbeg,
+  Uzun Hasan, Jahan Shah, Bahlul Lodi, Kapilendra Deva, Rana Kumbha,
+  Vijayanagara, Zara Yaqob...), while seasonal levies stay home at the
+  plough until raised.
+- **Commanders**: rulers, heirs, marshals, great vassals and courtiers can
+  lead an army; their Martial skill speeds marches and strengthens combat.
+- **Movement, supply & vassal revolts** (`Systems/ArmySystem.swift`):
+  daily province-to-province marches scaled by real distance, terrain,
+  river crossings (+35%), Paved Roads (−8% per level), commander Martial
+  skill (+1.5% per point) and slowest unit speed; province supply limit
+  from population, staple food output, terrain, ports and forts with
+  monthly starvation/disease attrition (2–15%) and 10% monthly
+  reinforcement in supplied friendly land; deeply disloyal (`opinion < −60`)
+  or defiantly revoked great vassals raise their domain levies in open
+  revolt.
+
 ## Architecture
 
 | Layer | Tech | Notes |

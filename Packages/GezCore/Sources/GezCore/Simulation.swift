@@ -28,15 +28,18 @@ public final class Simulation {
         ticksRun += 1
 
         // Daily systems go here.
+        ArmySystem.runDaily(&world, date: date, random: &random)
 
         if date.isFirstOfMonth {
             TradeSystem.refreshPaths(&world)
             EconomySystem.runMonthly(&world)
             BuildingSystem.runMonthly(&world)
+            ArmySystem.runMonthly(&world, date: date, random: &random)
             FinanceSystem.runMonthly(&world)
             FinanceSystem.runAI(&world)
             TradeSystem.runAI(&world, month: date.month)
             BuildingSystem.runAI(&world, month: date.month)
+            ArmySystem.runAI(&world, month: date.month, date: date)
             PopulationSystem.runMonthly(&world)
             CharacterSystem.runMonthly(&world, date: date, random: &random)
             VassalSystem.runMonthly(&world, date: date, random: &random)

@@ -19,7 +19,7 @@ public enum VassalModel {
 }
 
 public enum VassalStance: Equatable, Sendable {
-    case loyal, discontent, refusing, plotting
+    case loyal, discontent, refusing, plotting, revolting
 
     public var displayName: String {
         switch self {
@@ -27,6 +27,7 @@ public enum VassalStance: Equatable, Sendable {
         case .discontent: return "Discontent"
         case .refusing: return "Refuses taxes"
         case .plotting: return "Plotting"
+        case .revolting: return "In revolt"
         }
     }
 }
@@ -76,6 +77,7 @@ public enum VassalSystem {
     }
 
     public static func stance(_ world: World, _ x: CharacterID, _ c: CountryID) -> VassalStance {
+        if ArmySystem.isRevolting(world, x) { return .revolting }
         let o = opinionOfLiege(world, x, c)
         if o < VassalModel.plotBelow && world.people.characters.skill(x, .intrigue) >= VassalModel.plotIntrigue {
             return .plotting
@@ -144,11 +146,16 @@ public enum VassalSystem {
     @discardableResult
     public static func revoke(_ world: inout World, _ p: ProvinceID, date: GameDate, justified: Bool = false) -> Bool {
         guard let c = world.provinces.owner[p.index], let x = world.provinces.holder[p.index] else { return false }
+        let priorOpinion = opinionOfLiege(world, x, c)
+        let allHeld = holdings(world, of: x)
         world.provinces.holder[p.index] = nil
         if !justified {
             world.people.characters.favour[x.index] = max(-100, world.people.characters.favour[x.index] + VassalModel.revokeFavour)
             for v in vassals(world, of: c) where v != x {
                 world.people.characters.favour[v.index] = max(-100, world.people.characters.favour[v.index] + VassalModel.revokeOthersFavour)
+            }
+            if priorOpinion < VassalModel.refuseBelow {
+                ArmySystem.triggerVassalRevolt(&world, vassal: x, against: c, in: allHeld, date: date)
             }
         }
         world.people.record(date, c, "\(world.provinces.name[p.index]) is taken from \(world.people.characters.fullName(x)).")

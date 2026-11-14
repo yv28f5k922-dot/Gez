@@ -1,0 +1,1899 @@
+{
+  "units": [
+    {
+      "key": "infantry",
+      "name": "Footmen",
+      "category": "infantry",
+      "men": 1000,
+      "speed": 1.0,
+      "attack": 4.0,
+      "defence": 5.0,
+      "morale": 3.0,
+      "siege": 0.0,
+      "cost": 12.0,
+      "upkeep": 0.25,
+      "goods": {
+        "weapons": 1.0
+      },
+      "requires": []
+    },
+    {
+      "key": "cavalry",
+      "name": "Horsemen",
+      "category": "cavalry",
+      "men": 1000,
+      "speed": 1.4,
+      "attack": 7.0,
+      "defence": 5.0,
+      "morale": 3.5,
+      "siege": 0.0,
+      "cost": 24.0,
+      "upkeep": 0.5,
+      "goods": {
+        "weapons": 1.0,
+        "horses": 1.0
+      },
+      "requires": []
+    },
+    {
+      "key": "archers",
+      "name": "Archers",
+      "category": "ranged",
+      "men": 1000,
+      "speed": 1.0,
+      "attack": 5.0,
+      "defence": 3.0,
+      "morale": 2.8,
+      "siege": 0.0,
+      "cost": 14.0,
+      "upkeep": 0.28,
+      "goods": {
+        "weapons": 0.8,
+        "wood": 0.5
+      },
+      "requires": []
+    },
+    {
+      "key": "handgunners",
+      "name": "Handgunners",
+      "category": "ranged",
+      "men": 1000,
+      "speed": 1.0,
+      "attack": 7.0,
+      "defence": 4.0,
+      "morale": 3.0,
+      "siege": 0.0,
+      "cost": 20.0,
+      "upkeep": 0.4,
+      "goods": {
+        "weapons": 1.0,
+        "gunpowder": 0.8
+      },
+      "requires": []
+    },
+    {
+      "key": "artillery",
+      "name": "Bombards",
+      "category": "artillery",
+      "men": 500,
+      "speed": 0.7,
+      "attack": 9.0,
+      "defence": 2.0,
+      "morale": 2.5,
+      "siege": 2.0,
+      "cost": 45.0,
+      "upkeep": 0.9,
+      "goods": {
+        "cannons": 1.0,
+        "gunpowder": 1.2
+      },
+      "requires": []
+    },
+    {
+      "key": "janissaries",
+      "name": "Janissaries",
+      "category": "infantry",
+      "men": 1000,
+      "speed": 1.0,
+      "attack": 7.0,
+      "defence": 7.0,
+      "morale": 4.2,
+      "siege": 0.0,
+      "cost": 24.0,
+      "upkeep": 0.45,
+      "goods": {
+        "weapons": 1.2,
+        "gunpowder": 0.6
+      },
+      "requires": [
+        {
+          "kind": "estate",
+          "values": [
+            "janissaries"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "mamluk_cavalry",
+      "name": "Mamluk Royal Cavalry",
+      "category": "cavalry",
+      "men": 1000,
+      "speed": 1.4,
+      "attack": 9.0,
+      "defence": 7.0,
+      "morale": 4.0,
+      "siege": 0.0,
+      "cost": 30.0,
+      "upkeep": 0.6,
+      "goods": {
+        "weapons": 1.2,
+        "horses": 1.2
+      },
+      "requires": [
+        {
+          "kind": "estate",
+          "values": [
+            "mamluks"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "rajput_cavalry",
+      "name": "Rajput Lancers",
+      "category": "cavalry",
+      "men": 1000,
+      "speed": 1.4,
+      "attack": 8.0,
+      "defence": 6.0,
+      "morale": 4.2,
+      "siege": 0.0,
+      "cost": 26.0,
+      "upkeep": 0.5,
+      "goods": {
+        "weapons": 1.0,
+        "horses": 1.0
+      },
+      "requires": [
+        {
+          "kind": "estate",
+          "values": [
+            "rajputs"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "war_elephants",
+      "name": "War Elephants",
+      "category": "cavalry",
+      "men": 500,
+      "speed": 0.8,
+      "attack": 11.0,
+      "defence": 8.0,
+      "morale": 3.8,
+      "siege": 1.0,
+      "cost": 48.0,
+      "upkeep": 0.95,
+      "goods": {
+        "elephants": 1.0,
+        "weapons": 1.0
+      },
+      "requires": [
+        {
+          "kind": "region",
+          "values": [
+            "Northwest India",
+            "Hindustan",
+            "Rajputana",
+            "Gujarat",
+            "Central India",
+            "Bengal",
+            "Deccan",
+            "South India"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "horse_archers",
+      "name": "Steppe Horse Archers",
+      "category": "cavalry",
+      "men": 1000,
+      "speed": 1.5,
+      "attack": 7.0,
+      "defence": 5.0,
+      "morale": 3.4,
+      "siege": 0.0,
+      "cost": 18.0,
+      "upkeep": 0.35,
+      "goods": {
+        "horses": 1.0,
+        "wood": 0.4
+      },
+      "requires": [
+        {
+          "kind": "government",
+          "values": [
+            "steppeHorde"
+          ]
+        },
+        {
+          "kind": "estate",
+          "values": [
+            "tribes"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "camel_riders",
+      "name": "Camel Riders",
+      "category": "cavalry",
+      "men": 1000,
+      "speed": 1.35,
+      "attack": 6.0,
+      "defence": 5.0,
+      "morale": 3.3,
+      "siege": 0.0,
+      "cost": 18.0,
+      "upkeep": 0.35,
+      "goods": {
+        "camels": 1.0,
+        "weapons": 0.8
+      },
+      "requires": [
+        {
+          "kind": "culture",
+          "values": [
+            "bedouin",
+            "najdi",
+            "hejazi",
+            "yemeni",
+            "hadrami",
+            "omani",
+            "gulf_arab",
+            "berber",
+            "tuareg",
+            "moroccan",
+            "algerian",
+            "tunisian",
+            "libyan",
+            "egyptian",
+            "sudanese",
+            "beja",
+            "somali",
+            "afar"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "gendarmes",
+      "name": "Ordonnance Gendarmes",
+      "category": "cavalry",
+      "men": 1000,
+      "speed": 1.35,
+      "attack": 9.0,
+      "defence": 7.0,
+      "morale": 4.0,
+      "siege": 0.0,
+      "cost": 30.0,
+      "upkeep": 0.6,
+      "goods": {
+        "weapons": 1.5,
+        "horses": 1.2
+      },
+      "requires": [
+        {
+          "kind": "tags",
+          "values": [
+            "FRA",
+            "BUR",
+            "PRO",
+            "LOR",
+            "BRI"
+          ]
+        },
+        {
+          "kind": "culture",
+          "values": [
+            "french",
+            "occitan",
+            "gascon",
+            "breton",
+            "walloon",
+            "arpitan",
+            "lorrainer"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "longbowmen",
+      "name": "Yeoman Longbowmen",
+      "category": "ranged",
+      "men": 1000,
+      "speed": 1.0,
+      "attack": 7.0,
+      "defence": 5.0,
+      "morale": 3.5,
+      "siege": 0.0,
+      "cost": 16.0,
+      "upkeep": 0.32,
+      "goods": {
+        "weapons": 0.8,
+        "wood": 0.8
+      },
+      "requires": [
+        {
+          "kind": "tags",
+          "values": [
+            "ENG"
+          ]
+        },
+        {
+          "kind": "culture",
+          "values": [
+            "english",
+            "welsh"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "swiss_pikemen",
+      "name": "Swiss Pikemen",
+      "category": "infantry",
+      "men": 1000,
+      "speed": 1.0,
+      "attack": 7.0,
+      "defence": 8.0,
+      "morale": 4.2,
+      "siege": 0.0,
+      "cost": 20.0,
+      "upkeep": 0.4,
+      "goods": {
+        "weapons": 1.2,
+        "wood": 0.5
+      },
+      "requires": [
+        {
+          "kind": "tags",
+          "values": [
+            "SWI"
+          ]
+        },
+        {
+          "kind": "culture",
+          "values": [
+            "swiss"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "war_wagons",
+      "name": "Hussite War Wagons",
+      "category": "ranged",
+      "men": 1000,
+      "speed": 0.85,
+      "attack": 6.0,
+      "defence": 9.0,
+      "morale": 4.0,
+      "siege": 0.0,
+      "cost": 24.0,
+      "upkeep": 0.45,
+      "goods": {
+        "weapons": 1.0,
+        "gunpowder": 0.6,
+        "wood": 1.0
+      },
+      "requires": [
+        {
+          "kind": "tags",
+          "values": [
+            "BOH",
+            "JIS"
+          ]
+        },
+        {
+          "kind": "culture",
+          "values": [
+            "czech"
+          ]
+        }
+      ]
+    }
+  ],
+  "armies": [
+    {
+      "country": "TUR",
+      "name": "Imperial Army of Constantinople",
+      "province": 680,
+      "commander": "mehmed2",
+      "regiments": [
+        {
+          "type": "janissaries",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "janissaries",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "janissaries",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "janissaries",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "janissaries",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "handgunners",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "handgunners",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "artillery",
+          "origin": "professional",
+          "men": 500
+        },
+        {
+          "type": "artillery",
+          "origin": "professional",
+          "men": 500
+        },
+        {
+          "type": "artillery",
+          "origin": "professional",
+          "men": 500
+        }
+      ]
+    },
+    {
+      "country": "TUR",
+      "name": "Army of Rumelia",
+      "province": 681,
+      "commander": "zaganos",
+      "regiments": [
+        {
+          "type": "janissaries",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "janissaries",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "FRA",
+      "name": "Compagnies d'Ordonnance",
+      "province": 73,
+      "commander": "dunois",
+      "regiments": [
+        {
+          "type": "gendarmes",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "gendarmes",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "gendarmes",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "gendarmes",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "artillery",
+          "origin": "professional",
+          "men": 500
+        },
+        {
+          "type": "artillery",
+          "origin": "professional",
+          "men": 500
+        }
+      ]
+    },
+    {
+      "country": "FRA",
+      "name": "Army of Normandy",
+      "province": 77,
+      "commander": "bureau",
+      "regiments": [
+        {
+          "type": "gendarmes",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "gendarmes",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "handgunners",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "artillery",
+          "origin": "professional",
+          "men": 500
+        },
+        {
+          "type": "artillery",
+          "origin": "professional",
+          "men": 500
+        }
+      ]
+    },
+    {
+      "country": "ENG",
+      "name": "Army of Aquitaine",
+      "province": 110,
+      "commander": "talbot",
+      "regiments": [
+        {
+          "type": "longbowmen",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "longbowmen",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "longbowmen",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "ENG",
+      "name": "Royal Retinue",
+      "province": 147,
+      "commander": "somerset",
+      "regiments": [
+        {
+          "type": "longbowmen",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "longbowmen",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "MAM",
+      "name": "Royal Mamluks of Cairo",
+      "province": 807,
+      "commander": "inal",
+      "regiments": [
+        {
+          "type": "mamluk_cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "mamluk_cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "mamluk_cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "mamluk_cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "mamluk_cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "MAM",
+      "name": "Army of Damascus",
+      "province": 798,
+      "commander": "khushqadam",
+      "regiments": [
+        {
+          "type": "mamluk_cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "mamluk_cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "camel_riders",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "camel_riders",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "HUN",
+      "name": "Royal Banderium",
+      "province": 608,
+      "commander": "hunyadi",
+      "regiments": [
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "handgunners",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "artillery",
+          "origin": "professional",
+          "men": 500
+        }
+      ]
+    },
+    {
+      "country": "BOH",
+      "name": "Landfrieden Host",
+      "province": 323,
+      "commander": "podebrady",
+      "regiments": [
+        {
+          "type": "war_wagons",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "war_wagons",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "handgunners",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "artillery",
+          "origin": "professional",
+          "men": 500
+        }
+      ]
+    },
+    {
+      "country": "JIS",
+      "name": "Black Brethren",
+      "province": 605,
+      "commander": "jiskra",
+      "regiments": [
+        {
+          "type": "war_wagons",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "mercenary",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "POL",
+      "name": "Royal Guard",
+      "province": 505,
+      "commander": "casimir4",
+      "regiments": [
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "LIT",
+      "name": "Grand Ducal Retinue",
+      "province": 522,
+      "commander": "gostautas",
+      "regiments": [
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "MOS",
+      "name": "Grand Princely Druzhina",
+      "province": 556,
+      "commander": "vasily_serpukhov",
+      "regiments": [
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "ALB",
+      "name": "League of Lezhë",
+      "province": 660,
+      "commander": "skanderbeg",
+      "regiments": [
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "HAB",
+      "name": "Archducal Guard",
+      "province": 341,
+      "commander": "albert6",
+      "regiments": [
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "handgunners",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "SWI",
+      "name": "Confederate Eidgenossen",
+      "province": 352,
+      "commander": "inv_swi_marshal",
+      "regiments": [
+        {
+          "type": "swiss_pikemen",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "swiss_pikemen",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "handgunners",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "BUR",
+      "name": "Ducal Host",
+      "province": 229,
+      "commander": "philip_good",
+      "regiments": [
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "artillery",
+          "origin": "professional",
+          "men": 500
+        }
+      ]
+    },
+    {
+      "country": "VEN",
+      "name": "Condotta of Saint Mark",
+      "province": 387,
+      "commander": "inv_ven_marshal",
+      "regiments": [
+        {
+          "type": "infantry",
+          "origin": "mercenary",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "mercenary",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "mercenary",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "MLO",
+      "name": "Sforza Condotta",
+      "province": 372,
+      "commander": "f_sforza",
+      "regiments": [
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "handgunners",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "PAP",
+      "name": "Papal Guard",
+      "province": 407,
+      "commander": null,
+      "regiments": [
+        {
+          "type": "infantry",
+          "origin": "mercenary",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "mercenary",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "NAP",
+      "name": "Royal Army of Naples",
+      "province": 413,
+      "commander": "ferrante",
+      "regiments": [
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "CAS",
+      "name": "Royal Hermandad",
+      "province": 31,
+      "commander": "pacheco",
+      "regiments": [
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "ARA",
+      "name": "Royal Host of Aragon",
+      "province": 57,
+      "commander": "john2_a",
+      "regiments": [
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "POR",
+      "name": "Casa Real Guard",
+      "province": 0,
+      "commander": "afonso5_p",
+      "regiments": [
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "QAR",
+      "name": "Black Sheep Host",
+      "province": 868,
+      "commander": "jahan_shah",
+      "regiments": [
+        {
+          "type": "horse_archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "horse_archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "horse_archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "horse_archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "AKK",
+      "name": "White Sheep Host",
+      "province": 752,
+      "commander": "uzun_hasan",
+      "regiments": [
+        {
+          "type": "horse_archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "horse_archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "horse_archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "TIM",
+      "name": "Gurkani Host",
+      "province": 1051,
+      "commander": "abu_said",
+      "regiments": [
+        {
+          "type": "horse_archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "horse_archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "horse_archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "HRT",
+      "name": "Khorasan Host",
+      "province": 905,
+      "commander": "inv_hrt_marshal",
+      "regiments": [
+        {
+          "type": "horse_archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "horse_archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "MOR",
+      "name": "Marinid Guard",
+      "province": 923,
+      "commander": "inv_mor_marshal",
+      "regiments": [
+        {
+          "type": "camel_riders",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "camel_riders",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "TUN",
+      "name": "Hafsid Guard",
+      "province": 953,
+      "commander": "uthman_h",
+      "regiments": [
+        {
+          "type": "camel_riders",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "camel_riders",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "ETH",
+      "name": "Chewa Regiments",
+      "province": 985,
+      "commander": "zara_yaqob",
+      "regiments": [
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "DEL",
+      "name": "Lodi Afghan Host",
+      "province": 1109,
+      "commander": "bahlul",
+      "regiments": [
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "war_elephants",
+          "origin": "professional",
+          "men": 500
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "VIJ",
+      "name": "Raya's Standing Host",
+      "province": 1323,
+      "commander": "saluva_n",
+      "regiments": [
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "war_elephants",
+          "origin": "professional",
+          "men": 500
+        },
+        {
+          "type": "war_elephants",
+          "origin": "professional",
+          "men": 500
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "ORI",
+      "name": "Gajapati Elephant Host",
+      "province": 1279,
+      "commander": "kapilendra",
+      "regiments": [
+        {
+          "type": "war_elephants",
+          "origin": "professional",
+          "men": 500
+        },
+        {
+          "type": "war_elephants",
+          "origin": "professional",
+          "men": 500
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "MEW",
+      "name": "Sisodia Rajput Host",
+      "province": 1176,
+      "commander": "kumbha",
+      "regiments": [
+        {
+          "type": "rajput_cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "rajput_cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "rajput_cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "war_elephants",
+          "origin": "professional",
+          "men": 500
+        }
+      ]
+    },
+    {
+      "country": "BAH",
+      "name": "Deccani Royal Host",
+      "province": 1290,
+      "commander": "humayun_b",
+      "regiments": [
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "war_elephants",
+          "origin": "professional",
+          "men": 500
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "artillery",
+          "origin": "professional",
+          "men": 500
+        }
+      ]
+    },
+    {
+      "country": "BNG",
+      "name": "Shah's Paik Host",
+      "province": 1247,
+      "commander": "nasiruddin",
+      "regiments": [
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "war_elephants",
+          "origin": "professional",
+          "men": 500
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "archers",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    },
+    {
+      "country": "GUJ",
+      "name": "Sultanate Guard",
+      "province": 1200,
+      "commander": "qutb_ahmad",
+      "regiments": [
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "cavalry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "war_elephants",
+          "origin": "professional",
+          "men": 500
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        },
+        {
+          "type": "infantry",
+          "origin": "professional",
+          "men": 1000
+        }
+      ]
+    }
+  ]
+}
