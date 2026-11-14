@@ -27,8 +27,8 @@ Last updated: session 6 (13 November 2026). Phases 0–5 are done. Gemini now wr
 - Map: Europe, North Africa, Horn of Africa, Middle East, Central Asia to
   the modern China border, Indian subcontinent.
 - **Graphics matter a lot.** A good-looking map now, built so it can become
-  3D later (Phase 17). The interface art pass is **skipped for now**; don't
-  do it unless asked.
+  3D later (Phase 17). The EU-style interface and art pass is the **last
+  phase (Phase 20)**; don't style panels before then unless asked.
 - Wants historical uncertainties raised so they can decide; record them in
   `docs/HISTORY_NOTES.md`.
 - No music or instruments ever (sound effects only, Phase 16). Saves are

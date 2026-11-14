@@ -13,7 +13,7 @@ via the `ci-snapshots` branch, and ask the owner multiple-choice questions
 
 | # | Feature | Decision |
 |---|---|---|
-| 1 | Interface art (fonts, parchment panels, icons) | **Skipped for now**, backlog |
+| 1 | Interface art (fonts, parchment panels, icons) | **Last phase (Phase 20)**, EU-style gold frames, medallions, painted art (decided session 6) |
 | 2 | Coats of arms | **Real 1453 arms/banners** from Wikimedia Commons (changed: generated ones were rejected) |
 | 3 | 3D map (relief, tilting camera) | **After core gameplay** |
 | 4 | Things on the map (cities, forts, ports, armies) | **2D icons first, 3D later** |
@@ -228,9 +228,38 @@ player fights a battle manually (pause with a time limit, auto-resolve
 only, or watch). Add our own relay server only if a Windows version
 happens.
 
+### Phase 20: Interface and art (the EU look)
+Decided by the owner in session 6: the very last phase, once everything
+else is done. Until then, keep panels functional and don't style them.
+Reference: the owner's concept canvas on claude.ai ("Gez interface
+concept": today vs. after, main screen and court panel). Its art pieces
+were made in code (height maps lit as metal, leather and enamel) by a
+script kept out of the repo; rebuild that as `tools/uiart/` when this
+phase starts. Never use Paradox art.
+1. **Style kit**: tooled leather top bar between gold mouldings, gold
+   frames with rope moulding and corner rosettes (nine-slice), parchment
+   panels, red cloth title banners, bevelled gold buttons, domed gold
+   medallions with engraved icons for every button and indicator, wax
+   seals for traits, period fonts (Cinzel titles, EB Garamond text; both
+   free to ship).
+2. **Painted goods and building icons** (Gemini, an art pack or an
+   artist; owner to decide then).
+3. **Portraits**: painted ones for the real people of 1453, plus a
+   layered generator (face, beard, headwear, clothing by culture, age,
+   rank) for everyone else.
+4. **Shields by culture**: heater shields for Latin Europe, round for the
+   Islamic world, other shapes for India and the steppe, all in gold frames.
+5. **Alerts row**: glowing medallions under the top bar (unhappy vassal,
+   stability can be raised, building finished...).
+6. **Rich tooltips**: framed parchment cards that break down every number.
+7. **Motion**: panels unroll like scrolls, medallions press in, hover glow.
+8. **Map polish**: curved country names; a painted-chart look when zoomed
+   out (drawn mountains, sea creatures, blank parchment for unknown lands);
+   forests, towns and animated water where Phase 17 has not already done it.
+9. **Main menu and loading screen** with a painted Constantinople, 1453,
+   and paintings for the event pop-ups from Phase 14.
+
 ### Backlog (decide later)
-- **Interface art** pass (period fonts, parchment panels, icons): skipped
-  for now by the owner. Ask again after the first playable game.
 - **Windows** version: decide later; the simulation stays portable.
 - Playable naval battles, iCloud saves, guided tutorial, music: not wanted
   for now.
