@@ -3,6 +3,10 @@
 The owner does not write code; Claude writes everything. Explain changes in
 plain language, not jargon.
 
+**Gemini now writes the code and Claude tests and reviews it** (pull
+requests from `gemini/*` branches; routine in `docs/HANDOFF.md`, "Working
+with Gemini"). Don't merge without green CI and the owner's agreement.
+
 **Start with `docs/HANDOFF.md`**: current state, the owner's wishes, how to
 build and verify from the cloud workspace. **The agreed plan is
 `docs/ROADMAP.md`**: work through its phases in order.

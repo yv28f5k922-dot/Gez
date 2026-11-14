@@ -5,7 +5,7 @@ Read this first, then `docs/ROADMAP.md` (the agreed plan), `docs/DESIGN.md`
 judgment calls) and `CLAUDE.md` (rules). This file says where the project
 stands, how to work on it, and what to do next.
 
-Last updated: end of session 5 (13 November 2026). Phases 0–5 are done.
+Last updated: session 6 (13 November 2026). Phases 0–5 are done. Gemini now writes the code; Claude tests and reviews it (see "Working with Gemini").
 
 ## The owner
 
@@ -71,6 +71,33 @@ design questions first, as multiple choice. Hooks already waiting:
   armies comes with Phase 6" in DESIGN.md).
 - Sulphur (for gunpowder) is barely supplied (econgen prints it as the
   hardest good); revisit when guns need it.
+
+## Working with Gemini (from session 6)
+
+The owner now has **Gemini write the code** and **Claude test and review
+it**. Gemini's rules are in `GEMINI.md` (and the same text in `AGENTS.md`
+for Jules): it works on `gemini/<topic>` branches and opens pull requests
+into `main`; it never pushes to `main`.
+
+When the owner asks Claude to test Gemini's work:
+1. `gh pr list` and `gh pr view <n>` / `gh pr diff <n>`; check out the
+   branch (`git fetch origin <branch> && git checkout <branch>`).
+2. Wait for CI on the pull request (all four jobs) and read failing logs.
+3. Check the rules: GezCore pure Swift, `GameRandom` only, struct-of-arrays,
+   tests for every new system, regenerated data committed and
+   reproducible (rerun the generator, expect no diff), resources listed
+   in `Package.swift`, no `Gez.xcodeproj`, docs and HISTORY_NOTES updated.
+4. Read the logic for bugs, and run quick balance checks in Python where
+   numbers changed. Look at the `ci-snapshots` images for UI changes.
+   Snapshots come from `main` pushes; for a pull request, judge the UI
+   from the code or run the snapshot job on the branch with
+   `gh workflow run ci.yml --ref <branch>`.
+5. Report to the owner in plain language: works or not, what is wrong,
+   and what to tell Gemini. Leave review comments on the pull request
+   (`gh pr review <n> --comment -b "..."` or `--request-changes`).
+6. Merge only when CI is green and the owner agrees
+   (`gh pr merge <n> --squash`), then mirror HANDOFF and ROADMAP to the
+   Project if they changed.
 
 ## How to work on it
 
