@@ -83,5 +83,5 @@ jobs:
           git init -q
           git checkout -q -b ci-snapshots
           git add -A
-          git -c user.name="CI" -c user.email="ci@users.noreply.github.com" commit -q -m "Snapshots for ${GITHUB_SHA}"
+          git -c user.name="github-actions[bot]" -c user.email="41898283+github-actions[bot]@users.noreply.github.com" commit -q -m "Snapshots for ${GITHUB_SHA}"
           git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" ci-snapshots
