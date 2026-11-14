@@ -133,10 +133,11 @@ three steps plus stability. Cossacks left out (they appear after 1453).
    estates (Janissaries, Cossacks, Rajputs, Mamluks); power from pop size
    and wealth; loyalty and privileges.
 
-### Phase 6: Armies and logistics
+### Phase 6: Armies and logistics (in progress)
+Owner's choices: three regiment origins tied to pops and markets (levies from pops, standing professionals from national manpower + market goods, mercenaries for gold); 5 core unit types + 10 historical 1453 regional units; 39 historical standing armies on the map on 30 May 1453 led by real commanders; daily movement by distance/terrain/rivers/roads/unit speed, province supply & attrition, and open revolts by disloyal great vassals.
 1. **Regiments by type and origin**: infantry, cavalry, archers,
    handgunners, artillery; levies raised from pops (reducing them),
-   professionals, mercenaries; special units.
+   professionals, mercenaries; special units. (Step 1 data & models ✅)
 2. **Army movement** along province neighbours; river crossings and
    mountains slow armies; roads speed them.
 3. **Supply and attrition**: supply limit from province population and

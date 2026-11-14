@@ -1145,3 +1145,82 @@ final class GovernmentTests: XCTestCase {
         XCTAssertTrue(sim.world.countries.ids.contains { g.reforms[$0.index].count > 1 }, "some AI countries should reform")
     }
 }
+
+final class MilitaryDataTests: XCTestCase {
+    func testUnitTypesAndSpecialRegionalUnitsLoad() {
+        let w = Scenario1453.makeWorld()
+        XCTAssertEqual(w.military.unitTypes.count, 15)
+
+        let coreKeys = ["infantry", "cavalry", "archers", "handgunners", "artillery"]
+        for key in coreKeys {
+            guard let u = w.military.unit(key) else {
+                return XCTFail("Missing core unit \(key)")
+            }
+            XCTAssertTrue(u.requires.isEmpty, "Core unit \(key) should have no unlock restriction")
+            XCTAssertFalse(u.goods.isEmpty, "Core unit \(key) should consume market goods when recruited")
+        }
+
+        let specialKeys = [
+            "janissaries", "mamluk_cavalry", "rajput_cavalry", "war_elephants",
+            "horse_archers", "camel_riders", "gendarmes", "longbowmen",
+            "swiss_pikemen", "war_wagons",
+        ]
+        for key in specialKeys {
+            guard let u = w.military.unit(key) else {
+                return XCTFail("Missing special unit \(key)")
+            }
+            XCTAssertFalse(u.requires.isEmpty, "Special unit \(key) should have unlock requirements")
+        }
+
+        let artillery = w.military.unit("artillery")!
+        let horseArchers = w.military.unit("horse_archers")!
+        XCTAssertLessThan(artillery.speed, 1.0)
+        XCTAssertGreaterThan(horseArchers.speed, 1.0)
+    }
+
+    func testStartingStandingArmiesOf1453() {
+        let w = Scenario1453.makeWorld()
+        XCTAssertEqual(w.military.armies.count, 39)
+
+        let tur = w.countries.id(forTag: "TUR")!
+        let konst = w.provinces.id(named: "Konstantiniyye")!
+        let mehmed = w.people.characters.id(forKey: "mehmed2")!
+        let turArmies = w.military.armies(of: tur)
+        XCTAssertEqual(turArmies.count, 2)
+
+        let imperial = turArmies.first { w.military.armies.province[Int($0.rawValue)] == konst }
+        XCTAssertNotNil(imperial)
+        if let aid = imperial {
+            let i = Int(aid.rawValue)
+            XCTAssertEqual(w.military.armies.commander[i], mehmed)
+            let jan = w.military.unit("janissaries")!.id
+            let art = w.military.unit("artillery")!.id
+            XCTAssertTrue(w.military.armies.regiments[i].contains { $0.type == jan })
+            XCTAssertTrue(w.military.armies.regiments[i].contains { $0.type == art })
+            XCTAssertGreaterThan(w.military.armies.totalMen(of: aid), 10_000)
+        }
+
+        // Every starting army sits in an owned province with a living commander of that realm.
+        for i in 0..<w.military.armies.count where w.military.armies.alive[i] {
+            let owner = w.military.armies.owner[i]
+            let prov = w.military.armies.province[i]
+            XCTAssertEqual(w.provinces.owner[prov.index], owner)
+            if let cmd = w.military.armies.commander[i] {
+                XCTAssertTrue(w.people.characters.isAlive(cmd))
+                XCTAssertEqual(w.people.characters.court[cmd.index], owner)
+            }
+            XCTAssertFalse(w.military.armies.regiments[i].isEmpty)
+        }
+
+        // Starting manpower pools are seeded and positive.
+        XCTAssertGreaterThan(w.military.maxManpower[tur.index], 10_000)
+        XCTAssertGreaterThan(w.military.manpower[tur.index], 5_000)
+    }
+
+    func testSulphurSourcesSupportGunpowder() {
+        let w = Scenario1453.makeWorld()
+        let sulphur = w.economy.goods.id(forKey: "sulphur")!
+        let sulphurProducers = w.economy.producers.good.filter { $0 == sulphur }
+        XCTAssertGreaterThanOrEqual(sulphurProducers.count, 5)
+    }
+}
