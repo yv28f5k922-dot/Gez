@@ -11,7 +11,7 @@ final class ProfileTests: XCTestCase {
         try XCTSkipUnless(ProcessInfo.processInfo.environment["GEZ_PROFILE"] == "1",
                           "profiling: runs in the Profile job only")
         var world = Scenario1453.makeWorld()
-        var random = GameRandom(seed: 1453)
+        var random = GameRandom(seed: UInt64(ProcessInfo.processInfo.environment["GEZ_PROFILE_SEED"] ?? "1453") ?? 1453)
         var date = Scenario1453.startDate
         var totals: [String: Double] = [:]
         var calls: [String: Int] = [:]
@@ -30,7 +30,7 @@ final class ProfileTests: XCTestCase {
         for day in 1...days {
             if day % 100 == 0 {
                 let now = DispatchTime.now().uptimeNanoseconds
-                print("PROFILE days \(day - 99)-\(day): \(Double(now - blockStart) / 1e9 / 100 * 1000) ms/day, army slots=\(world.military.armies.count)")
+                print("PROFILE days \(day - 99)-\(day): \(Double(now - blockStart) / 1e9 / 100 * 1000) ms/day, army slots=\(world.military.armies.count) battles=\(world.military.battles.count) recent=\(world.military.recentBattles.count) sieges=\(world.military.sieges.count) wars=\(world.diplomacy.wars.count) treaties=\(world.diplomacy.treaties.count)")
                 blockStart = now
             }
             date.advanceOneDay()

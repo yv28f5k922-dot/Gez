@@ -127,6 +127,7 @@ jobs:
     env:
       GEZ_PROFILE: "1"
       GEZ_PROFILE_DAYS: "400"
+      GEZ_PROFILE_SEED: "7"
     steps:
       - uses: actions/checkout@v5
       - name: Profile
