@@ -34,6 +34,16 @@ public struct ProvinceTable: Sendable {
     public var fortLevel: [Int] = []
     /// The great vassal who holds this province for its owner (nil = the crown's own land).
     public var holder: [CharacterID?] = []
+    /// Countries that consider this province their lawful core.
+    public var cores: [Set<CountryID>] = []
+    /// Countries that have an active territorial claim on this province.
+    public var claims: [Set<CountryID>] = []
+    /// Country currently occupying this province in a war (nil = controlled by legal owner).
+    public var occupiedBy: [CountryID?] = []
+    /// Hostile country currently advancing unfortified takeover or liberation in this province.
+    public var occupationTarget: [CountryID?] = []
+    /// Days accumulated toward unfortified occupation or liberation.
+    public var occupationProgressDays: [Int] = []
 
     public init() {}
 
@@ -76,7 +86,17 @@ public struct ProvinceTable: Sendable {
         self.sufiOrders.append([])
         self.fortLevel.append(fortLevel)
         self.holder.append(nil)
+        self.cores.append(owner != nil ? [owner!] : [])
+        self.claims.append([])
+        self.occupiedBy.append(nil)
+        self.occupationTarget.append(nil)
+        self.occupationProgressDays.append(0)
         return id
+    }
+
+    /// Current military/administrative controller of `province` (occupier if occupied, else legal owner).
+    public func controller(of province: ProvinceID) -> CountryID? {
+        occupiedBy[province.index] ?? owner[province.index]
     }
 
     /// Neighbours are set once all provinces exist. Links are made two-way.
@@ -279,6 +299,8 @@ public struct World: Sendable {
     public var government = Government()
     /// Armies, regiments, unit types and national manpower (Phase 6).
     public var military = Military()
+    /// Diplomatic relations, treaties, opinions, and wars (Phase 7).
+    public var diplomacy = Diplomacy()
 
     public init(map: MapInfo = MapInfo(width: 1, height: 1, pixelsPerDegree: 1, longitudeMin: 0, latitudeMax: 0)) {
         self.map = map
@@ -286,6 +308,37 @@ public struct World: Sendable {
 
     public func provinces(ownedBy country: CountryID) -> [ProvinceID] {
         provinces.ids.filter { provinces.owner[$0.index] == country }
+    }
+
+    public func areNeighbors(_ a: CountryID, _ b: CountryID) -> Bool {
+        guard a != b else { return false }
+        for p in provinces(ownedBy: a) {
+            for n in provinces.neighbors[p.index] {
+                if provinces.owner[n.index] == b {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    public func totalDevelopment(of country: CountryID) -> Int {
+        var dev = 0
+        for p in provinces(ownedBy: country) {
+            dev += provinces.development[p.index]
+        }
+        return dev
+    }
+
+    public func totalSoldiers(of country: CountryID) -> Int {
+        var total = 0
+        for aid in military.armies(of: country) {
+            let i = Int(aid.rawValue)
+            for reg in military.armies.regiments[i] {
+                total += reg.men
+            }
+        }
+        return total
     }
 
     public func isRiverBorder(_ a: ProvinceID, _ b: ProvinceID) -> Bool {

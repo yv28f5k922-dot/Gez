@@ -159,6 +159,10 @@ public struct ArmyTable: Sendable {
     public var isRebel: [Bool] = []
     /// The revolting great vassal leading this rebel host, if any.
     public var rebelLeader: [CharacterID?] = []
+    /// Previous province stepped from (used for river crossing battle penalties).
+    public var previousProvince: [ProvinceID?] = []
+    /// True while an army is executing a shattered retreat after a defeated battle.
+    public var isRetreating: [Bool] = []
     public var alive: [Bool] = []
 
     public init() {}
@@ -186,6 +190,8 @@ public struct ArmyTable: Sendable {
         self.moveStepDays.append(0)
         self.isRebel.append(isRebel)
         self.rebelLeader.append(rebelLeader)
+        self.previousProvince.append(nil)
+        self.isRetreating.append(false)
         self.alive.append(true)
         return id
     }
@@ -196,6 +202,8 @@ public struct ArmyTable: Sendable {
         alive[i] = false
         commander[i] = nil
         rebelLeader[i] = nil
+        previousProvince[i] = nil
+        isRetreating[i] = false
         regiments[i].removeAll()
         path[i].removeAll()
         moveProgressDays[i] = 0
@@ -231,6 +239,10 @@ public struct Military: Sendable {
     public var lastArmyUpkeep: [Double] = []
     /// Last month's total attrition deaths (men), indexed by `CountryID`.
     public var lastAttritionLosses: [Int] = []
+    /// Ongoing multi-day field battles across the map.
+    public var battles: [Battle] = []
+    /// Archive of recent completed battles (up to 50).
+    public var recentBattles: [BattleReport] = []
 
     public init() {}
 
@@ -294,5 +306,13 @@ public struct Military: Sendable {
             }
         }
         return sum
+    }
+
+    public func isInBattle(_ army: ArmyID) -> Bool {
+        battles.contains { $0.attackers.contains(army) || $0.defenders.contains(army) }
+    }
+
+    public func battle(in province: ProvinceID) -> Battle? {
+        battles.first { $0.province == province }
     }
 }
