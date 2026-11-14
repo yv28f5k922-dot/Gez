@@ -108,8 +108,8 @@ design questions first, as multiple choice. Hooks already waiting:
 
 ### When the owner's Mac is linked
 Install Xcode and Homebrew, then `brew install xcodegen`, `xcodegen
-generate`, open `Gez.xcodeproj`. Schemes: `GezMac`, `GeziPad` (set a
-signing team once), `GezMacTests`. Never commit `Gez.xcodeproj`.
+generate`, open `Gez.xcodeproj`. Schemes: `GezMac`, `GeziPad` (signing team is
+set in `project.yml`), `GezMacTests`. Never commit `Gez.xcodeproj`.
 
 ### Data pipelines (hand-written text → generated JSON)
 Edit the text files, run the generator, commit both. Every generator
@@ -124,6 +124,7 @@ of them are reproducible (same input, byte-identical output).
 | `data/characters/` | `python3 tools/characters/chargen.py` | `characters1453.json` |
 | `data/government/` | `python3 tools/government/govgen.py` | `government1453.json` |
 | `data/heraldry/choices.txt` | push it; the Heraldry workflow downloads and converts | `App/Resources/Heraldry/arms_<TAG>.png`, `data/heraldry/credits.json` |
+| app icon (portolan chart, drawn from the province map) | `python3 tools/icon/make_icon.py` | `App/Resources/Assets.xcassets/AppIcon.appiconset/`, `docs/icon_preview.png` |
 
 Run order after a map change: mapgen → bake_terrain → econgen → chargen →
 govgen (later ones read `scenario1453.json`). A new JSON resource must also
