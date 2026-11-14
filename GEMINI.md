@@ -41,6 +41,9 @@ make before it reaches `main`.
 - Never use data or art from Paradox or Creative Assembly games.
 - History: invent people or facts only where history records nothing;
   list doubtful facts in `docs/HISTORY_NOTES.md`.
+- While working, only run the tests for what you changed (e.g.
+  `swift test --filter Diplomacy`). Don't run the full suite locally.
+  Push and let GitHub run everything. Don't keep checking on running tests.
 - Never ask for, print or commit API keys or tokens.
 
 ## In the pull request description, write
