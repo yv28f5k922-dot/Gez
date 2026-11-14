@@ -193,6 +193,29 @@ enum DiplomacyLoader {
             }
         }
 
+        // 6. Starting historical foreign cores and claims (1453)
+        // France core on English Gascony (Bordeaux)
+        if let fra = world.countries.id(forTag: "FRA"), let bordeaux = world.provinces.id(named: "Bordeaux") {
+            world.provinces.cores[bordeaux.index].insert(fra)
+        }
+        // Castile claims on Granada and Malaga
+        if let cas = world.countries.id(forTag: "CAS") {
+            if let granada = world.provinces.id(named: "Granada") { world.provinces.claims[granada.index].insert(cas) }
+            if let malaga = world.provinces.id(named: "Malaga") { world.provinces.claims[malaga.index].insert(cas) }
+        }
+        // Ottoman claims on Smederevo and Greek lands
+        if let tur = world.countries.id(forTag: "TUR") {
+            if let smederevo = world.provinces.id(named: "Smederevo") { world.provinces.claims[smederevo.index].insert(tur) }
+            for name in ["Athens", "Mystras", "Monemvasia", "Corinth", "Patras"] {
+                if let p = world.provinces.id(named: name) { world.provinces.claims[p.index].insert(tur) }
+            }
+        }
+        // Poland claims on Teutonic Danzig and Marienburg
+        if let pol = world.countries.id(forTag: "POL") {
+            if let danzig = world.provinces.id(named: "Danzig") { world.provinces.claims[danzig.index].insert(pol) }
+            if let marienburg = world.provinces.id(named: "Marienburg") { world.provinces.claims[marienburg.index].insert(pol) }
+        }
+
         world.diplomacy = dip
     }
 }

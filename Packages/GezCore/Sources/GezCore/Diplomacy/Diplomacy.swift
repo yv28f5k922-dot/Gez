@@ -97,6 +97,18 @@ public struct War: Sendable, Identifiable, Equatable {
     public func areEnemies(_ a: CountryID, _ b: CountryID) -> Bool {
         (isAttacker(a) && isDefender(b)) || (isDefender(a) && isAttacker(b))
     }
+
+    public mutating func addAttacker(_ country: CountryID) {
+        if !attackers.contains(country) {
+            attackers.append(country)
+        }
+    }
+
+    public mutating func addDefender(_ country: CountryID) {
+        if !defenders.contains(country) {
+            defenders.append(country)
+        }
+    }
 }
 
 /// Complete diplomatic relations state stored on `World`.
@@ -330,6 +342,12 @@ public struct Diplomacy: Sendable {
     public mutating func addWar(_ war: War) {
         if !wars.contains(where: { $0.id == war.id }) {
             wars.append(war)
+        }
+    }
+
+    public mutating func updateWar(_ war: War) {
+        if let idx = wars.firstIndex(where: { $0.id == war.id }) {
+            wars[idx] = war
         }
     }
 

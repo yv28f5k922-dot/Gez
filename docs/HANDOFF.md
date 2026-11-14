@@ -205,7 +205,7 @@ Packages/GezCore/Sources/GezCore/
   Characters/        CharacterTable, traits, names, chronicle
   Government/        Modifier, Effects, laws, estates, privileges, reforms
   Military/          UnitType, Regiment, ArmyTable, Military
-  Diplomacy/         Treaty, War, casus belli, opinions, trust, relation slots
+  Diplomacy/         Treaty, War, CasusBelli, WarDeclaration, call to arms, opinions, trust, relation slots
   Systems/           MarketSystem (+ EconomySystem/PopulationSystem),
                      BuildingSystem, CharacterSystem, VassalSystem,
                      GovernmentSystem, ArmySystem, DiplomacySystem
