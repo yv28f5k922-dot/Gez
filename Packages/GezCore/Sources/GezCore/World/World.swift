@@ -279,6 +279,8 @@ public struct World: Sendable {
     public var government = Government()
     /// Armies, regiments, unit types and national manpower (Phase 6).
     public var military = Military()
+    /// Diplomatic relations, treaties, opinions, and wars (Phase 7).
+    public var diplomacy = Diplomacy()
 
     public init(map: MapInfo = MapInfo(width: 1, height: 1, pixelsPerDegree: 1, longitudeMin: 0, latitudeMax: 0)) {
         self.map = map
