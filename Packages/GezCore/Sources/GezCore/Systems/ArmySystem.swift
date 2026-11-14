@@ -633,6 +633,28 @@ public enum ArmySystem {
         return max(1.0, (rawDays * 10.0).rounded() / 10.0)
     }
 
+    /// Labels each province with the id of the land mass it belongs to
+    /// (provinces connected through `neighbors`). Two provinces with different
+    /// labels cannot be reached from each other by marching, so callers can
+    /// skip the full-map `findPath` search that would fail anyway.
+    public static func landComponents(_ world: World) -> [Int] {
+        let P = world.provinces.count
+        var label = Array(repeating: -1, count: P)
+        var next = 0
+        for start in 0..<P where label[start] == -1 {
+            label[start] = next
+            var stack = [start]
+            while let u = stack.popLast() {
+                for nb in world.provinces.neighbors[u] where label[nb.index] == -1 {
+                    label[nb.index] = next
+                    stack.append(nb.index)
+                }
+            }
+            next += 1
+        }
+        return label
+    }
+
     /// Finds the fastest path of adjacent provinces from `start` to `goal`.
     /// Returns the sequence of hops after `start` (ending with `goal`), or
     /// empty if `start == goal` or unreachable.

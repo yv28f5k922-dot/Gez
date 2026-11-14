@@ -90,6 +90,10 @@ public enum DiplomacyAISystem {
         let warSnapshot = world.diplomacy.wars
         guard !warSnapshot.isEmpty else { return }
 
+        // Land masses: targets on another land mass cannot be reached by
+        // marching, and a failed route search explores the whole map.
+        let landMass = ArmySystem.landComponents(world)
+
         // Track enemy armies by province for quick tactical interception
         var armiesByProvince: [Int: [ArmyID]] = [:]
         var activeWarringCountries: Set<CountryID> = []
@@ -242,7 +246,10 @@ public enum DiplomacyAISystem {
                 let curPt = world.provinces.location[curProv.index]
                 let candidatePools: [[ProvinceID]] = [priorityTargets, enemyProvs, liberateProvs]
                 var ordered = false
-                for pool in candidatePools where !pool.isEmpty {
+                let myLand = landMass[curProv.index]
+                for fullPool in candidatePools where !fullPool.isEmpty {
+                    let pool = fullPool.filter { landMass[$0.index] == myLand }
+                    guard !pool.isEmpty else { continue }
                     let sortedTargets = pool.sorted { a, b in
                         let pa = world.provinces.location[a.index]
                         let pb = world.provinces.location[b.index]
