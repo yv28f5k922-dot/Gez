@@ -31,6 +31,15 @@ struct ContentView: View {
                     GovernmentPanel().padding(12)
                 } else if model.showArmies {
                     ArmyPanel().padding(12)
+                } else if model.showDiplomacy {
+                    DiplomacyPanel().padding(12)
+                } else if model.showWars {
+                    WarsOverviewPanel().padding(12)
+                }
+            }
+            .overlay(alignment: .center) {
+                if let warID = model.showPeaceForWarID {
+                    PeaceNegotiationPanel(warID: warID)
                 }
             }
             .overlay(alignment: .bottomTrailing) {
@@ -110,6 +119,29 @@ struct TopBar: View {
                 }
                 .buttonStyle(.plain)
                 .help("Armies, manpower, levies and commanders")
+                Button {
+                    if model.showDiplomacy {
+                        model.showDiplomacy = false
+                    } else {
+                        model.openDiplomacy()
+                    }
+                } label: {
+                    Label("Diplomacy", systemImage: "scroll")
+                }
+                .buttonStyle(.plain)
+                .help("Alliances, treaties, coalitions and war declarations")
+                let playerWarsCount = model.world.diplomacy.activeWars(for: player).count
+                let pendingPeaceCount = model.world.diplomacy.pendingPeaceOffers.filter { $0.loser == player }.count
+                Button {
+                    model.showDiplomacy = false
+                    model.showWars.toggle()
+                } label: {
+                    let badge = playerWarsCount > 0 ? "Wars (\(playerWarsCount))" : "Wars"
+                    Label(badge, systemImage: "flame")
+                        .foregroundStyle(pendingPeaceCount > 0 ? Color.orange : (playerWarsCount > 0 ? Color.red : Palette.ink))
+                }
+                .buttonStyle(.plain)
+                .help("Active wars, war score and peace negotiations")
                 if countries.inflation[player.index] >= 0.01 {
                     Text(String(format: "Inflation %.0f%%", countries.inflation[player.index] * 100))
                         .font(.caption)
@@ -242,10 +274,25 @@ struct ProvincePanel: View {
                     if c.capital[owner.index] == province {
                         Image(systemName: "star.fill").font(.caption).help("Capital")
                     }
+                    if owner != model.playerCountry {
+                        Spacer()
+                        Button("Diplomacy") {
+                            model.openDiplomacy(with: owner)
+                        }
+                        .font(.caption.bold())
+                        .padding(.horizontal, 6).padding(.vertical, 2)
+                        .background(Palette.ink.opacity(0.12), in: Capsule())
+                        .buttonStyle(.plain)
+                    }
                 } else {
                     Circle().fill(Color(red: 0.77, green: 0.71, blue: 0.59)).frame(width: 12, height: 12)
                     Text("Unclaimed land")
                 }
+            }
+            if let occ = p.occupiedBy[i] {
+                Text("Occupied by \(c.name[occ.index])")
+                    .font(.caption.bold())
+                    .foregroundStyle(Color.red.opacity(0.85))
             }
             if let owner = p.owner[i] {
                 Text(countryStatus(owner, world: world))

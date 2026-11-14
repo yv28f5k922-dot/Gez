@@ -65,6 +65,10 @@ final class GameModel {
     var showCourt = false
     var showGovernment = false
     var showArmies = false
+    var showDiplomacy = false
+    var showWars = false
+    var selectedDiplomacyCountry: CountryID?
+    var showPeaceForWarID: String?
     /// Selected army in the Armies panel or on the map.
     var selectedArmy: ArmyID?
     /// When set, tapping a province on the map orders this army to march there.
@@ -153,8 +157,13 @@ final class GameModel {
         guard let last = lastUpdate else { return }
         let days = clock.daysToAdvance(elapsedSeconds: now.timeIntervalSince(last))
         guard days > 0 else { return }
+        let prevMonth = simulation.date.month
+        let prevWars = simulation.world.diplomacy.wars.count
         simulation.advance(days: days)
         date = simulation.date
+        if date.month != prevMonth || simulation.world.diplomacy.wars.count != prevWars {
+            renderMap()
+        }
         revision &+= 1
     }
 
@@ -439,6 +448,142 @@ final class GameModel {
         showTrade = true
     }
 
+    // MARK: Diplomacy & War actions (player only)
+
+    func openDiplomacy(with target: CountryID? = nil) {
+        showBudget = false
+        showTrade = false
+        showCourt = false
+        showGovernment = false
+        showArmies = false
+        showWars = false
+        if let target {
+            selectedDiplomacyCountry = target
+        } else if selectedDiplomacyCountry == nil {
+            selectedDiplomacyCountry = world.countries.ids.first(where: { $0 != playerCountry && !world.provinces(ownedBy: $0).isEmpty })
+        }
+        showDiplomacy = true
+        revision &+= 1
+    }
+
+    func toggleAlliance(with target: CountryID) {
+        guard let p = playerCountry, target != p else { return }
+        if world.diplomacy.areAllies(p, target) {
+            simulation.world.diplomacy.removeTreaty(.alliance, between: p, and: target)
+        } else {
+            guard world.diplomacy.opinion(of: p, by: target) >= 0,
+                  !world.diplomacy.isAtWar(p, target),
+                  !world.diplomacy.hasTruce(p, target) else { return }
+            simulation.world.diplomacy.addTreaty(Treaty(first: p, second: target, type: .alliance, note: "Player Alliance"))
+        }
+        renderMap()
+        revision &+= 1
+    }
+
+    func toggleGuarantee(with target: CountryID) {
+        guard let p = playerCountry, target != p else { return }
+        if world.diplomacy.hasTreaty(.guarantee, between: p, and: target) {
+            simulation.world.diplomacy.removeTreaty(.guarantee, between: p, and: target)
+        } else {
+            simulation.world.diplomacy.addTreaty(Treaty(first: p, second: target, type: .guarantee, note: "Guarantee"))
+        }
+        renderMap()
+        revision &+= 1
+    }
+
+    func toggleNonAggression(with target: CountryID) {
+        guard let p = playerCountry, target != p else { return }
+        if world.diplomacy.hasTreaty(.nonAggression, between: p, and: target) {
+            simulation.world.diplomacy.removeTreaty(.nonAggression, between: p, and: target)
+        } else if world.diplomacy.opinion(of: p, by: target) >= -10 {
+            simulation.world.diplomacy.addTreaty(Treaty(first: p, second: target, type: .nonAggression, note: "Non-Aggression Pact"))
+        }
+        revision &+= 1
+    }
+
+    func toggleMilitaryAccess(with target: CountryID) {
+        guard let p = playerCountry, target != p else { return }
+        if world.diplomacy.hasTreaty(.militaryAccess, between: p, and: target) {
+            simulation.world.diplomacy.removeTreaty(.militaryAccess, between: p, and: target)
+        } else {
+            simulation.world.diplomacy.addTreaty(Treaty(first: p, second: target, type: .militaryAccess, note: "Military Access"))
+        }
+        revision &+= 1
+    }
+
+    func improveRelations(with target: CountryID) {
+        guard let p = playerCountry, target != p else { return }
+        let cur = world.diplomacy.opinion(of: p, by: target)
+        guard cur < 100 else { return }
+        simulation.world.diplomacy.modifyOpinion(of: p, by: target, delta: 15)
+        revision &+= 1
+    }
+
+    @discardableResult
+    func declareWar(on target: CountryID, cb: CasusBelliInstance, breakTruce: Bool = false) -> Result<War, WarDeclarationError> {
+        guard let p = playerCountry else { return .failure(.invalid(reason: "No player country")) }
+        let res = simulation.world.declareWar(
+            attacker: p,
+            defender: target,
+            casusBelli: cb.type,
+            warGoal: cb.warGoal,
+            breakTruce: breakTruce,
+            date: date
+        )
+        if case .success(let war) = res {
+            // Auto-call defensive allies of defender
+            for other in simulation.world.countries.ids where other != p && other != target {
+                if simulation.world.diplomacy.areAllies(target, other)
+                    || simulation.world.diplomacy.hasTreaty(.guarantee, between: other, and: target) {
+                    _ = simulation.world.callToArms(caller: target, ally: other, warID: war.id)
+                }
+            }
+            // Mobilize AI combatants
+            if let latest = simulation.world.diplomacy.wars.first(where: { $0.id == war.id }) {
+                for def in latest.defenders where !simulation.world.humanCountries.contains(def) {
+                    _ = ArmySystem.raiseAllLevies(&simulation.world, def)
+                }
+            }
+            showDiplomacy = false
+            showWars = true
+            renderMap()
+        }
+        revision &+= 1
+        return res
+    }
+
+    @discardableResult
+    func callAllyToWar(_ ally: CountryID, warID: String) -> CallToArmsResult {
+        guard let p = playerCountry else { return .declined(reasons: ["No player country"]) }
+        let res = simulation.world.callToArms(caller: p, ally: ally, warID: warID)
+        renderMap()
+        revision &+= 1
+        return res
+    }
+
+    @discardableResult
+    func proposePeace(_ offer: PeaceOffer) -> Result<Int, PeaceTreatyError> {
+        let res = simulation.world.executePeaceTreaty(offer, date: date, forceAccept: false)
+        if case .success = res {
+            showPeaceForWarID = nil
+            rebuildTownIcons()
+            renderMap()
+        }
+        revision &+= 1
+        return res
+    }
+
+    func respondToPendingPeaceOffer(_ offer: PeaceOffer, accept: Bool) {
+        if accept {
+            _ = simulation.world.executePeaceTreaty(offer, date: date, forceAccept: true)
+            rebuildTownIcons()
+            renderMap()
+        } else {
+            simulation.world.diplomacy.pendingPeaceOffers.removeAll { $0.warID == offer.warID }
+        }
+        revision &+= 1
+    }
+
     func select(province: ProvinceID?, keepSea: Bool = false) {
         if !keepSea && selectedSea != nil {
             selectedSea = nil
@@ -472,7 +617,7 @@ final class GameModel {
     /// change or when provinces change owner.
     func renderMap() {
         if let metal {
-            metal.updateStyles(world: world, mode: mapMode)
+            metal.updateStyles(world: world, mode: mapMode, player: playerCountry)
             return
         }
         renderGeneration += 1
@@ -480,7 +625,7 @@ final class GameModel {
         let keys = MapRenderer.keys(world: world)
         let input = MapRenderer.Input(
             map: idMap,
-            colors: MapPalette.colors(for: mapMode, world: world),
+            colors: MapPalette.colors(for: mapMode, world: world, player: playerCountry),
             ownerKey: keys.owner,
             stateKey: keys.state,
             rivers: world.rivers.map { river in river.points.map { CGPoint(x: $0.x, y: $0.y) } }
