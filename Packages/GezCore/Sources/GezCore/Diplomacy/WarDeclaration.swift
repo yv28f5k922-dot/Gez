@@ -235,15 +235,16 @@ extension Diplomacy {
             }
         }
 
-        // 7. Coalition: Defender AE >= 50 with at least 3 outraged countries
-        if aggressiveExpansion(of: defender, by: attacker) >= 50.0 {
+        // 7. Coalition: Defender in coalition against defender (50+ AE with 4+ outraged countries)
+        let inCoalition = coalitions[defender]?.contains(attacker) ?? false
+        if inCoalition || aggressiveExpansion(of: defender, by: attacker) >= 50.0 {
             var outragedCount = 0
             for c in world.countries.ids where c != defender {
                 if aggressiveExpansion(of: defender, by: c) >= 50.0 && opinion(of: defender, by: c) < 0 {
                     outragedCount += 1
                 }
             }
-            if outragedCount >= 3 {
+            if inCoalition || outragedCount >= 4 {
                 let defName = world.countries.name[defender.index]
                 result.append(CasusBelliInstance(
                     type: .coalition,
@@ -463,6 +464,25 @@ extension World {
         }
         for s in countries.subjects(of: defender) {
             if !defenders.contains(s) { defenders.append(s) }
+        }
+
+        // Coalition call-ins: offensive punitive coalition against defender
+        if casusBelli == .coalition, let coalMembers = diplomacy.coalitions[defender] {
+            for m in coalMembers.sorted(by: { $0.index < $1.index }) where !attackers.contains(m) && m != attacker && m != defender {
+                attackers.append(m)
+                for s in countries.subjects(of: m) where !attackers.contains(s) {
+                    attackers.append(s)
+                }
+            }
+        }
+        // Defensive coalition: if attacker targets any member of a coalition formed against attacker
+        if let coalAgainstAttacker = diplomacy.coalitions[attacker], coalAgainstAttacker.contains(defender) {
+            for m in coalAgainstAttacker.sorted(by: { $0.index < $1.index }) where !defenders.contains(m) && m != attacker {
+                defenders.append(m)
+                for s in countries.subjects(of: m) where !defenders.contains(s) {
+                    defenders.append(s)
+                }
+            }
         }
 
         // 5. Hostility relations: -100 opinion and low trust between enemy sides

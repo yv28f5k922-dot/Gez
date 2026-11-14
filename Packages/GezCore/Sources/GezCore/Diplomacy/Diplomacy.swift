@@ -65,6 +65,8 @@ public struct War: Sendable, Identifiable, Equatable {
     public var warScore: Double
     /// War score earned specifically from field battles (-0.40 ... +0.40).
     public var battleWarScore: Double
+    /// Ticking war score from holding the war goal (-0.25 ... +0.25).
+    public var tickingWarScore: Double
     public var note: String
 
     public init(
@@ -77,6 +79,7 @@ public struct War: Sendable, Identifiable, Equatable {
         defenders: [CountryID],
         warScore: Double = 0.0,
         battleWarScore: Double = 0.0,
+        tickingWarScore: Double = 0.0,
         note: String = ""
     ) {
         self.id = id
@@ -88,6 +91,7 @@ public struct War: Sendable, Identifiable, Equatable {
         self.defenders = defenders
         self.warScore = warScore
         self.battleWarScore = battleWarScore
+        self.tickingWarScore = tickingWarScore
         self.note = note
     }
 
@@ -115,6 +119,19 @@ public struct War: Sendable, Identifiable, Equatable {
     }
 }
 
+/// Active war reparations agreement: payer pays 10% of monthly income to receiver until `until`.
+public struct WarReparation: Sendable, Equatable {
+    public var payer: CountryID
+    public var receiver: CountryID
+    public var until: GameDate
+
+    public init(payer: CountryID, receiver: CountryID, until: GameDate) {
+        self.payer = payer
+        self.receiver = receiver
+        self.until = until
+    }
+}
+
 /// Complete diplomatic relations state stored on `World`.
 ///
 /// Matrix values (opinion, trust, aggressive expansion) are stored as flat 1D arrays
@@ -136,6 +153,12 @@ public struct Diplomacy: Sendable {
 
     /// Active wars currently being waged.
     public var wars: [War] = []
+
+    /// Active war reparations (10% monthly income transfers for 10 years).
+    public var warReparations: [WarReparation] = []
+
+    /// Active coalitions against aggressive expanders: target -> coalition member countries.
+    public var coalitions: [CountryID: Set<CountryID>] = [:]
 
     public init() {}
 
