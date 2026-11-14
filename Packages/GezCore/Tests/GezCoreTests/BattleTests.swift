@@ -200,7 +200,15 @@ final class BattleTests: XCTestCase {
 
         // Liberate in 5 days!
         sim.advance(days: 5)
-        XCTAssertNil(sim.world.provinces.occupiedBy[targetProv.index], "Friendly force should liberate unfortified province in 5 days")
+        let diag: String = {
+            let w = sim.world
+            let here = w.military.armies(in: targetProv).map { a -> String in
+                let i = Int(a.rawValue)
+                return "\(w.countries.tag[w.military.armies.owner[i].index]) men=\(w.military.armies.totalMen(of: a)) retreating=\(w.military.armies.isRetreating[i]) rebel=\(w.military.armies.isRebel[i])"
+            }
+            return "atWar=\(w.diplomacy.isAtWar(eng, fra)) battle=\(w.military.battle(in: targetProv) != nil) progress=\(w.provinces.occupationProgressDays[targetProv.index]) target=\(String(describing: w.provinces.occupationTarget[targetProv.index])) fort=\(w.provinces.fortLevel[targetProv.index]) garrison=\(w.provinces.fortGarrison[targetProv.index]) armies=\(here) date=\(sim.date)"
+        }()
+        XCTAssertNil(sim.world.provinces.occupiedBy[targetProv.index], "Friendly force should liberate unfortified province in 5 days: \(diag)")
         XCTAssertEqual(sim.world.provinces.controller(of: targetProv), eng)
     }
 
