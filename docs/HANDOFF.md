@@ -99,6 +99,21 @@ When the owner asks Claude to test Gemini's work:
    (`gh pr merge <n> --squash`), then mirror HANDOFF and ROADMAP to the
    Project if they changed.
 
+## Website (session 6)
+
+Public coming-soon site at https://yv28f5k922-dot.github.io, from the
+separate public repo `yv28f5k922-dot/yv28f5k922-dot.github.io` (plain HTML,
+no build; GitHub Pages deploys every push to `main`). Owner's choices:
+free github.io address; Mac download free, iPad "later" (needs Apple's
+$99/year account); no download until the first playable version (Phase 8);
+the site never links to this repo, because the owner plans to make the game
+repo **private near release** (watch CI minutes then: private repos get
+about 2,000 free minutes a month and macOS counts 10x). Screenshots come
+from `ci-snapshots`, with the yellow button placeholders painted over.
+When a download exists: build an unsigned Mac app on CI, attach it to a
+GitHub Release on the website repo, and add "how to open an app from an
+unidentified developer" steps to the page.
+
 ## How to work on it
 
 ### Limits of the cloud workspace
