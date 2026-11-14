@@ -29,6 +29,11 @@ public final class Simulation {
 
         // Daily systems go here.
         ArmySystem.runDaily(&world, date: date, random: &random)
+        BattleSystem.runDaily(&world, date: date, random: &random)
+        DiplomacySystem.runDaily(&world, date: date)
+        if date.day % 7 == 1 {
+            DiplomacyAISystem.runWeeklyMilitary(&world, date: date)
+        }
 
         if date.isFirstOfMonth {
             TradeSystem.refreshPaths(&world)
@@ -44,6 +49,8 @@ public final class Simulation {
             CharacterSystem.runMonthly(&world, date: date, random: &random)
             VassalSystem.runMonthly(&world, date: date, random: &random)
             GovernmentSystem.runMonthly(&world, date: date, random: &random)
+            DiplomacySystem.runMonthly(&world, date: date)
+            DiplomacyAISystem.runMonthly(&world, date: date, random: &random)
         }
 
         if date.isFirstOfYear {
