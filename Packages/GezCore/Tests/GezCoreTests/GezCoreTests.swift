@@ -3,6 +3,15 @@ import XCTest
 /// Decade-long simulations take most of CI's time. They run only when
 /// GEZ_LONG_TESTS=1 (the "Long simulation tests" CI job: daily, on main, and
 /// by hand), so pull requests get a fast answer.
+/// People alive in the world: pops plus levy soldiers currently serving
+/// (levies leave their pops while raised and return when disbanded).
+func peopleIncludingServingLevies(_ w: World, provinceTotals: Bool) -> Double {
+    let base = provinceTotals ? w.provinces.population.reduce(0, +) : w.pops.size.reduce(0, +)
+    var levies = 0
+    for c in w.countries.ids { levies += w.military.totalMen(of: c, origin: .levy) }
+    return base + Double(levies)
+}
+
 func skipUnlessLongTests() throws {
     try XCTSkipUnless(ProcessInfo.processInfo.environment["GEZ_LONG_TESTS"] == "1",
                       "long simulation: runs in the Long simulation tests job")
@@ -270,9 +279,9 @@ final class PopTests: XCTestCase {
 
     func testPopsGrowWithTime() {
         let sim = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate)
-        let before = sim.world.pops.size.reduce(0, +)
+        let before = peopleIncludingServingLevies(sim.world, provinceTotals: false)
         sim.advance(days: 365)
-        XCTAssertGreaterThan(sim.world.pops.size.reduce(0, +), before)
+        XCTAssertGreaterThan(peopleIncludingServingLevies(sim.world, provinceTotals: false), before)
     }
 }
 
@@ -436,9 +445,9 @@ final class SimulationTests: XCTestCase {
 
     func testPopulationGrowsOverAYear() {
         let sim = Simulation(world: Scenario1453.makeWorld(), startDate: Scenario1453.startDate)
-        let before = sim.world.provinces.population.reduce(0, +)
+        let before = peopleIncludingServingLevies(sim.world, provinceTotals: true)
         sim.advance(days: 365)
-        XCTAssertGreaterThan(sim.world.provinces.population.reduce(0, +), before)
+        XCTAssertGreaterThan(peopleIncludingServingLevies(sim.world, provinceTotals: true), before)
     }
 
     func testDeterministicForSameSeed() {

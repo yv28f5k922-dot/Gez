@@ -984,7 +984,8 @@ public enum ArmySystem {
 
         // 4. Great vassal open revolts & clashes.
         checkVassalRevolts(&world, date: date, random: &random)
-        for p in world.provinces.ids {
+        let armyIndex = world.military.armyIndexByProvince(provinceCount: world.provinces.count)
+        for p in world.provinces.ids where armyIndex[p.index].count >= 2 {
             resolveRebelClash(&world, in: p, date: date, random: &random)
         }
     }

@@ -620,15 +620,17 @@ public enum BattleSystem {
 
     private static func advanceUnfortifiedOccupation(_ world: inout World) {
         let activeBattleProvs = Set(world.military.battles.map(\.province))
+        let armyIndex = world.military.armyIndexByProvince(provinceCount: world.provinces.count)
 
         for p in 0..<world.provinces.count {
             let pid = ProvinceID(p)
             if activeBattleProvs.contains(pid) { continue }
 
             // Collect non-rebel, non-retreating armies standing in `pid`
-            let armiesHere = world.military.armies(in: pid).filter { aid in
+            let armiesHere = armyIndex[p].filter { aid in
                 let i = Int(aid.rawValue)
-                return !world.military.armies.isRebel[i] && !world.military.armies.isRetreating[i]
+                return world.military.armies.alive[i] && world.military.armies.province[i] == pid
+                    && !world.military.armies.isRebel[i] && !world.military.armies.isRetreating[i]
             }.sorted { $0.rawValue < $1.rawValue }
 
             if armiesHere.isEmpty || (world.provinces.fortLevel[p] > 0 && world.provinces.fortGarrison[p] > 0) {

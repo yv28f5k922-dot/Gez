@@ -26,7 +26,13 @@ final class ProfileTests: XCTestCase {
 
         let days = Int(ProcessInfo.processInfo.environment["GEZ_PROFILE_DAYS"] ?? "120") ?? 120
         let overall = DispatchTime.now().uptimeNanoseconds
-        for _ in 0..<days {
+        var blockStart = DispatchTime.now().uptimeNanoseconds
+        for day in 1...days {
+            if day % 100 == 0 {
+                let now = DispatchTime.now().uptimeNanoseconds
+                print("PROFILE days \(day - 99)-\(day): \(Double(now - blockStart) / 1e9 / 100 * 1000) ms/day, army slots=\(world.military.armies.count)")
+                blockStart = now
+            }
             date.advanceOneDay()
             time("ArmySystem.runDaily") { ArmySystem.runDaily(&world, date: date, random: &random) }
             time("BattleSystem.runDaily") { BattleSystem.runDaily(&world, date: date, random: &random) }

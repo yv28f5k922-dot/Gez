@@ -165,6 +165,9 @@ final class BattleTests: XCTestCase {
         world.military.armies.append(name: "Grand Armee", owner: fra, province: targetProv, regiments: attRegs)
         let engArmy = world.military.armies.append(name: "English Garrison", owner: eng, province: targetProv, regiments: defRegs)
 
+        // France is player-controlled here, so the war AI does not march the
+        // victorious army away before it can occupy the province.
+        world.humanCountries.insert(fra)
         let sim = Simulation(world: world, startDate: Scenario1453.startDate, seed: 999)
 
         // Advance until battle finishes

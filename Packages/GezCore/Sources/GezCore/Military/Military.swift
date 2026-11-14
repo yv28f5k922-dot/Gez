@@ -283,6 +283,18 @@ public struct Military: Sendable {
         return result
     }
 
+    /// Living armies grouped by province, built in one pass over the army
+    /// table. Use this instead of calling `armies(in:)` for every province:
+    /// the table keeps dead slots, so per-province scans grow with game length.
+    public func armyIndexByProvince(provinceCount: Int) -> [[ArmyID]] {
+        var index = Array(repeating: [ArmyID](), count: provinceCount)
+        for i in 0..<armies.count where armies.alive[i] {
+            let p = armies.province[i].index
+            if p >= 0 && p < provinceCount { index[p].append(ArmyID(Int32(i))) }
+        }
+        return index
+    }
+
     public func armies(in province: ProvinceID) -> [ArmyID] {
         var result: [ArmyID] = []
         for i in 0..<armies.count {

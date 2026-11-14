@@ -89,6 +89,7 @@ public enum SiegeSystem {
         }
 
         // 2. Scan fortified provinces for valid besiegers
+        let armyIndex = world.military.armyIndexByProvince(provinceCount: world.provinces.count)
         for p in 0..<world.provinces.count {
             let pid = ProvinceID(p)
             let fortLvl = world.provinces.fortLevel[p]
@@ -96,9 +97,10 @@ public enum SiegeSystem {
             guard !activeBattleProvs.contains(pid) else { continue }
             guard let ctrl = world.provinces.controller(of: pid) else { continue }
 
-            let armiesHere = world.military.armies(in: pid).filter { aid in
+            let armiesHere = armyIndex[p].filter { aid in
                 let i = Int(aid.rawValue)
-                return !world.military.armies.isRebel[i]
+                return world.military.armies.alive[i] && world.military.armies.province[i] == pid
+                    && !world.military.armies.isRebel[i]
                     && !world.military.armies.isRetreating[i]
                     && world.diplomacy.isAtWar(world.military.armies.owner[i], ctrl)
             }.sorted { $0.rawValue < $1.rawValue }
