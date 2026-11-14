@@ -30,6 +30,7 @@ public final class Simulation {
         // Daily systems go here.
         ArmySystem.runDaily(&world, date: date, random: &random)
         BattleSystem.runDaily(&world, date: date, random: &random)
+        SiegeSystem.runDaily(&world, date: date, random: &random)
         DiplomacySystem.runDaily(&world, date: date)
         if date.day % 7 == 1 {
             DiplomacyAISystem.runWeeklyMilitary(&world, date: date)
@@ -40,6 +41,7 @@ public final class Simulation {
             EconomySystem.runMonthly(&world)
             BuildingSystem.runMonthly(&world)
             ArmySystem.runMonthly(&world, date: date, random: &random)
+            SiegeSystem.runMonthly(&world)
             FinanceSystem.runMonthly(&world)
             FinanceSystem.runAI(&world)
             TradeSystem.runAI(&world, month: date.month)

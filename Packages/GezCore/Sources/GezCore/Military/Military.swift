@@ -243,6 +243,8 @@ public struct Military: Sendable {
     public var battles: [Battle] = []
     /// Archive of recent completed battles (up to 50).
     public var recentBattles: [BattleReport] = []
+    /// Active sieges against fortified provinces.
+    public var sieges: [Siege] = []
 
     public init() {}
 
@@ -314,5 +316,9 @@ public struct Military: Sendable {
 
     public func battle(in province: ProvinceID) -> Battle? {
         battles.first { $0.province == province }
+    }
+
+    public func siege(in province: ProvinceID) -> Siege? {
+        sieges.first { $0.province == province }
     }
 }

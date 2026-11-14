@@ -688,6 +688,15 @@ public enum ArmySystem {
             return top
         }
 
+        let armyOwner: CountryID? = army.flatMap { aid in
+            let idx = Int(aid.rawValue)
+            guard idx >= 0, idx < world.military.armies.count,
+                  world.military.armies.alive[idx],
+                  !world.military.armies.isRebel[idx],
+                  !world.military.armies.isRetreating[idx] else { return nil }
+            return world.military.armies.owner[idx]
+        }
+
         while let (d, u) = pop() {
             if visited[u] { continue }
             visited[u] = true
@@ -696,6 +705,10 @@ public enum ArmySystem {
             for nb in world.provinces.neighbors[u] {
                 let v = nb.index
                 if visited[v] { continue }
+                if let mover = armyOwner,
+                   !SiegeSystem.canStep(world, for: mover, from: uPid, to: nb, pathStart: start) {
+                    continue
+                }
                 let nd = d + stepDays(world, from: uPid, to: nb, army: army)
                 if nd < dist[v] {
                     dist[v] = nd

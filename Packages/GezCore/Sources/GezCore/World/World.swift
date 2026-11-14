@@ -32,6 +32,8 @@ public struct ProvinceTable: Sendable {
     public var sufiOrders: [[SufiPresence]] = []
     /// 0 = no fort. Higher levels take longer to siege.
     public var fortLevel: [Int] = []
+    /// Current defending garrison inside the fort (up to `fortLevel * 1000`).
+    public var fortGarrison: [Int] = []
     /// The great vassal who holds this province for its owner (nil = the crown's own land).
     public var holder: [CharacterID?] = []
     /// Countries that consider this province their lawful core.
@@ -85,6 +87,7 @@ public struct ProvinceTable: Sendable {
         self.majorityCulture.append(CultureID(0))
         self.sufiOrders.append([])
         self.fortLevel.append(fortLevel)
+        self.fortGarrison.append(max(0, fortLevel) * 1000)
         self.holder.append(nil)
         self.cores.append(owner != nil ? [owner!] : [])
         self.claims.append([])
@@ -97,6 +100,11 @@ public struct ProvinceTable: Sendable {
     /// Current military/administrative controller of `province` (occupier if occupied, else legal owner).
     public func controller(of province: ProvinceID) -> CountryID? {
         occupiedBy[province.index] ?? owner[province.index]
+    }
+
+    /// Maximum fort garrison capacity for `province` (1,000 per fort level).
+    public func maxGarrison(of province: ProvinceID) -> Int {
+        max(0, fortLevel[province.index]) * 1000
     }
 
     /// Neighbours are set once all provinces exist. Links are made two-way.

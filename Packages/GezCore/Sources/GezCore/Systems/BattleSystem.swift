@@ -631,7 +631,7 @@ public enum BattleSystem {
                 return !world.military.armies.isRebel[i] && !world.military.armies.isRetreating[i]
             }.sorted { $0.rawValue < $1.rawValue }
 
-            if armiesHere.isEmpty || world.provinces.fortLevel[p] > 0 {
+            if armiesHere.isEmpty || (world.provinces.fortLevel[p] > 0 && world.provinces.fortGarrison[p] > 0) {
                 world.provinces.occupationProgressDays[p] = 0
                 world.provinces.occupationTarget[p] = nil
                 continue
